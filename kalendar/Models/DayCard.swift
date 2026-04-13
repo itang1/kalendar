@@ -15,4 +15,12 @@ struct DayCard: Identifiable {
     var color: Color
     var memo: String
     var comments: [String]
+
+    // Liturgical calendar data
+    var liturgicalSeason: LiturgicalSeason
+    var liturgicalColor: LiturgicalColor
+    var feastName: String?
+    var feastDescription: String?
+    var isSolemnity: Bool
+    var weekOfSeason: Int?
 }

@@ -11,19 +11,38 @@ import SwiftUI
 struct DayCardView: View {
     let day: DayCard
 
-    private var dayOfMonth: Int {
-        Calendar.current.component(.day, from: day.date)
+    private var isToday: Bool {
+        Calendar.current.isDateInToday(day.date)
     }
 
     var body: some View {
         RoundedRectangle(cornerRadius: 4)
-            .fill(day.dayOfYear == 1 ? Color.red : day.color)
+            .fill(day.color)
             .overlay(
-                Text("\(dayOfMonth)")
-                    .font(.caption)
-                    .fontWeight(.medium)
-                    .foregroundColor(.white)
+                RoundedRectangle(cornerRadius: 4)
+                    .stroke(Color.secondary.opacity(0.3), lineWidth: 0.5)
+            )
+            .overlay(
+                Group {
+                    if day.feastName != nil {
+                        Circle()
+                            .fill(dotColor)
+                            .frame(width: 4, height: 4)
+                    }
+                }
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 4)
+                    .stroke(isToday ? Color.primary : Color.clear, lineWidth: 2)
             )
     }
-}
 
+    private var dotColor: Color {
+        switch day.liturgicalColor {
+        case .white, .rose, .gold:
+            return .black.opacity(0.5)
+        default:
+            return .white.opacity(0.7)
+        }
+    }
+}

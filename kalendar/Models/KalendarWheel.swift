@@ -55,22 +55,25 @@ struct WheelSliceShape: Shape {
 
 #if DEBUG
 #Preview {
-    // Demo: 365 slices, default gray, Advent as green, Easter as pink pattern
-    let adventRange = 335...365 // Approximate last 4 weeks as Advent
-    let easterDay = 95 // Approximate Easter for demonstration
-    let calendar = Calendar.current
-    let startOfYear = calendar.date(from: DateComponents(year: 2026, month: 1, day: 1))!
-    let days = (0..<365).map { offset -> DayCard in
-        let i = offset + 1
-        let date = calendar.date(byAdding: .day, value: offset, to: startOfYear)!
-        var color: Color = .gray
-        if adventRange.contains(i) {
-            color = .green
-        }
-        if i == easterDay {
-            color = .pink
-        }
-        return DayCard(dayOfYear: i, date: date, color: color, memo: "", comments: [])
+    let cal = Calendar.current
+    let litCal = LiturgicalCalendar()
+    let startOfYear = cal.date(from: DateComponents(year: 2026, month: 1, day: 1))!
+    let daysInYear = cal.range(of: .day, in: .year, for: startOfYear)!.count
+    let days = (0..<daysInYear).map { offset -> DayCard in
+        let date = cal.date(byAdding: .day, value: offset, to: startOfYear)!
+        let info = litCal.liturgicalInfo(for: date)
+        return DayCard(
+            dayOfYear: offset + 1,
+            date: date,
+            color: info.liturgicalColor.color,
+            memo: "",
+            comments: [],
+            liturgicalSeason: info.season,
+            liturgicalColor: info.liturgicalColor,
+            feastName: info.feastName,
+            isSolemnity: info.isSolemnity,
+            weekOfSeason: info.weekOfSeason
+        )
     }
     KalendarWheel(days: days)
 }

@@ -12,6 +12,8 @@ import Combine
 
 class CalendarViewModel: ObservableObject {
     @Published var days: [DayCard]
+    let liturgicalCalendar = LiturgicalCalendar()
+    let year: Int
 
     private static let monthNames = [
         "January", "February", "March", "April", "May", "June",
@@ -20,18 +22,27 @@ class CalendarViewModel: ObservableObject {
 
     init() {
         let calendar = Calendar.current
-        let year = calendar.component(.year, from: Date())
-        let startOfYear = calendar.date(from: DateComponents(year: year, month: 1, day: 1))!
+        let currentYear = calendar.component(.year, from: Date())
+        self.year = currentYear
+        let startOfYear = calendar.date(from: DateComponents(year: currentYear, month: 1, day: 1))!
         let daysInYear = calendar.range(of: .day, in: .year, for: startOfYear)!.count
+        let litCal = LiturgicalCalendar()
 
         self.days = (0..<daysInYear).map { offset in
             let date = calendar.date(byAdding: .day, value: offset, to: startOfYear)!
+            let info = litCal.liturgicalInfo(for: date)
             return DayCard(
                 dayOfYear: offset + 1,
                 date: date,
-                color: .blue,
+                color: info.liturgicalColor.color,
                 memo: "",
-                comments: []
+                comments: [],
+                liturgicalSeason: info.season,
+                liturgicalColor: info.liturgicalColor,
+                feastName: info.feastName,
+                feastDescription: info.feastDescription,
+                isSolemnity: info.isSolemnity,
+                weekOfSeason: info.weekOfSeason
             )
         }
     }
