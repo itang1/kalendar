@@ -4,18 +4,16 @@
 //
 //  Created by Irene Tang on 12/20/25.
 //
+//  App entry UI, navigation setup, hosting the main calendar view
 
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            CircleCalendarView()
+                .navigationTitle("kalendar")
         }
-        .padding()
     }
 }
 
