@@ -19,13 +19,7 @@ struct CircleCalendarView: View {
     @State private var selectedIndex: Int?
     @State private var viewMode: CalendarViewMode = .grid
     @State private var showInfo = false
-    @State private var jumpToTodayTrigger = 0
-
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 6), count: 7)
-
-    private var todayIndex: Int? {
-        viewModel.days.firstIndex { Calendar.current.isDateInToday($0.date) }
-    }
 
     var body: some View {
         Group {
@@ -41,21 +35,12 @@ struct CircleCalendarView: View {
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
-                HStack(spacing: 20) {
-                    Button {
-                        jumpToTodayTrigger += 1
-                    } label: {
-                        Image(systemName: "target")
+                Button {
+                    withAnimation(.easeInOut(duration: 0.25)) {
+                        viewMode = (viewMode == .grid) ? .wheel : .grid
                     }
-                    .disabled(viewMode == .wheel)
-
-                    Button {
-                        withAnimation(.easeInOut(duration: 0.25)) {
-                            viewMode = (viewMode == .grid) ? .wheel : .grid
-                        }
-                    } label: {
-                        Image(systemName: viewMode == .grid ? "chart.pie" : "square.grid.3x3")
-                    }
+                } label: {
+                    Image(systemName: viewMode == .grid ? "chart.pie" : "square.grid.3x3")
                 }
             }
         }
@@ -90,10 +75,6 @@ struct CircleCalendarView: View {
                 .padding(12)
             }
             .background(Color(red: 0.78, green: 0.80, blue: 0.84))
-            .onChange(of: jumpToTodayTrigger) { _ in
-                guard let idx = todayIndex else { return }
-                withAnimation { proxy.scrollTo(idx, anchor: .center) }
-            }
         }
     }
 

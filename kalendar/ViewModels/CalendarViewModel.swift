@@ -41,17 +41,15 @@ class CalendarViewModel: ObservableObject {
 
     init() {
         let calendar = Calendar.current
-        let currentYear = calendar.component(.year, from: Date())
-        self.year = currentYear
-        let startOfYear = calendar.date(from: DateComponents(year: currentYear, month: 1, day: 1))!
-        let daysInYear = calendar.range(of: .day, in: .year, for: startOfYear)!.count
+        let today = calendar.startOfDay(for: Date())
+        self.year = calendar.component(.year, from: today)
         let litCal = LiturgicalCalendar()
 
-        var builtDays = (0..<daysInYear).map { offset -> DayCard in
-            let date = calendar.date(byAdding: .day, value: offset, to: startOfYear)!
+        var builtDays = (0..<365).map { offset -> DayCard in
+            let date = calendar.date(byAdding: .day, value: offset, to: today)!
             let info = litCal.liturgicalInfo(for: date)
             return DayCard(
-                dayOfYear: offset + 1,
+                dayOfYear: date.dayOfYear,
                 date: date,
                 color: info.liturgicalColor.color,
                 memo: "",
