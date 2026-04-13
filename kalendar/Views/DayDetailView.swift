@@ -41,7 +41,7 @@ struct DayDetailView: View {
                         RoundedRectangle(cornerRadius: 4)
                             .fill(day.liturgicalSeason.color)
                             .overlay(RoundedRectangle(cornerRadius: 4)
-                                .stroke(Color.secondary.opacity(0.3), lineWidth: 0.5))
+                                .stroke(Color.secondary.opacity(0.3), lineWidth: 3))
                             .frame(width: 22, height: 22)
                         Text(day.liturgicalSeason.rawValue)
                             .font(.system(size: 17, weight: .bold))
@@ -92,7 +92,7 @@ struct DayDetailView: View {
                     HStack(spacing: 10) {
                         Circle()
                             .fill(day.liturgicalColor.color)
-                            .overlay(Circle().stroke(Color.secondary.opacity(0.3), lineWidth: 0.5))
+                            .overlay(Circle().stroke(Color.secondary.opacity(0.3), lineWidth: 3))
                             .frame(width: 18, height: 18)
                         Text(day.liturgicalColor.rawValue)
                             .font(.system(size: 17, weight: .bold))

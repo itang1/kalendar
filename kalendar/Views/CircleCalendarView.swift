@@ -89,6 +89,7 @@ struct CircleCalendarView: View {
                 }
                 .padding(12)
             }
+            .background(Color(red: 0.78, green: 0.80, blue: 0.84))
             .onChange(of: jumpToTodayTrigger) { _ in
                 guard let idx = todayIndex else { return }
                 withAnimation { proxy.scrollTo(idx, anchor: .center) }

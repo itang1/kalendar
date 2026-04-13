@@ -62,7 +62,7 @@ enum LiturgicalColor: String {
         switch self {
         case .green: return Color(red: 0.2, green: 0.55, blue: 0.3)
         case .violet: return Color(red: 0.45, green: 0.2, blue: 0.55)
-        case .white: return Color(red: 0.92, green: 0.9, blue: 0.85)
+        case .white: return Color(red: 1.0, green: 1.0, blue: 1.0)
         case .red: return Color(red: 0.75, green: 0.15, blue: 0.15)
         case .rose: return Color(red: 0.85, green: 0.5, blue: 0.6)
         case .gold: return Color(red: 0.85, green: 0.75, blue: 0.25)
