@@ -29,6 +29,54 @@ enum LiturgicalSeason: String, CaseIterable {
         }
     }
 
+    var contextualItems: [String] {
+        switch self {
+        case .advent:
+            return [
+                "Light the Advent wreath candles week by week. Three are violet, one is rose, and the progression marks time in a way that feels more honest than a countdown.",
+                "Read Isaiah. The prophetic passages the liturgy draws from during these weeks are worth sitting with on their own, outside of Mass.",
+                "Pray in the morning or the evening. Advent is a season of watching, and watching takes some quiet.",
+                "The tone is expectant. The world is rushing toward Christmas. The liturgy is doing something slower."
+            ]
+        case .christmas:
+            return [
+                "Keep celebrating through January. Most people are done by December 26, which means missing the better half of the season.",
+                "Read the prologue of John's Gospel. It is what the liturgy has called the Christmas reading for centuries, and it is not about a manger.",
+                "Mark the feast days that cluster in these weeks: St. Stephen on the 26th, St. John on the 27th, the Holy Innocents on the 28th.",
+                "The tone is warm and unhurried. Lent will come soon enough."
+            ]
+        case .ordinaryTime:
+            return [
+                "Follow the Sunday Gospel readings week by week. The three-year lectionary cycle moves through Matthew, Mark, and Luke in sequence, and tracking it lets you watch the ministry of Jesus unfold gradually.",
+                "Pay attention to the saints' feasts as they come. Most of them fall in Ordinary Time, and they are the tradition's way of saying that holiness looks like something specific and concrete.",
+                "The tone is steady. This is not the dramatic part of the year. It is the part where most of the actual work of following happens."
+            ]
+        case .lent:
+            return [
+                "Fast on Ash Wednesday and Good Friday. Abstain from meat on Fridays through the season.",
+                "Take on one practice and give up one thing. The tradition is not only subtraction.",
+                "Go to Stations of the Cross on a Friday. It is slower and older than a Sunday Mass and worth experiencing at least once in the season.",
+                "Read John chapters 11 through 19 before Holy Week arrives. The liturgy moves through them and knowing them makes everything that follows land differently.",
+                "The tone is serious without being without hope. Lent is pointing toward something."
+            ]
+        case .triduum:
+            return [
+                "Go to all three liturgies if you possibly can. Holy Thursday, Good Friday, and the Easter Vigil are not three separate services. They are one rite spread across three days.",
+                "Keep Holy Saturday quiet. There is no liturgy until the Vigil, and the silence is intentional.",
+                "Plan to stay for the full Easter Vigil. It takes hours, begins in darkness, and moves through a long sweep of readings before it erupts. That is the design, not the inconvenience.",
+                "The Vigil is the night new members are baptized. If someone you know is entering the faith, this is when it happens.",
+                "The tone goes from tenderness to grief to stillness to joy, in that order."
+            ]
+        case .easter:
+            return [
+                "Say Alleluia. It was held back all through Lent and this is the season it belongs to.",
+                "Read Acts of the Apostles from the beginning. It is the season's companion text, the story of what happened after the resurrection, and it moves fast.",
+                "Think about baptism. Easter Vigil is when new Christians are received, and the whole season carries that sense of new life.",
+                "The tone is joyful and sustained. Easter is not one day. It is fifty days, longer than Lent, and the tradition takes that seriously."
+            ]
+        }
+    }
+
     var explanation: String {
         switch self {
         case .advent:

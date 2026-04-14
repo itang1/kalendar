@@ -58,7 +58,23 @@ struct DayDetailView: View {
                     Text(day.liturgicalSeason.explanation)
                         .font(.system(size: 17))
                         .padding(.top, 8)
-                        .padding(.bottom, 28)
+
+                    Text("Traditionally during \(day.liturgicalSeason.rawValue):")
+                        .font(.system(size: 17, weight: .semibold))
+                        .padding(.top, 16)
+
+                    VStack(alignment: .leading, spacing: 10) {
+                        ForEach(day.liturgicalSeason.contextualItems, id: \.self) { item in
+                            HStack(alignment: .top, spacing: 8) {
+                                Text("·")
+                                    .font(.system(size: 17, weight: .bold))
+                                Text(item)
+                                    .font(.system(size: 17))
+                            }
+                        }
+                    }
+                    .padding(.top, 8)
+                    .padding(.bottom, 28)
 
                     // MARK: Feast (if any)
                     if let feast = day.feastName {
