@@ -28,25 +28,16 @@ struct DayDetailView: View {
                             .font(.title2.bold())
                         Text("Day \(day.dayOfYear) of the year")
                             .font(.subheadline)
-                            .foregroundStyle(.secondary)
                     }
 
                     // Season
                     VStack(alignment: .leading, spacing: 8) {
-                        Label {
-                            Text("Liturgical Season")
-                                .font(.caption.bold())
-                                .textCase(.uppercase)
-                                .foregroundStyle(.secondary)
-                        } icon: {
-                            Image(systemName: "info.circle")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        }
+                        Text("Liturgical Season")
+                            .font(.caption.bold())
+                            .textCase(.uppercase)
 
                         Text("'Liturgical' means related to the Church's public worship and calendar. The Church organizes the year into seasons rather than months.")
                             .font(.caption)
-                            .foregroundStyle(.tertiary)
 
                         HStack(spacing: 8) {
                             RoundedRectangle(cornerRadius: 4)
@@ -63,30 +54,20 @@ struct DayDetailView: View {
                         if let week = day.weekOfSeason {
                             Text("Week \(week) of \(day.liturgicalSeason.rawValue)")
                                 .font(.subheadline)
-                                .foregroundStyle(.secondary)
                         }
 
                         Text(day.liturgicalSeason.explanation)
                             .font(.subheadline)
-                            .foregroundStyle(.secondary)
                     }
 
                     // Vestment color
                     VStack(alignment: .leading, spacing: 8) {
-                        Label {
-                            Text("Vestment Color")
-                                .font(.caption.bold())
-                                .textCase(.uppercase)
-                                .foregroundStyle(.secondary)
-                        } icon: {
-                            Image(systemName: "info.circle")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        }
+                        Text("Vestment Color")
+                            .font(.caption.bold())
+                            .textCase(.uppercase)
 
                         Text("The priest wears vestments (robes) of a specific color at Mass each day. The color reflects the character of the season or feast being celebrated.")
                             .font(.caption)
-                            .foregroundStyle(.tertiary)
 
                         HStack(spacing: 8) {
                             Circle()
@@ -112,12 +93,10 @@ struct DayDetailView: View {
                                 Text(day.isSolemnity ? "Solemnity" : "Feast / Memorial")
                                     .font(.caption.bold())
                                     .textCase(.uppercase)
-                                    .foregroundStyle(.secondary)
                             }
 
                             Text(rankExplanation)
                                 .font(.caption)
-                                .foregroundStyle(.tertiary)
 
                             Text(feast)
                                 .font(.body.bold())
@@ -125,7 +104,6 @@ struct DayDetailView: View {
                             if let description = day.feastDescription {
                                 Text(description)
                                     .font(.subheadline)
-                                    .foregroundStyle(.secondary)
                             }
                         }
                     }
@@ -135,7 +113,6 @@ struct DayDetailView: View {
                         Text("Memo")
                             .font(.caption.bold())
                             .textCase(.uppercase)
-                            .foregroundStyle(.secondary)
 
                         TextEditor(text: $day.memo)
                             .frame(minHeight: 100)

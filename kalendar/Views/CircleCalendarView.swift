@@ -17,12 +17,11 @@ struct CircleCalendarView: View {
             VStack(alignment: .leading, spacing: 16) {
                 // Intro
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("The liturgical kalendar is the Church's way of marking time. Instead of months, the year is organized into seasons that follow the life of Jesus, from anticipation of his birth through his death, resurrection, and beyond.")
+                    Text("The liturgical kalendar, also called the Church Year or Christian Year, is the Church's way of marking time. Instead of months, the year is organized into seasons that follow the life of Jesus, from anticipation of his birth through his death, resurrection, and beyond. 'Kalendar' is the traditional spelling used in many liturgical texts.")
                         .font(.subheadline)
 
                     Text("Each color below represents a liturgical season. Tap any day to learn more.")
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
                 }
                 .padding(.horizontal)
 
@@ -45,7 +44,6 @@ struct CircleCalendarView: View {
 
                         Text(season.explanation)
                             .font(.caption)
-                            .foregroundStyle(.secondary)
                             .padding(.bottom, 8)
                     }
                 }
@@ -54,11 +52,10 @@ struct CircleCalendarView: View {
                 // Dot explanation
                 HStack(spacing: 6) {
                     Circle()
-                        .fill(Color.secondary)
-                        .frame(width: 5, height: 5)
+                        .fill(Color.primary)
+                        .frame(width: 7, height: 7)
                     Text("A dot marks a feast day or special celebration. Tap to read about it.")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
                 }
                 .padding(.horizontal)
 

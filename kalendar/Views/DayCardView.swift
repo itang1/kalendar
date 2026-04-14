@@ -27,7 +27,7 @@ struct DayCardView: View {
                     if day.feastName != nil {
                         Circle()
                             .fill(dotColor)
-                            .frame(width: 4, height: 4)
+                            .frame(width: 7, height: 7)
                     }
                 }
             )
@@ -46,3 +46,4 @@ struct DayCardView: View {
         }
     }
 }
+
