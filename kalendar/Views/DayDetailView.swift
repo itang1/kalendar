@@ -14,9 +14,11 @@ struct DayDetailView: View {
     @State private var newComment = ""
 
     private var formattedDate: String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        return formatter.string(from: day.date)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM d, yyyy"
+        let weekdayFormatter = DateFormatter()
+        weekdayFormatter.dateFormat = "EEEE"
+        return "\(dateFormatter.string(from: day.date)) (\(weekdayFormatter.string(from: day.date)))"
     }
 
     var body: some View {
@@ -107,18 +109,6 @@ struct DayDetailView: View {
                     Divider()
                         .padding(.vertical, 28)
 
-                    // MARK: Memo
-                    sectionLabel("Memo")
-
-                    TextEditor(text: $day.memo)
-                        .font(.system(size: 17))
-                        .frame(minHeight: 110)
-                        .padding(10)
-                        .background(Color(.systemGray6))
-                        .cornerRadius(10)
-                        .padding(.top, 6)
-                        .padding(.bottom, 28)
-
                     // MARK: Comments
                     sectionLabel("Comments")
 
@@ -159,7 +149,7 @@ struct DayDetailView: View {
                 }
                 .padding()
             }
-            .navigationTitle(formattedDate)
+            .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {

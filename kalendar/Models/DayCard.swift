@@ -13,7 +13,6 @@ struct DayCard: Identifiable {
     let dayOfYear: Int  // 1–365
     let date: Date
     var color: Color
-    var memo: String
     var comments: [String]
 
     // Liturgical calendar data

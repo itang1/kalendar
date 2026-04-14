@@ -13,16 +13,27 @@ import Combine
 // MARK: - Persistence
 
 private struct UserDayData: Codable {
-    var memo: String
     var comments: [String]
 }
 
 private let persistenceKey = "com.kalendar.userDayData"
 
-private func dateKey(for date: Date) -> String {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd"
-    return formatter.string(from: date)
+private let monthDayFormatter: DateFormatter = {
+    let f = DateFormatter()
+    f.dateFormat = "MM-dd"
+    return f
+}()
+
+/// Stable key for a day that survives year changes:
+/// - Feast days are keyed by feast name so Easter memos follow Easter
+///   even when the date shifts year to year.
+/// - Regular days are keyed by month-day (no year) so a memo on
+///   July 10 stays on July 10 every year.
+private func dayKey(for day: DayCard) -> String {
+    if let feast = day.feastName {
+        return "feast:\(feast)"
+    }
+    return monthDayFormatter.string(from: day.date)
 }
 
 // MARK: - ViewModel
@@ -52,7 +63,6 @@ class CalendarViewModel: ObservableObject {
                 dayOfYear: date.dayOfYear,
                 date: date,
                 color: info.liturgicalColor.color,
-                memo: "",
                 comments: [],
                 liturgicalSeason: info.season,
                 liturgicalColor: info.liturgicalColor,
@@ -66,9 +76,8 @@ class CalendarViewModel: ObservableObject {
         // Apply any saved memos and comments
         let saved = Self.loadPersistedData()
         for i in builtDays.indices {
-            let key = dateKey(for: builtDays[i].date)
+            let key = dayKey(for: builtDays[i])
             if let data = saved[key] {
-                builtDays[i].memo = data.memo
                 builtDays[i].comments = data.comments
             }
         }
@@ -93,8 +102,8 @@ class CalendarViewModel: ObservableObject {
 
     private static func persistDays(_ days: [DayCard]) {
         var userData: [String: UserDayData] = [:]
-        for day in days where !day.memo.isEmpty || !day.comments.isEmpty {
-            userData[dateKey(for: day.date)] = UserDayData(memo: day.memo, comments: day.comments)
+        for day in days where !day.comments.isEmpty {
+            userData[dayKey(for: day)] = UserDayData(comments: day.comments)
         }
         if let encoded = try? JSONEncoder().encode(userData) {
             UserDefaults.standard.set(encoded, forKey: persistenceKey)

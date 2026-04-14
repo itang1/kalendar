@@ -19,6 +19,9 @@ struct CircleCalendarView: View {
     @State private var selectedIndex: Int?
     @State private var viewMode: CalendarViewMode = .grid
     @State private var showInfo = false
+    @State private var showFeastList = false
+    @State private var scrollToIndex: Int? = nil
+    @State private var pendingSelectedIndex: Int? = nil
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 6), count: 7)
 
     var body: some View {
@@ -35,17 +38,32 @@ struct CircleCalendarView: View {
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    withAnimation(.easeInOut(duration: 0.25)) {
-                        viewMode = (viewMode == .grid) ? .wheel : .grid
+                HStack(spacing: 20) {
+                    Button { showFeastList = true } label: {
+                        Image(systemName: "list.star")
                     }
-                } label: {
-                    Image(systemName: viewMode == .grid ? "chart.pie" : "square.grid.3x3")
+                    Button {
+                        withAnimation(.easeInOut(duration: 0.25)) {
+                            viewMode = (viewMode == .grid) ? .wheel : .grid
+                        }
+                    } label: {
+                        Image(systemName: viewMode == .grid ? "chart.pie" : "square.grid.3x3")
+                    }
                 }
             }
         }
         .sheet(isPresented: $showInfo) {
             InfoSheet()
+        }
+        .sheet(isPresented: $showFeastList, onDismiss: {
+            selectedIndex = pendingSelectedIndex
+            pendingSelectedIndex = nil
+        }) {
+            FeastListSheet(days: viewModel.days) { index in
+                viewMode = .grid
+                scrollToIndex = index
+                pendingSelectedIndex = index
+            }
         }
         .sheet(
             isPresented: Binding(
@@ -75,6 +93,11 @@ struct CircleCalendarView: View {
                 .padding(12)
             }
             .background(Color(red: 0.78, green: 0.80, blue: 0.84))
+            .onChange(of: scrollToIndex) {
+                guard let idx = scrollToIndex else { return }
+                withAnimation { proxy.scrollTo(idx, anchor: .center) }
+                scrollToIndex = nil
+            }
         }
     }
 
@@ -93,6 +116,77 @@ struct CircleCalendarView: View {
             }
             .frame(maxWidth: .infinity)
             .padding(.top, 24)
+        }
+    }
+}
+
+// MARK: - Feast List Sheet
+
+private struct FeastListSheet: View {
+    let days: [DayCard]
+    let onSelect: (Int) -> Void
+    @Environment(\.dismiss) private var dismiss
+
+    private static let dateFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "MMMM d, yyyy"
+        return f
+    }()
+
+    private static let weekdayFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "EEEE"
+        return f
+    }()
+
+    private var feastDays: [(index: Int, day: DayCard)] {
+        days.enumerated().compactMap { index, day in
+            day.feastName != nil ? (index, day) : nil
+        }
+    }
+
+    var body: some View {
+        NavigationStack {
+            List(feastDays, id: \.index) { item in
+                Button {
+                    onSelect(item.index)
+                    dismiss()
+                } label: {
+                    HStack(spacing: 12) {
+                        RoundedRectangle(cornerRadius: 3)
+                            .fill(item.day.liturgicalSeason.color)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 3)
+                                    .stroke(Color.secondary.opacity(0.4), lineWidth: 3)
+                            )
+                            .frame(width: 18, height: 18)
+
+                        VStack(alignment: .leading, spacing: 3) {
+                            HStack(spacing: 5) {
+                                if item.day.isSolemnity {
+                                    Image(systemName: "star.fill")
+                                        .foregroundStyle(.yellow)
+                                        .font(.system(size: 12))
+                                }
+                                Text(item.day.feastName!)
+                                    .font(.system(size: 17, weight: .semibold))
+                                    .foregroundStyle(.primary)
+                            }
+                            Text("\(Self.dateFormatter.string(from: item.day.date)) (\(Self.weekdayFormatter.string(from: item.day.date)))")
+                                .font(.system(size: 15))
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .padding(.vertical, 4)
+                }
+            }
+            .navigationTitle("Feasts & Solemnities")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") { dismiss() }
+                }
+            }
         }
     }
 }
@@ -123,9 +217,9 @@ private struct InfoSheet: View {
                                     .fill(season.color)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 3)
-                                            .stroke(Color.secondary.opacity(0.3), lineWidth: 0.5)
+                                            .stroke(Color.secondary.opacity(0.4), lineWidth: 3)
                                     )
-                                    .frame(width: 14, height: 14)
+                                    .frame(width: 20, height: 20)
                                 Text(season.rawValue)
                                     .font(.system(size: 17, weight: .bold))
                                 Spacer()

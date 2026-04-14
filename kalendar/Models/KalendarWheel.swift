@@ -66,7 +66,6 @@ struct WheelSliceShape: Shape {
             dayOfYear: offset + 1,
             date: date,
             color: info.liturgicalColor.color,
-            memo: "",
             comments: [],
             liturgicalSeason: info.season,
             liturgicalColor: info.liturgicalColor,
