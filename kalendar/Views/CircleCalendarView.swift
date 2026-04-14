@@ -17,7 +17,7 @@ struct CircleCalendarView: View {
             VStack(alignment: .leading, spacing: 16) {
                 // Intro
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("The liturgical kalendar, also called the Church Year or Christian Year, is the Church's way of marking time. Instead of months, the year is organized into seasons that follow the life of Jesus, from anticipation of his birth through his death, resurrection, and beyond. 'Kalendar' is the traditional spelling used in many liturgical texts.")
+                    Text("The liturgical kalendar, also called the Christian Year, is how Christians mark time. Instead of months, the year is organized into seasons that follow the life of Jesus, from anticipation of his birth through his death, resurrection, and beyond. 'Kalendar' is the traditional spelling used in many liturgical texts.")
                         .font(.subheadline)
 
                     Text("Each color below represents a liturgical season. Tap any day to learn more.")

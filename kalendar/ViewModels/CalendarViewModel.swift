@@ -10,10 +10,29 @@ import SwiftUI
 import Foundation
 import Combine
 
+// MARK: - Persistence
+
+private struct UserDayData: Codable {
+    var memo: String
+    var comments: [String]
+}
+
+private let persistenceKey = "com.kalendar.userDayData"
+
+private func dateKey(for date: Date) -> String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    return formatter.string(from: date)
+}
+
+// MARK: - ViewModel
+
 class CalendarViewModel: ObservableObject {
     @Published var days: [DayCard]
     let liturgicalCalendar = LiturgicalCalendar()
     let year: Int
+
+    private var cancellables = Set<AnyCancellable>()
 
     private static let monthNames = [
         "January", "February", "March", "April", "May", "June",
@@ -28,7 +47,7 @@ class CalendarViewModel: ObservableObject {
         let daysInYear = calendar.range(of: .day, in: .year, for: startOfYear)!.count
         let litCal = LiturgicalCalendar()
 
-        self.days = (0..<daysInYear).map { offset in
+        var builtDays = (0..<daysInYear).map { offset -> DayCard in
             let date = calendar.date(byAdding: .day, value: offset, to: startOfYear)!
             let info = litCal.liturgicalInfo(for: date)
             return DayCard(
@@ -44,6 +63,43 @@ class CalendarViewModel: ObservableObject {
                 isSolemnity: info.isSolemnity,
                 weekOfSeason: info.weekOfSeason
             )
+        }
+
+        // Apply any saved memos and comments
+        let saved = Self.loadPersistedData()
+        for i in builtDays.indices {
+            let key = dateKey(for: builtDays[i].date)
+            if let data = saved[key] {
+                builtDays[i].memo = data.memo
+                builtDays[i].comments = data.comments
+            }
+        }
+
+        self.days = builtDays
+
+        // Auto-save whenever days change (debounced to avoid saving on every keystroke)
+        $days
+            .debounce(for: .seconds(0.5), scheduler: RunLoop.main)
+            .sink { Self.persistDays($0) }
+            .store(in: &cancellables)
+    }
+
+    // MARK: - Persistence helpers
+
+    private static func loadPersistedData() -> [String: UserDayData] {
+        guard let data = UserDefaults.standard.data(forKey: persistenceKey),
+              let decoded = try? JSONDecoder().decode([String: UserDayData].self, from: data)
+        else { return [:] }
+        return decoded
+    }
+
+    private static func persistDays(_ days: [DayCard]) {
+        var userData: [String: UserDayData] = [:]
+        for day in days where !day.memo.isEmpty || !day.comments.isEmpty {
+            userData[dateKey(for: day.date)] = UserDayData(memo: day.memo, comments: day.comments)
+        }
+        if let encoded = try? JSONEncoder().encode(userData) {
+            UserDefaults.standard.set(encoded, forKey: persistenceKey)
         }
     }
 

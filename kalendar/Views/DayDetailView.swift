@@ -11,6 +11,7 @@ import SwiftUI
 struct DayDetailView: View {
     @Binding var day: DayCard
     @Environment(\.dismiss) private var dismiss
+    @State private var newComment = ""
 
     private var formattedDate: String {
         let formatter = DateFormatter()
@@ -36,7 +37,7 @@ struct DayDetailView: View {
                             .font(.caption.bold())
                             .textCase(.uppercase)
 
-                        Text("'Liturgical' means related to the Church's public worship and calendar. The Church organizes the year into seasons rather than months.")
+                        Text("'Liturgical' means related to the Christian community's public worship and calendar. Christians organize the year into seasons rather than months.")
                             .font(.caption)
 
                         HStack(spacing: 8) {
@@ -120,6 +121,43 @@ struct DayDetailView: View {
                             .background(Color(.systemGray6))
                             .cornerRadius(8)
                     }
+
+                    // Comments
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Comments")
+                            .font(.caption.bold())
+                            .textCase(.uppercase)
+
+                        ForEach(Array(day.comments.enumerated()), id: \.offset) { index, comment in
+                            HStack(alignment: .top, spacing: 8) {
+                                Text(comment)
+                                    .font(.subheadline)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                Button {
+                                    day.comments.remove(at: index)
+                                } label: {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .foregroundStyle(.secondary)
+                                }
+                            }
+                            .padding(.vertical, 2)
+                            if index < day.comments.count - 1 {
+                                Divider()
+                            }
+                        }
+
+                        HStack {
+                            TextField("Add a comment...", text: $newComment)
+                                .textFieldStyle(.roundedBorder)
+                            Button("Add") {
+                                let trimmed = newComment.trimmingCharacters(in: .whitespaces)
+                                guard !trimmed.isEmpty else { return }
+                                day.comments.append(trimmed)
+                                newComment = ""
+                            }
+                            .disabled(newComment.trimmingCharacters(in: .whitespaces).isEmpty)
+                        }
+                    }
                 }
                 .padding()
             }
@@ -135,9 +173,9 @@ struct DayDetailView: View {
 
     private var rankExplanation: String {
         if day.isSolemnity {
-            return "A solemnity is the highest rank of celebration in the Church. These mark the most important mysteries and events of the faith, like Easter, Christmas, or major saints. They take priority over the regular season."
+            return "A solemnity is the highest rank of celebration in Christian worship. These mark the most important mysteries and events of the faith, like Easter, Christmas, or major saints. They take priority over the regular season."
         } else {
-            return "Feasts and memorials are celebrations of saints or events in the life of Jesus and Mary. A feast is more important than a memorial. Some memorials are optional, while others are observed by the whole Church."
+            return "Feasts and memorials are celebrations of saints or events in the life of Jesus and Mary. A feast is more important than a memorial. Some memorials are optional, while others are observed throughout Christianity."
         }
     }
 }

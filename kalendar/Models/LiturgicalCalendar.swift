@@ -34,15 +34,15 @@ enum LiturgicalSeason: String, CaseIterable {
         case .advent:
             return "The four-week season of preparation and anticipation before Christmas. Christians reflect on the coming of Jesus, both his birth and his promised return. The word 'Advent' means 'coming.'"
         case .christmas:
-            return "The joyful celebration of Jesus' birth, lasting from December 25 through the Baptism of the Lord in January. It is not just one day; the Church celebrates for weeks."
+            return "The joyful celebration of Jesus' birth, lasting from December 25 through the Baptism of the Lord in January. It is not just one day; Christians celebrate for weeks."
         case .ordinaryTime:
-            return "The longest season of the Church year, split into two stretches (after Christmas and after Pentecost). 'Ordinary' does not mean boring. It comes from 'ordinal' (counted). These weeks focus on Jesus' public life and teachings."
+            return "The longest season of the liturgical year, split into two stretches (after Christmas and after Pentecost). 'Ordinary' does not mean boring. It comes from 'ordinal' (counted). These weeks focus on Jesus' public life and teachings."
         case .lent:
             return "A 40-day season of prayer, fasting, and giving that prepares Christians for Easter. It begins on Ash Wednesday and is a time for self-reflection and turning back toward God."
         case .triduum:
-            return "The holiest three days of the entire Church year: Holy Thursday (Jesus' Last Supper), Good Friday (his crucifixion and death), and Holy Saturday (waiting at the tomb). It is the heart of the Christian faith."
+            return "The holiest three days of the entire liturgical year: Holy Thursday (Jesus' Last Supper), Good Friday (his crucifixion and death), and Holy Saturday (waiting at the tomb). It is the heart of the Christian faith."
         case .easter:
-            return "The most important and joyful season, celebrating Jesus' resurrection from the dead. It lasts 50 days, from Easter Sunday all the way to Pentecost. The Church considers it one long feast day."
+            return "The most important and joyful season, celebrating Jesus' resurrection from the dead. It lasts 50 days, from Easter Sunday all the way to Pentecost. It is treated as one long feast day."
         }
     }
 }
@@ -341,19 +341,19 @@ struct LiturgicalCalendar {
 
         switch (month, day) {
         case (1, 1): return ("Solemnity of Mary, Mother of God", .white, true,
-            "The oldest feast honoring Mary. On the first day of the year, the Church celebrates Mary's role as the mother of Jesus (who Christians believe is God). It is also the World Day of Peace.")
+            "The oldest feast honoring Mary. On the first day of the year, Christians celebrate Mary's role as the mother of Jesus (who Christians believe is God). It is also the World Day of Peace.")
         case (1, 6): return ("Epiphany of the Lord", .white, true,
             "Celebrates the visit of the Magi (Wise Men) to the infant Jesus. 'Epiphany' means 'revelation,' and this feast marks Jesus being revealed to the whole world, not just the Jewish people.")
         case (2, 2): return ("Presentation of the Lord", .white, false,
             "Forty days after Christmas, Mary and Joseph brought baby Jesus to the Temple in Jerusalem, as Jewish law required for firstborn sons. The elderly prophet Simeon recognized him as the Messiah and called him 'a light for revelation to the Gentiles.' Also called Candlemas.")
         case (3, 19): return ("St. Joseph, Spouse of the Blessed Virgin Mary", .white, true,
-            "Honors Joseph, the foster-father of Jesus and husband of Mary. He was a humble carpenter from Nazareth who protected and raised Jesus. He is the patron saint of workers, fathers, and the universal Church.")
+            "Honors Joseph, the foster-father of Jesus and husband of Mary. He was a humble carpenter from Nazareth who protected and raised Jesus. He is the patron saint of workers, fathers, and all Christians.")
         case (3, 25): return ("Annunciation of the Lord", .white, true,
             "Celebrates the moment the angel Gabriel appeared to Mary and announced she would conceive Jesus by the Holy Spirit. Mary said 'yes,' and Christians believe that is when God became human. Exactly 9 months before Christmas.")
         case (6, 24): return ("Nativity of St. John the Baptist", .white, true,
             "The birth of John the Baptist, Jesus' cousin, who grew up to be the prophet who prepared the way for Jesus' ministry. He baptized people in the Jordan River and is the one who baptized Jesus himself.")
         case (6, 29): return ("Sts. Peter and Paul, Apostles", .red, true,
-            "Honors the two greatest apostles: Peter, the fisherman Jesus chose to lead his Church (the first pope), and Paul, who started out persecuting Christians but converted and became the greatest missionary of the early Church. Both were martyred in Rome.")
+            "Honors the two greatest apostles: Peter, the fisherman Jesus chose to lead his followers (the first pope), and Paul, who started out persecuting Christians but converted and became the greatest missionary of the early Christian world. Both were martyred in Rome.")
         case (8, 6): return ("Transfiguration of the Lord", .white, false,
             "Recalls when Jesus took three disciples up a mountain, and his appearance was transformed. His face shone like the sun and his clothes became dazzling white. Moses and Elijah appeared beside him, and God's voice said 'This is my beloved Son.'")
         case (8, 15): return ("Assumption of the Blessed Virgin Mary", .white, true,
@@ -363,13 +363,13 @@ struct LiturgicalCalendar {
         case (11, 1): return ("All Saints", .white, true,
             "A day to honor all saints, not just the famous ones with their own feast days, but every holy person in heaven, including ordinary people who lived faithful lives. It is a reminder that everyone is called to holiness.")
         case (11, 2): return ("All Souls' Day (Commemoration of All the Faithful Departed)", .violet, false,
-            "A day to remember and pray for all who have died, especially loved ones. The Church prays that those still being purified may reach heaven. It is a tender day of remembrance, often marked by visiting cemeteries.")
+            "A day to remember and pray for all who have died, especially loved ones. Christians pray that those still being purified may reach heaven. It is a tender day of remembrance, often marked by visiting cemeteries.")
         case (12, 8): return ("Immaculate Conception of the Blessed Virgin Mary", .white, true,
             "Celebrates the belief that Mary was conceived without original sin, meaning from the very first moment of her existence, she was full of grace. This is often confused with Jesus' conception, but it is about Mary's own conception by her parents, Anne and Joachim. It is the patron feast of the United States.")
         case (12, 25): return ("Nativity of the Lord (Christmas)", .white, true,
-            "The joyful celebration of Jesus' birth in Bethlehem. Christians believe God became a human baby, born to Mary in humble circumstances. It is one of the two greatest feasts of the Church year (along with Easter).")
+            "The joyful celebration of Jesus' birth in Bethlehem. Christians believe God became a human baby, born to Mary in humble circumstances. It is one of the two greatest feasts of the liturgical year (along with Easter).")
         case (12, 26): return ("St. Stephen, First Martyr", .red, false,
-            "Honors Stephen, one of the first deacons of the Church, who became the very first Christian martyr. He was stoned to death for his faith, and as he died he prayed for his persecutors, just as Jesus had done on the cross.")
+            "Honors Stephen, one of the first deacons of the early Christian community, who became the very first Christian martyr. He was stoned to death for his faith, and as he died he prayed for his persecutors, just as Jesus had done on the cross.")
         case (12, 27): return ("St. John, Apostle and Evangelist", .white, false,
             "Honors John, one of Jesus' closest disciples (the 'beloved disciple'), who is traditionally credited with writing the Gospel of John, three letters, and the Book of Revelation. He is the only apostle believed to have died of natural causes.")
         case (12, 28): return ("Holy Innocents, Martyrs", .red, false,
@@ -395,11 +395,11 @@ struct LiturgicalCalendar {
         }
         if calendar.isDate(date, inSameDayAs: keys.goodFriday) {
             return ("Good Friday of the Lord's Passion", .red, true,
-                "The most solemn day of the year. Christians remember Jesus' crucifixion and death. There is no Mass. Instead, a stark service of readings, prayers, and veneration of the cross takes place. Churches are stripped bare. It is a day of fasting and mourning.")
+                "The most solemn day of the year. Christians remember Jesus' crucifixion and death. There is no Mass. Instead, a stark service of readings, prayers, and veneration of the cross takes place in bare, stripped buildings. It is a day of fasting and mourning.")
         }
         if calendar.isDate(date, inSameDayAs: keys.holySaturday) {
             return ("Holy Saturday / Easter Vigil", .white, true,
-                "A day of quiet waiting at the tomb. The Easter Vigil on Saturday night is the most elaborate liturgy of the entire year: it begins in darkness with a blazing fire, traces salvation history through readings, and erupts in joy as Easter is proclaimed. New members are baptized into the Church.")
+                "A day of quiet waiting at the tomb. The Easter Vigil on Saturday night is the most elaborate liturgy of the entire year: it begins in darkness with a blazing fire, traces salvation history through readings, and erupts in joy as Easter is proclaimed. New members are baptized into the faith.")
         }
         if calendar.isDate(date, inSameDayAs: keys.easter) {
             return ("Easter Sunday of the Resurrection", .white, true,
@@ -416,7 +416,7 @@ struct LiturgicalCalendar {
         }
         if calendar.isDate(date, inSameDayAs: keys.pentecost) {
             return ("Pentecost Sunday", .red, true,
-                "Fifty days after Easter, the Holy Spirit descended on the apostles like tongues of fire, giving them the courage and ability to preach in many languages. It is considered the 'birthday of the Church,' the moment the apostles went from hiding in fear to boldly proclaiming the Gospel. Red vestments represent the fire of the Spirit.")
+                "Fifty days after Easter, the Holy Spirit descended on the apostles like tongues of fire, giving them the courage and ability to preach in many languages. It is considered the 'birthday of the Christian faith,' the moment the apostles went from hiding in fear to boldly proclaiming the Gospel. Red vestments represent the fire of the Spirit.")
         }
         if calendar.isDate(date, inSameDayAs: keys.trinitySunday) {
             return ("Most Holy Trinity", .white, true,
@@ -428,7 +428,7 @@ struct LiturgicalCalendar {
         }
         if calendar.isDate(date, inSameDayAs: keys.christTheKing) {
             return ("Our Lord Jesus Christ, King of the Universe", .white, true,
-                "The last Sunday of the Church year, proclaiming Jesus as king, but not a worldly king with armies and palaces. His kingdom is one of truth, justice, love, and peace. The next week, the cycle starts all over again with Advent.")
+                "The last Sunday of the liturgical year, proclaiming Jesus as king, but not a worldly king with armies and palaces. His kingdom is one of truth, justice, love, and peace. The next week, the cycle starts all over again with Advent.")
         }
         return nil
     }
