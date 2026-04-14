@@ -4,7 +4,7 @@ import SwiftUI
 
 struct KalendarWheel: View {
     let days: [DayCard]
-    let radius: CGFloat = 160
+    var radius: CGFloat = 160
     let sliceLineWidth: CGFloat = 2
 
     var body: some View {
@@ -71,6 +71,7 @@ struct WheelSliceShape: Shape {
             liturgicalSeason: info.season,
             liturgicalColor: info.liturgicalColor,
             feastName: info.feastName,
+            feastDescription: info.feastDescription,
             isSolemnity: info.isSolemnity,
             weekOfSeason: info.weekOfSeason
         )

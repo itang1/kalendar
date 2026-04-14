@@ -2,91 +2,178 @@
 //  CircleCalendarView.swift
 //  kalendar
 //
-//  Created by Irene Tang on 12/20/25.
+//  Main calendar view — switchable between grid and wheel modes.
 
 import SwiftUI
+
+// MARK: - View Mode
+
+private enum CalendarViewMode {
+    case grid, wheel
+}
+
+// MARK: - Main View
 
 struct CircleCalendarView: View {
     @StateObject private var viewModel = CalendarViewModel()
     @State private var selectedIndex: Int?
+    @State private var viewMode: CalendarViewMode = .grid
+    @State private var showInfo = false
+    @State private var jumpToTodayTrigger = 0
 
-    private let columns = Array(repeating: GridItem(.flexible(), spacing: 4), count: 7)
+    private let columns = Array(repeating: GridItem(.flexible(), spacing: 6), count: 7)
+
+    private var todayIndex: Int? {
+        viewModel.days.firstIndex { Calendar.current.isDateInToday($0.date) }
+    }
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                // Intro
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("The liturgical kalendar, also called the Christian Year, is how Christians mark time. Instead of months, the year is organized into seasons that follow the life of Jesus, from anticipation of his birth through his death, resurrection, and beyond. 'Kalendar' is the traditional spelling used in many liturgical texts.")
-                        .font(.subheadline)
-
-                    Text("Each color below represents a liturgical season. Tap any day to learn more.")
-                        .font(.subheadline)
+        Group {
+            switch viewMode {
+            case .grid:  gridView
+            case .wheel: wheelView
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button { showInfo = true } label: {
+                    Image(systemName: "info.circle")
                 }
-                .padding(.horizontal)
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                HStack(spacing: 20) {
+                    Button {
+                        jumpToTodayTrigger += 1
+                    } label: {
+                        Image(systemName: "target")
+                    }
+                    .disabled(viewMode == .wheel)
 
-                // Color legend with explanations
-                VStack(spacing: 2) {
-                    ForEach(LiturgicalSeason.allCases, id: \.rawValue) { season in
-                        HStack(spacing: 10) {
-                            RoundedRectangle(cornerRadius: 3)
-                                .fill(season.color)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 3)
-                                        .stroke(Color.secondary.opacity(0.3), lineWidth: 0.5)
-                                )
-                                .frame(width: 16, height: 16)
-                            Text(season.rawValue)
-                                .font(.subheadline.bold())
-                            Spacer()
+                    Button {
+                        withAnimation(.easeInOut(duration: 0.25)) {
+                            viewMode = (viewMode == .grid) ? .wheel : .grid
                         }
-                        .padding(.vertical, 4)
-
-                        Text(season.explanation)
-                            .font(.caption)
-                            .padding(.bottom, 8)
+                    } label: {
+                        Image(systemName: viewMode == .grid ? "chart.pie" : "square.grid.3x3")
                     }
                 }
-                .padding(.horizontal)
+            }
+        }
+        .sheet(isPresented: $showInfo) {
+            InfoSheet()
+        }
+        .sheet(
+            isPresented: Binding(
+                get: { selectedIndex != nil },
+                set: { if !$0 { selectedIndex = nil } }
+            )
+        ) {
+            if let index = selectedIndex {
+                DayDetailView(day: $viewModel.days[index])
+            }
+        }
+    }
 
-                // Dot explanation
-                HStack(spacing: 6) {
-                    Circle()
-                        .fill(Color.primary)
-                        .frame(width: 7, height: 7)
-                    Text("A dot marks a feast day or special celebration. Tap to read about it.")
-                        .font(.caption)
-                }
-                .padding(.horizontal)
+    // MARK: - Grid
 
-                // The year, one tile per day
-                LazyVGrid(columns: columns, spacing: 4) {
-                    let firstWeekday = Calendar.current.component(.weekday, from: viewModel.days[0].date)
-                    let leadingSpacers = firstWeekday - 1
-                    ForEach(0..<leadingSpacers, id: \.self) { i in
-                        Color.clear
-                            .aspectRatio(1, contentMode: .fit)
-                            .id("leading-spacer-\(i)")
-                    }
-
+    private var gridView: some View {
+        ScrollViewReader { proxy in
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 6) {
                     ForEach(Array(viewModel.days.enumerated()), id: \.offset) { index, day in
                         DayCardView(day: day)
                             .aspectRatio(1, contentMode: .fit)
-                            .onTapGesture {
-                                selectedIndex = index
-                            }
+                            .id(index)
+                            .onTapGesture { selectedIndex = index }
                     }
                 }
-                .padding(.horizontal)
+                .padding(12)
             }
-            .padding(.vertical)
+            .onChange(of: jumpToTodayTrigger) { _ in
+                guard let idx = todayIndex else { return }
+                withAnimation { proxy.scrollTo(idx, anchor: .center) }
+            }
         }
-        .sheet(isPresented: Binding(
-            get: { selectedIndex != nil },
-            set: { if !$0 { selectedIndex = nil } }
-        )) {
-            if let index = selectedIndex {
-                DayDetailView(day: $viewModel.days[index])
+    }
+
+    // MARK: - Wheel
+
+    private var wheelView: some View {
+        GeometryReader { geo in
+            let size = min(geo.size.width, geo.size.height) - 48
+            VStack(spacing: 20) {
+                KalendarWheel(days: viewModel.days, radius: size / 2)
+                    .frame(width: size, height: size)
+                Text("A full-year overview. Switch to grid view to explore individual days.")
+                    .font(.body)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 32)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.top, 24)
+        }
+    }
+}
+
+// MARK: - Info Sheet
+
+private struct InfoSheet: View {
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    Text("The liturgical kalendar, also called the Christian Year, is how Christians mark time. Instead of months, the year is organized into seasons that follow the life of Jesus, from anticipation of his birth through his death, resurrection, and beyond. 'Kalendar' is the traditional spelling used in many liturgical texts.")
+                        .font(.system(size: 17))
+
+                    Divider()
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Seasons")
+                            .font(.system(size: 17, weight: .bold))
+                            .textCase(.uppercase)
+                            .padding(.bottom, 12)
+
+                        ForEach(LiturgicalSeason.allCases, id: \.rawValue) { season in
+                            HStack(spacing: 10) {
+                                RoundedRectangle(cornerRadius: 3)
+                                    .fill(season.color)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 3)
+                                            .stroke(Color.secondary.opacity(0.3), lineWidth: 0.5)
+                                    )
+                                    .frame(width: 14, height: 14)
+                                Text(season.rawValue)
+                                    .font(.system(size: 17, weight: .bold))
+                                Spacer()
+                            }
+                            .padding(.vertical, 2)
+
+                            Text(season.explanation)
+                                .font(.system(size: 17))
+                                .padding(.bottom, 8)
+                        }
+                    }
+
+                    Divider()
+
+                    HStack(spacing: 8) {
+                        Circle()
+                            .fill(Color.primary)
+                            .frame(width: 7, height: 7)
+                        Text("A dot marks a feast day or special celebration. Tap any tile in grid view to read about it.")
+                            .font(.system(size: 17))
+                    }
+                }
+                .padding()
+            }
+            .navigationTitle("About the Kalendar")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") { dismiss() }
+                }
             }
         }
     }

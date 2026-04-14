@@ -22,116 +22,111 @@ struct DayDetailView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(alignment: .leading, spacing: 24) {
-                    // Date
+                VStack(alignment: .leading, spacing: 0) {
+
+                    // MARK: Date
                     VStack(alignment: .leading, spacing: 4) {
                         Text(formattedDate)
                             .font(.title2.bold())
                         Text("Day \(day.dayOfYear) of the year")
-                            .font(.subheadline)
+                            .font(.system(size: 17))
+                            .foregroundStyle(.secondary)
                     }
+                    .padding(.bottom, 28)
 
-                    // Season
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Liturgical Season")
-                            .font(.caption.bold())
-                            .textCase(.uppercase)
+                    // MARK: Season
+                    sectionLabel("Season")
 
-                        Text("'Liturgical' means related to the Christian community's public worship and calendar. Christians organize the year into seasons rather than months.")
-                            .font(.caption)
-
-                        HStack(spacing: 8) {
-                            RoundedRectangle(cornerRadius: 4)
-                                .fill(day.liturgicalSeason.color)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 4)
-                                        .stroke(Color.secondary.opacity(0.3), lineWidth: 0.5)
-                                )
-                                .frame(width: 20, height: 20)
-                            Text(day.liturgicalSeason.rawValue)
-                                .font(.body.bold())
-                        }
-
+                    HStack(spacing: 10) {
+                        RoundedRectangle(cornerRadius: 4)
+                            .fill(day.liturgicalSeason.color)
+                            .overlay(RoundedRectangle(cornerRadius: 4)
+                                .stroke(Color.secondary.opacity(0.3), lineWidth: 0.5))
+                            .frame(width: 22, height: 22)
+                        Text(day.liturgicalSeason.rawValue)
+                            .font(.system(size: 17, weight: .bold))
                         if let week = day.weekOfSeason {
-                            Text("Week \(week) of \(day.liturgicalSeason.rawValue)")
-                                .font(.subheadline)
-                        }
-
-                        Text(day.liturgicalSeason.explanation)
-                            .font(.subheadline)
-                    }
-
-                    // Vestment color
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Vestment Color")
-                            .font(.caption.bold())
-                            .textCase(.uppercase)
-
-                        Text("The priest wears vestments (robes) of a specific color at Mass each day. The color reflects the character of the season or feast being celebrated.")
-                            .font(.caption)
-
-                        HStack(spacing: 8) {
-                            Circle()
-                                .fill(day.liturgicalColor.color)
-                                .overlay(
-                                    Circle().stroke(Color.secondary.opacity(0.3), lineWidth: 0.5)
-                                )
-                                .frame(width: 16, height: 16)
-                            Text(day.liturgicalColor.rawValue)
-                                .font(.subheadline)
+                            Text("· Week \(week)")
+                                .font(.system(size: 17))
+                                .foregroundStyle(.secondary)
                         }
                     }
+                    .padding(.top, 6)
 
-                    // Feast
+                    Text(day.liturgicalSeason.explanation)
+                        .font(.system(size: 17))
+                        .padding(.top, 8)
+                        .padding(.bottom, 28)
+
+                    // MARK: Feast (if any)
                     if let feast = day.feastName {
-                        VStack(alignment: .leading, spacing: 8) {
-                            HStack(spacing: 4) {
-                                if day.isSolemnity {
-                                    Image(systemName: "star.fill")
-                                        .foregroundStyle(.yellow)
-                                        .font(.caption)
-                                }
-                                Text(day.isSolemnity ? "Solemnity" : "Feast / Memorial")
-                                    .font(.caption.bold())
-                                    .textCase(.uppercase)
+                        sectionLabel(day.isSolemnity ? "Solemnity" : "Feast / Memorial")
+
+                        HStack(spacing: 6) {
+                            if day.isSolemnity {
+                                Image(systemName: "star.fill")
+                                    .foregroundStyle(.yellow)
+                                    .font(.system(size: 15))
                             }
-
-                            Text(rankExplanation)
-                                .font(.caption)
-
                             Text(feast)
-                                .font(.body.bold())
-
-                            if let description = day.feastDescription {
-                                Text(description)
-                                    .font(.subheadline)
-                            }
+                                .font(.system(size: 17, weight: .bold))
                         }
+                        .padding(.top, 6)
+
+                        if let description = day.feastDescription {
+                            Text(description)
+                                .font(.system(size: 17))
+                                .padding(.top, 8)
+                        }
+
+                        Text(rankExplanation)
+                            .font(.system(size: 17))
+                            .foregroundStyle(.secondary)
+                            .padding(.top, 8)
+                            .padding(.bottom, 28)
                     }
 
-                    // Memo
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Memo")
-                            .font(.caption.bold())
-                            .textCase(.uppercase)
+                    // MARK: Vestment Color
+                    sectionLabel("Vestment")
 
-                        TextEditor(text: $day.memo)
-                            .frame(minHeight: 100)
-                            .padding(8)
-                            .background(Color(.systemGray6))
-                            .cornerRadius(8)
+                    HStack(spacing: 10) {
+                        Circle()
+                            .fill(day.liturgicalColor.color)
+                            .overlay(Circle().stroke(Color.secondary.opacity(0.3), lineWidth: 0.5))
+                            .frame(width: 18, height: 18)
+                        Text(day.liturgicalColor.rawValue)
+                            .font(.system(size: 17, weight: .bold))
                     }
+                    .padding(.top, 6)
 
-                    // Comments
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Comments")
-                            .font(.caption.bold())
-                            .textCase(.uppercase)
+                    Text("The priest wears vestments of this color at Mass. The color reflects the character of the season or feast.")
+                        .font(.system(size: 17))
+                        .foregroundStyle(.secondary)
+                        .padding(.top, 8)
 
+                    Divider()
+                        .padding(.vertical, 28)
+
+                    // MARK: Memo
+                    sectionLabel("Memo")
+
+                    TextEditor(text: $day.memo)
+                        .font(.system(size: 17))
+                        .frame(minHeight: 110)
+                        .padding(10)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(10)
+                        .padding(.top, 6)
+                        .padding(.bottom, 28)
+
+                    // MARK: Comments
+                    sectionLabel("Comments")
+
+                    VStack(alignment: .leading, spacing: 0) {
                         ForEach(Array(day.comments.enumerated()), id: \.offset) { index, comment in
                             HStack(alignment: .top, spacing: 8) {
                                 Text(comment)
-                                    .font(.subheadline)
+                                    .font(.system(size: 17))
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 Button {
                                     day.comments.remove(at: index)
@@ -140,24 +135,27 @@ struct DayDetailView: View {
                                         .foregroundStyle(.secondary)
                                 }
                             }
-                            .padding(.vertical, 2)
+                            .padding(.vertical, 10)
                             if index < day.comments.count - 1 {
                                 Divider()
                             }
                         }
-
-                        HStack {
-                            TextField("Add a comment...", text: $newComment)
-                                .textFieldStyle(.roundedBorder)
-                            Button("Add") {
-                                let trimmed = newComment.trimmingCharacters(in: .whitespaces)
-                                guard !trimmed.isEmpty else { return }
-                                day.comments.append(trimmed)
-                                newComment = ""
-                            }
-                            .disabled(newComment.trimmingCharacters(in: .whitespaces).isEmpty)
-                        }
                     }
+                    .padding(.top, 6)
+
+                    HStack {
+                        TextField("Add a comment...", text: $newComment)
+                            .font(.system(size: 17))
+                            .textFieldStyle(.roundedBorder)
+                        Button("Add") {
+                            let trimmed = newComment.trimmingCharacters(in: .whitespaces)
+                            guard !trimmed.isEmpty else { return }
+                            day.comments.append(trimmed)
+                            newComment = ""
+                        }
+                        .disabled(newComment.trimmingCharacters(in: .whitespaces).isEmpty)
+                    }
+                    .padding(.top, 8)
                 }
                 .padding()
             }
@@ -169,6 +167,15 @@ struct DayDetailView: View {
                 }
             }
         }
+    }
+
+    @ViewBuilder
+    private func sectionLabel(_ title: String) -> some View {
+        Text(title)
+            .font(.system(size: 13, weight: .semibold))
+            .textCase(.uppercase)
+            .tracking(0.5)
+            .foregroundStyle(.secondary)
     }
 
     private var rankExplanation: String {
