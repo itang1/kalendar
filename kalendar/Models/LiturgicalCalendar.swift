@@ -392,28 +392,74 @@ struct LiturgicalCalendar {
             "The oldest feast honoring Mary. On the first day of the year, Christians celebrate Mary's role as the mother of Jesus (who Christians believe is God). It is also the World Day of Peace.")
         case (1, 6): return ("Epiphany of the Lord", .white, true,
             "Celebrates the visit of the Magi (Wise Men) to the infant Jesus. 'Epiphany' means 'revelation,' and this feast marks Jesus being revealed to the whole world, not just the Jewish people.")
+        case (1, 25): return ("Conversion of St. Paul", .white, false,
+            "Recalls the dramatic moment when Saul of Tarsus, who was hunting down and imprisoning Christians, was struck blind on the road to Damascus by a vision of the risen Jesus. He recovered, was baptized, changed his name to Paul, and became the greatest missionary the Christian faith has ever produced.")
         case (2, 2): return ("Presentation of the Lord", .white, false,
             "Forty days after Christmas, Mary and Joseph brought baby Jesus to the Temple in Jerusalem, as Jewish law required for firstborn sons. The elderly prophet Simeon recognized him as the Messiah and called him 'a light for revelation to the Gentiles.' Also called Candlemas.")
+        case (2, 22): return ("Chair of St. Peter", .white, false,
+            "Celebrates Peter's role as the leader of the apostles and the first bishop of Rome. The 'chair' is not a piece of furniture so much as a symbol of teaching authority. This feast is about the office of leadership that traces through every pope back to Peter.")
         case (3, 19): return ("St. Joseph, Spouse of the Blessed Virgin Mary", .white, true,
             "Honors Joseph, the foster-father of Jesus and husband of Mary. He was a humble carpenter from Nazareth who protected and raised Jesus. He is the patron saint of workers, fathers, and all Christians.")
         case (3, 25): return ("Annunciation of the Lord", .white, true,
             "Celebrates the moment the angel Gabriel appeared to Mary and announced she would conceive Jesus by the Holy Spirit. Mary said 'yes,' and Christians believe that is when God became human. Exactly 9 months before Christmas.")
+        case (4, 25): return ("St. Mark, Evangelist", .red, false,
+            "Honors Mark, the author of the shortest and most urgent of the four Gospels. He wrote it in Rome, likely drawing on Peter's eyewitness accounts, and his Gospel reads like it is in a hurry. The word 'immediately' appears over forty times.")
+        case (5, 1): return ("St. Joseph the Worker", .white, false,
+            "A feast established in 1955, celebrating Joseph as a model for all working people. It falls on May Day and is the tradition's answer to secular labor observances, offering a patron for the dignity and sanctity of ordinary work.")
+        case (5, 14): return ("St. Matthias, Apostle", .red, false,
+            "Matthias was chosen by lot to replace Judas Iscariot among the twelve apostles. The account in Acts is brief. He is a reminder that the structure of the early community mattered enough to be filled, and that ordinary people were chosen for extraordinary roles.")
+        case (5, 31): return ("Visitation of the Blessed Virgin Mary", .white, false,
+            "Celebrates Mary's journey to visit her cousin Elizabeth, who was pregnant with John the Baptist. When Mary arrived, Elizabeth's child leapt in her womb, and Elizabeth cried out 'Blessed are you among women.' Mary responded with the Magnificat, one of the most beautiful prayers in Scripture.")
+        case (6, 11): return ("St. Barnabas, Apostle", .red, false,
+            "Barnabas was not one of the original twelve but is called an apostle because of the scope of his missionary work. He was the one who vouched for Paul to the early community when everyone was afraid of him. He and Paul traveled together through Cyprus and Asia Minor, planting churches in city after city.")
         case (6, 24): return ("Nativity of St. John the Baptist", .white, true,
             "The birth of John the Baptist, Jesus' cousin, who grew up to be the prophet who prepared the way for Jesus' ministry. He baptized people in the Jordan River and is the one who baptized Jesus himself.")
         case (6, 29): return ("Sts. Peter and Paul, Apostles", .red, true,
             "Honors the two greatest apostles: Peter, the fisherman Jesus chose to lead his followers (the first pope), and Paul, who started out persecuting Christians but converted and became the greatest missionary of the early Christian world. Both were martyred in Rome.")
+        case (7, 22): return ("St. Mary Magdalene", .white, false,
+            "Mary Magdalene was among Jesus' closest followers, present at his crucifixion when most of the apostles had fled, and the first person to see him after the resurrection. She is called the 'apostle to the apostles' because she carried the news of the resurrection to the others. Her feast was elevated to a proper feast in 2016.")
+        case (7, 25): return ("St. James, Apostle", .red, false,
+            "James was one of the sons of Zebedee and one of Jesus' inner circle of three, along with Peter and John. He was the first of the apostles to be martyred, killed by King Herod Agrippa around 44 AD. His shrine in Santiago de Compostela in Spain has been one of the great pilgrimage destinations for over a thousand years.")
         case (8, 6): return ("Transfiguration of the Lord", .white, false,
             "Recalls when Jesus took three disciples up a mountain, and his appearance was transformed. His face shone like the sun and his clothes became dazzling white. Moses and Elijah appeared beside him, and God's voice said 'This is my beloved Son.'")
+        case (8, 10): return ("St. Lawrence, Deacon and Martyr", .red, false,
+            "Lawrence was one of the seven deacons of Rome under Pope Sixtus II. When Sixtus was martyred in 258, Lawrence was given three days to hand over the wealth of the community to the emperor. He spent the time distributing it to the poor, then presented the poor themselves as 'the treasure of the community.' He was executed on a gridiron. He is the patron of deacons, cooks, and the poor.")
         case (8, 15): return ("Assumption of the Blessed Virgin Mary", .white, true,
             "Celebrates the belief that at the end of Mary's earthly life, she was taken up ('assumed') body and soul into heaven. It is one of the most important Marian feasts, and a Holy Day of Obligation in many countries.")
+        case (8, 22): return ("Queenship of the Blessed Virgin Mary", .white, false,
+            "One week after the Assumption, this feast celebrates Mary's role in heaven. It flows naturally from the one before it: if Mary was assumed body and soul into heaven, what is she there? The tradition answers with the title of queen, not a political one, but a dignity that comes from her closeness to Christ.")
+        case (9, 8): return ("Nativity of the Blessed Virgin Mary", .white, false,
+            "The birth of Mary, celebrated nine months after the Immaculate Conception on December 8. This is one of only three birthdays celebrated in the liturgical calendar: Jesus, John the Baptist, and Mary. The others are commemorated on the anniversary of their death, but these three are celebrated from their first day.")
         case (9, 14): return ("Exaltation of the Holy Cross", .red, false,
             "Honors the cross on which Jesus was crucified. Rather than a symbol of defeat, Christians see it as the instrument of salvation. This feast dates back to the 4th century when St. Helena (Emperor Constantine's mother) is believed to have found the actual cross in Jerusalem.")
+        case (9, 21): return ("St. Matthew, Apostle and Evangelist", .red, false,
+            "Matthew was a tax collector, which made him a social outcast in his community. Jesus called him anyway. He went on to write the first of the four Gospels, the most Jewish in character, the one most concerned with showing how Jesus fulfills the Hebrew scriptures.")
+        case (9, 29): return ("Sts. Michael, Gabriel, and Raphael, Archangels", .white, false,
+            "The only feast day dedicated to angels. Michael is the warrior archangel who leads the heavenly army against evil. Gabriel is the messenger who announced Jesus' birth to Mary. Raphael guided the young Tobias in the book of Tobit and is the patron of travelers and healing. Three names, three roles, one feast.")
+        case (10, 1): return ("St. Thérèse of Lisieux, Doctor of the Church", .white, false,
+            "Thérèse Martin entered the Carmelite convent at fifteen and died of tuberculosis at twenty-four. She wrote an autobiography that became one of the most widely read spiritual books of the modern era. Her 'little way,' the conviction that small acts done with great love matter as much as grand gestures, made her a Doctor of the Church.")
+        case (10, 2): return ("Guardian Angels", .white, false,
+            "A feast celebrating the belief that each person has an angel assigned to them for protection and guidance. The tradition is ancient, drawn from passages in the Psalms, the book of Daniel, and Jesus' own words about not despising 'one of these little ones, for their angels in heaven always see the face of my Father.'")
+        case (10, 4): return ("St. Francis of Assisi", .white, false,
+            "Francis of Assisi gave up a wealthy merchant's life in 13th-century Italy to live in radical poverty, preach the Gospel, and care for lepers. He founded the Franciscan order, received the stigmata (the wounds of Christ on his body), and wrote the Canticle of the Sun. He is the patron of animals, ecology, and Italy.")
+        case (10, 7): return ("Our Lady of the Rosary", .white, false,
+            "This feast commemorates the victory at the Battle of Lepanto in 1571, which was attributed to the intercession of Mary through the praying of the Rosary. It was established to give thanks for that protection and to honor the Rosary as a devotional prayer. The Rosary itself meditates on twenty scenes from the lives of Jesus and Mary.")
+        case (10, 18): return ("St. Luke, Evangelist", .red, false,
+            "Luke was a physician and the only Gentile author in the New Testament. He wrote both the Gospel that bears his name and the Acts of the Apostles, together the longest single contribution to the New Testament. His Gospel is the one most attentive to women, the poor, and outsiders. He is the patron of doctors and artists.")
+        case (10, 28): return ("Sts. Simon and Jude, Apostles", .red, false,
+            "Two apostles honored together because little is known about either of them. Simon was called 'the Zealot,' probably indicating a political background. Jude (not Judas Iscariot) wrote one of the short letters near the end of the New Testament and is the patron of lost causes, for the simple reason that people only pray to him when all else has failed.")
         case (11, 1): return ("All Saints", .white, true,
             "A day to honor all saints, not just the famous ones with their own feast days, but every holy person in heaven, including ordinary people who lived faithful lives. It is a reminder that everyone is called to holiness.")
         case (11, 2): return ("All Souls' Day (Commemoration of All the Faithful Departed)", .violet, false,
             "A day to remember and pray for all who have died, especially loved ones. Christians pray that those still being purified may reach heaven. It is a tender day of remembrance, often marked by visiting cemeteries.")
+        case (11, 9): return ("Dedication of the Lateran Basilica", .white, false,
+            "The Lateran Basilica in Rome is the cathedral of the bishop of Rome, which means it is technically the mother church of all Roman Catholics worldwide, outranking even St. Peter's. This feast, celebrating its dedication, is a way of marking unity with the broader Christian community.")
+        case (11, 30): return ("St. Andrew, Apostle", .red, false,
+            "Andrew was Simon Peter's brother and, according to John's Gospel, the first of the apostles to follow Jesus. He brought Peter to Jesus. He is said to have been crucified on an X-shaped cross, which became his symbol. He is the patron saint of Scotland, Greece, and Russia.")
         case (12, 8): return ("Immaculate Conception of the Blessed Virgin Mary", .white, true,
             "Celebrates the belief that Mary was conceived without original sin, meaning from the very first moment of her existence, she was full of grace. This is often confused with Jesus' conception, but it is about Mary's own conception by her parents, Anne and Joachim. It is the patron feast of the United States.")
+        case (12, 12): return ("Our Lady of Guadalupe", .white, false,
+            "In 1531, Mary appeared to a young Aztec man named Juan Diego on a hill outside Mexico City, speaking to him in his own language, Nahuatl. She asked for a church to be built there. When he reported the apparition to the bishop, she left her image miraculously imprinted on his cloak as evidence. That image still exists. She is the patron of the Americas.")
         case (12, 25): return ("Nativity of the Lord (Christmas)", .white, true,
             "The joyful celebration of Jesus' birth in Bethlehem. Christians believe God became a human baby, born to Mary in humble circumstances. It is one of the two greatest feasts of the liturgical year (along with Easter).")
         case (12, 26): return ("St. Stephen, First Martyr", .red, false,

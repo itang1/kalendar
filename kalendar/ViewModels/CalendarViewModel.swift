@@ -40,20 +40,12 @@ private func dayKey(for day: DayCard) -> String {
 
 class CalendarViewModel: ObservableObject {
     @Published var days: [DayCard]
-    let liturgicalCalendar = LiturgicalCalendar()
-    let year: Int
 
     private var cancellables = Set<AnyCancellable>()
-
-    private static let monthNames = [
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ]
 
     init() {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
-        self.year = calendar.component(.year, from: today)
         let litCal = LiturgicalCalendar()
 
         var builtDays = (0..<365).map { offset -> DayCard in
@@ -110,29 +102,5 @@ class CalendarViewModel: ObservableObject {
         }
     }
 
-    /// Returns days grouped by month as (monthName, [index into days])
-    func daysByMonth() -> [(month: String, indices: [Int])] {
-        let calendar = Calendar.current
-        var result: [(month: String, indices: [Int])] = []
-        var currentMonth = -1
-        var currentIndices: [Int] = []
-
-        for (i, day) in days.enumerated() {
-            let month = calendar.component(.month, from: day.date)
-            if month != currentMonth {
-                if !currentIndices.isEmpty {
-                    result.append((Self.monthNames[currentMonth - 1], currentIndices))
-                }
-                currentMonth = month
-                currentIndices = [i]
-            } else {
-                currentIndices.append(i)
-            }
-        }
-        if !currentIndices.isEmpty {
-            result.append((Self.monthNames[currentMonth - 1], currentIndices))
-        }
-        return result
-    }
 }
 

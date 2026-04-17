@@ -9,10 +9,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
+
     var body: some View {
-        NavigationStack {
-            CircleCalendarView()
-                .navigationTitle("liturgical calendar")
+        if hasSeenOnboarding {
+            NavigationStack {
+                CircleCalendarView()
+                    .navigationTitle("liturgical calendar")
+            }
+        } else {
+            OnboardingView(hasSeenOnboarding: $hasSeenOnboarding)
         }
     }
 }

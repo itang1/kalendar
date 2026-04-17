@@ -72,7 +72,10 @@ struct CircleCalendarView: View {
             )
         ) {
             if let index = selectedIndex {
-                DayDetailView(day: $viewModel.days[index])
+                DayBrowserSheet(
+                    days: $viewModel.days,
+                    initialIndex: index
+                )
             }
         }
     }
@@ -87,12 +90,15 @@ struct CircleCalendarView: View {
                         DayCardView(day: day)
                             .aspectRatio(1, contentMode: .fit)
                             .id(index)
-                            .onTapGesture { selectedIndex = index }
+                            .onTapGesture {
+                                UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                                selectedIndex = index
+                            }
                     }
                 }
                 .padding(12)
             }
-            .background(Color(red: 0.78, green: 0.80, blue: 0.84))
+            .background(Color.kalendarBackground)
             .onChange(of: scrollToIndex) {
                 guard let idx = scrollToIndex else { return }
                 withAnimation { proxy.scrollTo(idx, anchor: .center) }
@@ -107,9 +113,25 @@ struct CircleCalendarView: View {
         GeometryReader { geo in
             let size = min(geo.size.width, geo.size.height) - 48
             VStack(spacing: 20) {
-                KalendarWheel(days: viewModel.days, radius: size / 2)
-                    .frame(width: size, height: size)
-                Text("A full-year overview. Switch to grid view to explore individual days.")
+                KalendarWheel(days: viewModel.days, radius: size / 2) { index in
+                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    selectedIndex = index
+                }
+                .frame(width: size, height: size)
+
+                Button {
+                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    selectedIndex = 0
+                } label: {
+                    Text("Open Today")
+                        .font(.system(size: 15, weight: .semibold))
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 10)
+                        .background(.thinMaterial)
+                        .clipShape(Capsule())
+                }
+
+                Text("Tap any slice to explore that day.")
                     .font(.body)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 32)
@@ -117,6 +139,80 @@ struct CircleCalendarView: View {
             .frame(maxWidth: .infinity)
             .padding(.top, 24)
         }
+    }
+}
+
+// MARK: - Day Browser Sheet (swipeable day detail)
+
+private struct DayBrowserSheet: View {
+    @Binding var days: [DayCard]
+    let initialIndex: Int
+    @Environment(\.dismiss) private var dismiss
+    @State private var currentIndex: Int
+
+    private static let dateFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "MMM d"
+        return f
+    }()
+
+    init(days: Binding<[DayCard]>, initialIndex: Int) {
+        self._days = days
+        self.initialIndex = initialIndex
+        self._currentIndex = State(initialValue: initialIndex)
+    }
+
+    var body: some View {
+        NavigationStack {
+            TabView(selection: $currentIndex) {
+                ForEach(days.indices, id: \.self) { i in
+                    DayDetailView(day: $days[i])
+                        .tag(i)
+                }
+            }
+            .tabViewStyle(.page(indexDisplayMode: .never))
+            .safeAreaInset(edge: .top, spacing: 0) {
+                HStack {
+                    if currentIndex > 0 {
+                        swipeHint(leading: true, label: Self.dateFormatter.string(from: days[currentIndex - 1].date))
+                    }
+                    Spacer()
+                    if currentIndex < days.count - 1 {
+                        swipeHint(leading: false, label: Self.dateFormatter.string(from: days[currentIndex + 1].date))
+                    }
+                }
+                .padding(.horizontal, 14)
+                .padding(.vertical, 8)
+                .allowsHitTesting(false)
+            }
+            .navigationTitle(Self.dateFormatter.string(from: days[currentIndex].date))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") { dismiss() }
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func swipeHint(leading: Bool, label: String) -> some View {
+        HStack(spacing: 4) {
+            if leading {
+                Image(systemName: "arrow.left")
+                    .font(.system(size: 11, weight: .semibold))
+            }
+            Text(label)
+                .font(.system(size: 12, weight: .medium))
+            if !leading {
+                Image(systemName: "arrow.right")
+                    .font(.system(size: 11, weight: .semibold))
+            }
+        }
+        .foregroundStyle(.secondary)
+        .padding(.vertical, 5)
+        .padding(.horizontal, 10)
+        .background(.thinMaterial, in: Capsule())
     }
 }
 

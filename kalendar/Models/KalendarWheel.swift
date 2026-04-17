@@ -6,10 +6,13 @@ struct KalendarWheel: View {
     let days: [DayCard]
     var radius: CGFloat = 160
     let sliceLineWidth: CGFloat = 2
+    var onDayTap: ((Int) -> Void)? = nil
 
     var body: some View {
         GeometryReader { geometry in
             let size = min(geometry.size.width, geometry.size.height)
+            let center = CGPoint(x: size / 2, y: size / 2)
+
             ZStack {
                 ForEach(days) { day in
                     WheelSliceShape(
@@ -27,10 +30,44 @@ struct KalendarWheel: View {
                         .stroke(Color.white, lineWidth: sliceLineWidth)
                     )
                 }
+
+
             }
             .frame(width: size, height: size)
+            .gesture(
+                SpatialTapGesture()
+                    .onEnded { value in
+                        guard let index = sliceIndex(
+                            at: value.location,
+                            center: center,
+                            radius: radius,
+                            total: days.count
+                        ) else { return }
+                        onDayTap?(index)
+                    }
+            )
         }
         .aspectRatio(1, contentMode: .fit)
+    }
+
+    // MARK: - Hit testing
+
+    /// Returns the 0-based index into `days` for a tap at `point`, or nil if outside the wheel.
+    private func sliceIndex(at point: CGPoint, center: CGPoint, radius: CGFloat, total: Int) -> Int? {
+        let dx = point.x - center.x
+        let dy = point.y - center.y
+        let distance = sqrt(dx * dx + dy * dy)
+        guard distance <= radius && distance > 0 else { return nil }
+
+        // atan2 gives angle from positive x-axis, CCW in standard math coords.
+        // SwiftUI's Y axis points down, so atan2(dy, dx) gives CW from positive x-axis.
+        // The first slice starts at -π/2 (top of circle).
+        var angle = atan2(dy, dx) + .pi / 2  // rotate so 0 = top
+        if angle < 0 { angle += 2 * .pi }
+
+        let sliceAngle = 2 * .pi / CGFloat(total)
+        let index = Int(angle / sliceAngle) % total
+        return index
     }
 }
 
@@ -75,7 +112,8 @@ struct WheelSliceShape: Shape {
             weekOfSeason: info.weekOfSeason
         )
     }
-    KalendarWheel(days: days)
+    KalendarWheel(days: days) { index in
+        print("Tapped day index \(index)")
+    }
 }
 #endif
-
