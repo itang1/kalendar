@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+#if DEBUG
 struct AppIconView: View {
     private let seasons: [(color: Color, fraction: Double)] = [
         (Color(red: 0.45, green: 0.20, blue: 0.55), 4.0 / 52),   // Advent (violet)
@@ -105,3 +106,4 @@ struct AppIconView: View {
         .frame(width: 400, height: 400)
         .padding()
 }
+#endif

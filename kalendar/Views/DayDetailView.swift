@@ -120,8 +120,8 @@ struct DayDetailView: View {
                 Divider()
                     .padding(.vertical, 28)
 
-                // MARK: Comments
-                sectionLabel("Comments")
+                // MARK: Notes
+                sectionLabel("Notes")
 
                 VStack(alignment: .leading, spacing: 0) {
                     ForEach(Array(day.comments.enumerated()), id: \.offset) { index, comment in
@@ -145,7 +145,7 @@ struct DayDetailView: View {
                 .padding(.top, 6)
 
                 HStack {
-                    TextField("Add a comment...", text: $newComment)
+                    TextField("Add a note...", text: $newComment)
                         .font(.system(size: 17))
                         .textFieldStyle(.roundedBorder)
                     Button("Add") {
