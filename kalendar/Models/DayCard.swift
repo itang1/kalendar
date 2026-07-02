@@ -22,4 +22,5 @@ struct DayCard: Identifiable {
     var feastDescription: String?
     var isSolemnity: Bool
     var weekOfSeason: Int?
+    var isMovableFeast: Bool = false
 }

@@ -15,8 +15,8 @@ struct KalendarWheel: View {
 
             ZStack {
                 // Slices are positioned by their index in `days` (day 0 = today at the
-                // top), so the wheel matches the grid and the tap hit-test — which also
-                // maps an angle back to an array index — lands on the day that was tapped.
+                // top), so the wheel matches the grid and the tap hit-test, which also
+                // maps an angle back to an array index, lands on the day that was tapped.
                 ForEach(Array(days.enumerated()), id: \.element.id) { index, day in
                     WheelSliceShape(
                         index: index,
@@ -32,6 +32,15 @@ struct KalendarWheel: View {
                         )
                         .stroke(Color.white, lineWidth: sliceLineWidth)
                     )
+                }
+
+                // Marker on the first slice (today, at the top) so it is easy to find.
+                if !days.isEmpty {
+                    Circle()
+                        .fill(Color.primary)
+                        .overlay(Circle().stroke(.white, lineWidth: 1.5))
+                        .frame(width: 12, height: 12)
+                        .position(todayMarkerPosition(center: center))
                 }
             }
             .frame(width: size, height: size)
@@ -49,6 +58,18 @@ struct KalendarWheel: View {
             )
         }
         .aspectRatio(1, contentMode: .fit)
+        // VoiceOver treats the wheel as one element; individual days are reachable
+        // through the grid view and the Open Today button.
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Year wheel showing \(days.count) days colored by liturgical season, beginning with today at the top. Switch to grid view to open a specific day.")
+    }
+
+    /// Center point of the marker sitting near the rim of the first slice.
+    private func todayMarkerPosition(center: CGPoint) -> CGPoint {
+        let sliceAngle = 2 * .pi / CGFloat(max(days.count, 1))
+        let angle = -CGFloat.pi / 2 + sliceAngle / 2  // middle of the top slice
+        let r = radius * 0.82
+        return CGPoint(x: center.x + r * cos(angle), y: center.y + r * sin(angle))
     }
 
     // MARK: - Hit testing
@@ -110,7 +131,8 @@ struct WheelSliceShape: Shape {
             feastName: info.feastName,
             feastDescription: info.feastDescription,
             isSolemnity: info.isSolemnity,
-            weekOfSeason: info.weekOfSeason
+            weekOfSeason: info.weekOfSeason,
+            isMovableFeast: info.isMovableFeast
         )
     }
     KalendarWheel(days: days) { index in

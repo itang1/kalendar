@@ -16,13 +16,20 @@ private enum CalendarViewMode {
 
 struct CircleCalendarView: View {
     @StateObject private var viewModel = CalendarViewModel()
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @State private var selectedIndex: Int?
     @State private var viewMode: CalendarViewMode = .grid
     @State private var showInfo = false
     @State private var showFeastList = false
     @State private var scrollToIndex: Int? = nil
     @State private var pendingSelectedIndex: Int? = nil
-    private let columns = Array(repeating: GridItem(.flexible(), spacing: 6), count: 7)
+
+    /// Seven tiles per row on iPhone; more on the wider iPad canvas so tiles
+    /// don't shrink to specks.
+    private var columns: [GridItem] {
+        let count = horizontalSizeClass == .regular ? 12 : 7
+        return Array(repeating: GridItem(.flexible(), spacing: 6), count: count)
+    }
 
     var body: some View {
         Group {

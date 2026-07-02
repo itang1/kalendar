@@ -25,12 +25,13 @@ private let monthDayFormatter: DateFormatter = {
 }()
 
 /// Stable key for a day that survives year changes:
-/// - Feast days are keyed by feast name so Easter memos follow Easter
-///   even when the date shifts year to year.
-/// - Regular days are keyed by month-day (no year) so a memo on
-///   July 10 stays on July 10 every year.
+/// - Movable feasts (the Easter cycle) are keyed by feast name so a note on
+///   Easter follows Easter even when its date shifts year to year.
+/// - Everything else (fixed-date feasts and regular days) is keyed by month-day
+///   so a note on July 10 stays on July 10, and a note on a fixed feast stays put
+///   even in years when that feast is outranked and not shown.
 private func dayKey(for day: DayCard) -> String {
-    if let feast = day.feastName {
+    if day.isMovableFeast, let feast = day.feastName {
         return "feast:\(feast)"
     }
     return monthDayFormatter.string(from: day.date)
@@ -62,7 +63,8 @@ class CalendarViewModel: ObservableObject {
                 feastName: info.feastName,
                 feastDescription: info.feastDescription,
                 isSolemnity: info.isSolemnity,
-                weekOfSeason: info.weekOfSeason
+                weekOfSeason: info.weekOfSeason,
+                isMovableFeast: info.isMovableFeast
             )
         }
 

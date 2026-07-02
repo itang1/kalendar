@@ -129,6 +129,9 @@ struct LiturgicalDayInfo {
     let isSolemnity: Bool
     let isSunday: Bool
     let weekOfSeason: Int?
+    /// True when the feast's date shifts year to year (Easter cycle, etc.), as
+    /// opposed to a fixed-date feast. Used to key saved notes correctly.
+    let isMovableFeast: Bool
 }
 
 // MARK: - Liturgical Calendar Engine
@@ -238,7 +241,8 @@ struct LiturgicalCalendar {
                 feastDescription: feast.description,
                 isSolemnity: feast.isSolemnity,
                 isSunday: isSunday,
-                weekOfSeason: nil
+                weekOfSeason: nil,
+                isMovableFeast: false
             )
         }
 
@@ -251,7 +255,8 @@ struct LiturgicalCalendar {
                 feastDescription: feast.description,
                 isSolemnity: feast.isSolemnity,
                 isSunday: isSunday,
-                weekOfSeason: nil
+                weekOfSeason: nil,
+                isMovableFeast: true
             )
         }
 
@@ -264,7 +269,8 @@ struct LiturgicalCalendar {
             feastDescription: nil,
             isSolemnity: false,
             isSunday: isSunday,
-            weekOfSeason: weekOfSeason(date: date, season: season, keys: keys, prevYearKeys: prevYearKeys)
+            weekOfSeason: weekOfSeason(date: date, season: season, keys: keys, prevYearKeys: prevYearKeys),
+            isMovableFeast: false
         )
     }
 
