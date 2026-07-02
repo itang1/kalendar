@@ -2,7 +2,7 @@
 //  CircleCalendarView.swift
 //  kalendar
 //
-//  Main calendar view — switchable between grid and wheel modes.
+//  Main calendar view, switchable between grid and wheel modes.
 
 import SwiftUI
 
@@ -291,6 +291,7 @@ private struct FeastListSheet: View {
 
 private struct InfoSheet: View {
     @Environment(\.dismiss) private var dismiss
+    @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
 
     var body: some View {
         NavigationStack {
@@ -336,6 +337,27 @@ private struct InfoSheet: View {
                             .frame(width: 7, height: 7)
                         Text("A dot marks a feast day or special celebration. Tap any tile in grid view to read about it.")
                             .font(.system(size: 17))
+                    }
+
+                    Divider()
+
+                    Text("Notes you add are stored only on this device, not on a server. They won't appear on your other devices, and uninstalling the app will delete them.")
+                        .font(.system(size: 17))
+
+                    Divider()
+
+                    Button {
+                        hasSeenOnboarding = false
+                    } label: {
+                        HStack {
+                            Image(systemName: "arrow.counterclockwise")
+                            Text("Replay Introduction")
+                        }
+                        .font(.system(size: 17, weight: .semibold))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 12)
+                        .background(Color.primary.opacity(0.08))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
                 }
                 .padding()

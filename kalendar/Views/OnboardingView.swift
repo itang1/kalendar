@@ -34,13 +34,13 @@ struct OnboardingView: View {
             symbol: "chart.pie.fill",
             symbolColor: Color(red: 0.2, green: 0.55, blue: 0.3),
             title: "Two Ways to Look",
-            body: "The grid shows every day of the next 365 days laid out as tiles. Tap any tile to read about that day, see what season it is, and add personal notes.\n\nThe wheel view (top right) shows the whole year at once as colored slices, so you can see the shape of the Christian year from a distance."
+            body: "The grid view shows every day of the next 365 days laid out as tiles, always starting with today and rolling forward one day at a time.\n\nTiles omit date numbers so color and season stand out at a glance. Tap any tile to see its exact date, feast, and notes.\n\nThe wheel view shows the whole year at once as colored slices, so you can see the shape of the Christian year from a distance.\n\nToggle between the two views in the top right."
         ),
         OnboardingPage(
             symbol: "text.bubble",
             symbolColor: Color(red: 0.2, green: 0.55, blue: 0.3),
             title: "Your Notes Stay",
-            body: "Tap any day to open it, then add a comment at the bottom. Notes are saved automatically and persist year over year. Feast day notes follow the feast even when the date shifts (like Easter). Regular day notes stay on the same date each year."
+            body: "Tap any day to open it, then add a comment at the bottom. Notes are saved automatically and persist year over year. Feast day notes follow the feast even when the date shifts (like Easter). Regular day notes stay on the same date each year.\n\nNotes are stored only on this device, not on a server. They won't appear on your other devices, and uninstalling the app will delete them."
         )
     ]
 
@@ -125,4 +125,9 @@ private struct OnboardingPageView: View {
         .padding(.horizontal, 28)
         .frame(maxWidth: .infinity, alignment: .leading)
     }
+}
+
+
+#Preview {
+    ContentView()
 }
