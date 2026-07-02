@@ -223,23 +223,14 @@ struct LiturgicalCalendar {
         let prevYearKeys = keyDates(year: year - 1)
 
         let isSunday = calendar.component(.weekday, from: date) == 1
+        let season = seasonForDate(date, keys: keys, prevYearKeys: prevYearKeys)
 
-        // Check fixed feasts first
-        if let feast = fixedFeast(for: date) {
-            return LiturgicalDayInfo(
-                season: seasonForDate(date, keys: keys, prevYearKeys: prevYearKeys),
-                liturgicalColor: feast.color,
-                feastName: feast.name,
-                feastDescription: feast.description,
-                isSolemnity: feast.isSolemnity,
-                isSunday: isSunday,
-                weekOfSeason: nil
-            )
-        }
-
-        // Check movable feasts
-        if let feast = movableFeast(for: date, keys: keys) {
-            let season = seasonForDate(date, keys: keys, prevYearKeys: prevYearKeys)
+        // Check fixed feasts (saints' days) first, unless the day outranks them.
+        // The Triduum, Holy Week, the Octave of Easter, and the Sundays of Advent,
+        // Lent, and Easter all take precedence, so a saint's day landing on one is
+        // omitted (a solemnity like the Annunciation is transferred to another date).
+        if !fixedFeastIsImpeded(date: date, season: season, isSunday: isSunday, keys: keys),
+           let feast = fixedFeast(for: date) {
             return LiturgicalDayInfo(
                 season: season,
                 liturgicalColor: feast.color,
@@ -251,7 +242,19 @@ struct LiturgicalCalendar {
             )
         }
 
-        let season = seasonForDate(date, keys: keys, prevYearKeys: prevYearKeys)
+        // Check movable feasts (Easter cycle, Ascension, Pentecost, etc.)
+        if let feast = movableFeast(for: date, keys: keys) {
+            return LiturgicalDayInfo(
+                season: season,
+                liturgicalColor: feast.color,
+                feastName: feast.name,
+                feastDescription: feast.description,
+                isSolemnity: feast.isSolemnity,
+                isSunday: isSunday,
+                weekOfSeason: nil
+            )
+        }
+
         let color = defaultColorForSeason(season, isSunday: isSunday, date: date, keys: keys)
 
         return LiturgicalDayInfo(
@@ -379,6 +382,28 @@ struct LiturgicalCalendar {
         default:
             return nil
         }
+    }
+
+    // MARK: - Feast Precedence
+
+    /// Whether a fixed feast (a saint's day) is outranked by the day it falls on and
+    /// so should not be shown. Based on the Table of Liturgical Days: the Triduum,
+    /// Holy Week, the Octave of Easter, and the Sundays of Advent, Lent, and Easter
+    /// all take precedence over feasts and memorials of saints, and even over
+    /// solemnities (which are then transferred to another date).
+    private func fixedFeastIsImpeded(date: Date, season: LiturgicalSeason, isSunday: Bool, keys: KeyLiturgicalDates) -> Bool {
+        // Holy Week and the Triduum: Palm Sunday through Easter Sunday.
+        if date >= keys.palmSunday && date <= keys.easter { return true }
+
+        // Octave of Easter: the eight days from Easter through the Second Sunday of
+        // Easter, each of which ranks as a solemnity.
+        let octaveEnd = calendar.date(byAdding: .day, value: 7, to: keys.easter)!
+        if date > keys.easter && date <= octaveEnd { return true }
+
+        // Privileged Sundays of Advent, Lent, and Easter outrank saints' days.
+        if isSunday && (season == .advent || season == .lent || season == .easter) { return true }
+
+        return false
     }
 
     // MARK: - Fixed Feasts (by month/day)
