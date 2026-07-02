@@ -14,24 +14,25 @@ struct KalendarWheel: View {
             let center = CGPoint(x: size / 2, y: size / 2)
 
             ZStack {
-                ForEach(days) { day in
+                // Slices are positioned by their index in `days` (day 0 = today at the
+                // top), so the wheel matches the grid and the tap hit-test — which also
+                // maps an angle back to an array index — lands on the day that was tapped.
+                ForEach(Array(days.enumerated()), id: \.element.id) { index, day in
                     WheelSliceShape(
-                        index: day.dayOfYear - 1,
+                        index: index,
                         total: days.count,
                         radius: radius
                     )
                     .fill(day.color)
                     .overlay(
                         WheelSliceShape(
-                            index: day.dayOfYear - 1,
+                            index: index,
                             total: days.count,
                             radius: radius
                         )
                         .stroke(Color.white, lineWidth: sliceLineWidth)
                     )
                 }
-
-
             }
             .frame(width: size, height: size)
             .gesture(

@@ -48,7 +48,8 @@ class CalendarViewModel: ObservableObject {
         let today = calendar.startOfDay(for: Date())
         let litCal = LiturgicalCalendar()
 
-        var builtDays = (0..<365).map { offset -> DayCard in
+        // 366 days so a full year is always covered, including Feb 29 in leap years.
+        var builtDays = (0..<366).map { offset -> DayCard in
             let date = calendar.date(byAdding: .day, value: offset, to: today)!
             let info = litCal.liturgicalInfo(for: date)
             return DayCard(
