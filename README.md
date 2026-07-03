@@ -8,7 +8,8 @@ next full year of days, colored by liturgical season and marked with feasts and
 solemnities, and explains what each day means. You can browse a whole year at a
 glance, read about any day, and keep private notes that persist from year to year.
 
-**Website:** [itang1.github.io/kalendar](https://itang1.github.io/kalendar/)
+**Website:** [itang1.github.io/kalendar](https://itang1.github.io/kalendar/), with a
+[browsable demo](https://itang1.github.io/kalendar/browse.html) for people without an iPhone
 
 "Kalendar" is the traditional spelling used in many liturgical texts.
 
@@ -26,6 +27,7 @@ glance, read about any day, and keep private notes that persist from year to yea
   regular-day notes stay on the same calendar date each year.
 - **Solemnity notifications**: an optional morning notification on solemnities
   like Easter and Christmas, toggled from the About screen.
+- **Home Screen widget** showing today's season, feast, and color.
 - **Onboarding** that walks through how to read the calendar, plus an in-app
   About screen that can replay it.
 - Dark mode and light haptic feedback throughout.
@@ -73,15 +75,27 @@ kalendar/
 │  └─ SolemnityNotificationScheduler.swift Local notifications for solemnities
 └─ Utilities/
    └─ DateHelpers.swift         Date and adaptive-color helpers
+
+KalendarWidget/                 Home Screen widget (KalendarWidgetExtension target)
+├─ KalendarWidget.swift         Timeline provider and widget view
+├─ KalendarWidgetBundle.swift   @main entry point
+└─ LiturgicalCalendar.swift     A copy of the app's engine (see the folder's README)
+
+docs/                           GitHub Pages site
+├─ index.html                   Landing page
+├─ privacy.html                 Hosted privacy policy
+├─ browse.html, browse.js       Read-only browsable demo of the calendar
+└─ kalendar-engine.js           A JS port of the app's engine, for the demo above
 ```
 
 ## Building
 
-Open `kalendar.xcodeproj` in Xcode and run the `kalendar` scheme on an iOS 17+
-simulator or device. There are no package or dependency steps.
+Open `kalendar.xcodeproj` in Xcode. The `kalendar` scheme runs the app (with the
+widget embedded) on an iOS 17+ simulator or device; the `KalendarWidgetExtension`
+scheme builds the widget on its own. There are no package or dependency steps.
 
 ## Future Work
 
-Planned work includes jumping to an arbitrary date and a home-screen widget (a
-starting point lives in [`KalendarWidgetDraft/`](KalendarWidgetDraft/), but it
-needs a Widget Extension target added in Xcode before it can build).
+Planned work includes jumping to an arbitrary date, adding the widget to a Home
+Screen for a real end-to-end check (only the build has been verified so far),
+and Holy Days of Obligation / fasting indicators.

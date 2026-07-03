@@ -1,6 +1,6 @@
 //
 //  KalendarWidget.swift
-//  KalendarWidget (draft — see README.md in this folder before adding to Xcode)
+//  KalendarWidget
 //
 //  Shows today's liturgical season, color, and feast on the Home Screen.
 
@@ -91,12 +91,5 @@ struct KalendarWidget: Widget {
         .configurationDisplayName("Today in the Church Year")
         .description("Shows today's liturgical season, color, and feast.")
         .supportedFamilies([.systemSmall, .systemMedium])
-    }
-}
-
-@main
-struct KalendarWidgetBundle: WidgetBundle {
-    var body: some Widget {
-        KalendarWidget()
     }
 }
