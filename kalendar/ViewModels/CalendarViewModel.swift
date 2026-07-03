@@ -68,11 +68,14 @@ final class CalendarViewModel {
             )
         }
 
+        // Migrate any legacy storage and start iCloud syncing before loading, so
+        // the load below reads the up-to-date per-day keys.
+        NotePersistenceStore.startSyncing()
+
         // Apply any saved notes (merged from iCloud and local storage)
         Self.applyNotes(NotePersistenceStore.load(), to: &builtDays)
 
         self.days = builtDays
-        NotePersistenceStore.startSyncing()
         observeExternalChanges()
     }
 
@@ -90,9 +93,7 @@ final class CalendarViewModel {
 
     // MARK: - iCloud merge
 
-    /// Merges in notes synced from another device. Only days present in the
-    /// reloaded data are overwritten, so a note added on this device while
-    /// offline is not clobbered by a merge that hasn't caught up yet.
+    /// Re-merges notes when iCloud reports a change from another device.
     private func observeExternalChanges() {
         mergeTask = Task { [weak self] in
             let changes = NotificationCenter.default.notifications(named: NotePersistenceStore.didChangeExternally)
@@ -102,12 +103,15 @@ final class CalendarViewModel {
         }
     }
 
+    /// Applies the authoritative iCloud state. A day absent from that state had its
+    /// note deleted on another device, so we clear it here rather than keep the
+    /// stale value, which is what lets deletions propagate across devices.
     private func mergeExternalNotes() {
-        let saved = NotePersistenceStore.load()
+        let saved = NotePersistenceStore.loadAuthoritative()
         for i in days.indices {
-            let key = dayKey(for: days[i])
-            if let data = saved[key], data.comments != days[i].comments {
-                days[i].comments = data.comments
+            let incoming = saved[dayKey(for: days[i])]?.comments ?? []
+            if incoming != days[i].comments {
+                days[i].comments = incoming
             }
         }
     }
@@ -125,10 +129,15 @@ final class CalendarViewModel {
 
     private static func persistDays(_ days: [DayCard]) {
         var userData: [String: UserDayData] = [:]
-        for day in days where !day.comments.isEmpty {
-            userData[dayKey(for: day)] = UserDayData(comments: day.comments)
+        var allKeys: Set<String> = []
+        for day in days {
+            let key = dayKey(for: day)
+            allKeys.insert(key)
+            if !day.comments.isEmpty {
+                userData[key] = UserDayData(comments: day.comments)
+            }
         }
-        NotePersistenceStore.save(userData)
+        NotePersistenceStore.save(userData, allKeys: allKeys)
     }
 
 }
