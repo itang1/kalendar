@@ -8,6 +8,9 @@ next full year of days, colored by liturgical season and marked with feasts and
 solemnities, and explains what each day means. You can browse a whole year at a
 glance, read about any day, and keep private notes that persist from year to year.
 
+**Website:** [itang1.github.io/kalendar](https://itang1.github.io/kalendar/) ·
+**Privacy:** [privacy policy](https://itang1.github.io/kalendar/privacy.html)
+
 "Kalendar" is the traditional spelling used in many liturgical texts.
 
 ## Features
@@ -40,16 +43,17 @@ Kalendar implements the Roman Rite / General Roman Calendar:
 - **Feast precedence** follows the Table of Liturgical Days: saints' days yield to
   the Triduum, Holy Week, the Octave of Easter, and the Sundays of Advent, Lent,
   and Easter.
-
-Known limitation: an impeded solemnity (such as the Annunciation falling in Holy
-Week) is currently omitted for that year rather than transferred to its proper
-later date.
+- **Transferred solemnities**: when St. Joseph, the Annunciation, or the Immaculate
+  Conception is outranked on its usual date, it is moved to its proper day (for
+  example, the Annunciation clears Holy Week and the Octave of Easter to the Monday
+  after the Second Sunday of Easter).
 
 ## Website
 
 A small landing and privacy page lives in [`docs/`](docs/) and is published with
-GitHub Pages at `https://itang1.github.io/kalendar/`. The privacy policy at
-`https://itang1.github.io/kalendar/privacy.html` is the URL to give App Store Connect.
+GitHub Pages at [itang1.github.io/kalendar](https://itang1.github.io/kalendar/). The
+[privacy policy](https://itang1.github.io/kalendar/privacy.html) is the URL to give
+App Store Connect.
 
 To enable it: repository Settings, then Pages, and set the source to the `main`
 branch with the `/docs` folder.
@@ -79,8 +83,7 @@ kalendar/
 │  ├─ CircleCalendarView.swift  Grid/wheel host, info & feast-list sheets
 │  ├─ DayCardView.swift         A single grid tile
 │  ├─ DayDetailView.swift       Swipeable day detail with notes
-│  ├─ OnboardingView.swift      First-launch walkthrough
-│  └─ AppIconPreview.swift      DEBUG-only icon generator
+│  └─ OnboardingView.swift      First-launch walkthrough
 └─ Utilities/
    └─ DateHelpers.swift         Date and adaptive-color helpers
 ```
@@ -92,6 +95,5 @@ simulator or device. There are no package or dependency steps.
 
 ## Roadmap
 
-Planned work includes accessibility improvements (Dynamic Type, VoiceOver on the
-wheel), feast-day notifications, iCloud sync for notes, transferring impeded
-solemnities to their proper dates, and a home-screen widget.
+Planned work includes feast-day notifications, iCloud sync for notes, jumping to an
+arbitrary date, and a home-screen widget.
