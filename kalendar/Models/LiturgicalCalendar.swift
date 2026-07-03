@@ -222,6 +222,21 @@ struct LiturgicalCalendar {
         let isSunday = calendar.component(.weekday, from: date) == 1
         let season = seasonForDate(date, keys: keys, prevYearKeys: prevYearKeys)
 
+        // A solemnity that was outranked on its usual date is transferred onto this
+        // day (e.g. the Annunciation moved out of Holy Week). This outranks the
+        // ordinary fixed feast for the day.
+        if let feast = transferredSolemnity(for: date, keys: keys, prevYearKeys: prevYearKeys) {
+            return LiturgicalDayInfo(
+                season: season,
+                liturgicalColor: feast.color,
+                feastName: feast.name,
+                feastDescription: feast.description,
+                isSolemnity: true,
+                weekOfSeason: nil,
+                isMovableFeast: false
+            )
+        }
+
         // Check fixed feasts (saints' days) first, unless the day outranks them.
         // The Triduum, Holy Week, the Octave of Easter, and the Sundays of Advent,
         // Lent, and Easter all take precedence, so a saint's day landing on one is
@@ -233,7 +248,8 @@ struct LiturgicalCalendar {
                 liturgicalColor: feast.color,
                 feastName: feast.name,
                 feastDescription: feast.description,
-                isSolemnity: feast.isSolemnity,                weekOfSeason: nil,
+                isSolemnity: feast.isSolemnity,
+                weekOfSeason: nil,
                 isMovableFeast: false
             )
         }
@@ -245,7 +261,8 @@ struct LiturgicalCalendar {
                 liturgicalColor: feast.color,
                 feastName: feast.name,
                 feastDescription: feast.description,
-                isSolemnity: feast.isSolemnity,                weekOfSeason: nil,
+                isSolemnity: feast.isSolemnity,
+                weekOfSeason: nil,
                 isMovableFeast: true
             )
         }
@@ -399,6 +416,54 @@ struct LiturgicalCalendar {
         if isSunday && (season == .advent || season == .lent || season == .easter) { return true }
 
         return false
+    }
+
+    /// If a solemnity that was impeded on its usual date this year is transferred
+    /// onto `date`, return it. The three fixed solemnities that can be outranked are
+    /// St. Joseph (Mar 19), the Annunciation (Mar 25), and the Immaculate Conception
+    /// (Dec 8). When impeded they move to a nearby open day per the Table of
+    /// Liturgical Days.
+    private func transferredSolemnity(for date: Date, keys: KeyLiturgicalDates, prevYearKeys: KeyLiturgicalDates) -> (name: String, color: LiturgicalColor, isSolemnity: Bool, description: String)? {
+        let year = calendar.component(.year, from: date)
+        let candidates = [
+            calendar.date(from: DateComponents(year: year, month: 3, day: 19))!,   // St. Joseph
+            calendar.date(from: DateComponents(year: year, month: 3, day: 25))!,   // Annunciation
+            calendar.date(from: DateComponents(year: year, month: 12, day: 8))!,   // Immaculate Conception
+        ]
+
+        for natural in candidates {
+            guard let feast = fixedFeast(for: natural), feast.isSolemnity else { continue }
+            let naturalSeason = seasonForDate(natural, keys: keys, prevYearKeys: prevYearKeys)
+            let naturalIsSunday = calendar.component(.weekday, from: natural) == 1
+            guard fixedFeastIsImpeded(date: natural, season: naturalSeason, isSunday: naturalIsSunday, keys: keys) else { continue }
+
+            if calendar.isDate(date, inSameDayAs: transferTarget(for: natural, keys: keys)) {
+                let note = " Its usual date was outranked this year, so it is observed today instead."
+                return (feast.name, feast.color, true, feast.description + note)
+            }
+        }
+        return nil
+    }
+
+    /// Where an impeded solemnity moves. The Annunciation clears Holy Week and the
+    /// Octave of Easter by moving to the Monday after the Second Sunday of Easter;
+    /// St. Joseph clears Holy Week by moving to the Saturday before Palm Sunday.
+    /// Otherwise (impeded only by a privileged Sunday) the solemnity moves to the
+    /// following day.
+    private func transferTarget(for natural: Date, keys: KeyLiturgicalDates) -> Date {
+        let month = calendar.component(.month, from: natural)
+        let day = calendar.component(.day, from: natural)
+        let inHolyWeekOrLater = natural >= keys.palmSunday
+
+        if month == 3 && day == 25 && inHolyWeekOrLater {   // Annunciation in Holy Week / Octave
+            return calendar.date(byAdding: .day, value: 8, to: keys.easter)!
+        }
+        if month == 3 && day == 19 && inHolyWeekOrLater {   // St. Joseph in Holy Week
+            return calendar.date(byAdding: .day, value: -1, to: keys.palmSunday)!
+        }
+        // Impeded by a privileged Sunday (or Immaculate Conception on Advent Sunday):
+        // move to the next day.
+        return calendar.date(byAdding: .day, value: 1, to: natural)!
     }
 
     // MARK: - Fixed Feasts (by month/day)
