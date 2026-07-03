@@ -20,6 +20,13 @@
 			remoteGlobalIDString = FCD2E3BF2FF77C0E00A5C01F;
 			remoteInfo = KalendarWidgetExtension;
 		};
+		FE00000000000000000000AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FCA2EEEF2EF777990092ABBD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FCA2EEF62EF777990092ABBD;
+			remoteInfo = kalendar;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +48,7 @@
 		FCD2E3C02FF77C0E00A5C01F /* KalendarWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KalendarWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCD2E3C22FF77C0E00A5C01F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		FCD2E3C42FF77C0E00A5C01F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		FE00000000000000000000A1 /* KalendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -67,6 +75,11 @@
 			path = KalendarWidget;
 			sourceTree = "<group>";
 		};
+		FE00000000000000000000A2 /* KalendarTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = KalendarTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +99,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FE00000000000000000000A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -94,6 +114,7 @@
 			children = (
 				FCA2EEF92EF777990092ABBD /* kalendar */,
 				FCD2E3C62FF77C0E00A5C01F /* KalendarWidget */,
+				FE00000000000000000000A2 /* KalendarTests */,
 				FCD2E3C12FF77C0E00A5C01F /* Frameworks */,
 				FCA2EEF82EF777990092ABBD /* Products */,
 			);
@@ -104,6 +125,7 @@
 			children = (
 				FCA2EEF72EF777990092ABBD /* kalendar.app */,
 				FCD2E3C02FF77C0E00A5C01F /* KalendarWidgetExtension.appex */,
+				FE00000000000000000000A1 /* KalendarTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -166,6 +188,29 @@
 			productReference = FCD2E3C02FF77C0E00A5C01F /* KalendarWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		FE00000000000000000000A3 /* KalendarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE00000000000000000000A9 /* Build configuration list for PBXNativeTarget "KalendarTests" */;
+			buildPhases = (
+				FE00000000000000000000A4 /* Sources */,
+				FE00000000000000000000A5 /* Frameworks */,
+				FE00000000000000000000A6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE00000000000000000000AA /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				FE00000000000000000000A2 /* KalendarTests */,
+			);
+			name = KalendarTests;
+			packageProductDependencies = (
+			);
+			productName = KalendarTests;
+			productReference = FE00000000000000000000A1 /* KalendarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -181,6 +226,10 @@
 					};
 					FCD2E3BF2FF77C0E00A5C01F = {
 						CreatedOnToolsVersion = 26.6;
+					};
+					FE00000000000000000000A3 = {
+						CreatedOnToolsVersion = 26.2;
+						TestTargetID = FCA2EEF62EF777990092ABBD;
 					};
 				};
 			};
@@ -200,6 +249,7 @@
 			targets = (
 				FCA2EEF62EF777990092ABBD /* kalendar */,
 				FCD2E3BF2FF77C0E00A5C01F /* KalendarWidgetExtension */,
+				FE00000000000000000000A3 /* KalendarTests */,
 			);
 		};
 /* End PBXProject section */
@@ -213,6 +263,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		FCD2E3BE2FF77C0E00A5C01F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE00000000000000000000A6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -236,6 +293,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FE00000000000000000000A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -243,6 +307,11 @@
 			isa = PBXTargetDependency;
 			target = FCD2E3BF2FF77C0E00A5C01F /* KalendarWidgetExtension */;
 			targetProxy = FCD2E3D22FF77C0F00A5C01F /* PBXContainerItemProxy */;
+		};
+		FE00000000000000000000AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FCA2EEF62EF777990092ABBD /* kalendar */;
+			targetProxy = FE00000000000000000000AB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -496,6 +565,48 @@
 			};
 			name = Release;
 		};
+		FE00000000000000000000A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.poodlestrategy.KalendarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/kalendar.app/kalendar";
+			};
+			name = Debug;
+		};
+		FE00000000000000000000A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.poodlestrategy.KalendarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/kalendar.app/kalendar";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -522,6 +633,15 @@
 			buildConfigurations = (
 				FCD2E3D62FF77C0F00A5C01F /* Debug */,
 				FCD2E3D72FF77C0F00A5C01F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE00000000000000000000A9 /* Build configuration list for PBXNativeTarget "KalendarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE00000000000000000000A7 /* Debug */,
+				FE00000000000000000000A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
