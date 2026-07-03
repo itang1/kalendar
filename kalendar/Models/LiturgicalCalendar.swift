@@ -103,8 +103,6 @@ enum LiturgicalColor: String {
     case white = "White"
     case red = "Red"
     case rose = "Rose"
-    case gold = "Gold"
-    case black = "Black"
 
     var color: Color {
         switch self {
@@ -113,8 +111,6 @@ enum LiturgicalColor: String {
         case .white: return Color(red: 1.0, green: 1.0, blue: 1.0)
         case .red: return Color(red: 0.75, green: 0.15, blue: 0.15)
         case .rose: return Color(red: 0.85, green: 0.5, blue: 0.6)
-        case .gold: return Color(red: 0.85, green: 0.75, blue: 0.25)
-        case .black: return Color(red: 0.2, green: 0.2, blue: 0.2)
         }
     }
 }
@@ -127,7 +123,6 @@ struct LiturgicalDayInfo {
     let feastName: String?
     let feastDescription: String?
     let isSolemnity: Bool
-    let isSunday: Bool
     let weekOfSeason: Int?
     /// True when the feast's date shifts year to year (Easter cycle, etc.), as
     /// opposed to a fixed-date feast. Used to key saved notes correctly.
@@ -212,7 +207,6 @@ struct LiturgicalCalendar {
             corpusChristi: corpusChristi,
             adventStart: adventStart,
             christmas: christmas,
-            epiphany: epiphany,
             baptismOfLord: baptismOfLord,
             christTheKing: christTheKing
         )
@@ -239,9 +233,7 @@ struct LiturgicalCalendar {
                 liturgicalColor: feast.color,
                 feastName: feast.name,
                 feastDescription: feast.description,
-                isSolemnity: feast.isSolemnity,
-                isSunday: isSunday,
-                weekOfSeason: nil,
+                isSolemnity: feast.isSolemnity,                weekOfSeason: nil,
                 isMovableFeast: false
             )
         }
@@ -253,9 +245,7 @@ struct LiturgicalCalendar {
                 liturgicalColor: feast.color,
                 feastName: feast.name,
                 feastDescription: feast.description,
-                isSolemnity: feast.isSolemnity,
-                isSunday: isSunday,
-                weekOfSeason: nil,
+                isSolemnity: feast.isSolemnity,                weekOfSeason: nil,
                 isMovableFeast: true
             )
         }
@@ -268,7 +258,6 @@ struct LiturgicalCalendar {
             feastName: nil,
             feastDescription: nil,
             isSolemnity: false,
-            isSunday: isSunday,
             weekOfSeason: weekOfSeason(date: date, season: season, keys: keys, prevYearKeys: prevYearKeys),
             isMovableFeast: false
         )
@@ -574,7 +563,6 @@ struct KeyLiturgicalDates {
     let corpusChristi: Date
     let adventStart: Date
     let christmas: Date
-    let epiphany: Date
     let baptismOfLord: Date
     let christTheKing: Date
 }

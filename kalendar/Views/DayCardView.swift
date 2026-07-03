@@ -51,7 +51,7 @@ struct DayCardView: View {
 
     private var dotColor: Color {
         switch day.liturgicalColor {
-        case .white, .rose, .gold:
+        case .white, .rose:
             return .black.opacity(0.5)
         default:
             return .white.opacity(0.7)
