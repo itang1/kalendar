@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kalendar &mdash; Browse the Christian Year</title>
+<meta name="description" content="Browse the liturgical calendar in your browser: grid and wheel views, colored by season, with a detail panel for every feast." />
+<style>
+  :root {
+    --slate: #1a1a21;
+    --slate-2: #24242e;
+    --ink: #f4f4f6;
+    --muted: #a0a0ad;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--slate);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    position: sticky;
+    top: 0;
+    background: var(--slate);
+    z-index: 5;
+  }
+  header a.back { color: var(--muted); text-decoration: none; font-size: 0.95rem; }
+  header a.back:hover { text-decoration: underline; }
+  header h1 { font-size: 1.05rem; font-weight: 700; }
+
+  .toggle {
+    display: flex;
+    gap: 6px;
+    background: var(--slate-2);
+    border-radius: 10px;
+    padding: 4px;
+  }
+  .toggle button {
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .toggle button.active { background: rgba(255,255,255,0.12); color: var(--ink); }
+
+  main { max-width: 900px; margin: 0 auto; padding: 20px; }
+  p.hint { color: var(--muted); font-size: 0.9rem; text-align: center; margin-bottom: 16px; }
+
+  /* Grid view */
+  #gridView {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+  }
+  .tile {
+    aspect-ratio: 1;
+    border-radius: 5px;
+    border: 3px solid rgba(255,255,255,0.18);
+    position: relative;
+    cursor: pointer;
+  }
+  .tile.today { border-color: var(--ink); }
+  .tile .dot {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 7px; height: 7px;
+    border-radius: 50%;
+  }
+
+  /* Wheel view */
+  #wheelView { display: none; flex-direction: column; align-items: center; gap: 16px; }
+  #wheelSvg { max-width: 420px; width: 100%; height: auto; cursor: pointer; }
+  #wheelSvg path { stroke: var(--slate); stroke-width: 1.5; }
+  .today-btn {
+    background: var(--slate-2);
+    color: var(--ink);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  /* Detail panel */
+  #overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 10;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  #panel {
+    background: var(--slate);
+    width: 100%;
+    max-width: 640px;
+    max-height: 85vh;
+    overflow-y: auto;
+    border-radius: 16px 16px 0 0;
+    padding: 24px;
+    box-shadow: 0 -8px 40px rgba(0,0,0,0.5);
+  }
+  @media (min-width: 640px) {
+    #overlay { align-items: center; }
+    #panel { border-radius: 16px; max-height: 80vh; }
+  }
+  #panel .panel-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+  #panel h2 { font-size: 1.3rem; }
+  #panel .day-of-year { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+  #panel .close-btn {
+    background: rgba(255,255,255,0.08);
+    border: none;
+    color: var(--ink);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  #panel .label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 20px 0 8px;
+  }
+  #panel .label:first-of-type { margin-top: 0; }
+  #panel .swatch-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  #panel .swatch {
+    width: 20px; height: 20px;
+    border-radius: 4px;
+    border: 2px solid rgba(255,255,255,0.3);
+  }
+  #panel p { margin-bottom: 10px; color: #d8d8de; line-height: 1.55; }
+  #panel ul.items { list-style: none; margin-bottom: 8px; }
+  #panel ul.items li { display: flex; gap: 8px; margin-bottom: 8px; color: #d8d8de; line-height: 1.55; }
+  #panel ul.items li::before { content: "\00B7"; font-weight: 700; }
+  #panel .feast-name { font-weight: 700; }
+  #panel .star { color: #e0c235; }
+
+  .nav-row { display: flex; justify-content: space-between; margin-top: 24px; }
+  .nav-row button {
+    background: rgba(255,255,255,0.08);
+    border: none;
+    color: var(--ink);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .nav-row button:disabled { opacity: 0.3; cursor: default; }
+</style>
+</head>
+<body>
+  <header>
+    <a class="back" href="index.html">&larr; Kalendar</a>
+    <h1>liturgical calendar</h1>
+    <div class="toggle">
+      <button id="gridBtn" class="active">Grid</button>
+      <button id="wheelBtn">Wheel</button>
+    </div>
+  </header>
+
+  <main>
+    <p class="hint">Tap any day to see its season, feast, and vestment color.</p>
+    <div id="gridView"></div>
+    <div id="wheelView">
+      <svg id="wheelSvg" viewBox="0 0 400 400"></svg>
+      <button class="today-btn" id="openTodayBtn">Open Today</button>
+    </div>
+  </main>
+
+  <div id="overlay">
+    <div id="panel"></div>
+  </div>
+
+  <script src="kalendar-engine.js"></script>
+  <script src="browse.js"></script>
+</body>
+</html>
