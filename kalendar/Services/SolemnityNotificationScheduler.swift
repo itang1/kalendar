@@ -22,7 +22,7 @@ enum SolemnityNotificationScheduler {
             await schedule(for: days)
             return true
         case .notDetermined:
-            let granted = await center.requestAuthorization(options: [.alert, .sound, .badge])
+            let granted = (try? await center.requestAuthorization(options: [.alert, .sound, .badge])) ?? false
             if granted {
                 await schedule(for: days)
             }
