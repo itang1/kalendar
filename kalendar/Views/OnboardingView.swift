@@ -74,7 +74,7 @@ struct OnboardingView: View {
                 }
             } label: {
                 Text(page < pages.count - 1 ? "Continue" : "Get Started")
-                    .font(.system(size: 17, weight: .semibold))
+                    .font(.body.weight(.semibold))
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
                     .background(Color.primary)
@@ -103,27 +103,34 @@ private struct OnboardingPageView: View {
     let page: OnboardingPage
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Spacer()
+        // Wrapped in a ScrollView so the page still centers at normal text sizes but
+        // stays fully readable (scrollable) at large Dynamic Type sizes.
+        GeometryReader { geo in
+            ScrollView {
+                VStack(alignment: .leading, spacing: 0) {
+                    Spacer(minLength: 0)
 
-            Image(systemName: page.symbol)
-                .font(.system(size: 52))
-                .foregroundStyle(page.symbolColor)
-                .padding(.bottom, 28)
+                    Image(systemName: page.symbol)
+                        .font(.system(size: 52))
+                        .foregroundStyle(page.symbolColor)
+                        .padding(.bottom, 28)
 
-            Text(page.title)
-                .font(.system(size: 28, weight: .bold))
-                .padding(.bottom, 16)
+                    Text(page.title)
+                        .font(.title.weight(.bold))
+                        .padding(.bottom, 16)
 
-            Text(page.body)
-                .font(.system(size: 17))
-                .lineSpacing(4)
+                    Text(page.body)
+                        .font(.body)
+                        .lineSpacing(4)
 
-            Spacer()
-            Spacer()
+                    Spacer(minLength: 0)
+                    Spacer(minLength: 0)
+                }
+                .padding(.horizontal, 28)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(minHeight: geo.size.height)
+            }
         }
-        .padding(.horizontal, 28)
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 

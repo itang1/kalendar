@@ -30,7 +30,7 @@ struct DayDetailView: View {
                     Text(formattedDate)
                         .font(.title2.bold())
                     Text("Day \(day.dayOfYear) of the year")
-                        .font(.system(size: 17))
+                        .font(.body)
                 }
                 .padding(.bottom, 28)
 
@@ -44,29 +44,29 @@ struct DayDetailView: View {
                             .stroke(Color.secondary.opacity(0.3), lineWidth: 3))
                         .frame(width: 22, height: 22)
                     Text(day.liturgicalSeason.rawValue)
-                        .font(.system(size: 17, weight: .bold))
+                        .font(.body.weight(.bold))
                     if let week = day.weekOfSeason {
                         Text("· Week \(week)")
-                            .font(.system(size: 17))
+                            .font(.body)
                     }
                 }
                 .padding(.top, 6)
 
                 Text(day.liturgicalSeason.explanation)
-                    .font(.system(size: 17))
+                    .font(.body)
                     .padding(.top, 8)
 
                 Text("Traditionally during \(day.liturgicalSeason.rawValue):")
-                    .font(.system(size: 17, weight: .semibold))
+                    .font(.body.weight(.semibold))
                     .padding(.top, 16)
 
                 VStack(alignment: .leading, spacing: 10) {
                     ForEach(day.liturgicalSeason.contextualItems, id: \.self) { item in
                         HStack(alignment: .top, spacing: 8) {
                             Text("·")
-                                .font(.system(size: 17, weight: .bold))
+                                .font(.body.weight(.bold))
                             Text(item)
-                                .font(.system(size: 17))
+                                .font(.body)
                         }
                     }
                 }
@@ -81,21 +81,21 @@ struct DayDetailView: View {
                         if day.isSolemnity {
                             Image(systemName: "star.fill")
                                 .foregroundStyle(.yellow)
-                                .font(.system(size: 15))
+                                .font(.subheadline)
                         }
                         Text(feast)
-                            .font(.system(size: 17, weight: .bold))
+                            .font(.body.weight(.bold))
                     }
                     .padding(.top, 6)
 
                     if let description = day.feastDescription {
                         Text(description)
-                            .font(.system(size: 17))
+                            .font(.body)
                             .padding(.top, 8)
                     }
 
                     Text(rankExplanation)
-                        .font(.system(size: 17))
+                        .font(.body)
                         .padding(.top, 8)
                         .padding(.bottom, 28)
                 }
@@ -109,12 +109,12 @@ struct DayDetailView: View {
                         .overlay(Circle().stroke(Color.secondary.opacity(0.3), lineWidth: 3))
                         .frame(width: 18, height: 18)
                     Text(day.liturgicalColor.rawValue)
-                        .font(.system(size: 17, weight: .bold))
+                        .font(.body.weight(.bold))
                 }
                 .padding(.top, 6)
 
                 Text("The priest wears vestments of this color at Mass. The color reflects the character of the season or feast.")
-                    .font(.system(size: 17))
+                    .font(.body)
                     .padding(.top, 8)
 
                 Divider()
@@ -127,7 +127,7 @@ struct DayDetailView: View {
                     ForEach(Array(day.comments.enumerated()), id: \.offset) { index, comment in
                         HStack(alignment: .top, spacing: 8) {
                             Text(comment)
-                                .font(.system(size: 17))
+                                .font(.body)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             Button {
                                 day.comments.remove(at: index)
@@ -146,7 +146,7 @@ struct DayDetailView: View {
 
                 HStack {
                     TextField("Add a note...", text: $newComment)
-                        .font(.system(size: 17))
+                        .font(.body)
                         .textFieldStyle(.roundedBorder)
                     Button("Add") {
                         let trimmed = newComment.trimmingCharacters(in: .whitespaces)
@@ -165,7 +165,7 @@ struct DayDetailView: View {
     @ViewBuilder
     private func sectionLabel(_ title: String) -> some View {
         Text(title)
-            .font(.system(size: 13, weight: .semibold))
+            .font(.footnote.weight(.semibold))
             .textCase(.uppercase)
             .tracking(0.5)
     }

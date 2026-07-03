@@ -131,7 +131,7 @@ struct CircleCalendarView: View {
                     selectedIndex = 0
                 } label: {
                     Text("Open Today")
-                        .font(.system(size: 15, weight: .semibold))
+                        .font(.subheadline.weight(.semibold))
                         .padding(.horizontal, 20)
                         .padding(.vertical, 10)
                         .background(.thinMaterial)
@@ -207,13 +207,13 @@ private struct DayBrowserSheet: View {
         HStack(spacing: 4) {
             if leading {
                 Image(systemName: "arrow.left")
-                    .font(.system(size: 11, weight: .semibold))
+                    .font(.caption2.weight(.semibold))
             }
             Text(label)
-                .font(.system(size: 12, weight: .medium))
+                .font(.caption.weight(.medium))
             if !leading {
                 Image(systemName: "arrow.right")
-                    .font(.system(size: 11, weight: .semibold))
+                    .font(.caption2.weight(.semibold))
             }
         }
         .foregroundStyle(.secondary)
@@ -269,14 +269,14 @@ private struct FeastListSheet: View {
                                 if item.day.isSolemnity {
                                     Image(systemName: "star.fill")
                                         .foregroundStyle(.yellow)
-                                        .font(.system(size: 12))
+                                        .font(.caption)
                                 }
                                 Text(item.day.feastName!)
-                                    .font(.system(size: 17, weight: .semibold))
+                                    .font(.body.weight(.semibold))
                                     .foregroundStyle(.primary)
                             }
                             Text("\(Self.dateFormatter.string(from: item.day.date)) (\(Self.weekdayFormatter.string(from: item.day.date)))")
-                                .font(.system(size: 15))
+                                .font(.subheadline)
                                 .foregroundStyle(.secondary)
                         }
                     }
@@ -305,13 +305,13 @@ private struct InfoSheet: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     Text("The liturgical kalendar, also called the Christian Year, is how Christians mark time. Instead of months, the year is organized into seasons that follow the life of Jesus, from anticipation of his birth through his death, resurrection, and beyond. 'Kalendar' is the traditional spelling used in many liturgical texts.")
-                        .font(.system(size: 17))
+                        .font(.body)
 
                     Divider()
 
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Seasons")
-                            .font(.system(size: 17, weight: .bold))
+                            .font(.body.weight(.bold))
                             .textCase(.uppercase)
                             .padding(.bottom, 12)
 
@@ -325,13 +325,13 @@ private struct InfoSheet: View {
                                     )
                                     .frame(width: 20, height: 20)
                                 Text(season.rawValue)
-                                    .font(.system(size: 17, weight: .bold))
+                                    .font(.body.weight(.bold))
                                 Spacer()
                             }
                             .padding(.vertical, 2)
 
                             Text(season.explanation)
-                                .font(.system(size: 17))
+                                .font(.body)
                                 .padding(.bottom, 8)
                         }
                     }
@@ -343,13 +343,13 @@ private struct InfoSheet: View {
                             .fill(Color.primary)
                             .frame(width: 7, height: 7)
                         Text("A dot marks a feast day or special celebration. Tap any tile in grid view to read about it.")
-                            .font(.system(size: 17))
+                            .font(.body)
                     }
 
                     Divider()
 
                     Text("Notes you add are stored only on this device, not on a server. They won't appear on your other devices, and uninstalling the app will delete them.")
-                        .font(.system(size: 17))
+                        .font(.body)
 
                     Divider()
 
@@ -360,7 +360,7 @@ private struct InfoSheet: View {
                             Image(systemName: "arrow.counterclockwise")
                             Text("Replay Introduction")
                         }
-                        .font(.system(size: 17, weight: .semibold))
+                        .font(.body.weight(.semibold))
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 12)
                         .background(Color.primary.opacity(0.08))
