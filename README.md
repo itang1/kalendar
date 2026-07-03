@@ -3,101 +3,60 @@
 <!-- Once the app is live, replace idXXXXXXXXX with the App Store app ID. -->
 [![Download on the App Store](https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg)](https://apps.apple.com/app/idXXXXXXXXX)
 
-An iOS app for exploring the Christian liturgical year. Kalendar lays out the
-next full year of days, colored by liturgical season and marked with feasts and
-solemnities, and explains what each day means. You can browse a whole year at a
-glance, read about any day, and keep private notes that persist from year to year.
+**Kalendar** is an iOS app for exploring the liturgical year. It lays out the year ahead as a grid of days, each colored by its season and marked with the feasts that fall on it, with a plain-language explanation of what every day means and how the calendar fits together.
 
-**Website:** [itang1.github.io/kalendar](https://itang1.github.io/kalendar/), with a
-[browsable demo](https://itang1.github.io/kalendar/browse.html) for people without an iPhone
+**Website:** [itang1.github.io/kalendar](https://itang1.github.io/kalendar/), with a [browsable web demo](https://itang1.github.io/kalendar/browse.html) for anyone without an iPhone.
 
-"Kalendar" is the traditional spelling used in many liturgical texts.
+> "Kalendar" is the traditional spelling used in many liturgical texts.
 
 ## Features
 
-- **Grid view** of the coming year, one tile per day, always starting with today
-  and rolling forward. Tiles are colored by liturgical season or feast so the
-  shape of the year stands out at a glance.
-- **Wheel view** showing the whole year at once as colored slices.
-- **Day detail** with the season, week of the season, vestment color, and, on
-  feast days, the feast name and a short explanation of what is being celebrated.
-- **Feasts & Solemnities list** for jumping straight to any celebration in the year.
-- **Personal notes** on any day, saved automatically and synced through iCloud.
-  Feast-day notes follow the feast even when its date shifts (like Easter);
-  regular-day notes stay on the same calendar date each year.
-- **Solemnity notifications**: an optional morning notification on solemnities
-  like Easter and Christmas, toggled from the About screen.
+### See the whole year at a glance
+- **Grid view:** one tile per day, always starting with today and rolling forward.
+- **Wheel view:** the entire year as colored slices.
+- Tiles are colored by season and feast, so the shape of the year stands out instantly.
+
+### Understand any day
+- Season, week of the season, and **vestment color**, each with a short explanation.
+- On feasts: the name, a concise write-up, and a **Share** button.
+- A link to the day's **readings**, plus the relevant reading cycles.
+
+### An accurate calendar engine
+- Implements the full **Roman Rite / General Roman Calendar**.
+- Computes **Easter** with the Computus algorithm and derives every movable feast from it.
+- Handles **seasons, rose Sundays, feast precedence, and transferred solemnities** correctly.
+
+### Private notes, synced
+- Keep **personal notes** on any day, saved automatically and synced across your devices through **iCloud**.
+- Feast notes follow the feast when its date moves (like Easter); everything stays private to your Apple ID and is never sent to a third party.
+
+### Thoughtful extras
 - **Home Screen widget** showing today's season, feast, and color.
-- **Send Feedback** on the About screen, a mailto link straight to the developer.
-- **Onboarding** that walks through how to read the calendar, plus an in-app
-  About screen that can replay it.
-- Dark mode and light haptic feedback throughout.
+- Optional **morning notifications** on solemnities like Easter and Christmas.
+- Guided onboarding, full **dark mode**, and haptic feedback throughout.
 
-## Liturgical accuracy
+## Quick Start
 
-Kalendar implements the Roman Rite / General Roman Calendar:
+**Prerequisites:** Xcode 16 or later and an iOS 17+ simulator or device. There are no third-party dependencies to install.
 
-- **Easter** is computed with the Anonymous Gregorian algorithm (Computus), and
-  every movable date (Ash Wednesday, the Triduum, Ascension, Pentecost, Trinity
-  Sunday, Corpus Christi, Christ the King, the start of Advent, the Baptism of
-  the Lord) is derived from it.
-- **Seasons** (Advent, Christmas, Ordinary Time, Lent, Triduum, Easter) and their
-  vestment colors are assigned per day, including the rose Sundays (Gaudete and
-  Laetare).
-- **Feast precedence** follows the Table of Liturgical Days: saints' days yield to
-  the Triduum, Holy Week, the Octave of Easter, and the Sundays of Advent, Lent,
-  and Easter.
-- **Transferred solemnities**: when St. Joseph, the Annunciation, or the Immaculate
-  Conception is outranked on its usual date, it is moved to its proper day (for
-  example, the Annunciation clears Holy Week and the Octave of Easter to the Monday
-  after the Second Sunday of Easter).
+1. **Clone** the repository:
+   ```bash
+   git clone https://github.com/itang1/kalendar.git
+   cd kalendar
+   ```
+2. **Open** the project in Xcode:
+   ```bash
+   open kalendar.xcodeproj
+   ```
+3. **Select** the `kalendar` scheme with any iOS 17+ simulator.
+4. **Run** with `Cmd + R`. Run the test suite anytime with `Cmd + U`.
 
-## Architecture
+**No Xcode?** Try the [browsable web demo](https://itang1.github.io/kalendar/browse.html) in any browser, or open `docs/browse.html` locally.
 
-SwiftUI, targeting iOS 17+. No third-party dependencies.
+## Project Layout
 
-```
-kalendar/
-├─ kalendarApp.swift            App entry point
-├─ Models/
-│  ├─ DayCard.swift             One day of the year
-│  ├─ LiturgicalCalendar.swift  Season, feast, and color engine (Computus)
-│  └─ KalendarWheel.swift       Wheel view and slice hit-testing
-├─ ViewModels/
-│  └─ CalendarViewModel.swift   Builds the year and persists notes
-├─ Views/
-│  ├─ ContentView.swift         Onboarding gate + navigation
-│  ├─ CircleCalendarView.swift  Grid/wheel host, info & feast-list sheets
-│  ├─ DayCardView.swift         A single grid tile
-│  ├─ DayDetailView.swift       Swipeable day detail with notes
-│  └─ OnboardingView.swift      First-launch walkthrough
-├─ Services/
-│  ├─ NotePersistenceStore.swift           Local + iCloud note storage
-│  ├─ SolemnityNotificationScheduler.swift Local notifications for solemnities
-│  └─ ReviewPromptManager.swift            Gates the App Store review nudge
-└─ Utilities/
-   └─ DateHelpers.swift         Date and adaptive-color helpers
+The app follows a standard SwiftUI **MVVM** layout (`Models`, `Views`, `ViewModels`, `Services`). The liturgical engine is duplicated across the app, the Home Screen widget, and the web demo; a test suite guards the copies against drift.
 
-KalendarWidget/                 Home Screen widget (KalendarWidgetExtension target)
-├─ KalendarWidget.swift         Timeline provider and widget view
-├─ KalendarWidgetBundle.swift   @main entry point
-└─ LiturgicalCalendar.swift     A copy of the app's engine (see the folder's README)
+## Built With
 
-docs/                           GitHub Pages site
-├─ index.html                   Landing page
-├─ privacy.html                 Hosted privacy policy
-├─ browse.html, browse.js       Read-only browsable demo of the calendar
-└─ kalendar-engine.js           A JS port of the app's engine, for the demo above
-```
-
-## Building
-
-Open `kalendar.xcodeproj` in Xcode. The `kalendar` scheme runs the app (with the
-widget embedded) on an iOS 17+ simulator or device; the `KalendarWidgetExtension`
-scheme builds the widget on its own. There are no package or dependency steps.
-
-## Future Work
-
-Planned work includes jumping to an arbitrary date, adding the widget to a Home
-Screen for a real end-to-end check (only the build has been verified so far),
-and Holy Days of Obligation / fasting indicators.
+**SwiftUI**, targeting **iOS 17+**, with zero third-party dependencies. The liturgical logic lives in a single pure-Swift engine, mirrored to JavaScript for the web demo and guarded by tests against drift.
