@@ -39,12 +39,19 @@ private func dayKey(for day: DayCard) -> String {
 @MainActor
 final class CalendarViewModel {
     var days: [DayCard] {
-        didSet { scheduleSave() }
+        didSet {
+            guard !isReconciling else { return }
+            reconcileDuplicateKeys(from: oldValue)
+            scheduleSave()
+        }
     }
 
     private var saveTask: Task<Void, Never>?
     private var mergeTask: Task<Void, Never>?
     private var dayChangeTask: Task<Void, Never>?
+    /// Guards `days` mutations made while unifying duplicate-key cards so the
+    /// reconciliation below does not recurse through `didSet`.
+    private var isReconciling = false
 
     init() {
         // Migrate any legacy storage and start iCloud syncing before loading, so
@@ -129,6 +136,32 @@ final class CalendarViewModel {
         days = rebuilt
     }
 
+    // MARK: - Duplicate-key reconciliation
+
+    /// The window is always 366 days, so in the roughly three years of four that
+    /// contain no Feb 29 the first and last tiles share the same month-day key
+    /// (e.g. a window from Jul 3 ends on Jul 3 the next year). When the user edits
+    /// one of those tiles, the other still holds the stale note; because
+    /// `persistDays` is last-writer-wins per key, the stale copy would overwrite
+    /// the edit (or resurrect a deleted note) on the next launch. So whenever a
+    /// day's notes change, copy the new value onto every other card sharing its
+    /// key, keeping the whole window internally consistent before it is saved.
+    private func reconcileDuplicateKeys(from oldValue: [DayCard]) {
+        guard oldValue.count == days.count else { return }
+        var changed: [String: [String]] = [:]
+        for i in days.indices where days[i].comments != oldValue[i].comments {
+            changed[dayKey(for: days[i])] = days[i].comments
+        }
+        guard !changed.isEmpty else { return }
+        isReconciling = true
+        defer { isReconciling = false }
+        for i in days.indices {
+            if let value = changed[dayKey(for: days[i])], days[i].comments != value {
+                days[i].comments = value
+            }
+        }
+    }
+
     // MARK: - Auto-save (debounced to avoid saving on every keystroke)
 
     private func scheduleSave() {
@@ -139,6 +172,16 @@ final class CalendarViewModel {
             guard !Task.isCancelled else { return }
             Self.persistDays(snapshot)
         }
+    }
+
+    /// Persists the current window immediately, cancelling any pending debounce.
+    /// Called when the scene leaves the foreground so a note added a moment before
+    /// the app is suspended or terminated is not lost with the debounce still
+    /// pending, and before applying an external iCloud merge.
+    func flushPendingSave() {
+        saveTask?.cancel()
+        saveTask = nil
+        Self.persistDays(days)
     }
 
     // MARK: - iCloud merge
@@ -157,6 +200,10 @@ final class CalendarViewModel {
     /// note deleted on another device, so we clear it here rather than keep the
     /// stale value, which is what lets deletions propagate across devices.
     private func mergeExternalNotes() {
+        // Flush any pending local edit first so it is committed to the store and the
+        // merge resolves as last-writer-wins there, rather than silently dropping an
+        // unsaved edit still sitting in the debounce window.
+        flushPendingSave()
         let saved = NotePersistenceStore.loadAuthoritative()
         for i in days.indices {
             let incoming = saved[dayKey(for: days[i])]?.comments ?? []

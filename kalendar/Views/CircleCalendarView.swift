@@ -108,9 +108,13 @@ struct CircleCalendarView: View {
             }
         }
         .onChange(of: scenePhase) { _, newPhase in
-            // Returning to the foreground may cross midnight; realign "today".
             if newPhase == .active {
+                // Returning to the foreground may cross midnight; realign "today".
                 viewModel.refreshForCurrentDate()
+            } else {
+                // Leaving the foreground (inactive/background): commit any note still
+                // waiting in the debounce so a quick swipe-away can't drop it.
+                viewModel.flushPendingSave()
             }
         }
     }
