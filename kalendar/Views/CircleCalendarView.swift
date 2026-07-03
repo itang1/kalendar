@@ -87,10 +87,8 @@ struct CircleCalendarView: View {
             }
         }
         .task {
-            // The day window shifts forward with every launch, so keep scheduled
-            // notifications current if the user already turned this on.
             if notificationsEnabled {
-                SolemnityNotificationScheduler.schedule(for: viewModel.days)
+                await SolemnityNotificationScheduler.schedule(for: viewModel.days)
             }
         }
     }
@@ -447,13 +445,16 @@ private struct InfoSheet: View {
             get: { notificationsEnabled },
             set: { newValue in
                 if newValue {
-                    SolemnityNotificationScheduler.enable(for: days) { granted in
+                    Task {
+                        let granted = await SolemnityNotificationScheduler.enable(for: days)
                         notificationsEnabled = granted
                         if !granted { showNotificationsDeniedAlert = true }
                     }
                 } else {
                     notificationsEnabled = false
-                    SolemnityNotificationScheduler.disable()
+                    Task {
+                        await SolemnityNotificationScheduler.disable()
+                    }
                 }
             }
         )

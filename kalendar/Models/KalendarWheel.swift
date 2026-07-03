@@ -23,7 +23,7 @@ struct KalendarWheel: View {
                         total: days.count,
                         radius: radius
                     )
-                    .fill(day.color)
+                    .fill(day.liturgicalColor.color)
                     .overlay(
                         WheelSliceShape(
                             index: index,

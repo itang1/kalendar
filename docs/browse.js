@@ -108,6 +108,84 @@
   const dateFormatter = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   const weekdayFormatter = new Intl.DateTimeFormat('en-US', { weekday: 'long' });
 
+  const ordinalNames = [
+    "First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth",
+    "Ninth", "Tenth", "Eleventh", "Twelfth", "Thirteenth", "Fourteenth",
+    "Fifteenth", "Sixteenth", "Seventeenth", "Eighteenth", "Nineteenth",
+    "Twentieth", "Twenty-First", "Twenty-Second", "Twenty-Third", "Twenty-Fourth",
+    "Twenty-Fifth", "Twenty-Sixth", "Twenty-Seventh", "Twenty-Eighth",
+    "Twenty-Ninth", "Thirtieth", "Thirty-First", "Thirty-Second", "Thirty-Third",
+    "Thirty-Fourth"
+  ];
+
+  function ordinalName(n) {
+    if (n >= 1 && n <= ordinalNames.length) return ordinalNames[n - 1];
+    return String(n);
+  }
+
+  function liturgicalDayTitle(day) {
+    if (day.feastName || !day.weekOfSeason) return null;
+
+    const isSunday = day.date.getDay() === 0;
+    const weekday = weekdayFormatter.format(day.date);
+    const week = day.weekOfSeason;
+
+    switch (day.season) {
+      case LiturgicalSeason.lent:
+        if (week === 0) return `${weekday} after Ash Wednesday`;
+        return isSunday
+          ? `${ordinalName(week)} Sunday of Lent`
+          : `${weekday} of the ${ordinalName(week)} Week of Lent`;
+      case LiturgicalSeason.easter:
+        if (week === 1 && !isSunday) return `${weekday} in the Octave of Easter`;
+        return isSunday
+          ? `${ordinalName(week)} Sunday of Easter`
+          : `${weekday} of the ${ordinalName(week)} Week of Easter`;
+      case LiturgicalSeason.advent:
+        return isSunday
+          ? `${ordinalName(week)} Sunday of Advent`
+          : `${weekday} of the ${ordinalName(week)} Week of Advent`;
+      case LiturgicalSeason.ordinaryTime:
+        return isSunday
+          ? `${ordinalName(week)} Sunday in Ordinary Time`
+          : `${weekday} of the ${ordinalName(week)} Week in Ordinary Time`;
+      default:
+        return null;
+    }
+  }
+
+  function countdownText(day, allDays, dayIndex) {
+    const calendar = new Date(day.date);
+    let nearest = null;
+
+    for (const d of allDays.slice(dayIndex)) {
+      if (!d.info) continue;
+
+      const anchors = [
+        { name: "Ash Wednesday", season: LiturgicalSeason.lent },
+        { name: "Easter", season: LiturgicalSeason.easter },
+        { name: "Pentecost", season: LiturgicalSeason.ordinaryTime },
+        { name: "Advent", season: LiturgicalSeason.advent },
+        { name: "Christmas", season: LiturgicalSeason.christmas }
+      ];
+
+      for (const anchor of anchors) {
+        if (d.season === anchor.season && (!nearest || !nearest.seen)) {
+          const days = Math.floor((d.date - calendar) / 86400000);
+          if (days > 0 && (!nearest || days < nearest.days)) {
+            nearest = { name: anchor.name, days, seen: true };
+          }
+        }
+      }
+      if (nearest && nearest.seen) break;
+    }
+
+    if (!nearest) return null;
+    return nearest.days === 1
+      ? `1 day until ${nearest.name}`
+      : `${nearest.days} days until ${nearest.name}`;
+  }
+
   function seasonColorHex(season) {
     switch (season) {
       case LiturgicalSeason.advent: return LiturgicalColor.violet.hex;
@@ -146,11 +224,15 @@
       ? "A solemnity is the highest rank of celebration in Christian worship. These mark the most important mysteries and events of the faith, like Easter, Christmas, or major saints. They take priority over the regular season."
       : "Feasts and memorials are celebrations of saints or events in the life of Jesus and Mary. A feast is more important than a memorial. Some memorials are optional, while others are observed throughout Christianity.";
 
+    const dayTitle = liturgicalDayTitle(day);
+    const countdown = countdownText(day, days, index);
+
     panel.innerHTML = `
       <div class="panel-header">
         <div>
           <h2>${dateFormatter.format(day.date)} (${weekdayFormatter.format(day.date)})</h2>
-          <div class="day-of-year">Day ${day.dayOfYear} of the year</div>
+          ${dayTitle ? `<div class="liturgical-day-title">${dayTitle}</div>` : ''}
+          <div class="day-of-year">Day ${day.dayOfYear} of the year${countdown ? ` &middot; ${countdown}` : ''}</div>
         </div>
         <button class="close-btn" id="closeBtn" aria-label="Close">&times;</button>
       </div>

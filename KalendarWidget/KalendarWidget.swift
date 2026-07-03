@@ -48,28 +48,28 @@ struct KalendarWidgetView: View {
     let entry: KalendarEntry
 
     var body: some View {
-        ZStack {
-            entry.color.color
-            VStack(alignment: .leading, spacing: 4) {
-                Spacer()
-                if entry.isSolemnity {
-                    Image(systemName: "star.fill")
-                        .font(.caption2)
-                        .foregroundStyle(textColor.opacity(0.8))
-                }
-                Text(entry.feastName ?? entry.season.rawValue)
-                    .font(.headline)
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.7)
-                    .foregroundStyle(textColor)
-                if entry.feastName != nil {
-                    Text(entry.season.rawValue)
-                        .font(.caption)
-                        .foregroundStyle(textColor.opacity(0.8))
-                }
+        VStack(alignment: .leading, spacing: 4) {
+            Spacer()
+            if entry.isSolemnity {
+                Image(systemName: "star.fill")
+                    .font(.caption2)
+                    .foregroundStyle(textColor.opacity(0.8))
             }
-            .padding()
-            .frame(maxWidth: .infinity, alignment: .leading)
+            Text(entry.feastName ?? entry.season.rawValue)
+                .font(.headline)
+                .lineLimit(2)
+                .minimumScaleFactor(0.7)
+                .foregroundStyle(textColor)
+            if entry.feastName != nil {
+                Text(entry.season.rawValue)
+                    .font(.caption)
+                    .foregroundStyle(textColor.opacity(0.8))
+            }
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .containerBackground(for: .widget) {
+            entry.color.color
         }
     }
 

@@ -14,13 +14,13 @@ struct OnboardingView: View {
     private let pages: [OnboardingPage] = [
         OnboardingPage(
             symbol: "circle.grid.3x3.fill",
-            symbolColor: Color(red: 0.45, green: 0.2, blue: 0.55),
+            symbolColor: LiturgicalColor.violet.color,
             title: "The Christian Year",
             body: "The liturgical kalendar organizes time around the life of Jesus instead of months and quarters. It runs from Advent in late November all the way to the feast of Christ the King nearly a year later, then starts again.\n\n'Kalendar' is the traditional spelling used in many liturgical texts."
         ),
         OnboardingPage(
             symbol: "paintpalette.fill",
-            symbolColor: Color(red: 0.75, green: 0.15, blue: 0.15),
+            symbolColor: LiturgicalColor.red.color,
             title: "Colors Mean Something",
             body: "Each tile is colored by the liturgical season or feast day it belongs to. The color is also what the priest wears at Mass that day.\n\nViolet for Advent and Lent. White for Christmas and Easter. Red for martyrs and the Holy Spirit. Green for the long stretches of Ordinary Time. Rose appears twice a year on days of joy within penitential seasons."
         ),
@@ -32,13 +32,13 @@ struct OnboardingView: View {
         ),
         OnboardingPage(
             symbol: "chart.pie.fill",
-            symbolColor: Color(red: 0.2, green: 0.55, blue: 0.3),
+            symbolColor: LiturgicalColor.green.color,
             title: "Two Ways to Look",
             body: "The grid view shows every day of the next 365 days laid out as tiles, always starting with today and rolling forward one day at a time.\n\nTiles omit date numbers so color and season stand out at a glance. Tap any tile to see its exact date, feast, and notes.\n\nThe wheel view shows the whole year at once as colored slices, so you can see the shape of the Christian year from a distance.\n\nToggle between the two views in the top right."
         ),
         OnboardingPage(
             symbol: "text.bubble",
-            symbolColor: Color(red: 0.2, green: 0.55, blue: 0.3),
+            symbolColor: LiturgicalColor.green.color,
             title: "Your Notes Stay",
             body: "Tap any day to open it, then add a comment at the bottom. Notes are saved automatically and persist year over year. Feast day notes follow the feast even when the date shifts (like Easter). Regular day notes stay on the same date each year.\n\nNotes sync privately through your iCloud account, so they appear on your other devices signed into the same Apple ID. They are never sent to us or to any other service."
         )

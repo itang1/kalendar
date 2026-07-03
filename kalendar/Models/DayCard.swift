@@ -12,7 +12,6 @@ struct DayCard: Identifiable {
     let id = UUID()
     let dayOfYear: Int  // 1–365
     let date: Date
-    var color: Color
     var comments: [String]
 
     // Liturgical calendar data

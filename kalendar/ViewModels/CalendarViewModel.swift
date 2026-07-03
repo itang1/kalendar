@@ -15,6 +15,8 @@ import Observation
 private let monthDayFormatter: DateFormatter = {
     let f = DateFormatter()
     f.dateFormat = "MM-dd"
+    f.locale = Locale(identifier: "en_US_POSIX")
+    f.calendar = Calendar(identifier: .gregorian)
     return f
 }()
 
@@ -55,7 +57,6 @@ final class CalendarViewModel {
             return DayCard(
                 dayOfYear: date.dayOfYear,
                 date: date,
-                color: info.liturgicalColor.color,
                 comments: [],
                 liturgicalSeason: info.season,
                 liturgicalColor: info.liturgicalColor,

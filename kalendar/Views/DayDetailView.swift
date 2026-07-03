@@ -15,12 +15,20 @@ struct DayDetailView: View {
     @State private var newComment = ""
     @Environment(\.requestReview) private var requestReview
 
+    private static let dateFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "MMMM d, yyyy"
+        return f
+    }()
+
+    private static let weekdayFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "EEEE"
+        return f
+    }()
+
     private var formattedDate: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM d, yyyy"
-        let weekdayFormatter = DateFormatter()
-        weekdayFormatter.dateFormat = "EEEE"
-        return "\(dateFormatter.string(from: day.date)) (\(weekdayFormatter.string(from: day.date)))"
+        "\(Self.dateFormatter.string(from: day.date)) (\(Self.weekdayFormatter.string(from: day.date)))"
     }
 
     var body: some View {
@@ -141,6 +149,7 @@ struct DayDetailView: View {
                                 Image(systemName: "xmark.circle.fill")
                                     .foregroundStyle(.secondary)
                             }
+                            .accessibilityLabel("Delete note")
                         }
                         .padding(.vertical, 10)
                         if index < day.comments.count - 1 {

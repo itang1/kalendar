@@ -17,7 +17,7 @@ struct DayCardView: View {
 
     var body: some View {
         RoundedRectangle(cornerRadius: 4)
-            .fill(day.color)
+            .fill(day.liturgicalColor.color)
             .overlay(
                 RoundedRectangle(cornerRadius: 4)
                     .stroke(Color.secondary.opacity(strokeOpacity), lineWidth: strokeWidth)
