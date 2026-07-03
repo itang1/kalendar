@@ -148,6 +148,10 @@ function keyDates(year) {
   const pentecost = addDays(easter, 49);
   const trinitySunday = addDays(easter, 56);
   const corpusChristi = addDays(easter, 63);
+  // Divine Mercy Sunday: the Second Sunday of Easter (octave day).
+  const divineMercy = addDays(easter, 7);
+  // Sacred Heart of Jesus: the Friday after Corpus Christi, 19 days after Pentecost.
+  const sacredHeart = addDays(easter, 68);
 
   // Advent: starts on the Sunday closest to Nov 30 (4 Sundays before Christmas)
   const christmas = dateOnly(year, 12, 25);
@@ -155,10 +159,20 @@ function keyDates(year) {
   const daysToSunday = (christmasWeekday === 1) ? 28 : (christmasWeekday - 1 + 21);
   const adventStart = addDays(christmas, -daysToSunday);
 
+  // Holy Family: the Sunday within the Octave of Christmas. When Christmas itself
+  // is a Sunday there is no Sunday between Dec 26 and 31, so the feast moves to
+  // Dec 30 per the General Roman Calendar.
+  const holyFamily = (christmasWeekday === 1)
+    ? dateOnly(year, 12, 30)
+    : addDays(christmas, 8 - christmasWeekday);
+
   const epiphany = dateOnly(year, 1, 6);
+  // Baptism of the Lord: normally the Sunday after Epiphany. With Epiphany fixed
+  // on Jan 6, if Jan 6 is itself a Sunday the Baptism is the following Sunday
+  // (Jan 13), not the next day.
   const epiphanyWeekday = swiftWeekday(epiphany);
   const baptismOfLord = (epiphanyWeekday === 1)
-    ? addDays(epiphany, 1)
+    ? addDays(epiphany, 7)
     : addDays(epiphany, 8 - epiphanyWeekday);
 
   // Christ the King: last Sunday before Advent
@@ -166,8 +180,8 @@ function keyDates(year) {
 
   return {
     easter, ashWednesday, palmSunday, holyThursday, goodFriday, holySaturday,
-    ascension, pentecost, trinitySunday, corpusChristi, adventStart, christmas,
-    baptismOfLord, christTheKing,
+    ascension, pentecost, trinitySunday, corpusChristi, divineMercy, sacredHeart,
+    adventStart, holyFamily, christmas, baptismOfLord, christTheKing,
   };
 }
 
@@ -283,6 +297,14 @@ function fixedFeastIsImpeded(date, season, isSunday, keys) {
 
   // Privileged Sundays of Advent, Lent, and Easter outrank saints' days.
   if (isSunday && (season === LiturgicalSeason.advent || season === LiturgicalSeason.lent || season === LiturgicalSeason.easter)) return true;
+
+  // Feasts of the Lord that land amid fixed feasts outrank a coincident saint's
+  // day: the Holy Family (a Christmas-octave Sunday that can fall on St. Stephen,
+  // St. John, or the Holy Innocents) and the Sacred Heart (a solemnity of the
+  // Lord). In the rare year the Sacred Heart coincides with a fixed solemnity of
+  // a saint, that saint is superseded rather than transferred.
+  if (sameDay(date, keys.holyFamily)) return true;
+  if (sameDay(date, keys.sacredHeart)) return true;
 
   return false;
 }
@@ -438,6 +460,18 @@ function movableFeast(date, keys) {
   if (sameDay(date, easterMonday)) {
     return { name: "Easter Monday", color: LiturgicalColor.white, solemnity: false,
       description: "The celebration of Easter continues. In many countries this is a public holiday. The Gospel tells of two disciples meeting the risen Jesus on the road to Emmaus without recognizing him at first." };
+  }
+  if (sameDay(date, keys.divineMercy)) {
+    return { name: "Divine Mercy Sunday", color: LiturgicalColor.white, solemnity: false,
+      description: "The Second Sunday of Easter, named Divine Mercy Sunday by Pope John Paul II in the year 2000. Drawing on the writings of St. Faustina Kowalska, it dwells on God's mercy as the heart of the Easter mystery: the risen Jesus appearing to his disciples and giving them the power to forgive sins." };
+  }
+  if (sameDay(date, keys.sacredHeart)) {
+    return { name: "Most Sacred Heart of Jesus", color: LiturgicalColor.white, solemnity: true,
+      description: "A solemnity celebrating the love of Jesus for humanity, symbolized by his heart. It falls on the Friday after Corpus Christi, nineteen days after Pentecost. The devotion draws on the image of Christ's heart, pierced on the cross, as an unfailing source of mercy and compassion." };
+  }
+  if (sameDay(date, keys.holyFamily)) {
+    return { name: "The Holy Family of Jesus, Mary, and Joseph", color: LiturgicalColor.white, solemnity: false,
+      description: "Celebrated on the Sunday within the Octave of Christmas, this feast honors Jesus, Mary, and Joseph together as a household. It holds up the ordinary life of a family, with its work and its love, as something holy, and asks Christians to see their own homes in the same light." };
   }
   if (sameDay(date, keys.ascension)) {
     return { name: "Ascension of the Lord", color: LiturgicalColor.white, solemnity: true,

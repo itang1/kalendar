@@ -190,6 +190,10 @@ struct LiturgicalCalendar {
         let pentecost = calendar.date(byAdding: .day, value: 49, to: easter)!
         let trinitySunday = calendar.date(byAdding: .day, value: 56, to: easter)!
         let corpusChristi = calendar.date(byAdding: .day, value: 63, to: easter)!
+        // Divine Mercy Sunday: the Second Sunday of Easter (octave day).
+        let divineMercy = calendar.date(byAdding: .day, value: 7, to: easter)!
+        // Sacred Heart of Jesus: the Friday after Corpus Christi, 19 days after Pentecost.
+        let sacredHeart = calendar.date(byAdding: .day, value: 68, to: easter)!
 
         // Advent: starts on the Sunday closest to Nov 30 (4 Sundays before Christmas)
         let christmas = calendar.date(from: DateComponents(year: year, month: 12, day: 25))!
@@ -198,12 +202,24 @@ struct LiturgicalCalendar {
         let daysToSunday = (christmasWeekday == 1) ? 28 : (christmasWeekday - 1 + 21)
         let adventStart = calendar.date(byAdding: .day, value: -daysToSunday, to: christmas)!
 
+        // Holy Family: the Sunday within the Octave of Christmas. When Christmas
+        // itself is a Sunday there is no Sunday between Dec 26 and 31, so the feast
+        // moves to Dec 30 per the General Roman Calendar.
+        let holyFamily: Date
+        if christmasWeekday == 1 {
+            holyFamily = calendar.date(from: DateComponents(year: year, month: 12, day: 30))!
+        } else {
+            holyFamily = calendar.date(byAdding: .day, value: 8 - christmasWeekday, to: christmas)!
+        }
+
         let epiphany = calendar.date(from: DateComponents(year: year, month: 1, day: 6))!
-        // Baptism of the Lord: Sunday after Epiphany (or Monday if Epiphany is Sunday)
+        // Baptism of the Lord: normally the Sunday after Epiphany. With Epiphany
+        // fixed on Jan 6, if Jan 6 is itself a Sunday the Baptism is the following
+        // Sunday (Jan 13), not the next day.
         let epiphanyWeekday = calendar.component(.weekday, from: epiphany)
         let baptismOfLord: Date
         if epiphanyWeekday == 1 {
-            baptismOfLord = calendar.date(byAdding: .day, value: 1, to: epiphany)!
+            baptismOfLord = calendar.date(byAdding: .day, value: 7, to: epiphany)!
         } else {
             baptismOfLord = calendar.date(byAdding: .day, value: 8 - epiphanyWeekday, to: epiphany)!
         }
@@ -222,7 +238,10 @@ struct LiturgicalCalendar {
             pentecost: pentecost,
             trinitySunday: trinitySunday,
             corpusChristi: corpusChristi,
+            divineMercy: divineMercy,
+            sacredHeart: sacredHeart,
             adventStart: adventStart,
+            holyFamily: holyFamily,
             christmas: christmas,
             baptismOfLord: baptismOfLord,
             christTheKing: christTheKing
@@ -436,6 +455,15 @@ struct LiturgicalCalendar {
         // Privileged Sundays of Advent, Lent, and Easter outrank saints' days.
         if isSunday && (season == .advent || season == .lent || season == .easter) { return true }
 
+        // Feasts of the Lord that land amid fixed feasts outrank a coincident
+        // saint's day: the Holy Family (a Christmas-octave Sunday that can fall on
+        // St. Stephen, St. John, or the Holy Innocents) and the Sacred Heart (a
+        // solemnity of the Lord). In the rare year the Sacred Heart coincides with
+        // a fixed solemnity of a saint, that saint is superseded rather than
+        // transferred; this is a deliberate simplification.
+        if calendar.isDate(date, inSameDayAs: keys.holyFamily) { return true }
+        if calendar.isDate(date, inSameDayAs: keys.sacredHeart) { return true }
+
         return false
     }
 
@@ -610,6 +638,18 @@ struct LiturgicalCalendar {
             return ("Easter Monday", .white, false,
                 "The celebration of Easter continues. In many countries this is a public holiday. The Gospel tells of two disciples meeting the risen Jesus on the road to Emmaus without recognizing him at first.")
         }
+        if calendar.isDate(date, inSameDayAs: keys.divineMercy) {
+            return ("Divine Mercy Sunday", .white, false,
+                "The Second Sunday of Easter, named Divine Mercy Sunday by Pope John Paul II in the year 2000. Drawing on the writings of St. Faustina Kowalska, it dwells on God's mercy as the heart of the Easter mystery: the risen Jesus appearing to his disciples and giving them the power to forgive sins.")
+        }
+        if calendar.isDate(date, inSameDayAs: keys.sacredHeart) {
+            return ("Most Sacred Heart of Jesus", .white, true,
+                "A solemnity celebrating the love of Jesus for humanity, symbolized by his heart. It falls on the Friday after Corpus Christi, nineteen days after Pentecost. The devotion draws on the image of Christ's heart, pierced on the cross, as an unfailing source of mercy and compassion.")
+        }
+        if calendar.isDate(date, inSameDayAs: keys.holyFamily) {
+            return ("The Holy Family of Jesus, Mary, and Joseph", .white, false,
+                "Celebrated on the Sunday within the Octave of Christmas, this feast honors Jesus, Mary, and Joseph together as a household. It holds up the ordinary life of a family, with its work and its love, as something holy, and asks Christians to see their own homes in the same light.")
+        }
         if calendar.isDate(date, inSameDayAs: keys.ascension) {
             return ("Ascension of the Lord", .white, true,
                 "Forty days after Easter, Jesus ascended into heaven in the presence of his disciples, promising to send the Holy Spirit. His last words were a command: 'Go and make disciples of all nations.' This feast marks the completion of Jesus' earthly mission.")
@@ -647,7 +687,10 @@ struct KeyLiturgicalDates {
     let pentecost: Date
     let trinitySunday: Date
     let corpusChristi: Date
+    let divineMercy: Date
+    let sacredHeart: Date
     let adventStart: Date
+    let holyFamily: Date
     let christmas: Date
     let baptismOfLord: Date
     let christTheKing: Date
