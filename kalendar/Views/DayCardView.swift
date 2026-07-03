@@ -31,6 +31,16 @@ struct DayCardView: View {
                     }
                 }
             )
+            .overlay(alignment: .bottomTrailing) {
+                // Square corner mark for days with notes, distinct from the
+                // round centered feast dot.
+                if !day.comments.isEmpty {
+                    RoundedRectangle(cornerRadius: 1.5)
+                        .fill(dotColor)
+                        .frame(width: 5, height: 5)
+                        .padding(3)
+                }
+            }
             .overlay(
                 RoundedRectangle(cornerRadius: 4)
                     .stroke(isToday ? Color.primary : Color.clear, lineWidth: 2)
@@ -66,6 +76,9 @@ struct DayCardView: View {
         var label = "\(dateStr), \(day.liturgicalSeason.rawValue)"
         if let feast = day.feastName {
             label += ", \(feast)"
+        }
+        if !day.comments.isEmpty {
+            label += ", has notes"
         }
         return label
     }

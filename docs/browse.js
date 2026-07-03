@@ -1,5 +1,5 @@
 (function () {
-  const { liturgicalInfo, addDays, LiturgicalSeason, LiturgicalColor, SEASON_EXPLANATION, SEASON_CONTEXTUAL_ITEMS } = window.KalendarEngine;
+  const { liturgicalInfo, addDays, LiturgicalSeason, LiturgicalColor, SEASON_EXPLANATION, SEASON_CONTEXTUAL_ITEMS, COLOR_EXPLANATION } = window.KalendarEngine;
 
   const TOTAL_DAYS = 366;
   const today = (() => {
@@ -179,7 +179,7 @@
         <div class="swatch" style="background:${day.color.hex}; border-radius:50%;"></div>
         <strong>${day.color.name}</strong>
       </div>
-      <p>The priest wears vestments of this color at Mass. The color reflects the character of the season or feast.</p>
+      <p>${COLOR_EXPLANATION[day.color.key]}</p>
 
       <div class="nav-row">
         <button id="prevBtn" ${index === 0 ? 'disabled' : ''}>&larr; Previous</button>

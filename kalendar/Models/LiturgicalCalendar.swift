@@ -113,6 +113,23 @@ enum LiturgicalColor: String {
         case .rose: return Color(red: 0.85, green: 0.5, blue: 0.6)
         }
     }
+
+    /// Why this color is worn, shown with the vestment swatch in the day detail
+    /// view. One tailored sentence per color rather than a generic line.
+    var explanation: String {
+        switch self {
+        case .green:
+            return "Green is the color of life and growth. The priest wears it through Ordinary Time, the long stretch of steady, unhurried discipleship."
+        case .violet:
+            return "Violet is the color of penance and preparation. The priest wears it through Advent and Lent, the two seasons of waiting and turning back."
+        case .white:
+            return "White is the color of glory, purity, and celebration. The priest wears it for Christmas, Easter, feasts of Jesus and Mary, and saints who were not martyred."
+        case .red:
+            return "Red is the color of blood and fire. The priest wears it for the Passion of Jesus, for the Holy Spirit, and for the martyrs."
+        case .rose:
+            return "Rose is violet lightened with joy. The priest wears it just twice a year, on Gaudete Sunday in Advent and Laetare Sunday in Lent, a breath of encouragement partway through a penitential season."
+        }
+    }
 }
 
 // MARK: - Liturgical Day Info
@@ -388,8 +405,12 @@ struct LiturgicalCalendar {
                 let days = calendar.dateComponents([.day], from: keys.baptismOfLord, to: date).day ?? 0
                 return (days / 7) + 1
             } else {
-                let days = calendar.dateComponents([.day], from: keys.pentecost, to: date).day ?? 0
-                return (days / 7) + 1
+                // The second stretch is numbered backward from Christ the King,
+                // which always begins Week 34, per the General Roman Calendar.
+                let weekday = calendar.component(.weekday, from: date)
+                let sunday = calendar.date(byAdding: .day, value: -(weekday - 1), to: date)!
+                let weeksToChristTheKing = (calendar.dateComponents([.day], from: sunday, to: keys.christTheKing).day ?? 0) / 7
+                return 34 - weeksToChristTheKing
             }
         default:
             return nil

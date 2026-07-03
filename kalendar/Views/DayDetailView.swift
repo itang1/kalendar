@@ -31,7 +31,11 @@ struct DayDetailView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(formattedDate)
                         .font(.title2.bold())
-                    Text("Day \(day.dayOfYear) of the year")
+                    if let title = day.liturgicalDayTitle {
+                        Text(title)
+                            .font(.body.weight(.semibold))
+                    }
+                    Text(daySubtitle)
                         .font(.body)
                 }
                 .padding(.bottom, 28)
@@ -115,7 +119,7 @@ struct DayDetailView: View {
                 }
                 .padding(.top, 6)
 
-                Text("The priest wears vestments of this color at Mass. The color reflects the character of the season or feast.")
+                Text(day.liturgicalColor.explanation)
                     .font(.body)
                     .padding(.top, 8)
 
@@ -178,6 +182,14 @@ struct DayDetailView: View {
             .font(.footnote.weight(.semibold))
             .textCase(.uppercase)
             .tracking(0.5)
+    }
+
+    /// "Day 185 of the year · 17 days until Easter" (countdown omitted when unavailable).
+    private var daySubtitle: String {
+        if let countdown = day.countdownText {
+            return "Day \(day.dayOfYear) of the year · \(countdown)"
+        }
+        return "Day \(day.dayOfYear) of the year"
     }
 
     private var rankExplanation: String {

@@ -14,6 +14,15 @@ const LiturgicalColor = {
   rose:   { key: 'rose',   name: 'Rose',   hex: '#D98099' },
 };
 
+// Why each color is worn; mirrors LiturgicalColor.explanation in the Swift engine.
+const COLOR_EXPLANATION = {
+  green:  "Green is the color of life and growth. The priest wears it through Ordinary Time, the long stretch of steady, unhurried discipleship.",
+  violet: "Violet is the color of penance and preparation. The priest wears it through Advent and Lent, the two seasons of waiting and turning back.",
+  white:  "White is the color of glory, purity, and celebration. The priest wears it for Christmas, Easter, feasts of Jesus and Mary, and saints who were not martyred.",
+  red:    "Red is the color of blood and fire. The priest wears it for the Passion of Jesus, for the Holy Spirit, and for the martyrs.",
+  rose:   "Rose is violet lightened with joy. The priest wears it just twice a year, on Gaudete Sunday in Advent and Laetare Sunday in Lent, a breath of encouragement partway through a penitential season.",
+};
+
 const LiturgicalSeason = {
   advent:       'Advent',
   christmas:    'Christmas',
@@ -248,11 +257,15 @@ function weekOfSeason(date, season, keys) {
     }
     case LiturgicalSeason.easter:
       return Math.floor(daysBetween(keys.easter, date) / 7) + 1;
-    case LiturgicalSeason.ordinaryTime:
+    case LiturgicalSeason.ordinaryTime: {
       if (date > keys.baptismOfLord && date < keys.ashWednesday) {
         return Math.floor(daysBetween(keys.baptismOfLord, date) / 7) + 1;
       }
-      return Math.floor(daysBetween(keys.pentecost, date) / 7) + 1;
+      // The second stretch is numbered backward from Christ the King,
+      // which always begins Week 34, per the General Roman Calendar.
+      const sunday = addDays(date, -date.getDay());
+      return 34 - Math.floor(daysBetween(sunday, keys.christTheKing) / 7);
+    }
     default:
       return null;
   }
@@ -497,6 +510,7 @@ window.KalendarEngine = {
   LiturgicalSeason,
   SEASON_EXPLANATION,
   SEASON_CONTEXTUAL_ITEMS,
+  COLOR_EXPLANATION,
   liturgicalInfo,
   addDays,
   dateOnly,
