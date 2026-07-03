@@ -307,9 +307,20 @@ private struct FeastListSheet: View {
 private struct InfoSheet: View {
     let days: [DayCard]
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.openURL) private var openURL
     @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
     @AppStorage("solemnityNotificationsEnabled") private var notificationsEnabled = false
     @State private var showNotificationsDeniedAlert = false
+
+    private var feedbackURL: URL? {
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "unknown"
+        let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "unknown"
+        var components = URLComponents()
+        components.scheme = "mailto"
+        components.path = "theworkingcell@gmail.com"
+        components.queryItems = [URLQueryItem(name: "subject", value: "Kalendar Feedback (v\(version), build \(build))")]
+        return components.url
+    }
 
     var body: some View {
         NavigationStack {
@@ -378,6 +389,30 @@ private struct InfoSheet: View {
                     }
 
                     Divider()
+
+                    if let feedbackURL {
+                        Button {
+                            openURL(feedbackURL)
+                        } label: {
+                            HStack(spacing: 12) {
+                                Image(systemName: "envelope")
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text("Send Feedback")
+                                        .font(.body.weight(.semibold))
+                                    Text("Report a bug or suggest something, straight to the developer.")
+                                        .font(.subheadline)
+                                        .foregroundStyle(.secondary)
+                                }
+                                Spacer()
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.vertical, 12)
+                            .padding(.horizontal, 12)
+                            .background(Color.primary.opacity(0.08))
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                        }
+                        .foregroundStyle(.primary)
+                    }
 
                     Button {
                         hasSeenOnboarding = false

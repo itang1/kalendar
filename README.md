@@ -28,6 +28,7 @@ glance, read about any day, and keep private notes that persist from year to yea
 - **Solemnity notifications**: an optional morning notification on solemnities
   like Easter and Christmas, toggled from the About screen.
 - **Home Screen widget** showing today's season, feast, and color.
+- **Send Feedback** on the About screen, a mailto link straight to the developer.
 - **Onboarding** that walks through how to read the calendar, plus an in-app
   About screen that can replay it.
 - Dark mode and light haptic feedback throughout.
@@ -72,7 +73,8 @@ kalendar/
 │  └─ OnboardingView.swift      First-launch walkthrough
 ├─ Services/
 │  ├─ NotePersistenceStore.swift           Local + iCloud note storage
-│  └─ SolemnityNotificationScheduler.swift Local notifications for solemnities
+│  ├─ SolemnityNotificationScheduler.swift Local notifications for solemnities
+│  └─ ReviewPromptManager.swift            Gates the App Store review nudge
 └─ Utilities/
    └─ DateHelpers.swift         Date and adaptive-color helpers
 

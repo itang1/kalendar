@@ -8,10 +8,12 @@
 //  (see CircleCalendarView) which provides the NavigationStack and toolbar.
 
 import SwiftUI
+import StoreKit
 
 struct DayDetailView: View {
     @Binding var day: DayCard
     @State private var newComment = ""
+    @Environment(\.requestReview) private var requestReview
 
     private var formattedDate: String {
         let dateFormatter = DateFormatter()
@@ -153,6 +155,14 @@ struct DayDetailView: View {
                         guard !trimmed.isEmpty else { return }
                         day.comments.append(trimmed)
                         newComment = ""
+                        if ReviewPromptManager.noteWasAdded() {
+                            // A brief pause so the prompt doesn't interrupt the
+                            // keyboard-dismiss animation from adding the note.
+                            Task {
+                                try? await Task.sleep(for: .seconds(0.5))
+                                requestReview()
+                            }
+                        }
                     }
                     .disabled(newComment.trimmingCharacters(in: .whitespaces).isEmpty)
                 }
