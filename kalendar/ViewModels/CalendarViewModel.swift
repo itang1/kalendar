@@ -8,15 +8,9 @@
 
 import SwiftUI
 import Foundation
-import Combine
+import Observation
 
 // MARK: - Persistence
-
-private struct UserDayData: Codable {
-    var comments: [String]
-}
-
-private let persistenceKey = "com.kalendar.userDayData"
 
 private let monthDayFormatter: DateFormatter = {
     let f = DateFormatter()
@@ -39,10 +33,15 @@ private func dayKey(for day: DayCard) -> String {
 
 // MARK: - ViewModel
 
-class CalendarViewModel: ObservableObject {
-    @Published var days: [DayCard]
+@Observable
+@MainActor
+final class CalendarViewModel {
+    var days: [DayCard] {
+        didSet { scheduleSave() }
+    }
 
-    private var cancellables = Set<AnyCancellable>()
+    private var saveTask: Task<Void, Never>?
+    private var mergeTask: Task<Void, Never>?
 
     init() {
         let calendar = Calendar.current
@@ -68,31 +67,59 @@ class CalendarViewModel: ObservableObject {
             )
         }
 
-        // Apply any saved memos and comments
-        let saved = Self.loadPersistedData()
-        for i in builtDays.indices {
-            let key = dayKey(for: builtDays[i])
-            if let data = saved[key] {
-                builtDays[i].comments = data.comments
-            }
-        }
+        // Apply any saved notes (merged from iCloud and local storage)
+        Self.applyNotes(NotePersistenceStore.load(), to: &builtDays)
 
         self.days = builtDays
+        NotePersistenceStore.startSyncing()
+        observeExternalChanges()
+    }
 
-        // Auto-save whenever days change (debounced to avoid saving on every keystroke)
-        $days
-            .debounce(for: .seconds(0.5), scheduler: RunLoop.main)
-            .sink { Self.persistDays($0) }
-            .store(in: &cancellables)
+    // MARK: - Auto-save (debounced to avoid saving on every keystroke)
+
+    private func scheduleSave() {
+        saveTask?.cancel()
+        let snapshot = days
+        saveTask = Task {
+            try? await Task.sleep(for: .seconds(0.5))
+            guard !Task.isCancelled else { return }
+            Self.persistDays(snapshot)
+        }
+    }
+
+    // MARK: - iCloud merge
+
+    /// Merges in notes synced from another device. Only days present in the
+    /// reloaded data are overwritten, so a note added on this device while
+    /// offline is not clobbered by a merge that hasn't caught up yet.
+    private func observeExternalChanges() {
+        mergeTask = Task { [weak self] in
+            let changes = NotificationCenter.default.notifications(named: NotePersistenceStore.didChangeExternally)
+            for await _ in changes {
+                self?.mergeExternalNotes()
+            }
+        }
+    }
+
+    private func mergeExternalNotes() {
+        let saved = NotePersistenceStore.load()
+        for i in days.indices {
+            let key = dayKey(for: days[i])
+            if let data = saved[key], data.comments != days[i].comments {
+                days[i].comments = data.comments
+            }
+        }
     }
 
     // MARK: - Persistence helpers
 
-    private static func loadPersistedData() -> [String: UserDayData] {
-        guard let data = UserDefaults.standard.data(forKey: persistenceKey),
-              let decoded = try? JSONDecoder().decode([String: UserDayData].self, from: data)
-        else { return [:] }
-        return decoded
+    private static func applyNotes(_ saved: [String: UserDayData], to days: inout [DayCard]) {
+        for i in days.indices {
+            let key = dayKey(for: days[i])
+            if let data = saved[key] {
+                days[i].comments = data.comments
+            }
+        }
     }
 
     private static func persistDays(_ days: [DayCard]) {
@@ -100,10 +127,7 @@ class CalendarViewModel: ObservableObject {
         for day in days where !day.comments.isEmpty {
             userData[dayKey(for: day)] = UserDayData(comments: day.comments)
         }
-        if let encoded = try? JSONEncoder().encode(userData) {
-            UserDefaults.standard.set(encoded, forKey: persistenceKey)
-        }
+        NotePersistenceStore.save(userData)
     }
 
 }
-
