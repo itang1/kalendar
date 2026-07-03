@@ -14,6 +14,7 @@ struct DayDetailView: View {
     @Binding var day: DayCard
     @State private var newComment = ""
     @Environment(\.requestReview) private var requestReview
+    @Environment(\.openURL) private var openURL
 
     private static let dateFormatter: DateFormatter = {
         let f = DateFormatter()
@@ -29,6 +30,11 @@ struct DayDetailView: View {
 
     private var formattedDate: String {
         "\(Self.dateFormatter.string(from: day.date)) (\(Self.weekdayFormatter.string(from: day.date)))"
+    }
+
+    /// Plain-text blurb for the share sheet: the feast, its date, and its description.
+    private func feastShareText(name: String, description: String) -> String {
+        "\(name)\n\(formattedDate)\n\n\(description)\n\nShared from Kalendar"
     }
 
     var body: some View {
@@ -120,6 +126,36 @@ struct DayDetailView: View {
                     .font(.body)
                     .padding(.top, 8)
 
+                // MARK: Readings
+                sectionLabel("Readings")
+                    .padding(.top, 28)
+
+                Text("Sunday Cycle: Year \(day.sundayLectionaryCycle)  ·  Weekday Cycle: \(day.weekdayLectionaryCycle)")
+                    .font(.body.weight(.medium))
+                    .padding(.top, 6)
+
+                if let readingsURL = day.usccbReadingsURL {
+                    Button {
+                        openURL(readingsURL)
+                    } label: {
+                        HStack(spacing: 10) {
+                            Image(systemName: "book")
+                            Text("Read this day's Mass readings at USCCB")
+                            Spacer()
+                            Image(systemName: "arrow.up.right")
+                                .font(.caption)
+                        }
+                        .font(.body.weight(.semibold))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.vertical, 12)
+                        .padding(.horizontal, 12)
+                        .background(Color.primary.opacity(0.08))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                    }
+                    .foregroundStyle(.primary)
+                    .padding(.top, 12)
+                }
+
                 Divider()
                     .padding(.vertical, 28)
 
@@ -200,6 +236,11 @@ struct DayDetailView: View {
                     Text(description)
                         .font(.body)
                         .padding(.top, 8)
+                    ShareLink(item: feastShareText(name: feast, description: description)) {
+                        Label("Share", systemImage: "square.and.arrow.up")
+                            .font(.subheadline.weight(.semibold))
+                    }
+                    .padding(.top, 12)
                 }
             } else if let title = day.liturgicalDayTitle {
                 Text(title)

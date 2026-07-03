@@ -140,3 +140,50 @@ extension DayCard {
         liturgicalSeason == .lent && Calendar.current.component(.weekday, from: date) == 6
     }
 }
+
+// MARK: - Lectionary cycle & readings
+
+extension DayCard {
+    /// The civil year whose cycle governs this day. The lectionary year turns over
+    /// on the First Sunday of Advent, so Advent days already belong to the next
+    /// civil year's cycle.
+    private var lectionaryYear: Int {
+        let calendar = Calendar.current
+        let civilYear = calendar.component(.year, from: date)
+        let adventStart = LiturgicalCalendar().keyDates(year: civilYear).adventStart
+        return calendar.startOfDay(for: date) >= calendar.startOfDay(for: adventStart)
+            ? civilYear + 1
+            : civilYear
+    }
+
+    /// The Sunday lectionary cycle (Year A, B, or C): the three-year rotation of
+    /// Sunday and solemnity readings.
+    var sundayLectionaryCycle: String {
+        switch lectionaryYear % 3 {
+        case 1: return "A"
+        case 2: return "B"
+        default: return "C"
+        }
+    }
+
+    /// The weekday lectionary cycle (Year I in odd liturgical years, Year II in
+    /// even ones): the two-year rotation of weekday first readings.
+    var weekdayLectionaryCycle: String {
+        lectionaryYear % 2 == 1 ? "I" : "II"
+    }
+
+    /// USCCB's daily readings page for this date, listing the actual Reading 1,
+    /// Psalm, and Gospel citations. A date-based deep link, so no offline lectionary
+    /// data is bundled.
+    var usccbReadingsURL: URL? {
+        URL(string: "https://bible.usccb.org/bible/readings/\(Self.usccbDateFormatter.string(from: date)).cfm")
+    }
+
+    private static let usccbDateFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "MMddyy"
+        f.locale = Locale(identifier: "en_US_POSIX")
+        f.calendar = Calendar(identifier: .gregorian)
+        return f
+    }()
+}
