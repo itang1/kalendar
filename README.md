@@ -1,5 +1,8 @@
 # Kalendar
 
+<!-- Once the app is live, replace idXXXXXXXXX with your App Store app ID. -->
+[![Download on the App Store](https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg)](https://apps.apple.com/app/idXXXXXXXXX)
+
 An iOS app for exploring the Christian liturgical year. Kalendar lays out the
 next full year of days, colored by liturgical season and marked with feasts and
 solemnities, and explains what each day means. You can browse a whole year at a
@@ -42,11 +45,21 @@ Known limitation: an impeded solemnity (such as the Annunciation falling in Holy
 Week) is currently omitted for that year rather than transferred to its proper
 later date.
 
+## Website
+
+A small landing and privacy page lives in [`docs/`](docs/) and is published with
+GitHub Pages at `https://itang1.github.io/kalendar/`. The privacy policy at
+`https://itang1.github.io/kalendar/privacy.html` is the URL to give App Store Connect.
+
+To enable it: repository Settings, then Pages, and set the source to the `main`
+branch with the `/docs` folder.
+
 ## Privacy
 
 Kalendar collects no data and makes no network requests. Notes you add are stored
 only on the device, in `UserDefaults`. They do not sync across devices, and
-uninstalling the app deletes them.
+uninstalling the app deletes them. See the hosted
+[privacy policy](https://itang1.github.io/kalendar/privacy.html).
 
 ## Architecture
 

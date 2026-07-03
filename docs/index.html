@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kalendar &mdash; The Christian Year on your phone</title>
+<meta name="description" content="Kalendar lays out the liturgical year day by day, colored by season and marked with feasts, and explains what each day means." />
+<style>
+  :root {
+    --slate: #1a1a21;
+    --slate-2: #24242e;
+    --ink: #f4f4f6;
+    --muted: #a0a0ad;
+    --advent: #732e8c;
+    --ordinary: #338c4d;
+    --triduum: #bf2626;
+    --christmas: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--slate);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  header { text-align: center; padding: 80px 0 56px; }
+  .wheel {
+    width: 132px; height: 132px; border-radius: 50%;
+    margin: 0 auto 32px;
+    background: conic-gradient(
+      var(--advent) 0deg 30deg,
+      var(--christmas) 30deg 74deg,
+      var(--ordinary) 74deg 164deg,
+      var(--advent) 164deg 206deg,
+      var(--triduum) 206deg 214deg,
+      var(--christmas) 214deg 262deg,
+      var(--ordinary) 262deg 360deg
+    );
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 12px 40px rgba(0,0,0,0.5);
+    position: relative;
+  }
+  .wheel::after {
+    content: ""; position: absolute; inset: 40px; border-radius: 50%;
+    background: var(--slate);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.10);
+  }
+  h1 { font-size: 3rem; letter-spacing: -0.02em; font-weight: 800; }
+  .tagline { color: var(--muted); font-size: 1.2rem; margin-top: 12px; }
+
+  .badge { display: inline-block; margin-top: 36px; }
+  .badge img { height: 54px; }
+
+  section { padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.08); }
+  h2 { font-size: 1.4rem; margin-bottom: 20px; }
+  .features { list-style: none; display: grid; gap: 18px; }
+  .features li { padding-left: 20px; position: relative; color: #d8d8de; }
+  .features li::before {
+    content: ""; position: absolute; left: 0; top: 12px;
+    width: 8px; height: 8px; border-radius: 50%; background: var(--ordinary);
+  }
+  .features li strong { color: var(--ink); }
+
+  a { color: #9ecbff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  footer { padding: 48px 0 72px; color: var(--muted); font-size: 0.95rem; text-align: center; }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="wheel" aria-hidden="true"></div>
+      <h1>Kalendar</h1>
+      <p class="tagline">The Christian year, laid out day by day.</p>
+      <!-- Replace idXXXXXXXXX with your App Store app ID once the app is live. -->
+      <a class="badge" href="https://apps.apple.com/app/idXXXXXXXXX">
+        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+             alt="Download on the App Store" />
+      </a>
+    </header>
+
+    <section>
+      <h2>What it does</h2>
+      <ul class="features">
+        <li><strong>A year at a glance.</strong> Every day of the coming year as a tile, colored by its liturgical season, always starting with today.</li>
+        <li><strong>Feasts and solemnities.</strong> Saints' days, movable feasts, and the great solemnities, each with a short explanation of what is being celebrated.</li>
+        <li><strong>The wheel.</strong> See the whole shape of the year at once as colored slices.</li>
+        <li><strong>Private notes.</strong> Keep a note on any day. Notes stay on your device and persist from year to year.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Privacy</h2>
+      <p>Kalendar collects no data and makes no network requests. Notes you add are
+      stored only on your device and are deleted if you uninstall the app.
+      Full details on the <a href="privacy.html">privacy policy</a> page.</p>
+    </section>
+
+    <footer>
+      <p>Questions or feedback: <a href="mailto:theworkingcell@gmail.com">theworkingcell@gmail.com</a></p>
+      <p style="margin-top:8px"><a href="https://github.com/itang1/kalendar">Source on GitHub</a></p>
+    </footer>
+  </div>
+</body>
+</html>
