@@ -22,6 +22,7 @@ struct CircleCalendarView: View {
     @State private var viewMode: CalendarViewMode = .grid
     @State private var showInfo = false
     @State private var showFeastList = false
+    @State private var showJumpToDate = false
     @State private var scrollToIndex: Int? = nil
     @State private var pendingSelectedIndex: Int? = nil
 
@@ -47,6 +48,10 @@ struct CircleCalendarView: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 HStack(spacing: 20) {
+                    Button { showJumpToDate = true } label: {
+                        Image(systemName: "calendar.badge.magnifyingglass")
+                    }
+                    .accessibilityLabel("Jump to a date")
                     Button { showFeastList = true } label: {
                         Image(systemName: "list.star")
                     }
@@ -68,6 +73,16 @@ struct CircleCalendarView: View {
             pendingSelectedIndex = nil
         }) {
             FeastListSheet(days: viewModel.days) { index in
+                viewMode = .grid
+                scrollToIndex = index
+                pendingSelectedIndex = index
+            }
+        }
+        .sheet(isPresented: $showJumpToDate, onDismiss: {
+            selectedIndex = pendingSelectedIndex
+            pendingSelectedIndex = nil
+        }) {
+            JumpToDateSheet(days: viewModel.days) { index in
                 viewMode = .grid
                 scrollToIndex = index
                 pendingSelectedIndex = index
@@ -149,9 +164,10 @@ struct CircleCalendarView: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 32)
             }
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(.top, 24)
         }
+        .background(Color.kalendarBackground)
     }
 }
 
@@ -226,6 +242,65 @@ private struct DayBrowserSheet: View {
         .padding(.vertical, 5)
         .padding(.horizontal, 10)
         .background(.thinMaterial, in: Capsule())
+    }
+}
+
+// MARK: - Jump to Date Sheet
+
+private struct JumpToDateSheet: View {
+    let days: [DayCard]
+    let onSelect: (Int) -> Void
+    @Environment(\.dismiss) private var dismiss
+    @State private var selectedDate: Date
+
+    init(days: [DayCard], onSelect: @escaping (Int) -> Void) {
+        self.days = days
+        self.onSelect = onSelect
+        self._selectedDate = State(initialValue: days.first?.date ?? Date())
+    }
+
+    private var dateRange: ClosedRange<Date> {
+        guard let first = days.first?.date, let last = days.last?.date else {
+            return Date()...Date()
+        }
+        return first...last
+    }
+
+    var body: some View {
+        NavigationStack {
+            VStack {
+                DatePicker(
+                    "Date",
+                    selection: $selectedDate,
+                    in: dateRange,
+                    displayedComponents: .date
+                )
+                .datePickerStyle(.graphical)
+                .labelsHidden()
+                .padding()
+                Spacer()
+            }
+            .navigationTitle("Jump to a Day")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") { dismiss() }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Go") {
+                        if let index = matchingIndex() {
+                            onSelect(index)
+                        }
+                        dismiss()
+                    }
+                }
+            }
+        }
+    }
+
+    private func matchingIndex() -> Int? {
+        let calendar = Calendar.current
+        return days.firstIndex { calendar.isDate($0.date, inSameDayAs: selectedDate) }
     }
 }
 
@@ -358,12 +433,23 @@ private struct InfoSheet: View {
 
                     Divider()
 
-                    HStack(spacing: 8) {
-                        Circle()
-                            .fill(Color.primary)
-                            .frame(width: 7, height: 7)
-                        Text("A dot marks a feast day or special celebration. Tap any tile in grid view to read about it.")
-                            .font(.body)
+                    VStack(alignment: .leading, spacing: 10) {
+                        HStack(spacing: 8) {
+                            Circle()
+                                .fill(Color.primary)
+                                .frame(width: 7, height: 7)
+                            Text("A dot marks a feast day or memorial. Tap any tile in grid view to read about it.")
+                                .font(.body)
+                        }
+                        HStack(spacing: 8) {
+                            Image(systemName: "star.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 9, height: 9)
+                                .foregroundStyle(Color.primary)
+                            Text("A star marks a solemnity, the highest rank of celebration.")
+                                .font(.body)
+                        }
                     }
 
                     Divider()

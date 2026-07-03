@@ -30,7 +30,7 @@ struct KalendarWheel: View {
                             total: days.count,
                             radius: radius
                         )
-                        .stroke(Color.white, lineWidth: sliceLineWidth)
+                        .stroke(Color.secondary.opacity(0.35), lineWidth: sliceLineWidth)
                     )
                 }
 

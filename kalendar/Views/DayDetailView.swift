@@ -35,18 +35,28 @@ struct DayDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
 
-                // MARK: Date
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(formattedDate)
-                        .font(.title2.bold())
-                    if let title = day.liturgicalDayTitle {
-                        Text(title)
-                            .font(.body.weight(.semibold))
-                    }
-                    Text(daySubtitle)
-                        .font(.body)
+                // MARK: Header — leads with the feast, or the day's proper
+                // title, since that is what makes the day unique.
+                headerSection
+                    .padding(.bottom, 20)
+
+                // MARK: Obligation & discipline flags
+                if hasFlags {
+                    flagsSection
+                        .padding(.bottom, 24)
                 }
-                .padding(.bottom, 28)
+
+                // MARK: Rank explanation (collapsed; identical across every
+                // solemnity, or every feast/memorial)
+                if day.feastName != nil {
+                    DisclosureGroup(day.isSolemnity ? "About solemnities" : "About feasts & memorials") {
+                        Text(rankExplanation)
+                            .font(.body)
+                            .padding(.top, 8)
+                    }
+                    .font(.body.weight(.semibold))
+                    .padding(.bottom, 28)
+                }
 
                 // MARK: Season
                 sectionLabel("Season")
@@ -66,53 +76,32 @@ struct DayDetailView: View {
                 }
                 .padding(.top, 6)
 
-                Text(day.liturgicalSeason.explanation)
-                    .font(.body)
-                    .padding(.top, 8)
-
-                Text("Traditionally during \(day.liturgicalSeason.rawValue):")
-                    .font(.body.weight(.semibold))
-                    .padding(.top, 16)
-
-                VStack(alignment: .leading, spacing: 10) {
-                    ForEach(day.liturgicalSeason.contextualItems, id: \.self) { item in
-                        HStack(alignment: .top, spacing: 8) {
-                            Text("·")
-                                .font(.body.weight(.bold))
-                            Text(item)
-                                .font(.body)
-                        }
-                    }
-                }
-                .padding(.top, 8)
-                .padding(.bottom, 28)
-
-                // MARK: Feast (if any)
-                if let feast = day.feastName {
-                    sectionLabel(day.isSolemnity ? "Solemnity" : "Feast / Memorial")
-
-                    HStack(spacing: 6) {
-                        if day.isSolemnity {
-                            Image(systemName: "star.fill")
-                                .foregroundStyle(.yellow)
-                                .font(.subheadline)
-                        }
-                        Text(feast)
-                            .font(.body.weight(.bold))
-                    }
-                    .padding(.top, 6)
-
-                    if let description = day.feastDescription {
-                        Text(description)
+                DisclosureGroup("About \(day.liturgicalSeason.rawValue)") {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text(day.liturgicalSeason.explanation)
                             .font(.body)
-                            .padding(.top, 8)
-                    }
 
-                    Text(rankExplanation)
-                        .font(.body)
-                        .padding(.top, 8)
-                        .padding(.bottom, 28)
+                        Text("Traditionally during \(day.liturgicalSeason.rawValue):")
+                            .font(.body.weight(.semibold))
+                            .padding(.top, 8)
+
+                        VStack(alignment: .leading, spacing: 10) {
+                            ForEach(day.liturgicalSeason.contextualItems, id: \.self) { item in
+                                HStack(alignment: .top, spacing: 8) {
+                                    Text("·")
+                                        .font(.body.weight(.bold))
+                                    Text(item)
+                                        .font(.body)
+                                }
+                            }
+                        }
+                        .padding(.top, 2)
+                    }
+                    .padding(.top, 8)
                 }
+                .font(.body.weight(.semibold))
+                .padding(.top, 10)
+                .padding(.bottom, 28)
 
                 // MARK: Vestment Color
                 sectionLabel("Vestment")
@@ -182,6 +171,95 @@ struct DayDetailView: View {
                 .padding(.top, 8)
             }
             .padding()
+        }
+    }
+
+    // MARK: - Header
+
+    @ViewBuilder
+    private var headerSection: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(formattedDate)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+
+            if let feast = day.feastName {
+                sectionLabel(day.isSolemnity ? "Solemnity" : "Feast / Memorial")
+                    .padding(.top, 4)
+                HStack(spacing: 8) {
+                    if day.isSolemnity {
+                        Image(systemName: "star.fill")
+                            .foregroundStyle(.yellow)
+                            .font(.title3)
+                    }
+                    Text(feast)
+                        .font(.title2.bold())
+                }
+                .padding(.top, 2)
+                if let description = day.feastDescription {
+                    Text(description)
+                        .font(.body)
+                        .padding(.top, 8)
+                }
+            } else if let title = day.liturgicalDayTitle {
+                Text(title)
+                    .font(.title2.bold())
+                    .padding(.top, 2)
+            }
+
+            Text(daySubtitle)
+                .font(.body)
+                .foregroundStyle(.secondary)
+                .padding(.top, 8)
+        }
+    }
+
+    // MARK: - Obligation & discipline flags
+
+    private var hasFlags: Bool {
+        day.isHolyDayOfObligation || day.isDayOfFastingAndAbstinence || day.isDayOfAbstinenceFromMeat
+    }
+
+    @ViewBuilder
+    private var flagsSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            if day.isHolyDayOfObligation {
+                flagRow(
+                    icon: "checkmark.seal.fill",
+                    title: "Holy Day of Obligation",
+                    detail: "Catholics are asked to attend Mass today, as on a Sunday. Which days are observed can vary by country and diocese."
+                )
+            }
+            if day.isDayOfFastingAndAbstinence {
+                flagRow(
+                    icon: "fork.knife.circle.fill",
+                    title: "Fasting and Abstinence",
+                    detail: "A day of fasting (one full meal, plus two smaller ones that together don't equal a full meal) for Catholics ages 18 to 59, and abstinence from meat for those 14 and up."
+                )
+            } else if day.isDayOfAbstinenceFromMeat {
+                flagRow(
+                    icon: "fish.fill",
+                    title: "Abstinence from Meat",
+                    detail: "Fridays in Lent are a day of abstinence from meat, for Catholics age 14 and up."
+                )
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func flagRow(icon: String, title: String, detail: String) -> some View {
+        HStack(alignment: .top, spacing: 10) {
+            Image(systemName: icon)
+                .font(.body)
+                .foregroundStyle(.secondary)
+                .frame(width: 20)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.body.weight(.semibold))
+                Text(detail)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
         }
     }
 

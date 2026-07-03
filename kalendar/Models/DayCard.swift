@@ -111,3 +111,32 @@ extension DayCard {
             : "\(nearest.days) days until \(nearest.name)"
     }
 }
+
+// MARK: - Obligation & discipline flags
+
+extension DayCard {
+    /// Fixed-date Holy Days of Obligation under the General Roman Calendar,
+    /// plus the Ascension (movable). Which days actually bind can vary by
+    /// country and diocese; the detail view notes that alongside the flag.
+    var isHolyDayOfObligation: Bool {
+        let month = Calendar.current.component(.month, from: date)
+        let dayOfMonth = Calendar.current.component(.day, from: date)
+        switch (month, dayOfMonth) {
+        case (1, 1), (8, 15), (11, 1), (12, 8), (12, 25):
+            return true
+        default:
+            return feastName == "Ascension of the Lord"
+        }
+    }
+
+    /// Ash Wednesday and Good Friday: a day of both fasting and abstinence.
+    var isDayOfFastingAndAbstinence: Bool {
+        feastName == "Ash Wednesday" || feastName == "Good Friday of the Lord's Passion"
+    }
+
+    /// Fridays in Lent (Ash Wednesday and Good Friday are already covered by
+    /// the stronger fasting-and-abstinence flag): abstinence from meat only.
+    var isDayOfAbstinenceFromMeat: Bool {
+        liturgicalSeason == .lent && Calendar.current.component(.weekday, from: date) == 6
+    }
+}

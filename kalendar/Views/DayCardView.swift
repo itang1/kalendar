@@ -24,7 +24,13 @@ struct DayCardView: View {
             )
             .overlay(
                 Group {
-                    if day.feastName != nil {
+                    if day.isSolemnity {
+                        Image(systemName: "star.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 9, height: 9)
+                            .foregroundStyle(dotColor)
+                    } else if day.feastName != nil {
                         Circle()
                             .fill(dotColor)
                             .frame(width: 7, height: 7)
@@ -75,7 +81,7 @@ struct DayCardView: View {
 
         var label = "\(dateStr), \(day.liturgicalSeason.rawValue)"
         if let feast = day.feastName {
-            label += ", \(feast)"
+            label += day.isSolemnity ? ", \(feast) (solemnity)" : ", \(feast)"
         }
         if !day.comments.isEmpty {
             label += ", has notes"
