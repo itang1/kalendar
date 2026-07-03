@@ -40,7 +40,7 @@ struct OnboardingView: View {
             symbol: "text.bubble",
             symbolColor: Color(red: 0.2, green: 0.55, blue: 0.3),
             title: "Your Notes Stay",
-            body: "Tap any day to open it, then add a comment at the bottom. Notes are saved automatically and persist year over year. Feast day notes follow the feast even when the date shifts (like Easter). Regular day notes stay on the same date each year.\n\nNotes are stored only on this device, not on a server. They won't appear on your other devices, and uninstalling the app will delete them."
+            body: "Tap any day to open it, then add a comment at the bottom. Notes are saved automatically and persist year over year. Feast day notes follow the feast even when the date shifts (like Easter). Regular day notes stay on the same date each year.\n\nNotes sync privately through your iCloud account, so they appear on your other devices signed into the same Apple ID. They are never sent to us or to any other service."
         )
     ]
 
