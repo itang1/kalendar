@@ -44,14 +44,29 @@ final class CalendarViewModel {
 
     private var saveTask: Task<Void, Never>?
     private var mergeTask: Task<Void, Never>?
+    private var dayChangeTask: Task<Void, Never>?
 
     init() {
-        let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
-        let litCal = LiturgicalCalendar()
+        // Migrate any legacy storage and start iCloud syncing before loading, so
+        // the load below reads the up-to-date per-day keys.
+        NotePersistenceStore.startSyncing()
 
-        // 366 days so a full year is always covered, including Feb 29 in leap years.
-        var builtDays = (0..<366).map { offset -> DayCard in
+        var builtDays = Self.buildWindow()
+        // Apply any saved notes (merged from iCloud and local storage)
+        Self.applyNotes(NotePersistenceStore.load(), to: &builtDays)
+
+        self.days = builtDays
+        observeExternalChanges()
+        observeDayChanges()
+    }
+
+    /// Builds the rolling 366-day window starting at `startDate` (default today).
+    /// 366 days so a full year is always covered, including Feb 29 in leap years.
+    private static func buildWindow(from startDate: Date = Date()) -> [DayCard] {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: startDate)
+        let litCal = LiturgicalCalendar()
+        return (0..<366).map { offset -> DayCard in
             let date = calendar.date(byAdding: .day, value: offset, to: today)!
             let info = litCal.liturgicalInfo(for: date)
             return DayCard(
@@ -67,16 +82,51 @@ final class CalendarViewModel {
                 isMovableFeast: info.isMovableFeast
             )
         }
+    }
 
-        // Migrate any legacy storage and start iCloud syncing before loading, so
-        // the load below reads the up-to-date per-day keys.
-        NotePersistenceStore.startSyncing()
+    // MARK: - Keeping "today" current
 
-        // Apply any saved notes (merged from iCloud and local storage)
-        Self.applyNotes(NotePersistenceStore.load(), to: &builtDays)
+    /// Rebuilds the window when the calendar day changes while the app stays open.
+    private func observeDayChanges() {
+        dayChangeTask = Task { [weak self] in
+            let changes = NotificationCenter.default.notifications(named: .NSCalendarDayChanged)
+            for await _ in changes {
+                self?.refreshForCurrentDate()
+            }
+        }
+    }
 
-        self.days = builtDays
-        observeExternalChanges()
+    /// Rebuilds the 366-day window if it no longer starts on today. The window is
+    /// built once at init, so after midnight passes (app left open overnight, or
+    /// returning from the background) the wheel's today marker and the Open Today
+    /// button would otherwise point at yesterday while the live grid outline moves.
+    /// Call on scene activation as well as on the day-changed notification. Notes
+    /// already in memory carry over.
+    func refreshForCurrentDate() {
+        let today = Calendar.current.startOfDay(for: Date())
+        guard let first = days.first?.date,
+              !Calendar.current.isDate(first, inSameDayAs: today) else { return }
+        rebuildWindow()
+    }
+
+    private func rebuildWindow() {
+        // Preserve notes: in-memory values win (they include unsaved edits), with
+        // persisted values covering any day newly entering the window at the tail.
+        let carried = Dictionary(
+            days.map { (dayKey(for: $0), $0.comments) },
+            uniquingKeysWith: { current, _ in current }
+        )
+        var rebuilt = Self.buildWindow()
+        let saved = NotePersistenceStore.load()
+        for i in rebuilt.indices {
+            let key = dayKey(for: rebuilt[i])
+            if let inMemory = carried[key] {
+                rebuilt[i].comments = inMemory
+            } else if let data = saved[key] {
+                rebuilt[i].comments = data.comments
+            }
+        }
+        days = rebuilt
     }
 
     // MARK: - Auto-save (debounced to avoid saving on every keystroke)

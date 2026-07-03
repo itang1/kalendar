@@ -17,6 +17,7 @@ private enum CalendarViewMode {
 struct CircleCalendarView: View {
     @State private var viewModel = CalendarViewModel()
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.scenePhase) private var scenePhase
     @AppStorage("solemnityNotificationsEnabled") private var notificationsEnabled = false
     @State private var selectedIndex: Int?
     @State private var viewMode: CalendarViewMode = .grid
@@ -104,6 +105,12 @@ struct CircleCalendarView: View {
         .task {
             if notificationsEnabled {
                 await SolemnityNotificationScheduler.schedule(for: viewModel.days)
+            }
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            // Returning to the foreground may cross midnight; realign "today".
+            if newPhase == .active {
+                viewModel.refreshForCurrentDate()
             }
         }
     }
