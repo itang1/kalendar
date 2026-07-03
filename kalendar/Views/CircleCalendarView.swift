@@ -15,8 +15,9 @@ private enum CalendarViewMode {
 // MARK: - Main View
 
 struct CircleCalendarView: View {
-    @StateObject private var viewModel = CalendarViewModel()
+    @State private var viewModel = CalendarViewModel()
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @AppStorage("solemnityNotificationsEnabled") private var notificationsEnabled = false
     @State private var selectedIndex: Int?
     @State private var viewMode: CalendarViewMode = .grid
     @State private var showInfo = false
@@ -60,7 +61,7 @@ struct CircleCalendarView: View {
             }
         }
         .sheet(isPresented: $showInfo) {
-            InfoSheet()
+            InfoSheet(days: viewModel.days)
         }
         .sheet(isPresented: $showFeastList, onDismiss: {
             selectedIndex = pendingSelectedIndex
@@ -80,9 +81,16 @@ struct CircleCalendarView: View {
         ) {
             if let index = selectedIndex {
                 DayBrowserSheet(
-                    days: $viewModel.days,
+                    days: Bindable(viewModel).days,
                     initialIndex: index
                 )
+            }
+        }
+        .task {
+            // The day window shifts forward with every launch, so keep scheduled
+            // notifications current if the user already turned this on.
+            if notificationsEnabled {
+                SolemnityNotificationScheduler.schedule(for: viewModel.days)
             }
         }
     }
@@ -297,8 +305,11 @@ private struct FeastListSheet: View {
 // MARK: - Info Sheet
 
 private struct InfoSheet: View {
+    let days: [DayCard]
     @Environment(\.dismiss) private var dismiss
     @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
+    @AppStorage("solemnityNotificationsEnabled") private var notificationsEnabled = false
+    @State private var showNotificationsDeniedAlert = false
 
     var body: some View {
         NavigationStack {
@@ -348,8 +359,23 @@ private struct InfoSheet: View {
 
                     Divider()
 
-                    Text("Notes you add are stored only on this device, not on a server. They won't appear on your other devices, and uninstalling the app will delete them.")
+                    Text("Notes you add sync privately through your iCloud account, so they appear on your other devices signed into the same Apple ID. They are never sent to us or to any other service.")
                         .font(.body)
+
+                    Divider()
+
+                    VStack(alignment: .leading, spacing: 8) {
+                        Toggle("Notify me on solemnities", isOn: notificationsToggleBinding)
+                            .font(.body.weight(.semibold))
+                        Text("A morning notification on solemnities like Easter, Christmas, and the other highest-ranked celebrations of the year.")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    .alert("Notifications Off", isPresented: $showNotificationsDeniedAlert) {
+                        Button("OK", role: .cancel) { }
+                    } message: {
+                        Text("Kalendar doesn't have permission to send notifications. Enable them for Kalendar in Settings to turn this on.")
+                    }
 
                     Divider()
 
@@ -377,5 +403,24 @@ private struct InfoSheet: View {
                 }
             }
         }
+    }
+
+    /// Requests notification permission before turning the toggle on; reverts and
+    /// shows guidance if permission is denied. Turning off just cancels.
+    private var notificationsToggleBinding: Binding<Bool> {
+        Binding(
+            get: { notificationsEnabled },
+            set: { newValue in
+                if newValue {
+                    SolemnityNotificationScheduler.enable(for: days) { granted in
+                        notificationsEnabled = granted
+                        if !granted { showNotificationsDeniedAlert = true }
+                    }
+                } else {
+                    notificationsEnabled = false
+                    SolemnityNotificationScheduler.disable()
+                }
+            }
+        )
     }
 }
