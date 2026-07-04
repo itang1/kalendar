@@ -79,7 +79,23 @@ struct DayDetailView: View {
                 Text(day.liturgicalSeason.explanation)
                     .font(.body)
                     .padding(.top, 8)
-                    .padding(.bottom, 28)
+
+                DisclosureGroup("Traditionally during \(day.liturgicalSeason.rawValue)") {
+                    VStack(alignment: .leading, spacing: 10) {
+                        ForEach(day.liturgicalSeason.contextualItems, id: \.self) { item in
+                            HStack(alignment: .top, spacing: 8) {
+                                Text("·")
+                                    .font(.body.weight(.bold))
+                                Text(item)
+                                    .font(.body)
+                            }
+                        }
+                    }
+                    .padding(.top, 10)
+                }
+                .font(.body.weight(.semibold))
+                .padding(.top, 14)
+                .padding(.bottom, 28)
 
                 // MARK: Vestment Color
                 sectionLabel("Vestment")
