@@ -546,6 +546,8 @@ window.KalendarEngine = {
   SEASON_CONTEXTUAL_ITEMS,
   COLOR_EXPLANATION,
   liturgicalInfo,
+  keyDates,
   addDays,
+  daysBetween,
   dateOnly,
 };

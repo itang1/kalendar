@@ -1,5 +1,5 @@
 (function () {
-  const { liturgicalInfo, addDays, LiturgicalSeason, LiturgicalColor, SEASON_EXPLANATION, SEASON_CONTEXTUAL_ITEMS, COLOR_EXPLANATION } = window.KalendarEngine;
+  const { liturgicalInfo, keyDates, addDays, daysBetween, LiturgicalSeason, LiturgicalColor, SEASON_EXPLANATION, SEASON_CONTEXTUAL_ITEMS, COLOR_EXPLANATION } = window.KalendarEngine;
 
   const TOTAL_DAYS = 366;
   const today = (() => {
@@ -154,30 +154,29 @@
     }
   }
 
-  function countdownText(day, allDays, dayIndex) {
-    const calendar = new Date(day.date);
+  // Days until the next major moment of the year, e.g. "17 days until Easter".
+  // A faithful port of DayCard.countdownText: it measures the distance to the
+  // dated anchors from this year and next, and reports the nearest one still ahead.
+  function countdownText(day) {
+    const start = day.date; // local midnight, matching the anchors
+    const year = start.getFullYear();
     let nearest = null;
 
-    for (const d of allDays.slice(dayIndex)) {
-      if (!d.info) continue;
-
+    for (const y of [year, year + 1]) {
+      const keys = keyDates(y);
       const anchors = [
-        { name: "Ash Wednesday", season: LiturgicalSeason.lent },
-        { name: "Easter", season: LiturgicalSeason.easter },
-        { name: "Pentecost", season: LiturgicalSeason.ordinaryTime },
-        { name: "Advent", season: LiturgicalSeason.advent },
-        { name: "Christmas", season: LiturgicalSeason.christmas }
+        ["Ash Wednesday", keys.ashWednesday],
+        ["Easter", keys.easter],
+        ["Pentecost", keys.pentecost],
+        ["Advent", keys.adventStart],
+        ["Christmas", keys.christmas],
       ];
-
-      for (const anchor of anchors) {
-        if (d.season === anchor.season && (!nearest || !nearest.seen)) {
-          const days = Math.floor((d.date - calendar) / 86400000);
-          if (days > 0 && (!nearest || days < nearest.days)) {
-            nearest = { name: anchor.name, days, seen: true };
-          }
+      for (const [name, target] of anchors) {
+        const days = daysBetween(start, target);
+        if (days > 0 && days < (nearest ? nearest.days : Infinity)) {
+          nearest = { name, days };
         }
       }
-      if (nearest && nearest.seen) break;
     }
 
     if (!nearest) return null;
@@ -225,7 +224,7 @@
       : "Feasts and memorials are celebrations of saints or events in the life of Jesus and Mary. A feast is more important than a memorial. Some memorials are optional, while others are observed throughout Christianity.";
 
     const dayTitle = liturgicalDayTitle(day);
-    const countdown = countdownText(day, days, index);
+    const countdown = countdownText(day);
 
     panel.innerHTML = `
       <div class="panel-header">
