@@ -27,9 +27,17 @@ struct KalendarTimelineProvider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<KalendarEntry>) -> Void) {
-        let today = Calendar.current.startOfDay(for: Date())
-        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
-        completion(Timeline(entries: [entry(for: today)], policy: .after(tomorrow)))
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        // Provide a week of daily entries, each dated to its own midnight, so the
+        // widget self-advances to the correct day even when the system defers the
+        // refresh under budget pressure (a single entry would otherwise show
+        // yesterday's season and feast well past midnight). Refresh once the week runs out.
+        let entries = (0..<7).map { offset in
+            entry(for: calendar.date(byAdding: .day, value: offset, to: today)!)
+        }
+        let refreshDate = calendar.date(byAdding: .day, value: 7, to: today)!
+        completion(Timeline(entries: entries, policy: .after(refreshDate)))
     }
 
     private func entry(for date: Date) -> KalendarEntry {
