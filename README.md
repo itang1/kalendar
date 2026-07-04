@@ -7,7 +7,7 @@
 
 **Website:** [itang1.github.io/kalendar](https://itang1.github.io/kalendar/), with a [browsable web demo](https://itang1.github.io/kalendar/browse.html) for anyone without an iPhone.
 
-> "Kalendar" is the traditional spelling used in many liturgical texts.
+"Kalendar" is the traditional spelling used in many liturgical texts.
 
 ## Features
 
