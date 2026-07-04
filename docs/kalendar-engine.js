@@ -401,11 +401,11 @@ const FIXED_FEASTS = {
   '10-18': { name: "St. Luke, Evangelist", color: LiturgicalColor.red, solemnity: false,
     description: "Luke was a physician and the only Gentile author in the New Testament. He wrote both the Gospel that bears his name and the Acts of the Apostles, together the longest single contribution to the New Testament. His Gospel is the one most attentive to women, the poor, and outsiders. He is the patron of doctors and artists." },
   '10-28': { name: "Sts. Simon and Jude, Apostles", color: LiturgicalColor.red, solemnity: false,
-    description: "Two apostles honored together because little is known about either of them. Simon was called 'the Zealot,' probably indicating a political background. Jude (not Judas Iscariot) wrote one of the short letters near the end of the New Testament and is the patron of lost causes, for the simple reason that people only pray to him when all else has failed." },
+    description: "Two apostles honored together because little is known about either of them. Simon was called 'the Zealot,' probably indicating a political background. Jude (not Judas Iscariot) wrote one of the short letters near the end of the New Testament and is remembered, by long tradition, as the patron of lost causes." },
   '11-1':  { name: "All Saints", color: LiturgicalColor.white, solemnity: true,
     description: "A day to honor all saints, not just the famous ones with their own feast days, but every holy person in heaven, including ordinary people who lived faithful lives. It is a reminder that everyone is called to holiness." },
   '11-2':  { name: "All Souls' Day (Commemoration of All the Faithful Departed)", color: LiturgicalColor.violet, solemnity: false,
-    description: "A day to remember and pray for all who have died, especially loved ones. Prayers are offered that those still being purified may reach heaven. It is a tender day of remembrance, often marked by visiting cemeteries." },
+    description: "A day to remember all who have died, especially loved ones. It is a tender day of remembrance and mourning, often marked by visiting cemeteries and giving thanks for those who have gone before." },
   '11-9':  { name: "Dedication of the Lateran Basilica", color: LiturgicalColor.white, solemnity: false,
     description: "The Lateran Basilica in Rome is the cathedral of the bishop of Rome, which means it is technically the mother church of all Roman Catholics worldwide, outranking even St. Peter's. This feast, celebrating its dedication, is a way of marking unity with the broader Church." },
   '11-30': { name: "St. Andrew, Apostle", color: LiturgicalColor.red, solemnity: false,
@@ -445,7 +445,7 @@ function movableFeast(date, keys) {
   }
   if (sameDay(date, keys.goodFriday)) {
     return { name: "Good Friday of the Lord's Passion", color: LiturgicalColor.red, solemnity: true,
-      description: "The most solemn day of the year, remembering Jesus' crucifixion and death. There is no Mass. Instead, a stark service of readings, prayers, and veneration of the cross takes place in bare, stripped buildings. It is a day of fasting and mourning." };
+      description: "The most solemn day of the year, when Christians remember Jesus' crucifixion and death. Services are stark and stripped down: Scripture readings, prayers, and reflection on the cross, often in bare surroundings. It is a day of solemn reflection and mourning." };
   }
   if (sameDay(date, keys.holySaturday)) {
     return { name: "Holy Saturday / Easter Vigil", color: LiturgicalColor.white, solemnity: true,

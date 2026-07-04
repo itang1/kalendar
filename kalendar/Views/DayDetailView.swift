@@ -40,12 +40,6 @@ struct DayDetailView: View {
                 headerSection
                     .padding(.bottom, 20)
 
-                // MARK: Obligation & discipline flags
-                if hasFlags {
-                    flagsSection
-                        .padding(.bottom, 24)
-                }
-
                 // MARK: Rank explanation (collapsed; identical across every
                 // solemnity, or every feast/memorial)
                 if day.feastName != nil {
@@ -113,14 +107,6 @@ struct DayDetailView: View {
                 Text(day.liturgicalColor.explanation)
                     .font(.body)
                     .padding(.top, 8)
-
-                // MARK: Readings
-                sectionLabel("Readings")
-                    .padding(.top, 28)
-
-                Text("This liturgical year, Sunday readings come mainly from the Gospel of \(sundayGospelName).")
-                    .font(.body)
-                    .padding(.top, 6)
 
                 Divider()
                     .padding(.vertical, 28)
@@ -210,55 +196,6 @@ struct DayDetailView: View {
         }
     }
 
-    // MARK: - Obligation & discipline flags
-
-    private var hasFlags: Bool {
-        day.isHolyDayOfObligation || day.isDayOfFastingAndAbstinence || day.isDayOfAbstinenceFromMeat
-    }
-
-    @ViewBuilder
-    private var flagsSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            if day.isHolyDayOfObligation {
-                flagRow(
-                    icon: "checkmark.seal.fill",
-                    title: "Holy Day of Obligation",
-                    detail: "Catholics are asked to attend Mass today, as on a Sunday. Which days are observed can vary by country and diocese."
-                )
-            }
-            if day.isDayOfFastingAndAbstinence {
-                flagRow(
-                    icon: "fork.knife.circle.fill",
-                    title: "Fasting and Abstinence",
-                    detail: "A day of fasting (one full meal, plus two smaller ones that together don't equal a full meal) for Catholics ages 18 to 59, and abstinence from meat for those 14 and up."
-                )
-            } else if day.isDayOfAbstinenceFromMeat {
-                flagRow(
-                    icon: "fish.fill",
-                    title: "Abstinence from Meat",
-                    detail: "Fridays in Lent are a day of abstinence from meat, for Catholics age 14 and up."
-                )
-            }
-        }
-    }
-
-    @ViewBuilder
-    private func flagRow(icon: String, title: String, detail: String) -> some View {
-        HStack(alignment: .top, spacing: 10) {
-            Image(systemName: icon)
-                .font(.body)
-                .foregroundStyle(.secondary)
-                .frame(width: 20)
-            VStack(alignment: .leading, spacing: 4) {
-                Text(title)
-                    .font(.body.weight(.semibold))
-                Text(detail)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-            }
-        }
-    }
-
     @ViewBuilder
     private func sectionLabel(_ title: String) -> some View {
         Text(title)
@@ -273,17 +210,6 @@ struct DayDetailView: View {
             return "Day \(day.dayOfYear) of the year · \(countdown)"
         }
         return "Day \(day.dayOfYear) of the year"
-    }
-
-    /// The three-year Sunday cycle rotates which Gospel supplies most Sunday
-    /// readings: Matthew in Year A, Mark in Year B, Luke in Year C (John fills
-    /// in at points in every year, especially in Year B and during Easter).
-    private var sundayGospelName: String {
-        switch day.sundayLectionaryCycle {
-        case "A": return "Matthew"
-        case "B": return "Mark"
-        default: return "Luke"
-        }
     }
 
     private var rankExplanation: String {

@@ -629,11 +629,11 @@ struct LiturgicalCalendar {
         case (10, 18): return (.lukeEvangelist, "St. Luke, Evangelist", .red, false,
             "Luke was a physician and the only Gentile author in the New Testament. He wrote both the Gospel that bears his name and the Acts of the Apostles, together the longest single contribution to the New Testament. His Gospel is the one most attentive to women, the poor, and outsiders. He is the patron of doctors and artists.")
         case (10, 28): return (.simonAndJude, "Sts. Simon and Jude, Apostles", .red, false,
-            "Two apostles honored together because little is known about either of them. Simon was called 'the Zealot,' probably indicating a political background. Jude (not Judas Iscariot) wrote one of the short letters near the end of the New Testament and is the patron of lost causes, for the simple reason that people only pray to him when all else has failed.")
+            "Two apostles honored together because little is known about either of them. Simon was called 'the Zealot,' probably indicating a political background. Jude (not Judas Iscariot) wrote one of the short letters near the end of the New Testament and is remembered, by long tradition, as the patron of lost causes.")
         case (11, 1): return (.allSaints, "All Saints", .white, true,
             "A day to honor all saints, not just the famous ones with their own feast days, but every holy person in heaven, including ordinary people who lived faithful lives. It is a reminder that everyone is called to holiness.")
         case (11, 2): return (.allSouls, "All Souls' Day (Commemoration of All the Faithful Departed)", .violet, false,
-            "A day to remember and pray for all who have died, especially loved ones. Christians pray that those still being purified may reach heaven. It is a tender day of remembrance, often marked by visiting cemeteries.")
+            "A day to remember all who have died, especially loved ones. It is a tender day of remembrance and mourning, often marked by visiting cemeteries and giving thanks for those who have gone before.")
         case (11, 9): return (.dedicationOfLateran, "Dedication of the Lateran Basilica", .white, false,
             "The Lateran Basilica in Rome is the cathedral of the bishop of Rome, which means it is technically the mother church of all Roman Catholics worldwide, outranking even St. Peter's. This feast, celebrating its dedication, is a way of marking unity with the broader Christian community.")
         case (11, 30): return (.andrew, "St. Andrew, Apostle", .red, false,
@@ -671,7 +671,7 @@ struct LiturgicalCalendar {
         }
         if calendar.isDate(date, inSameDayAs: keys.goodFriday) {
             return (.goodFriday, "Good Friday of the Lord's Passion", .red, true,
-                "The most solemn day of the year. Christians remember Jesus' crucifixion and death. There is no Mass. Instead, a stark service of readings, prayers, and veneration of the cross takes place in bare, stripped buildings. It is a day of fasting and mourning.")
+                "The most solemn day of the year, when Christians remember Jesus' crucifixion and death. Services are stark and stripped down: Scripture readings, prayers, and reflection on the cross, often in bare surroundings. It is a day of solemn reflection and mourning.")
         }
         if calendar.isDate(date, inSameDayAs: keys.holySaturday) {
             return (.holySaturday, "Holy Saturday / Easter Vigil", .white, true,

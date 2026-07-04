@@ -113,38 +113,7 @@ extension DayCard {
     }
 }
 
-// MARK: - Obligation & discipline flags
-
-extension DayCard {
-    /// Holy Days of Obligation under the General Roman Calendar. Keyed off the
-    /// feast the engine actually resolved for the day, not the raw month-day, so a
-    /// solemnity that was outranked and transferred (e.g. the Immaculate Conception
-    /// moved off an Advent Sunday) carries the obligation to the day it is really
-    /// observed rather than leaving it on an empty date. Which days actually bind
-    /// can vary by country and diocese; the detail view notes that alongside the flag.
-    var isHolyDayOfObligation: Bool {
-        switch feastID {
-        case .maryMotherOfGod, .assumption, .allSaints, .immaculateConception,
-             .nativityOfTheLord, .ascension:
-            return true
-        default:
-            return false
-        }
-    }
-
-    /// Ash Wednesday and Good Friday: a day of both fasting and abstinence.
-    var isDayOfFastingAndAbstinence: Bool {
-        feastID == .ashWednesday || feastID == .goodFriday
-    }
-
-    /// Fridays in Lent (Ash Wednesday and Good Friday are already covered by
-    /// the stronger fasting-and-abstinence flag): abstinence from meat only.
-    var isDayOfAbstinenceFromMeat: Bool {
-        liturgicalSeason == .lent && Calendar.liturgical.component(.weekday, from: date) == 6
-    }
-}
-
-// MARK: - Lectionary cycle & readings
+// MARK: - Lectionary cycle
 
 extension DayCard {
     /// The civil year whose cycle governs this day. The lectionary year turns over

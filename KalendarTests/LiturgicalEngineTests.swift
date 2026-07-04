@@ -165,35 +165,6 @@ final class LiturgicalEngineTests: XCTestCase {
         XCTAssertEqual(dec2025.weekdayLectionaryCycle, "II")
     }
 
-    func testHolyDaysOfObligation() {
-        // Fixed obligations shown on their own dates, plus the movable Ascension.
-        XCTAssertTrue(card(2025, 1, 1).isHolyDayOfObligation, "Mary, Mother of God")
-        XCTAssertTrue(card(2025, 8, 15).isHolyDayOfObligation, "Assumption")
-        XCTAssertTrue(card(2025, 12, 25).isHolyDayOfObligation, "Christmas")
-        XCTAssertTrue(card(2025, 5, 29).isHolyDayOfObligation, "Ascension (Easter 2025 + 39)")
-        // An ordinary weekday is not.
-        XCTAssertFalse(card(2025, 1, 2).isHolyDayOfObligation)
-    }
-
-    func testObligationFollowsTransferredSolemnity() {
-        // Dec 8 2024 is an Advent Sunday, so the Immaculate Conception is impeded and
-        // transferred to Dec 9. The obligation should travel with the feast: off the
-        // empty Dec 8 and onto Dec 9 where the solemnity is actually observed.
-        XCTAssertFalse(card(2024, 12, 8).isHolyDayOfObligation, "no feast on the Advent Sunday")
-        XCTAssertTrue(card(2024, 12, 9).isHolyDayOfObligation, "Immaculate Conception, transferred")
-    }
-
-    func testLentenDisciplineFlags() {
-        // Ash Wednesday 2025 is March 5; Good Friday is April 18.
-        XCTAssertTrue(card(2025, 3, 5).isDayOfFastingAndAbstinence, "Ash Wednesday")
-        XCTAssertTrue(card(2025, 4, 18).isDayOfFastingAndAbstinence, "Good Friday")
-        // A Friday in Lent is abstinence only. March 14 2025 is a Friday.
-        XCTAssertTrue(card(2025, 3, 14).isDayOfAbstinenceFromMeat)
-        XCTAssertFalse(card(2025, 3, 14).isDayOfFastingAndAbstinence)
-        // A Friday outside Lent is neither. July 4 2025 is a Friday.
-        XCTAssertFalse(card(2025, 7, 4).isDayOfAbstinenceFromMeat)
-    }
-
     // MARK: - Drift guard against the golden decade
 
     func testSwiftEngineMatchesGoldenDecade() {
