@@ -328,3 +328,11 @@ struct DayDetailView: View {
         }
     }
 }
+
+#if DEBUG
+#Preview {
+    NavigationStack {
+        DayDetailView(day: .constant(.preview))
+    }
+}
+#endif

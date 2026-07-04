@@ -20,7 +20,7 @@ struct DayCardView: View {
             .fill(day.liturgicalColor.color)
             .overlay(
                 RoundedRectangle(cornerRadius: 4)
-                    .stroke(Color.secondary.opacity(strokeOpacity), lineWidth: strokeWidth)
+                    .stroke(Color.secondary.opacity(0.3), lineWidth: 3)
             )
             .overlay(
                 Group {
@@ -57,14 +57,6 @@ struct DayCardView: View {
             .accessibilityHint("Tap to view details about this day")
     }
 
-    private var strokeOpacity: Double {
-        0.3
-    }
-
-    private var strokeWidth: CGFloat {
-        3.0
-    }
-
     private var dotColor: Color {
         switch day.liturgicalColor {
         case .white, .rose:
@@ -74,10 +66,14 @@ struct DayCardView: View {
         }
     }
 
+    private static let accessibilityDateFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "MMMM d"
+        return f
+    }()
+
     private var accessibilityLabel: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM d"
-        let dateStr = formatter.string(from: day.date)
+        let dateStr = Self.accessibilityDateFormatter.string(from: day.date)
 
         var label = "\(dateStr), \(day.liturgicalSeason.rawValue)"
         if let feast = day.feastName {
@@ -89,4 +85,12 @@ struct DayCardView: View {
         return label
     }
 }
+
+#if DEBUG
+#Preview {
+    DayCardView(day: .preview)
+        .frame(width: 64, height: 64)
+        .padding()
+}
+#endif
 

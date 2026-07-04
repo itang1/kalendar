@@ -12,6 +12,13 @@ private enum CalendarViewMode {
     case grid, wheel
 }
 
+/// Identifiable wrapper so the day-detail sheet can be driven by `.sheet(item:)`
+/// rather than a hand-rolled `isPresented` binding. `id` is the index into the
+/// day window.
+private struct SelectedDay: Identifiable {
+    let id: Int
+}
+
 // MARK: - Main View
 
 struct CircleCalendarView: View {
@@ -19,13 +26,15 @@ struct CircleCalendarView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.scenePhase) private var scenePhase
     @AppStorage("solemnityNotificationsEnabled") private var notificationsEnabled = false
-    @State private var selectedIndex: Int?
+    @State private var selectedDay: SelectedDay?
     @State private var viewMode: CalendarViewMode = .grid
     @State private var showInfo = false
     @State private var showFeastList = false
     @State private var showJumpToDate = false
     @State private var scrollToIndex: Int? = nil
-    @State private var pendingSelectedIndex: Int? = nil
+    /// A selection captured while another sheet is open; applied on that sheet's
+    /// dismissal, since two sheets cannot be presented at once.
+    @State private var pendingSelection: Int? = nil
 
     /// Seven tiles per row on iPhone; more on the wider iPad canvas so tiles
     /// don't shrink to specks.
@@ -69,38 +78,25 @@ struct CircleCalendarView: View {
         .sheet(isPresented: $showInfo) {
             InfoSheet(days: viewModel.days)
         }
-        .sheet(isPresented: $showFeastList, onDismiss: {
-            selectedIndex = pendingSelectedIndex
-            pendingSelectedIndex = nil
-        }) {
+        .sheet(isPresented: $showFeastList, onDismiss: applyPendingSelection) {
             FeastListSheet(days: viewModel.days) { index in
                 viewMode = .grid
                 scrollToIndex = index
-                pendingSelectedIndex = index
+                pendingSelection = index
             }
         }
-        .sheet(isPresented: $showJumpToDate, onDismiss: {
-            selectedIndex = pendingSelectedIndex
-            pendingSelectedIndex = nil
-        }) {
+        .sheet(isPresented: $showJumpToDate, onDismiss: applyPendingSelection) {
             JumpToDateSheet(days: viewModel.days) { index in
                 viewMode = .grid
                 scrollToIndex = index
-                pendingSelectedIndex = index
+                pendingSelection = index
             }
         }
-        .sheet(
-            isPresented: Binding(
-                get: { selectedIndex != nil },
-                set: { if !$0 { selectedIndex = nil } }
+        .sheet(item: $selectedDay) { selection in
+            DayBrowserSheet(
+                days: Bindable(viewModel).days,
+                initialIndex: selection.id
             )
-        ) {
-            if let index = selectedIndex {
-                DayBrowserSheet(
-                    days: Bindable(viewModel).days,
-                    initialIndex: index
-                )
-            }
         }
         .task {
             if notificationsEnabled {
@@ -119,19 +115,28 @@ struct CircleCalendarView: View {
         }
     }
 
+    /// Opens the day-detail sheet for a selection captured while another sheet was
+    /// open (feast list or jump-to-date), once that sheet has dismissed.
+    private func applyPendingSelection() {
+        if let index = pendingSelection {
+            selectedDay = SelectedDay(id: index)
+        }
+        pendingSelection = nil
+    }
+
     // MARK: - Grid
 
     private var gridView: some View {
         ScrollViewReader { proxy in
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 6) {
-                    ForEach(Array(viewModel.days.enumerated()), id: \.offset) { index, day in
+                    ForEach(Array(viewModel.days.enumerated()), id: \.element.id) { index, day in
                         DayCardView(day: day)
                             .aspectRatio(1, contentMode: .fit)
                             .id(index)
                             .onTapGesture {
                                 UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                                selectedIndex = index
+                                selectedDay = SelectedDay(id: index)
                             }
                     }
                 }
@@ -154,13 +159,13 @@ struct CircleCalendarView: View {
             VStack(spacing: 20) {
                 KalendarWheel(days: viewModel.days, radius: size / 2) { index in
                     UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                    selectedIndex = index
+                    selectedDay = SelectedDay(id: index)
                 }
                 .frame(width: size, height: size)
 
                 Button {
                     UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                    selectedIndex = 0
+                    selectedDay = SelectedDay(id: 0)
                 } label: {
                     Text("Open Today")
                         .font(.subheadline.weight(.semibold))
@@ -557,3 +562,11 @@ private struct InfoSheet: View {
         )
     }
 }
+
+#if DEBUG
+#Preview {
+    NavigationStack {
+        CircleCalendarView()
+    }
+}
+#endif

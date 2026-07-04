@@ -9,7 +9,10 @@
 import SwiftUI
 
 struct DayCard: Identifiable {
-    let id = UUID()
+    /// The day itself is the stable identity: it is unique within the window and,
+    /// unlike a fresh UUID, survives a window rebuild (e.g. the midnight roll-over),
+    /// so SwiftUI diffing and animations stay correct across rebuilds.
+    var id: Date { date }
     let dayOfYear: Int  // 1–365
     let date: Date
     var comments: [String]
@@ -195,3 +198,25 @@ extension DayCard {
         return f
     }()
 }
+
+#if DEBUG
+extension DayCard {
+    /// A representative day (Christmas, with a note) for SwiftUI previews.
+    static var preview: DayCard {
+        DayCard(
+            dayOfYear: 359,
+            date: Calendar.liturgical.date(from: DateComponents(year: 2025, month: 12, day: 25))!,
+            comments: ["Midnight Mass with family"],
+            liturgicalSeason: .christmas,
+            liturgicalColor: .white,
+            feastName: "Nativity of the Lord (Christmas)",
+            feastID: .nativityOfTheLord,
+            feastDescription: "The joyful celebration of Jesus' birth in Bethlehem. Christians believe God became a human baby, born to Mary in humble circumstances.",
+            isSolemnity: true,
+            weekOfSeason: nil,
+            isMovableFeast: false,
+            countdownText: nil
+        )
+    }
+}
+#endif
