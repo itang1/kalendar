@@ -37,6 +37,10 @@ struct DayCard: Identifiable {
 private let weekdayNameFormatter: DateFormatter = {
     let f = DateFormatter()
     f.dateFormat = "EEEE"
+    // Fixed English locale: the day titles are English by construction (see
+    // ordinalNames), and pinning the weekday keeps them deterministic and in sync
+    // with the JS engine's title copy that the golden drift guard compares against.
+    f.locale = Locale(identifier: "en_US_POSIX")
     return f
 }()
 

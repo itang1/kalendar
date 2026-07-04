@@ -1,5 +1,5 @@
 (function () {
-  const { liturgicalInfo, keyDates, addDays, daysBetween, LiturgicalSeason, LiturgicalColor, SEASON_EXPLANATION, SEASON_CONTEXTUAL_ITEMS, COLOR_EXPLANATION } = window.KalendarEngine;
+  const { liturgicalInfo, liturgicalDayTitle, keyDates, addDays, daysBetween, LiturgicalSeason, LiturgicalColor, SEASON_EXPLANATION, SEASON_CONTEXTUAL_ITEMS, COLOR_EXPLANATION } = window.KalendarEngine;
 
   const TOTAL_DAYS = 366;
   const today = (() => {
@@ -108,52 +108,6 @@
   const dateFormatter = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   const weekdayFormatter = new Intl.DateTimeFormat('en-US', { weekday: 'long' });
 
-  const ordinalNames = [
-    "First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth",
-    "Ninth", "Tenth", "Eleventh", "Twelfth", "Thirteenth", "Fourteenth",
-    "Fifteenth", "Sixteenth", "Seventeenth", "Eighteenth", "Nineteenth",
-    "Twentieth", "Twenty-First", "Twenty-Second", "Twenty-Third", "Twenty-Fourth",
-    "Twenty-Fifth", "Twenty-Sixth", "Twenty-Seventh", "Twenty-Eighth",
-    "Twenty-Ninth", "Thirtieth", "Thirty-First", "Thirty-Second", "Thirty-Third",
-    "Thirty-Fourth"
-  ];
-
-  function ordinalName(n) {
-    if (n >= 1 && n <= ordinalNames.length) return ordinalNames[n - 1];
-    return String(n);
-  }
-
-  function liturgicalDayTitle(day) {
-    if (day.feastName || !day.weekOfSeason) return null;
-
-    const isSunday = day.date.getDay() === 0;
-    const weekday = weekdayFormatter.format(day.date);
-    const week = day.weekOfSeason;
-
-    switch (day.season) {
-      case LiturgicalSeason.lent:
-        if (week === 0) return `${weekday} after Ash Wednesday`;
-        return isSunday
-          ? `${ordinalName(week)} Sunday of Lent`
-          : `${weekday} of the ${ordinalName(week)} Week of Lent`;
-      case LiturgicalSeason.easter:
-        if (week === 1 && !isSunday) return `${weekday} in the Octave of Easter`;
-        return isSunday
-          ? `${ordinalName(week)} Sunday of Easter`
-          : `${weekday} of the ${ordinalName(week)} Week of Easter`;
-      case LiturgicalSeason.advent:
-        return isSunday
-          ? `${ordinalName(week)} Sunday of Advent`
-          : `${weekday} of the ${ordinalName(week)} Week of Advent`;
-      case LiturgicalSeason.ordinaryTime:
-        return isSunday
-          ? `${ordinalName(week)} Sunday in Ordinary Time`
-          : `${weekday} of the ${ordinalName(week)} Week in Ordinary Time`;
-      default:
-        return null;
-    }
-  }
-
   // Days until the next major moment of the year, e.g. "17 days until Easter".
   // A faithful port of DayCard.countdownText: it measures the distance to the
   // dated anchors from this year and next, and reports the nearest one still ahead.
@@ -223,7 +177,7 @@
       ? "A solemnity is the highest rank of celebration in Christian worship. These mark the most important mysteries and events of the faith, like Easter, Christmas, or major saints. They take priority over the regular season."
       : "Feasts and memorials are celebrations of saints or events in the life of Jesus and Mary. A feast is more important than a memorial. Some memorials are optional, while others are observed throughout Christianity.";
 
-    const dayTitle = liturgicalDayTitle(day);
+    const dayTitle = liturgicalDayTitle(day, day.date);
     const countdown = countdownText(day);
 
     panel.innerHTML = `

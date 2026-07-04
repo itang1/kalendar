@@ -215,13 +215,14 @@ final class LiturgicalEngineTests: XCTestCase {
     /// Formats one day exactly as tools/liturgical-golden.mjs does, so the two engines
     /// can be compared line for line.
     private func goldenLine(for date: Date) -> String {
-        let day = engine.liturgicalInfo(for: date)
+        let dayInfo = engine.liturgicalInfo(for: date)
         let y = calendar.component(.year, from: date)
         let m = calendar.component(.month, from: date)
         let d = calendar.component(.day, from: date)
         let ymd = String(format: "%04d-%02d-%02d", y, m, d)
-        let week = day.weekOfSeason.map(String.init) ?? ""
-        let feast = day.feastName ?? ""
-        return "\(ymd)|\(day.season.rawValue)|\(day.liturgicalColor.rawValue)|\(day.isSolemnity ? 1 : 0)|\(week)|\(feast)"
+        let week = dayInfo.weekOfSeason.map(String.init) ?? ""
+        let feast = dayInfo.feastName ?? ""
+        let title = card(y, m, d).liturgicalDayTitle ?? ""
+        return "\(ymd)|\(dayInfo.season.rawValue)|\(dayInfo.liturgicalColor.rawValue)|\(dayInfo.isSolemnity ? 1 : 0)|\(week)|\(feast)|\(title)"
     }
 }

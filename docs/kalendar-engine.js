@@ -495,6 +495,60 @@ function movableFeast(date, keys) {
   return null;
 }
 
+// MARK: Liturgical day title (mirrors DayCard.liturgicalDayTitle in the Swift app)
+
+// English weekday names, indexed by JS getDay() (0 = Sunday). Fixed rather than
+// locale-derived so the title is deterministic and matches the Swift copy.
+const WEEKDAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+const ORDINAL_NAMES = [
+  "First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth",
+  "Ninth", "Tenth", "Eleventh", "Twelfth", "Thirteenth", "Fourteenth",
+  "Fifteenth", "Sixteenth", "Seventeenth", "Eighteenth", "Nineteenth",
+  "Twentieth", "Twenty-First", "Twenty-Second", "Twenty-Third", "Twenty-Fourth",
+  "Twenty-Fifth", "Twenty-Sixth", "Twenty-Seventh", "Twenty-Eighth",
+  "Twenty-Ninth", "Thirtieth", "Thirty-First", "Thirty-Second", "Thirty-Third",
+  "Thirty-Fourth",
+];
+
+function ordinalName(n) {
+  return (n >= 1 && n <= ORDINAL_NAMES.length) ? ORDINAL_NAMES[n - 1] : String(n);
+}
+
+// The day's proper liturgical name (e.g. "Tuesday of the Second Week of Advent"),
+// or null on feast days and in seasons without counted weeks. `info` is a
+// liturgicalInfo() result; `date` supplies the weekday.
+function liturgicalDayTitle(info, date) {
+  if (info.feastName != null || info.weekOfSeason == null) return null;
+
+  const week = info.weekOfSeason;
+  const weekday = WEEKDAY_NAMES[date.getDay()];
+  const isSunday = date.getDay() === 0;
+
+  if (info.season === LiturgicalSeason.lent && week === 0) {
+    // The days between Ash Wednesday and the First Sunday of Lent.
+    return `${weekday} after Ash Wednesday`;
+  }
+  if (info.season === LiturgicalSeason.easter && week === 1 && !isSunday) {
+    return `${weekday} in the Octave of Easter`;
+  }
+
+  switch (info.season) {
+    case LiturgicalSeason.advent:
+    case LiturgicalSeason.lent:
+    case LiturgicalSeason.easter:
+      return isSunday
+        ? `${ordinalName(week)} Sunday of ${info.season}`
+        : `${weekday} of the ${ordinalName(week)} Week of ${info.season}`;
+    case LiturgicalSeason.ordinaryTime:
+      return isSunday
+        ? `${ordinalName(week)} Sunday in Ordinary Time`
+        : `${weekday} of the ${ordinalName(week)} Week in Ordinary Time`;
+    default:
+      return null;
+  }
+}
+
 // MARK: Compute liturgical info for a date
 
 function liturgicalInfo(date) {
@@ -545,6 +599,7 @@ window.KalendarEngine = {
   SEASON_CONTEXTUAL_ITEMS,
   COLOR_EXPLANATION,
   liturgicalInfo,
+  liturgicalDayTitle,
   keyDates,
   addDays,
   daysBetween,
