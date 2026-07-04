@@ -43,6 +43,7 @@ final class LiturgicalEngineTests: XCTestCase {
             liturgicalSeason: dayInfo.season,
             liturgicalColor: dayInfo.liturgicalColor,
             feastName: dayInfo.feastName,
+            feastID: dayInfo.feastID,
             feastDescription: dayInfo.feastDescription,
             isSolemnity: dayInfo.isSolemnity,
             weekOfSeason: dayInfo.weekOfSeason,
@@ -172,6 +173,14 @@ final class LiturgicalEngineTests: XCTestCase {
         XCTAssertTrue(card(2025, 5, 29).isHolyDayOfObligation, "Ascension (Easter 2025 + 39)")
         // An ordinary weekday is not.
         XCTAssertFalse(card(2025, 1, 2).isHolyDayOfObligation)
+    }
+
+    func testObligationFollowsTransferredSolemnity() {
+        // Dec 8 2024 is an Advent Sunday, so the Immaculate Conception is impeded and
+        // transferred to Dec 9. The obligation should travel with the feast: off the
+        // empty Dec 8 and onto Dec 9 where the solemnity is actually observed.
+        XCTAssertFalse(card(2024, 12, 8).isHolyDayOfObligation, "no feast on the Advent Sunday")
+        XCTAssertTrue(card(2024, 12, 9).isHolyDayOfObligation, "Immaculate Conception, transferred")
     }
 
     func testLentenDisciplineFlags() {

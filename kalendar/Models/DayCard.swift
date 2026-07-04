@@ -116,23 +116,25 @@ extension DayCard {
 // MARK: - Obligation & discipline flags
 
 extension DayCard {
-    /// Fixed-date Holy Days of Obligation under the General Roman Calendar,
-    /// plus the Ascension (movable). Which days actually bind can vary by
-    /// country and diocese; the detail view notes that alongside the flag.
+    /// Holy Days of Obligation under the General Roman Calendar. Keyed off the
+    /// feast the engine actually resolved for the day, not the raw month-day, so a
+    /// solemnity that was outranked and transferred (e.g. the Immaculate Conception
+    /// moved off an Advent Sunday) carries the obligation to the day it is really
+    /// observed rather than leaving it on an empty date. Which days actually bind
+    /// can vary by country and diocese; the detail view notes that alongside the flag.
     var isHolyDayOfObligation: Bool {
-        let month = Calendar.liturgical.component(.month, from: date)
-        let dayOfMonth = Calendar.liturgical.component(.day, from: date)
-        switch (month, dayOfMonth) {
-        case (1, 1), (8, 15), (11, 1), (12, 8), (12, 25):
+        switch feastID {
+        case .maryMotherOfGod, .assumption, .allSaints, .immaculateConception,
+             .nativityOfTheLord, .ascension:
             return true
         default:
-            return feastName == "Ascension of the Lord"
+            return false
         }
     }
 
     /// Ash Wednesday and Good Friday: a day of both fasting and abstinence.
     var isDayOfFastingAndAbstinence: Bool {
-        feastName == "Ash Wednesday" || feastName == "Good Friday of the Lord's Passion"
+        feastID == .ashWednesday || feastID == .goodFriday
     }
 
     /// Fridays in Lent (Ash Wednesday and Good Friday are already covered by
