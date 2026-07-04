@@ -34,56 +34,44 @@ struct DayCard: Identifiable {
 
 // MARK: - Liturgical day naming
 
-private let weekdayNameFormatter: DateFormatter = {
-    let f = DateFormatter()
-    f.dateFormat = "EEEE"
-    // Fixed English locale: the day titles are English by construction (see
-    // ordinalNames), and pinning the weekday keeps them deterministic and in sync
-    // with the JS engine's title copy that the golden drift guard compares against.
-    f.locale = Locale(identifier: "en_US_POSIX")
-    return f
-}()
-
-private let ordinalNames = [
-    "First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth",
-    "Ninth", "Tenth", "Eleventh", "Twelfth", "Thirteenth", "Fourteenth",
-    "Fifteenth", "Sixteenth", "Seventeenth", "Eighteenth", "Nineteenth",
-    "Twentieth", "Twenty-First", "Twenty-Second", "Twenty-Third", "Twenty-Fourth",
-    "Twenty-Fifth", "Twenty-Sixth", "Twenty-Seventh", "Twenty-Eighth",
-    "Twenty-Ninth", "Thirtieth", "Thirty-First", "Thirty-Second", "Thirty-Third",
-    "Thirty-Fourth"
-]
-
+/// Numeric ordinal (e.g. "14th"), not spelled out: the date line already
+/// carries the weekday, so this title never repeats it and stays quick to parse.
 private func ordinalName(_ n: Int) -> String {
-    guard n >= 1 && n <= ordinalNames.count else { return "\(n)" }
-    return ordinalNames[n - 1]
+    let mod100 = n % 100
+    if mod100 >= 11 && mod100 <= 13 { return "\(n)th" }
+    switch n % 10 {
+    case 1: return "\(n)st"
+    case 2: return "\(n)nd"
+    case 3: return "\(n)rd"
+    default: return "\(n)th"
+    }
 }
 
 extension DayCard {
     /// The day's proper liturgical name, the way a missal titles it, e.g.
-    /// "Tuesday of the Second Week of Advent" or "Third Sunday in Ordinary Time".
-    /// Nil on feast days (the feast is the day's name) and in seasons without
-    /// counted weeks (Christmas, Triduum).
+    /// "2nd Week of Advent" or "3rd Sunday in Ordinary Time". Nil on feast days
+    /// (the feast is the day's name) and in seasons without counted weeks
+    /// (Christmas, Triduum). Leaves out the weekday name, since the date line
+    /// in the header already shows it (e.g. "July 3, 2026 (Friday)").
     var liturgicalDayTitle: String? {
         guard feastName == nil, let week = weekOfSeason else { return nil }
 
-        let weekday = weekdayNameFormatter.string(from: date)
         let isSunday = Calendar.liturgical.component(.weekday, from: date) == 1
 
         switch liturgicalSeason {
         case .lent where week == 0:
             // The days between Ash Wednesday and the First Sunday of Lent.
-            return "\(weekday) after Ash Wednesday"
+            return "After Ash Wednesday"
         case .easter where week == 1 && !isSunday:
-            return "\(weekday) in the Octave of Easter"
+            return "Octave of Easter"
         case .advent, .lent, .easter:
             return isSunday
                 ? "\(ordinalName(week)) Sunday of \(liturgicalSeason.rawValue)"
-                : "\(weekday) of the \(ordinalName(week)) Week of \(liturgicalSeason.rawValue)"
+                : "\(ordinalName(week)) Week of \(liturgicalSeason.rawValue)"
         case .ordinaryTime:
             return isSunday
                 ? "\(ordinalName(week)) Sunday in Ordinary Time"
-                : "\(weekday) of the \(ordinalName(week)) Week in Ordinary Time"
+                : "\(ordinalName(week)) Week in Ordinary Time"
         default:
             return nil
         }

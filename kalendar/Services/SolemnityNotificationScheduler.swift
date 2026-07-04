@@ -9,6 +9,7 @@ import UserNotifications
 
 enum SolemnityNotificationScheduler {
     private static let identifierPrefix = "kalendar.solemnity."
+    private static let windowExpirationIdentifier = "kalendar.windowExpiration"
     private static let notificationHour = 8
 
     /// Requests notification permission if needed, then schedules. Returns whether
@@ -37,7 +38,7 @@ enum SolemnityNotificationScheduler {
         let requests = await center.pendingNotificationRequests()
         let ours = requests
             .map(\.identifier)
-            .filter { $0.hasPrefix(identifierPrefix) }
+            .filter { $0.hasPrefix(identifierPrefix) || $0 == windowExpirationIdentifier }
         center.removePendingNotificationRequests(withIdentifiers: ours)
     }
 
@@ -49,7 +50,7 @@ enum SolemnityNotificationScheduler {
         let requests = await center.pendingNotificationRequests()
         let ours = requests
             .map(\.identifier)
-            .filter { $0.hasPrefix(identifierPrefix) }
+            .filter { $0.hasPrefix(identifierPrefix) || $0 == windowExpirationIdentifier }
         center.removePendingNotificationRequests(withIdentifiers: ours)
 
         let calendar = Calendar.current
@@ -75,6 +76,34 @@ enum SolemnityNotificationScheduler {
                 try await center.add(request)
             } catch {
                 assertionFailure("Failed to schedule notification \(identifier): \(error)")
+            }
+        }
+
+        // The window only extends when the app is actually opened (see the
+        // `.task` in CircleCalendarView), so a user who stops opening it would
+        // otherwise just stop hearing from us with no signal anything lapsed.
+        // A reminder at the far edge of the window degrades gracefully: it nudges
+        // them back, which reschedules everything and pushes the window forward
+        // again, indefinitely.
+        if let lastDay = days.last {
+            var trigger = calendar.dateComponents([.year, .month, .day], from: lastDay.date)
+            trigger.hour = notificationHour
+            trigger.minute = 0
+
+            let content = UNMutableNotificationContent()
+            content.title = "Keep the reminders coming"
+            content.body = "Open Kalendar to line up next year's solemnity notifications."
+            content.sound = .default
+
+            let request = UNNotificationRequest(
+                identifier: windowExpirationIdentifier,
+                content: content,
+                trigger: UNCalendarNotificationTrigger(dateMatching: trigger, repeats: false)
+            )
+            do {
+                try await center.add(request)
+            } catch {
+                assertionFailure("Failed to schedule window-expiration notification: \(error)")
             }
         }
     }

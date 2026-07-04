@@ -15,7 +15,7 @@ struct OnboardingView: View {
         OnboardingPage(
             symbol: "circle.grid.3x3.fill",
             symbolColor: LiturgicalColor.violet.color,
-            title: "The Christian Year",
+            title: "The Liturgical Year",
             body: "The liturgical kalendar organizes time around the life of Jesus instead of months and quarters. It runs from Advent in late November all the way to the feast of Christ the King nearly a year later, then starts again.\n\n'Kalendar' is the traditional spelling used in many liturgical texts."
         ),
         OnboardingPage(
@@ -34,7 +34,7 @@ struct OnboardingView: View {
             symbol: "chart.pie.fill",
             symbolColor: LiturgicalColor.green.color,
             title: "Two Ways to Look",
-            body: "The grid view shows every day of the next 365 days laid out as tiles, always starting with today and rolling forward one day at a time.\n\nTiles omit date numbers so color and season stand out at a glance. Tap any tile to see its exact date, feast, and notes.\n\nThe wheel view shows the whole year at once as colored slices, so you can see the shape of the Christian year from a distance.\n\nToggle between the two views in the top right."
+            body: "The grid view shows every day of the next 365 days laid out as tiles, always starting with today and rolling forward one day at a time.\n\nTiles omit date numbers so color and season stand out at a glance. Tap any tile to see its exact date, feast, and notes.\n\nThe wheel view shows the whole year at once as colored slices, so you can see the shape of the liturgical year from a distance.\n\nToggle between the two views in the top right."
         ),
         OnboardingPage(
             symbol: "text.bubble",

@@ -34,15 +34,15 @@ const LiturgicalSeason = {
 
 const SEASON_EXPLANATION = {
   [LiturgicalSeason.advent]:
-    "The four-week season of preparation and anticipation before Christmas. Christians reflect on the coming of Jesus, both his birth and his promised return. The word 'Advent' means 'coming.'",
+    "The four-week season of preparation and anticipation before Christmas. It centers on the coming of Jesus, both his birth and his promised return. The word 'Advent' means 'coming.'",
   [LiturgicalSeason.christmas]:
-    "The joyful celebration of Jesus' birth, lasting from December 25 through the Baptism of the Lord in January. It is not just one day; Christians celebrate for weeks.",
+    "The joyful celebration of Jesus' birth, lasting from December 25 through the Baptism of the Lord in January. It is not just one day; the celebration continues for weeks.",
   [LiturgicalSeason.ordinaryTime]:
     "The longest season of the liturgical year, split into two stretches (after Christmas and after Pentecost). 'Ordinary' does not mean boring. It comes from 'ordinal' (counted). These weeks focus on Jesus' public life and teachings.",
   [LiturgicalSeason.lent]:
-    "A 40-day season of prayer, fasting, and giving that prepares Christians for Easter. It begins on Ash Wednesday and is a time for self-reflection and turning back toward God.",
+    "A 40-day season of prayer, fasting, and giving that prepares for Easter. It begins on Ash Wednesday and is a time for self-reflection and turning back toward God.",
   [LiturgicalSeason.triduum]:
-    "The holiest three days of the entire liturgical year: Holy Thursday (Jesus' Last Supper), Good Friday (his crucifixion and death), and Holy Saturday (waiting at the tomb). It is the heart of the Christian faith.",
+    "The holiest three days of the entire liturgical year: Holy Thursday (Jesus' Last Supper), Good Friday (his crucifixion and death), and Holy Saturday (waiting at the tomb). It is the heart of the liturgical year.",
   [LiturgicalSeason.easter]:
     "The most important and joyful season, celebrating Jesus' resurrection from the dead. It lasts 50 days, from Easter Sunday all the way to Pentecost. It is treated as one long feast day.",
 };
@@ -82,7 +82,7 @@ const SEASON_CONTEXTUAL_ITEMS = {
   [LiturgicalSeason.easter]: [
     "Say Alleluia. It was held back all through Lent and this is the season it belongs to.",
     "Read Acts of the Apostles from the beginning. It is the season's companion text, the story of what happened after the resurrection, and it moves fast.",
-    "Think about baptism. Easter Vigil is when new Christians are received, and the whole season carries that sense of new life.",
+    "Think about baptism. Easter Vigil is when new believers are received into the Church, and the whole season carries that sense of new life.",
     "The tone is joyful and sustained. Easter is not one day. It is fifty days, longer than Lent, and the tradition takes that seriously.",
   ],
 };
@@ -343,19 +343,19 @@ function transferredSolemnity(date, keys, prevYearKeys) {
 
 const FIXED_FEASTS = {
   '1-1':   { name: "Solemnity of Mary, Mother of God", color: LiturgicalColor.white, solemnity: true,
-    description: "The oldest feast honoring Mary. On the first day of the year, Christians celebrate Mary's role as the mother of Jesus (who Christians believe is God). It is also the World Day of Peace." },
+    description: "The oldest feast honoring Mary. On the first day of the year, this feast celebrates Mary's role as the mother of Jesus (who is believed to be God). It is also the World Day of Peace." },
   '1-6':   { name: "Epiphany of the Lord", color: LiturgicalColor.white, solemnity: true,
     description: "Celebrates the visit of the Magi (Wise Men) to the infant Jesus. 'Epiphany' means 'revelation,' and this feast marks Jesus being revealed to the whole world, not just the Jewish people." },
   '1-25':  { name: "Conversion of St. Paul", color: LiturgicalColor.white, solemnity: false,
-    description: "Recalls the dramatic moment when Saul of Tarsus, who was hunting down and imprisoning Christians, was struck blind on the road to Damascus by a vision of the risen Jesus. He recovered, was baptized, changed his name to Paul, and became the greatest missionary the Christian faith has ever produced." },
+    description: "Recalls the dramatic moment when Saul of Tarsus, who was hunting down and imprisoning believers, was struck blind on the road to Damascus by a vision of the risen Jesus. He recovered, was baptized, changed his name to Paul, and became the greatest missionary the early Church ever produced." },
   '2-2':   { name: "Presentation of the Lord", color: LiturgicalColor.white, solemnity: false,
     description: "Forty days after Christmas, Mary and Joseph brought baby Jesus to the Temple in Jerusalem, as Jewish law required for firstborn sons. The elderly prophet Simeon recognized him as the Messiah and called him 'a light for revelation to the Gentiles.' Also called Candlemas." },
   '2-22':  { name: "Chair of St. Peter", color: LiturgicalColor.white, solemnity: false,
     description: "Celebrates Peter's role as the leader of the apostles and the first bishop of Rome. The 'chair' is not a piece of furniture so much as a symbol of teaching authority. This feast is about the office of leadership that traces through every pope back to Peter." },
   '3-19':  { name: "St. Joseph, Spouse of the Blessed Virgin Mary", color: LiturgicalColor.white, solemnity: true,
-    description: "Honors Joseph, the foster-father of Jesus and husband of Mary. He was a humble carpenter from Nazareth who protected and raised Jesus. He is the patron saint of workers, fathers, and all Christians." },
+    description: "Honors Joseph, the foster-father of Jesus and husband of Mary. He was a humble carpenter from Nazareth who protected and raised Jesus. He is the patron saint of workers, fathers, and the universal Church." },
   '3-25':  { name: "Annunciation of the Lord", color: LiturgicalColor.white, solemnity: true,
-    description: "Celebrates the moment the angel Gabriel appeared to Mary and announced she would conceive Jesus by the Holy Spirit. Mary said 'yes,' and Christians believe that is when God became human. Exactly 9 months before Christmas." },
+    description: "Celebrates the moment the angel Gabriel appeared to Mary and announced she would conceive Jesus by the Holy Spirit. Mary said 'yes,' the moment believed to be when God became human. Exactly 9 months before Christmas." },
   '4-25':  { name: "St. Mark, Evangelist", color: LiturgicalColor.red, solemnity: false,
     description: "Honors Mark, the author of the shortest and most urgent of the four Gospels. He wrote it in Rome, likely drawing on Peter's eyewitness accounts, and his Gospel reads like it is in a hurry. The word 'immediately' appears over forty times." },
   '5-1':   { name: "St. Joseph the Worker", color: LiturgicalColor.white, solemnity: false,
@@ -369,7 +369,7 @@ const FIXED_FEASTS = {
   '6-24':  { name: "Nativity of St. John the Baptist", color: LiturgicalColor.white, solemnity: true,
     description: "The birth of John the Baptist, Jesus' cousin, who grew up to be the prophet who prepared the way for Jesus' ministry. He baptized people in the Jordan River and is the one who baptized Jesus himself." },
   '6-29':  { name: "Sts. Peter and Paul, Apostles", color: LiturgicalColor.red, solemnity: true,
-    description: "Honors the two greatest apostles: Peter, the fisherman Jesus chose to lead his followers (the first pope), and Paul, who started out persecuting Christians but converted and became the greatest missionary of the early Christian world. Both were martyred in Rome." },
+    description: "Honors the two greatest apostles: Peter, the fisherman Jesus chose to lead his followers (the first pope), and Paul, who started out persecuting believers but converted and became the greatest missionary of the early Church. Both were martyred in Rome." },
   '7-22':  { name: "St. Mary Magdalene", color: LiturgicalColor.white, solemnity: false,
     description: "Mary Magdalene was among Jesus' closest followers, present at his crucifixion when most of the apostles had fled, and the first person to see him after the resurrection. She is called the 'apostle to the apostles' because she carried the news of the resurrection to the others. Her feast was elevated to a proper feast in 2016." },
   '7-25':  { name: "St. James, Apostle", color: LiturgicalColor.red, solemnity: false,
@@ -385,7 +385,7 @@ const FIXED_FEASTS = {
   '9-8':   { name: "Nativity of the Blessed Virgin Mary", color: LiturgicalColor.white, solemnity: false,
     description: "The birth of Mary, celebrated nine months after the Immaculate Conception on December 8. This is one of only three birthdays celebrated in the liturgical calendar: Jesus, John the Baptist, and Mary. The others are commemorated on the anniversary of their death, but these three are celebrated from their first day." },
   '9-14':  { name: "Exaltation of the Holy Cross", color: LiturgicalColor.red, solemnity: false,
-    description: "Honors the cross on which Jesus was crucified. Rather than a symbol of defeat, Christians see it as the instrument of salvation. This feast dates back to the 4th century when St. Helena (Emperor Constantine's mother) is believed to have found the actual cross in Jerusalem." },
+    description: "Honors the cross on which Jesus was crucified. Rather than a symbol of defeat, it is seen as the instrument of salvation. This feast dates back to the 4th century when St. Helena (Emperor Constantine's mother) is believed to have found the actual cross in Jerusalem." },
   '9-21':  { name: "St. Matthew, Apostle and Evangelist", color: LiturgicalColor.red, solemnity: false,
     description: "Matthew was a tax collector, which made him a social outcast in his community. Jesus called him anyway. He went on to write the first of the four Gospels, the most Jewish in character, the one most concerned with showing how Jesus fulfills the Hebrew scriptures." },
   '9-29':  { name: "Sts. Michael, Gabriel, and Raphael, Archangels", color: LiturgicalColor.white, solemnity: false,
@@ -405,9 +405,9 @@ const FIXED_FEASTS = {
   '11-1':  { name: "All Saints", color: LiturgicalColor.white, solemnity: true,
     description: "A day to honor all saints, not just the famous ones with their own feast days, but every holy person in heaven, including ordinary people who lived faithful lives. It is a reminder that everyone is called to holiness." },
   '11-2':  { name: "All Souls' Day (Commemoration of All the Faithful Departed)", color: LiturgicalColor.violet, solemnity: false,
-    description: "A day to remember and pray for all who have died, especially loved ones. Christians pray that those still being purified may reach heaven. It is a tender day of remembrance, often marked by visiting cemeteries." },
+    description: "A day to remember and pray for all who have died, especially loved ones. Prayers are offered that those still being purified may reach heaven. It is a tender day of remembrance, often marked by visiting cemeteries." },
   '11-9':  { name: "Dedication of the Lateran Basilica", color: LiturgicalColor.white, solemnity: false,
-    description: "The Lateran Basilica in Rome is the cathedral of the bishop of Rome, which means it is technically the mother church of all Roman Catholics worldwide, outranking even St. Peter's. This feast, celebrating its dedication, is a way of marking unity with the broader Christian community." },
+    description: "The Lateran Basilica in Rome is the cathedral of the bishop of Rome, which means it is technically the mother church of all Roman Catholics worldwide, outranking even St. Peter's. This feast, celebrating its dedication, is a way of marking unity with the broader Church." },
   '11-30': { name: "St. Andrew, Apostle", color: LiturgicalColor.red, solemnity: false,
     description: "Andrew was Simon Peter's brother and, according to John's Gospel, the first of the apostles to follow Jesus. He brought Peter to Jesus. He is said to have been crucified on an X-shaped cross, which became his symbol. He is the patron saint of Scotland, Greece, and Russia." },
   '12-8':  { name: "Immaculate Conception of the Blessed Virgin Mary", color: LiturgicalColor.white, solemnity: true,
@@ -415,9 +415,9 @@ const FIXED_FEASTS = {
   '12-12': { name: "Our Lady of Guadalupe", color: LiturgicalColor.white, solemnity: false,
     description: "In 1531, Mary appeared to a young Aztec man named Juan Diego on a hill outside Mexico City, speaking to him in his own language, Nahuatl. She asked for a church to be built there. When he reported the apparition to the bishop, she left her image miraculously imprinted on his cloak as evidence. That image still exists. She is the patron of the Americas." },
   '12-25': { name: "Nativity of the Lord (Christmas)", color: LiturgicalColor.white, solemnity: true,
-    description: "The joyful celebration of Jesus' birth in Bethlehem. Christians believe God became a human baby, born to Mary in humble circumstances. It is one of the two greatest feasts of the liturgical year (along with Easter)." },
+    description: "The joyful celebration of Jesus' birth in Bethlehem. It marks the belief that God became a human baby, born to Mary in humble circumstances. It is one of the two greatest feasts of the liturgical year (along with Easter)." },
   '12-26': { name: "St. Stephen, First Martyr", color: LiturgicalColor.red, solemnity: false,
-    description: "Honors Stephen, one of the first deacons of the early Christian community, who became the very first Christian martyr. He was stoned to death for his faith, and as he died he prayed for his persecutors, just as Jesus had done on the cross." },
+    description: "Honors Stephen, one of the first deacons of the early Church, who became its very first martyr. He was stoned to death for his faith, and as he died he prayed for his persecutors, just as Jesus had done on the cross." },
   '12-27': { name: "St. John, Apostle and Evangelist", color: LiturgicalColor.white, solemnity: false,
     description: "Honors John, one of Jesus' closest disciples (the 'beloved disciple'), who is traditionally credited with writing the Gospel of John, three letters, and the Book of Revelation. He is the only apostle believed to have died of natural causes." },
   '12-28': { name: "Holy Innocents, Martyrs", color: LiturgicalColor.red, solemnity: false,
@@ -433,7 +433,7 @@ function fixedFeast(date) {
 function movableFeast(date, keys) {
   if (sameDay(date, keys.ashWednesday)) {
     return { name: "Ash Wednesday", color: LiturgicalColor.violet, solemnity: false,
-      description: "The start of Lent. Christians receive ashes on their foreheads in the shape of a cross as a sign of repentance and mortality. The priest says 'Remember that you are dust, and to dust you shall return.' It is a day of fasting and reflection." };
+      description: "The start of Lent. Ashes are placed on the forehead in the shape of a cross as a sign of repentance and mortality. The priest says 'Remember that you are dust, and to dust you shall return.' It is a day of fasting and reflection." };
   }
   if (sameDay(date, keys.palmSunday)) {
     return { name: "Palm Sunday of the Lord's Passion", color: LiturgicalColor.red, solemnity: false,
@@ -445,7 +445,7 @@ function movableFeast(date, keys) {
   }
   if (sameDay(date, keys.goodFriday)) {
     return { name: "Good Friday of the Lord's Passion", color: LiturgicalColor.red, solemnity: true,
-      description: "The most solemn day of the year. Christians remember Jesus' crucifixion and death. There is no Mass. Instead, a stark service of readings, prayers, and veneration of the cross takes place in bare, stripped buildings. It is a day of fasting and mourning." };
+      description: "The most solemn day of the year, remembering Jesus' crucifixion and death. There is no Mass. Instead, a stark service of readings, prayers, and veneration of the cross takes place in bare, stripped buildings. It is a day of fasting and mourning." };
   }
   if (sameDay(date, keys.holySaturday)) {
     return { name: "Holy Saturday / Easter Vigil", color: LiturgicalColor.white, solemnity: true,
@@ -453,7 +453,7 @@ function movableFeast(date, keys) {
   }
   if (sameDay(date, keys.easter)) {
     return { name: "Easter Sunday of the Resurrection", color: LiturgicalColor.white, solemnity: true,
-      description: "The most important day in Christianity. Christians celebrate their core belief: that Jesus rose from the dead on the third day after his crucifixion, conquering death itself. 'He is risen.' The joy of this day extends for 50 days." };
+      description: "The most important day of the liturgical year, celebrating the core belief: that Jesus rose from the dead on the third day after his crucifixion, conquering death itself. 'He is risen.' The joy of this day extends for 50 days." };
   }
   const easterMonday = addDays(keys.easter, 1);
   if (sameDay(date, easterMonday)) {
@@ -470,7 +470,7 @@ function movableFeast(date, keys) {
   }
   if (sameDay(date, keys.holyFamily)) {
     return { name: "The Holy Family of Jesus, Mary, and Joseph", color: LiturgicalColor.white, solemnity: false,
-      description: "Celebrated on the Sunday within the Octave of Christmas, this feast honors Jesus, Mary, and Joseph together as a household. It holds up the ordinary life of a family, with its work and its love, as something holy, and asks Christians to see their own homes in the same light." };
+      description: "Celebrated on the Sunday within the Octave of Christmas, this feast honors Jesus, Mary, and Joseph together as a household. It holds up the ordinary life of a family, with its work and its love, as something holy, and invites us to see our own homes in the same light." };
   }
   if (sameDay(date, keys.ascension)) {
     return { name: "Ascension of the Lord", color: LiturgicalColor.white, solemnity: true,
@@ -478,11 +478,11 @@ function movableFeast(date, keys) {
   }
   if (sameDay(date, keys.pentecost)) {
     return { name: "Pentecost Sunday", color: LiturgicalColor.red, solemnity: true,
-      description: "Fifty days after Easter, the Holy Spirit descended on the apostles like tongues of fire, giving them the courage and ability to preach in many languages. It is considered the 'birthday of the Christian faith,' the moment the apostles went from hiding in fear to boldly proclaiming the Gospel. Red vestments represent the fire of the Spirit." };
+      description: "Fifty days after Easter, the Holy Spirit descended on the apostles like tongues of fire, giving them the courage and ability to preach in many languages. It is considered the 'birthday of the Church,' the moment the apostles went from hiding in fear to boldly proclaiming the Gospel. Red vestments represent the fire of the Spirit." };
   }
   if (sameDay(date, keys.trinitySunday)) {
     return { name: "Most Holy Trinity", color: LiturgicalColor.white, solemnity: true,
-      description: "The Sunday after Pentecost, celebrating the central mystery of Christian faith: that God is one God in three persons, Father, Son, and Holy Spirit. It is not three gods, but one God experienced in three ways. Even theologians say it is a mystery beyond full human understanding." };
+      description: "The Sunday after Pentecost, celebrating the central mystery of the faith: that God is one God in three persons, Father, Son, and Holy Spirit. It is not three gods, but one God experienced in three ways. Even theologians say it is a mystery beyond full human understanding." };
   }
   if (sameDay(date, keys.corpusChristi)) {
     return { name: "Most Holy Body and Blood of Christ (Corpus Christi)", color: LiturgicalColor.white, solemnity: true,
@@ -497,40 +497,35 @@ function movableFeast(date, keys) {
 
 // MARK: Liturgical day title (mirrors DayCard.liturgicalDayTitle in the Swift app)
 
-// English weekday names, indexed by JS getDay() (0 = Sunday). Fixed rather than
-// locale-derived so the title is deterministic and matches the Swift copy.
-const WEEKDAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-const ORDINAL_NAMES = [
-  "First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth",
-  "Ninth", "Tenth", "Eleventh", "Twelfth", "Thirteenth", "Fourteenth",
-  "Fifteenth", "Sixteenth", "Seventeenth", "Eighteenth", "Nineteenth",
-  "Twentieth", "Twenty-First", "Twenty-Second", "Twenty-Third", "Twenty-Fourth",
-  "Twenty-Fifth", "Twenty-Sixth", "Twenty-Seventh", "Twenty-Eighth",
-  "Twenty-Ninth", "Thirtieth", "Thirty-First", "Thirty-Second", "Thirty-Third",
-  "Thirty-Fourth",
-];
-
+// Numeric ordinal (e.g. "14th"), not spelled out: the date line already carries
+// the weekday, so this title never repeats it and stays quick to parse.
 function ordinalName(n) {
-  return (n >= 1 && n <= ORDINAL_NAMES.length) ? ORDINAL_NAMES[n - 1] : String(n);
+  const mod100 = n % 100;
+  if (mod100 >= 11 && mod100 <= 13) return `${n}th`;
+  switch (n % 10) {
+    case 1: return `${n}st`;
+    case 2: return `${n}nd`;
+    case 3: return `${n}rd`;
+    default: return `${n}th`;
+  }
 }
 
-// The day's proper liturgical name (e.g. "Tuesday of the Second Week of Advent"),
-// or null on feast days and in seasons without counted weeks. `info` is a
-// liturgicalInfo() result; `date` supplies the weekday.
+// The day's proper liturgical name (e.g. "2nd Week of Advent"), or null on feast
+// days and in seasons without counted weeks. `info` is a liturgicalInfo() result;
+// `date` supplies whether it's a Sunday. The weekday name itself is left out
+// since the date line already shows it (e.g. "July 3, 2026 (Friday)").
 function liturgicalDayTitle(info, date) {
   if (info.feastName != null || info.weekOfSeason == null) return null;
 
   const week = info.weekOfSeason;
-  const weekday = WEEKDAY_NAMES[date.getDay()];
   const isSunday = date.getDay() === 0;
 
   if (info.season === LiturgicalSeason.lent && week === 0) {
     // The days between Ash Wednesday and the First Sunday of Lent.
-    return `${weekday} after Ash Wednesday`;
+    return "After Ash Wednesday";
   }
   if (info.season === LiturgicalSeason.easter && week === 1 && !isSunday) {
-    return `${weekday} in the Octave of Easter`;
+    return "Octave of Easter";
   }
 
   switch (info.season) {
@@ -539,11 +534,11 @@ function liturgicalDayTitle(info, date) {
     case LiturgicalSeason.easter:
       return isSunday
         ? `${ordinalName(week)} Sunday of ${info.season}`
-        : `${weekday} of the ${ordinalName(week)} Week of ${info.season}`;
+        : `${ordinalName(week)} Week of ${info.season}`;
     case LiturgicalSeason.ordinaryTime:
       return isSunday
         ? `${ordinalName(week)} Sunday in Ordinary Time`
-        : `${weekday} of the ${ordinalName(week)} Week in Ordinary Time`;
+        : `${ordinalName(week)} Week in Ordinary Time`;
     default:
       return null;
   }

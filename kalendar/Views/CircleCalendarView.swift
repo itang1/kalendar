@@ -415,7 +415,7 @@ private struct InfoSheet: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                    Text("The liturgical kalendar, also called the Christian Year, is how Christians mark time. Instead of months, the year is organized into seasons that follow the life of Jesus, from anticipation of his birth through his death, resurrection, and beyond. 'Kalendar' is the traditional spelling used in many liturgical texts.")
+                    Text("The liturgical kalendar is how the Church marks time. Instead of months, the year is organized into seasons that follow the life of Jesus, from anticipation of his birth through his death, resurrection, and beyond. 'Kalendar' is the traditional spelling used in many liturgical texts.")
                         .font(.body)
 
                     Divider()

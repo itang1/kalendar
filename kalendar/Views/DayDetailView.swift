@@ -322,9 +322,9 @@ struct DayDetailView: View {
 
     private var rankExplanation: String {
         if day.isSolemnity {
-            return "A solemnity is the highest rank of celebration in Christian worship. These mark the most important mysteries and events of the faith, like Easter, Christmas, or major saints. They take priority over the regular season."
+            return "A solemnity is the highest rank of celebration in the liturgical year. These mark the most important mysteries and events of the faith, like Easter, Christmas, or major saints. They take priority over the regular season."
         } else {
-            return "Feasts and memorials are celebrations of saints or events in the life of Jesus and Mary. A feast is more important than a memorial. Some memorials are optional, while others are observed throughout Christianity."
+            return "Feasts and memorials are celebrations of saints or events in the life of Jesus and Mary. A feast is more important than a memorial. Some memorials are optional, while others are observed throughout the liturgical calendar."
         }
     }
 }
