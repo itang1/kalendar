@@ -186,6 +186,10 @@ struct LiturgicalCalendar {
         return cal
     }()
 
+    /// Shared, lock-guarded cache of computed key dates, keyed by year. Shared across
+    /// every engine instance (the widget computes off the main actor, so it is locked).
+    private static let keyDatesCache = KeyLiturgicalDatesCache()
+
     // MARK: - Easter (Anonymous Gregorian Algorithm / Computus)
 
     func easterDate(year: Int) -> Date {
@@ -209,6 +213,13 @@ struct LiturgicalCalendar {
     // MARK: - Key Dates for a Given Year
 
     func keyDates(year: Int) -> KeyLiturgicalDates {
+        // keyDates is pure per year, but launch builds 366 days and every countdown
+        // constructs a fresh engine, so the same years are recomputed hundreds of
+        // times. Memoize per year across all instances.
+        Self.keyDatesCache.value(for: year) { computeKeyDates(year: year) }
+    }
+
+    private func computeKeyDates(year: Int) -> KeyLiturgicalDates {
         let easter = easterDate(year: year)
 
         let ashWednesday = calendar.date(byAdding: .day, value: -46, to: easter)!
@@ -709,6 +720,23 @@ struct LiturgicalCalendar {
 }
 
 // MARK: - Key Liturgical Dates
+
+/// A tiny thread-safe memo for `keyDates(year:)`. Held as a `static let` of an
+/// immutable, internally locked reference type so it is safe to share across
+/// actors (the main-actor view model and the widget's timeline provider).
+private final class KeyLiturgicalDatesCache: @unchecked Sendable {
+    private let lock = NSLock()
+    private var storage: [Int: KeyLiturgicalDates] = [:]
+
+    func value(for year: Int, compute: () -> KeyLiturgicalDates) -> KeyLiturgicalDates {
+        lock.lock()
+        defer { lock.unlock() }
+        if let cached = storage[year] { return cached }
+        let computed = compute()
+        storage[year] = computed
+        return computed
+    }
+}
 
 struct KeyLiturgicalDates {
     let easter: Date

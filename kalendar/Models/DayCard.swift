@@ -23,6 +23,10 @@ struct DayCard: Identifiable {
     var isSolemnity: Bool
     var weekOfSeason: Int?
     var isMovableFeast: Bool = false
+    /// The "N days until <anchor>" line, computed once when the window is built
+    /// (see `DayCard.countdownText(for:)`) rather than re-derived in the detail
+    /// view's body, since the paged day browser instantiates its pages eagerly.
+    var countdownText: String?
 }
 
 // MARK: - Liturgical day naming
@@ -80,8 +84,9 @@ extension DayCard {
 
     /// Days until the next major moment of the year, e.g. "17 days until Easter".
     /// Nil only if no anchor lies ahead (which cannot happen in practice, since
-    /// Christmas recurs every year).
-    var countdownText: String? {
+    /// Christmas recurs every year). Computed at window-build time and stored on
+    /// the card, so it is not re-derived for every eagerly built browser page.
+    static func countdownText(for date: Date) -> String? {
         let calendar = Calendar.liturgical
         let engine = LiturgicalCalendar()
         let year = calendar.component(.year, from: date)
