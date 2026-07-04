@@ -14,7 +14,6 @@ struct DayDetailView: View {
     @Binding var day: DayCard
     @State private var newComment = ""
     @Environment(\.requestReview) private var requestReview
-    @Environment(\.openURL) private var openURL
 
     private static let dateFormatter: DateFormatter = {
         let f = DateFormatter()
@@ -30,11 +29,6 @@ struct DayDetailView: View {
 
     private var formattedDate: String {
         "\(Self.dateFormatter.string(from: day.date)) (\(Self.weekdayFormatter.string(from: day.date)))"
-    }
-
-    /// Plain-text blurb for the share sheet: the feast, its date, and its description.
-    private func feastShareText(name: String, description: String) -> String {
-        "\(name)\n\(formattedDate)\n\n\(description)\n\nShared from Kalendar"
     }
 
     var body: some View {
@@ -82,32 +76,10 @@ struct DayDetailView: View {
                 }
                 .padding(.top, 6)
 
-                DisclosureGroup("About \(day.liturgicalSeason.rawValue)") {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text(day.liturgicalSeason.explanation)
-                            .font(.body)
-
-                        Text("Traditionally during \(day.liturgicalSeason.rawValue):")
-                            .font(.body.weight(.semibold))
-                            .padding(.top, 8)
-
-                        VStack(alignment: .leading, spacing: 10) {
-                            ForEach(day.liturgicalSeason.contextualItems, id: \.self) { item in
-                                HStack(alignment: .top, spacing: 8) {
-                                    Text("·")
-                                        .font(.body.weight(.bold))
-                                    Text(item)
-                                        .font(.body)
-                                }
-                            }
-                        }
-                        .padding(.top, 2)
-                    }
+                Text(day.liturgicalSeason.explanation)
+                    .font(.body)
                     .padding(.top, 8)
-                }
-                .font(.body.weight(.semibold))
-                .padding(.top, 10)
-                .padding(.bottom, 28)
+                    .padding(.bottom, 28)
 
                 // MARK: Vestment Color
                 sectionLabel("Vestment")
@@ -130,31 +102,9 @@ struct DayDetailView: View {
                 sectionLabel("Readings")
                     .padding(.top, 28)
 
-                Text("Sunday Cycle: Year \(day.sundayLectionaryCycle)  ·  Weekday Cycle: \(day.weekdayLectionaryCycle)")
-                    .font(.body.weight(.medium))
+                Text("This liturgical year, Sunday readings come mainly from the Gospel of \(sundayGospelName).")
+                    .font(.body)
                     .padding(.top, 6)
-
-                if let readingsURL = day.usccbReadingsURL {
-                    Button {
-                        openURL(readingsURL)
-                    } label: {
-                        HStack(spacing: 10) {
-                            Image(systemName: "book")
-                            Text("Read this day's Mass readings at USCCB")
-                            Spacer()
-                            Image(systemName: "arrow.up.right")
-                                .font(.caption)
-                        }
-                        .font(.body.weight(.semibold))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.vertical, 12)
-                        .padding(.horizontal, 12)
-                        .background(Color.primary.opacity(0.08))
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                    }
-                    .foregroundStyle(.primary)
-                    .padding(.top, 12)
-                }
 
                 Divider()
                     .padding(.vertical, 28)
@@ -216,12 +166,15 @@ struct DayDetailView: View {
     private var headerSection: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(formattedDate)
+                .font(.title2.bold())
+
+            Text(daySubtitle)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
 
             if let feast = day.feastName {
                 sectionLabel(day.isSolemnity ? "Solemnity" : "Feast / Memorial")
-                    .padding(.top, 4)
+                    .padding(.top, 18)
                 HStack(spacing: 8) {
                     if day.isSolemnity {
                         Image(systemName: "star.fill")
@@ -236,22 +189,8 @@ struct DayDetailView: View {
                     Text(description)
                         .font(.body)
                         .padding(.top, 8)
-                    ShareLink(item: feastShareText(name: feast, description: description)) {
-                        Label("Share", systemImage: "square.and.arrow.up")
-                            .font(.subheadline.weight(.semibold))
-                    }
-                    .padding(.top, 12)
                 }
-            } else if let title = day.liturgicalDayTitle {
-                Text(title)
-                    .font(.title2.bold())
-                    .padding(.top, 2)
             }
-
-            Text(daySubtitle)
-                .font(.body)
-                .foregroundStyle(.secondary)
-                .padding(.top, 8)
         }
     }
 
@@ -318,6 +257,17 @@ struct DayDetailView: View {
             return "Day \(day.dayOfYear) of the year · \(countdown)"
         }
         return "Day \(day.dayOfYear) of the year"
+    }
+
+    /// The three-year Sunday cycle rotates which Gospel supplies most Sunday
+    /// readings: Matthew in Year A, Mark in Year B, Luke in Year C (John fills
+    /// in at points in every year, especially in Year B and during Easter).
+    private var sundayGospelName: String {
+        switch day.sundayLectionaryCycle {
+        case "A": return "Matthew"
+        case "B": return "Mark"
+        default: return "Luke"
+        }
     }
 
     private var rankExplanation: String {

@@ -174,21 +174,6 @@ extension DayCard {
     var weekdayLectionaryCycle: String {
         lectionaryYear % 2 == 1 ? "I" : "II"
     }
-
-    /// USCCB's daily readings page for this date, listing the actual Reading 1,
-    /// Psalm, and Gospel citations. A date-based deep link, so no offline lectionary
-    /// data is bundled.
-    var usccbReadingsURL: URL? {
-        URL(string: "https://bible.usccb.org/bible/readings/\(Self.usccbDateFormatter.string(from: date)).cfm")
-    }
-
-    private static let usccbDateFormatter: DateFormatter = {
-        let f = DateFormatter()
-        f.dateFormat = "MMddyy"
-        f.locale = Locale(identifier: "en_US_POSIX")
-        f.calendar = Calendar(identifier: .gregorian)
-        return f
-    }()
 }
 
 #if DEBUG

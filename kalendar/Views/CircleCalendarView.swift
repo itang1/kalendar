@@ -201,10 +201,45 @@ private struct DayBrowserSheet: View {
         return f
     }()
 
+    private static let shareDateFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "EEEE, MMMM d, yyyy"
+        return f
+    }()
+
     init(days: Binding<[DayCard]>, initialIndex: Int) {
         self._days = days
         self.initialIndex = initialIndex
         self._currentIndex = State(initialValue: initialIndex)
+    }
+
+    /// A self-contained summary of the day for the share sheet: the date, what
+    /// the day is (feast or its liturgical title), the season and vestment
+    /// color, and the feast's blurb when there is one.
+    private func shareText(for day: DayCard) -> String {
+        var lines = [Self.shareDateFormatter.string(from: day.date)]
+
+        if let feast = day.feastName {
+            lines.append(feast)
+        } else if let title = day.liturgicalDayTitle {
+            lines.append(title)
+        }
+
+        var seasonLine = day.liturgicalSeason.rawValue
+        if let week = day.weekOfSeason {
+            seasonLine += " · Week \(week)"
+        }
+        seasonLine += " · \(day.liturgicalColor.rawValue) vestments"
+        lines.append(seasonLine)
+
+        if let description = day.feastDescription {
+            lines.append("")
+            lines.append(description)
+        }
+
+        lines.append("")
+        lines.append("Shared from Kalendar")
+        return lines.joined(separator: "\n")
     }
 
     var body: some View {
@@ -219,20 +254,34 @@ private struct DayBrowserSheet: View {
             .safeAreaInset(edge: .top, spacing: 0) {
                 HStack {
                     if currentIndex > 0 {
-                        swipeHint(leading: true, label: Self.dateFormatter.string(from: days[currentIndex - 1].date))
+                        Button {
+                            currentIndex -= 1
+                        } label: {
+                            swipeHint(leading: true, label: Self.dateFormatter.string(from: days[currentIndex - 1].date))
+                        }
+                        .buttonStyle(.plain)
                     }
                     Spacer()
                     if currentIndex < days.count - 1 {
-                        swipeHint(leading: false, label: Self.dateFormatter.string(from: days[currentIndex + 1].date))
+                        Button {
+                            currentIndex += 1
+                        } label: {
+                            swipeHint(leading: false, label: Self.dateFormatter.string(from: days[currentIndex + 1].date))
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
                 .padding(.horizontal, 14)
                 .padding(.vertical, 8)
-                .allowsHitTesting(false)
             }
             .navigationTitle(Self.dateFormatter.string(from: days[currentIndex].date))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    ShareLink(item: shareText(for: days[currentIndex])) {
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Done") { dismiss() }
                 }
@@ -443,7 +492,19 @@ private struct InfoSheet: View {
 
                             Text(season.explanation)
                                 .font(.body)
-                                .padding(.bottom, 8)
+                                .padding(.bottom, 4)
+
+                            VStack(alignment: .leading, spacing: 6) {
+                                ForEach(season.contextualItems, id: \.self) { item in
+                                    HStack(alignment: .top, spacing: 8) {
+                                        Text("·")
+                                            .font(.body.weight(.bold))
+                                        Text(item)
+                                            .font(.body)
+                                    }
+                                }
+                            }
+                            .padding(.bottom, 12)
                         }
                     }
 
