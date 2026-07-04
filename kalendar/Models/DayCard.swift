@@ -56,7 +56,7 @@ extension DayCard {
         guard feastName == nil, let week = weekOfSeason else { return nil }
 
         let weekday = weekdayNameFormatter.string(from: date)
-        let isSunday = Calendar.current.component(.weekday, from: date) == 1
+        let isSunday = Calendar.liturgical.component(.weekday, from: date) == 1
 
         switch liturgicalSeason {
         case .lent where week == 0:
@@ -81,7 +81,7 @@ extension DayCard {
     /// Nil only if no anchor lies ahead (which cannot happen in practice, since
     /// Christmas recurs every year).
     var countdownText: String? {
-        let calendar = Calendar.current
+        let calendar = Calendar.liturgical
         let engine = LiturgicalCalendar()
         let year = calendar.component(.year, from: date)
         let start = calendar.startOfDay(for: date)
@@ -119,8 +119,8 @@ extension DayCard {
     /// plus the Ascension (movable). Which days actually bind can vary by
     /// country and diocese; the detail view notes that alongside the flag.
     var isHolyDayOfObligation: Bool {
-        let month = Calendar.current.component(.month, from: date)
-        let dayOfMonth = Calendar.current.component(.day, from: date)
+        let month = Calendar.liturgical.component(.month, from: date)
+        let dayOfMonth = Calendar.liturgical.component(.day, from: date)
         switch (month, dayOfMonth) {
         case (1, 1), (8, 15), (11, 1), (12, 8), (12, 25):
             return true
@@ -137,7 +137,7 @@ extension DayCard {
     /// Fridays in Lent (Ash Wednesday and Good Friday are already covered by
     /// the stronger fasting-and-abstinence flag): abstinence from meat only.
     var isDayOfAbstinenceFromMeat: Bool {
-        liturgicalSeason == .lent && Calendar.current.component(.weekday, from: date) == 6
+        liturgicalSeason == .lent && Calendar.liturgical.component(.weekday, from: date) == 6
     }
 }
 
@@ -148,7 +148,7 @@ extension DayCard {
     /// on the First Sunday of Advent, so Advent days already belong to the next
     /// civil year's cycle.
     private var lectionaryYear: Int {
-        let calendar = Calendar.current
+        let calendar = Calendar.liturgical
         let civilYear = calendar.component(.year, from: date)
         let adventStart = LiturgicalCalendar().keyDates(year: civilYear).adventStart
         return calendar.startOfDay(for: date) >= calendar.startOfDay(for: adventStart)

@@ -30,6 +30,26 @@ final class LiturgicalEngineTests: XCTestCase {
         engine.liturgicalInfo(for: date(y, m, d))
     }
 
+    /// A fully populated `DayCard` for a date, mirroring `CalendarViewModel.buildWindow`,
+    /// so the derived properties (lectionary cycle, obligation and discipline flags)
+    /// can be checked directly.
+    private func card(_ y: Int, _ m: Int, _ d: Int) -> DayCard {
+        let day = date(y, m, d)
+        let dayInfo = engine.liturgicalInfo(for: day)
+        return DayCard(
+            dayOfYear: day.dayOfYear,
+            date: day,
+            comments: [],
+            liturgicalSeason: dayInfo.season,
+            liturgicalColor: dayInfo.liturgicalColor,
+            feastName: dayInfo.feastName,
+            feastDescription: dayInfo.feastDescription,
+            isSolemnity: dayInfo.isSolemnity,
+            weekOfSeason: dayInfo.weekOfSeason,
+            isMovableFeast: dayInfo.isMovableFeast
+        )
+    }
+
     // MARK: - Easter against published tables
 
     func testEasterDatesMatchPublishedTable() {
@@ -127,6 +147,42 @@ final class LiturgicalEngineTests: XCTestCase {
         // Easter 2033 is April 17, so the Sacred Heart falls on June 24, the same day
         // as the Nativity of St. John the Baptist. The feast of the Lord wins.
         XCTAssertEqual(info(2033, 6, 24).feastName, "Most Sacred Heart of Jesus")
+    }
+
+    // MARK: - Lectionary cycles and obligation flags (derived DayCard facts)
+
+    func testLectionaryCyclesTurnOverAtAdvent() {
+        // Ordinary Time 2025 (liturgical year that began Advent 2024) is Sunday Year C,
+        // weekday Year I. These derive from the Gregorian year, independent of the
+        // device's regional calendar.
+        let june2025 = card(2025, 6, 15)
+        XCTAssertEqual(june2025.sundayLectionaryCycle, "C")
+        XCTAssertEqual(june2025.weekdayLectionaryCycle, "I")
+        // Once Advent 2025 begins, the cycle rolls to Sunday Year A, weekday Year II.
+        let dec2025 = card(2025, 12, 7) // First Sunday of Advent 2025
+        XCTAssertEqual(dec2025.sundayLectionaryCycle, "A")
+        XCTAssertEqual(dec2025.weekdayLectionaryCycle, "II")
+    }
+
+    func testHolyDaysOfObligation() {
+        // Fixed obligations shown on their own dates, plus the movable Ascension.
+        XCTAssertTrue(card(2025, 1, 1).isHolyDayOfObligation, "Mary, Mother of God")
+        XCTAssertTrue(card(2025, 8, 15).isHolyDayOfObligation, "Assumption")
+        XCTAssertTrue(card(2025, 12, 25).isHolyDayOfObligation, "Christmas")
+        XCTAssertTrue(card(2025, 5, 29).isHolyDayOfObligation, "Ascension (Easter 2025 + 39)")
+        // An ordinary weekday is not.
+        XCTAssertFalse(card(2025, 1, 2).isHolyDayOfObligation)
+    }
+
+    func testLentenDisciplineFlags() {
+        // Ash Wednesday 2025 is March 5; Good Friday is April 18.
+        XCTAssertTrue(card(2025, 3, 5).isDayOfFastingAndAbstinence, "Ash Wednesday")
+        XCTAssertTrue(card(2025, 4, 18).isDayOfFastingAndAbstinence, "Good Friday")
+        // A Friday in Lent is abstinence only. March 14 2025 is a Friday.
+        XCTAssertTrue(card(2025, 3, 14).isDayOfAbstinenceFromMeat)
+        XCTAssertFalse(card(2025, 3, 14).isDayOfFastingAndAbstinence)
+        // A Friday outside Lent is neither. July 4 2025 is a Friday.
+        XCTAssertFalse(card(2025, 7, 4).isDayOfAbstinenceFromMeat)
     }
 
     // MARK: - Drift guard against the golden decade
