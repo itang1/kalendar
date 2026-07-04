@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+
+# Xcode: user-specific state and build products
+xcuserdata/
+*.xcuserstate
+build/
+DerivedData/
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Local tooling (per-developer, not committed)
+.claude/launch.json
+.claude/worktrees/
