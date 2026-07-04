@@ -4,7 +4,7 @@
 
 enum LiturgicalGolden {
     static let lines = """
-2025-01-01|Christmas|White|1||Solemnity of Mary, Mother of God|
+2025-01-01|Christmas|White|0|||
 2025-01-02|Christmas|White|0|||
 2025-01-03|Christmas|White|0|||
 2025-01-04|Christmas|White|0|||
@@ -230,14 +230,14 @@ enum LiturgicalGolden {
 2025-08-12|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2025-08-13|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2025-08-14|Ordinary Time|Green|0|19||19th Week in Ordinary Time
-2025-08-15|Ordinary Time|White|1||Assumption of the Blessed Virgin Mary|
+2025-08-15|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2025-08-16|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2025-08-17|Ordinary Time|Green|0|20||20th Sunday in Ordinary Time
 2025-08-18|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2025-08-19|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2025-08-20|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2025-08-21|Ordinary Time|Green|0|20||20th Week in Ordinary Time
-2025-08-22|Ordinary Time|White|0||Queenship of the Blessed Virgin Mary|
+2025-08-22|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2025-08-23|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2025-08-24|Ordinary Time|Green|0|21||21st Sunday in Ordinary Time
 2025-08-25|Ordinary Time|Green|0|21||21st Week in Ordinary Time
@@ -254,7 +254,7 @@ enum LiturgicalGolden {
 2025-09-05|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
 2025-09-06|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
 2025-09-07|Ordinary Time|Green|0|23||23rd Sunday in Ordinary Time
-2025-09-08|Ordinary Time|White|0||Nativity of the Blessed Virgin Mary|
+2025-09-08|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2025-09-09|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2025-09-10|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2025-09-11|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
@@ -283,7 +283,7 @@ enum LiturgicalGolden {
 2025-10-04|Ordinary Time|White|0||St. Francis of Assisi|
 2025-10-05|Ordinary Time|Green|0|27||27th Sunday in Ordinary Time
 2025-10-06|Ordinary Time|Green|0|27||27th Week in Ordinary Time
-2025-10-07|Ordinary Time|White|0||Our Lady of the Rosary|
+2025-10-07|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2025-10-08|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2025-10-09|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2025-10-10|Ordinary Time|Green|0|27||27th Week in Ordinary Time
@@ -345,11 +345,11 @@ enum LiturgicalGolden {
 2025-12-05|Advent|Violet|0|1||1st Week of Advent
 2025-12-06|Advent|Violet|0|1||1st Week of Advent
 2025-12-07|Advent|Violet|0|2||2nd Sunday of Advent
-2025-12-08|Advent|White|1||Immaculate Conception of the Blessed Virgin Mary|
+2025-12-08|Advent|Violet|0|2||2nd Week of Advent
 2025-12-09|Advent|Violet|0|2||2nd Week of Advent
 2025-12-10|Advent|Violet|0|2||2nd Week of Advent
 2025-12-11|Advent|Violet|0|2||2nd Week of Advent
-2025-12-12|Advent|White|0||Our Lady of Guadalupe|
+2025-12-12|Advent|Violet|0|2||2nd Week of Advent
 2025-12-13|Advent|Violet|0|2||2nd Week of Advent
 2025-12-14|Advent|Rose|0|3||3rd Sunday of Advent
 2025-12-15|Advent|Violet|0|3||3rd Week of Advent
@@ -369,7 +369,7 @@ enum LiturgicalGolden {
 2025-12-29|Christmas|White|0|||
 2025-12-30|Christmas|White|0|||
 2025-12-31|Christmas|White|0|||
-2026-01-01|Christmas|White|1||Solemnity of Mary, Mother of God|
+2026-01-01|Christmas|White|0|||
 2026-01-02|Christmas|White|0|||
 2026-01-03|Christmas|White|0|||
 2026-01-04|Christmas|White|0|||
@@ -595,14 +595,14 @@ enum LiturgicalGolden {
 2026-08-12|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2026-08-13|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2026-08-14|Ordinary Time|Green|0|19||19th Week in Ordinary Time
-2026-08-15|Ordinary Time|White|1||Assumption of the Blessed Virgin Mary|
+2026-08-15|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2026-08-16|Ordinary Time|Green|0|20||20th Sunday in Ordinary Time
 2026-08-17|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2026-08-18|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2026-08-19|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2026-08-20|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2026-08-21|Ordinary Time|Green|0|20||20th Week in Ordinary Time
-2026-08-22|Ordinary Time|White|0||Queenship of the Blessed Virgin Mary|
+2026-08-22|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2026-08-23|Ordinary Time|Green|0|21||21st Sunday in Ordinary Time
 2026-08-24|Ordinary Time|Green|0|21||21st Week in Ordinary Time
 2026-08-25|Ordinary Time|Green|0|21||21st Week in Ordinary Time
@@ -619,7 +619,7 @@ enum LiturgicalGolden {
 2026-09-05|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
 2026-09-06|Ordinary Time|Green|0|23||23rd Sunday in Ordinary Time
 2026-09-07|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
-2026-09-08|Ordinary Time|White|0||Nativity of the Blessed Virgin Mary|
+2026-09-08|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2026-09-09|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2026-09-10|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2026-09-11|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
@@ -648,7 +648,7 @@ enum LiturgicalGolden {
 2026-10-04|Ordinary Time|White|0||St. Francis of Assisi|
 2026-10-05|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2026-10-06|Ordinary Time|Green|0|27||27th Week in Ordinary Time
-2026-10-07|Ordinary Time|White|0||Our Lady of the Rosary|
+2026-10-07|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2026-10-08|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2026-10-09|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2026-10-10|Ordinary Time|Green|0|27||27th Week in Ordinary Time
@@ -710,11 +710,11 @@ enum LiturgicalGolden {
 2026-12-05|Advent|Violet|0|1||1st Week of Advent
 2026-12-06|Advent|Violet|0|2||2nd Sunday of Advent
 2026-12-07|Advent|Violet|0|2||2nd Week of Advent
-2026-12-08|Advent|White|1||Immaculate Conception of the Blessed Virgin Mary|
+2026-12-08|Advent|Violet|0|2||2nd Week of Advent
 2026-12-09|Advent|Violet|0|2||2nd Week of Advent
 2026-12-10|Advent|Violet|0|2||2nd Week of Advent
 2026-12-11|Advent|Violet|0|2||2nd Week of Advent
-2026-12-12|Advent|White|0||Our Lady of Guadalupe|
+2026-12-12|Advent|Violet|0|2||2nd Week of Advent
 2026-12-13|Advent|Rose|0|3||3rd Sunday of Advent
 2026-12-14|Advent|Violet|0|3||3rd Week of Advent
 2026-12-15|Advent|Violet|0|3||3rd Week of Advent
@@ -734,7 +734,7 @@ enum LiturgicalGolden {
 2026-12-29|Christmas|White|0|||
 2026-12-30|Christmas|White|0|||
 2026-12-31|Christmas|White|0|||
-2027-01-01|Christmas|White|1||Solemnity of Mary, Mother of God|
+2027-01-01|Christmas|White|0|||
 2027-01-02|Christmas|White|0|||
 2027-01-03|Christmas|White|0|||
 2027-01-04|Christmas|White|0|||
@@ -960,14 +960,14 @@ enum LiturgicalGolden {
 2027-08-12|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2027-08-13|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2027-08-14|Ordinary Time|Green|0|19||19th Week in Ordinary Time
-2027-08-15|Ordinary Time|White|1||Assumption of the Blessed Virgin Mary|
+2027-08-15|Ordinary Time|Green|0|20||20th Sunday in Ordinary Time
 2027-08-16|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2027-08-17|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2027-08-18|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2027-08-19|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2027-08-20|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2027-08-21|Ordinary Time|Green|0|20||20th Week in Ordinary Time
-2027-08-22|Ordinary Time|White|0||Queenship of the Blessed Virgin Mary|
+2027-08-22|Ordinary Time|Green|0|21||21st Sunday in Ordinary Time
 2027-08-23|Ordinary Time|Green|0|21||21st Week in Ordinary Time
 2027-08-24|Ordinary Time|Green|0|21||21st Week in Ordinary Time
 2027-08-25|Ordinary Time|Green|0|21||21st Week in Ordinary Time
@@ -984,7 +984,7 @@ enum LiturgicalGolden {
 2027-09-05|Ordinary Time|Green|0|23||23rd Sunday in Ordinary Time
 2027-09-06|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2027-09-07|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
-2027-09-08|Ordinary Time|White|0||Nativity of the Blessed Virgin Mary|
+2027-09-08|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2027-09-09|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2027-09-10|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2027-09-11|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
@@ -1013,7 +1013,7 @@ enum LiturgicalGolden {
 2027-10-04|Ordinary Time|White|0||St. Francis of Assisi|
 2027-10-05|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2027-10-06|Ordinary Time|Green|0|27||27th Week in Ordinary Time
-2027-10-07|Ordinary Time|White|0||Our Lady of the Rosary|
+2027-10-07|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2027-10-08|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2027-10-09|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2027-10-10|Ordinary Time|Green|0|28||28th Sunday in Ordinary Time
@@ -1075,7 +1075,7 @@ enum LiturgicalGolden {
 2027-12-05|Advent|Violet|0|2||2nd Sunday of Advent
 2027-12-06|Advent|Violet|0|2||2nd Week of Advent
 2027-12-07|Advent|Violet|0|2||2nd Week of Advent
-2027-12-08|Advent|White|1||Immaculate Conception of the Blessed Virgin Mary|
+2027-12-08|Advent|Violet|0|2||2nd Week of Advent
 2027-12-09|Advent|Violet|0|2||2nd Week of Advent
 2027-12-10|Advent|Violet|0|2||2nd Week of Advent
 2027-12-11|Advent|Violet|0|2||2nd Week of Advent
@@ -1099,7 +1099,7 @@ enum LiturgicalGolden {
 2027-12-29|Christmas|White|0|||
 2027-12-30|Christmas|White|0|||
 2027-12-31|Christmas|White|0|||
-2028-01-01|Christmas|White|1||Solemnity of Mary, Mother of God|
+2028-01-01|Christmas|White|0|||
 2028-01-02|Christmas|White|0|||
 2028-01-03|Christmas|White|0|||
 2028-01-04|Christmas|White|0|||
@@ -1326,14 +1326,14 @@ enum LiturgicalGolden {
 2028-08-12|Ordinary Time|Green|0|18||18th Week in Ordinary Time
 2028-08-13|Ordinary Time|Green|0|19||19th Sunday in Ordinary Time
 2028-08-14|Ordinary Time|Green|0|19||19th Week in Ordinary Time
-2028-08-15|Ordinary Time|White|1||Assumption of the Blessed Virgin Mary|
+2028-08-15|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2028-08-16|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2028-08-17|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2028-08-18|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2028-08-19|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2028-08-20|Ordinary Time|Green|0|20||20th Sunday in Ordinary Time
 2028-08-21|Ordinary Time|Green|0|20||20th Week in Ordinary Time
-2028-08-22|Ordinary Time|White|0||Queenship of the Blessed Virgin Mary|
+2028-08-22|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2028-08-23|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2028-08-24|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2028-08-25|Ordinary Time|Green|0|20||20th Week in Ordinary Time
@@ -1350,7 +1350,7 @@ enum LiturgicalGolden {
 2028-09-05|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
 2028-09-06|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
 2028-09-07|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
-2028-09-08|Ordinary Time|White|0||Nativity of the Blessed Virgin Mary|
+2028-09-08|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
 2028-09-09|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
 2028-09-10|Ordinary Time|Green|0|23||23rd Sunday in Ordinary Time
 2028-09-11|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
@@ -1379,7 +1379,7 @@ enum LiturgicalGolden {
 2028-10-04|Ordinary Time|White|0||St. Francis of Assisi|
 2028-10-05|Ordinary Time|Green|0|26||26th Week in Ordinary Time
 2028-10-06|Ordinary Time|Green|0|26||26th Week in Ordinary Time
-2028-10-07|Ordinary Time|White|0||Our Lady of the Rosary|
+2028-10-07|Ordinary Time|Green|0|26||26th Week in Ordinary Time
 2028-10-08|Ordinary Time|Green|0|27||27th Sunday in Ordinary Time
 2028-10-09|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2028-10-10|Ordinary Time|Green|0|27||27th Week in Ordinary Time
@@ -1441,11 +1441,11 @@ enum LiturgicalGolden {
 2028-12-05|Advent|Violet|0|1||1st Week of Advent
 2028-12-06|Advent|Violet|0|1||1st Week of Advent
 2028-12-07|Advent|Violet|0|1||1st Week of Advent
-2028-12-08|Advent|White|1||Immaculate Conception of the Blessed Virgin Mary|
+2028-12-08|Advent|Violet|0|1||1st Week of Advent
 2028-12-09|Advent|Violet|0|1||1st Week of Advent
 2028-12-10|Advent|Violet|0|2||2nd Sunday of Advent
 2028-12-11|Advent|Violet|0|2||2nd Week of Advent
-2028-12-12|Advent|White|0||Our Lady of Guadalupe|
+2028-12-12|Advent|Violet|0|2||2nd Week of Advent
 2028-12-13|Advent|Violet|0|2||2nd Week of Advent
 2028-12-14|Advent|Violet|0|2||2nd Week of Advent
 2028-12-15|Advent|Violet|0|2||2nd Week of Advent
@@ -1465,7 +1465,7 @@ enum LiturgicalGolden {
 2028-12-29|Christmas|White|0|||
 2028-12-30|Christmas|White|0|||
 2028-12-31|Christmas|White|0||The Holy Family of Jesus, Mary, and Joseph|
-2029-01-01|Christmas|White|1||Solemnity of Mary, Mother of God|
+2029-01-01|Christmas|White|0|||
 2029-01-02|Christmas|White|0|||
 2029-01-03|Christmas|White|0|||
 2029-01-04|Christmas|White|0|||
@@ -1691,14 +1691,14 @@ enum LiturgicalGolden {
 2029-08-12|Ordinary Time|Green|0|19||19th Sunday in Ordinary Time
 2029-08-13|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2029-08-14|Ordinary Time|Green|0|19||19th Week in Ordinary Time
-2029-08-15|Ordinary Time|White|1||Assumption of the Blessed Virgin Mary|
+2029-08-15|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2029-08-16|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2029-08-17|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2029-08-18|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2029-08-19|Ordinary Time|Green|0|20||20th Sunday in Ordinary Time
 2029-08-20|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2029-08-21|Ordinary Time|Green|0|20||20th Week in Ordinary Time
-2029-08-22|Ordinary Time|White|0||Queenship of the Blessed Virgin Mary|
+2029-08-22|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2029-08-23|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2029-08-24|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2029-08-25|Ordinary Time|Green|0|20||20th Week in Ordinary Time
@@ -1715,7 +1715,7 @@ enum LiturgicalGolden {
 2029-09-05|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
 2029-09-06|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
 2029-09-07|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
-2029-09-08|Ordinary Time|White|0||Nativity of the Blessed Virgin Mary|
+2029-09-08|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
 2029-09-09|Ordinary Time|Green|0|23||23rd Sunday in Ordinary Time
 2029-09-10|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2029-09-11|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
@@ -1744,7 +1744,7 @@ enum LiturgicalGolden {
 2029-10-04|Ordinary Time|White|0||St. Francis of Assisi|
 2029-10-05|Ordinary Time|Green|0|26||26th Week in Ordinary Time
 2029-10-06|Ordinary Time|Green|0|26||26th Week in Ordinary Time
-2029-10-07|Ordinary Time|White|0||Our Lady of the Rosary|
+2029-10-07|Ordinary Time|Green|0|27||27th Sunday in Ordinary Time
 2029-10-08|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2029-10-09|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2029-10-10|Ordinary Time|Green|0|27||27th Week in Ordinary Time
@@ -1806,11 +1806,11 @@ enum LiturgicalGolden {
 2029-12-05|Advent|Violet|0|1||1st Week of Advent
 2029-12-06|Advent|Violet|0|1||1st Week of Advent
 2029-12-07|Advent|Violet|0|1||1st Week of Advent
-2029-12-08|Advent|White|1||Immaculate Conception of the Blessed Virgin Mary|
+2029-12-08|Advent|Violet|0|1||1st Week of Advent
 2029-12-09|Advent|Violet|0|2||2nd Sunday of Advent
 2029-12-10|Advent|Violet|0|2||2nd Week of Advent
 2029-12-11|Advent|Violet|0|2||2nd Week of Advent
-2029-12-12|Advent|White|0||Our Lady of Guadalupe|
+2029-12-12|Advent|Violet|0|2||2nd Week of Advent
 2029-12-13|Advent|Violet|0|2||2nd Week of Advent
 2029-12-14|Advent|Violet|0|2||2nd Week of Advent
 2029-12-15|Advent|Violet|0|2||2nd Week of Advent
@@ -1830,7 +1830,7 @@ enum LiturgicalGolden {
 2029-12-29|Christmas|White|0|||
 2029-12-30|Christmas|White|0||The Holy Family of Jesus, Mary, and Joseph|
 2029-12-31|Christmas|White|0|||
-2030-01-01|Christmas|White|1||Solemnity of Mary, Mother of God|
+2030-01-01|Christmas|White|0|||
 2030-01-02|Christmas|White|0|||
 2030-01-03|Christmas|White|0|||
 2030-01-04|Christmas|White|0|||
@@ -2056,14 +2056,14 @@ enum LiturgicalGolden {
 2030-08-12|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2030-08-13|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2030-08-14|Ordinary Time|Green|0|19||19th Week in Ordinary Time
-2030-08-15|Ordinary Time|White|1||Assumption of the Blessed Virgin Mary|
+2030-08-15|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2030-08-16|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2030-08-17|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2030-08-18|Ordinary Time|Green|0|20||20th Sunday in Ordinary Time
 2030-08-19|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2030-08-20|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2030-08-21|Ordinary Time|Green|0|20||20th Week in Ordinary Time
-2030-08-22|Ordinary Time|White|0||Queenship of the Blessed Virgin Mary|
+2030-08-22|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2030-08-23|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2030-08-24|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2030-08-25|Ordinary Time|Green|0|21||21st Sunday in Ordinary Time
@@ -2080,7 +2080,7 @@ enum LiturgicalGolden {
 2030-09-05|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
 2030-09-06|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
 2030-09-07|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
-2030-09-08|Ordinary Time|White|0||Nativity of the Blessed Virgin Mary|
+2030-09-08|Ordinary Time|Green|0|23||23rd Sunday in Ordinary Time
 2030-09-09|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2030-09-10|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2030-09-11|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
@@ -2109,7 +2109,7 @@ enum LiturgicalGolden {
 2030-10-04|Ordinary Time|White|0||St. Francis of Assisi|
 2030-10-05|Ordinary Time|Green|0|26||26th Week in Ordinary Time
 2030-10-06|Ordinary Time|Green|0|27||27th Sunday in Ordinary Time
-2030-10-07|Ordinary Time|White|0||Our Lady of the Rosary|
+2030-10-07|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2030-10-08|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2030-10-09|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2030-10-10|Ordinary Time|Green|0|27||27th Week in Ordinary Time
@@ -2172,10 +2172,10 @@ enum LiturgicalGolden {
 2030-12-06|Advent|Violet|0|1||1st Week of Advent
 2030-12-07|Advent|Violet|0|1||1st Week of Advent
 2030-12-08|Advent|Violet|0|2||2nd Sunday of Advent
-2030-12-09|Advent|White|1||Immaculate Conception of the Blessed Virgin Mary|
+2030-12-09|Advent|Violet|0|2||2nd Week of Advent
 2030-12-10|Advent|Violet|0|2||2nd Week of Advent
 2030-12-11|Advent|Violet|0|2||2nd Week of Advent
-2030-12-12|Advent|White|0||Our Lady of Guadalupe|
+2030-12-12|Advent|Violet|0|2||2nd Week of Advent
 2030-12-13|Advent|Violet|0|2||2nd Week of Advent
 2030-12-14|Advent|Violet|0|2||2nd Week of Advent
 2030-12-15|Advent|Rose|0|3||3rd Sunday of Advent
@@ -2195,7 +2195,7 @@ enum LiturgicalGolden {
 2030-12-29|Christmas|White|0||The Holy Family of Jesus, Mary, and Joseph|
 2030-12-30|Christmas|White|0|||
 2030-12-31|Christmas|White|0|||
-2031-01-01|Christmas|White|1||Solemnity of Mary, Mother of God|
+2031-01-01|Christmas|White|0|||
 2031-01-02|Christmas|White|0|||
 2031-01-03|Christmas|White|0|||
 2031-01-04|Christmas|White|0|||
@@ -2421,14 +2421,14 @@ enum LiturgicalGolden {
 2031-08-12|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2031-08-13|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2031-08-14|Ordinary Time|Green|0|19||19th Week in Ordinary Time
-2031-08-15|Ordinary Time|White|1||Assumption of the Blessed Virgin Mary|
+2031-08-15|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2031-08-16|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2031-08-17|Ordinary Time|Green|0|20||20th Sunday in Ordinary Time
 2031-08-18|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2031-08-19|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2031-08-20|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2031-08-21|Ordinary Time|Green|0|20||20th Week in Ordinary Time
-2031-08-22|Ordinary Time|White|0||Queenship of the Blessed Virgin Mary|
+2031-08-22|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2031-08-23|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2031-08-24|Ordinary Time|Green|0|21||21st Sunday in Ordinary Time
 2031-08-25|Ordinary Time|Green|0|21||21st Week in Ordinary Time
@@ -2445,7 +2445,7 @@ enum LiturgicalGolden {
 2031-09-05|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
 2031-09-06|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
 2031-09-07|Ordinary Time|Green|0|23||23rd Sunday in Ordinary Time
-2031-09-08|Ordinary Time|White|0||Nativity of the Blessed Virgin Mary|
+2031-09-08|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2031-09-09|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2031-09-10|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2031-09-11|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
@@ -2474,7 +2474,7 @@ enum LiturgicalGolden {
 2031-10-04|Ordinary Time|White|0||St. Francis of Assisi|
 2031-10-05|Ordinary Time|Green|0|27||27th Sunday in Ordinary Time
 2031-10-06|Ordinary Time|Green|0|27||27th Week in Ordinary Time
-2031-10-07|Ordinary Time|White|0||Our Lady of the Rosary|
+2031-10-07|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2031-10-08|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2031-10-09|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2031-10-10|Ordinary Time|Green|0|27||27th Week in Ordinary Time
@@ -2536,11 +2536,11 @@ enum LiturgicalGolden {
 2031-12-05|Advent|Violet|0|1||1st Week of Advent
 2031-12-06|Advent|Violet|0|1||1st Week of Advent
 2031-12-07|Advent|Violet|0|2||2nd Sunday of Advent
-2031-12-08|Advent|White|1||Immaculate Conception of the Blessed Virgin Mary|
+2031-12-08|Advent|Violet|0|2||2nd Week of Advent
 2031-12-09|Advent|Violet|0|2||2nd Week of Advent
 2031-12-10|Advent|Violet|0|2||2nd Week of Advent
 2031-12-11|Advent|Violet|0|2||2nd Week of Advent
-2031-12-12|Advent|White|0||Our Lady of Guadalupe|
+2031-12-12|Advent|Violet|0|2||2nd Week of Advent
 2031-12-13|Advent|Violet|0|2||2nd Week of Advent
 2031-12-14|Advent|Rose|0|3||3rd Sunday of Advent
 2031-12-15|Advent|Violet|0|3||3rd Week of Advent
@@ -2560,7 +2560,7 @@ enum LiturgicalGolden {
 2031-12-29|Christmas|White|0|||
 2031-12-30|Christmas|White|0|||
 2031-12-31|Christmas|White|0|||
-2032-01-01|Christmas|White|1||Solemnity of Mary, Mother of God|
+2032-01-01|Christmas|White|0|||
 2032-01-02|Christmas|White|0|||
 2032-01-03|Christmas|White|0|||
 2032-01-04|Christmas|White|0|||
@@ -2787,14 +2787,14 @@ enum LiturgicalGolden {
 2032-08-12|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2032-08-13|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2032-08-14|Ordinary Time|Green|0|19||19th Week in Ordinary Time
-2032-08-15|Ordinary Time|White|1||Assumption of the Blessed Virgin Mary|
+2032-08-15|Ordinary Time|Green|0|20||20th Sunday in Ordinary Time
 2032-08-16|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2032-08-17|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2032-08-18|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2032-08-19|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2032-08-20|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2032-08-21|Ordinary Time|Green|0|20||20th Week in Ordinary Time
-2032-08-22|Ordinary Time|White|0||Queenship of the Blessed Virgin Mary|
+2032-08-22|Ordinary Time|Green|0|21||21st Sunday in Ordinary Time
 2032-08-23|Ordinary Time|Green|0|21||21st Week in Ordinary Time
 2032-08-24|Ordinary Time|Green|0|21||21st Week in Ordinary Time
 2032-08-25|Ordinary Time|Green|0|21||21st Week in Ordinary Time
@@ -2811,7 +2811,7 @@ enum LiturgicalGolden {
 2032-09-05|Ordinary Time|Green|0|23||23rd Sunday in Ordinary Time
 2032-09-06|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2032-09-07|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
-2032-09-08|Ordinary Time|White|0||Nativity of the Blessed Virgin Mary|
+2032-09-08|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2032-09-09|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2032-09-10|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2032-09-11|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
@@ -2840,7 +2840,7 @@ enum LiturgicalGolden {
 2032-10-04|Ordinary Time|White|0||St. Francis of Assisi|
 2032-10-05|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2032-10-06|Ordinary Time|Green|0|27||27th Week in Ordinary Time
-2032-10-07|Ordinary Time|White|0||Our Lady of the Rosary|
+2032-10-07|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2032-10-08|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2032-10-09|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2032-10-10|Ordinary Time|Green|0|28||28th Sunday in Ordinary Time
@@ -2902,7 +2902,7 @@ enum LiturgicalGolden {
 2032-12-05|Advent|Violet|0|2||2nd Sunday of Advent
 2032-12-06|Advent|Violet|0|2||2nd Week of Advent
 2032-12-07|Advent|Violet|0|2||2nd Week of Advent
-2032-12-08|Advent|White|1||Immaculate Conception of the Blessed Virgin Mary|
+2032-12-08|Advent|Violet|0|2||2nd Week of Advent
 2032-12-09|Advent|Violet|0|2||2nd Week of Advent
 2032-12-10|Advent|Violet|0|2||2nd Week of Advent
 2032-12-11|Advent|Violet|0|2||2nd Week of Advent
@@ -2926,7 +2926,7 @@ enum LiturgicalGolden {
 2032-12-29|Christmas|White|0|||
 2032-12-30|Christmas|White|0|||
 2032-12-31|Christmas|White|0|||
-2033-01-01|Christmas|White|1||Solemnity of Mary, Mother of God|
+2033-01-01|Christmas|White|0|||
 2033-01-02|Christmas|White|0|||
 2033-01-03|Christmas|White|0|||
 2033-01-04|Christmas|White|0|||
@@ -3152,14 +3152,14 @@ enum LiturgicalGolden {
 2033-08-12|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2033-08-13|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2033-08-14|Ordinary Time|Green|0|20||20th Sunday in Ordinary Time
-2033-08-15|Ordinary Time|White|1||Assumption of the Blessed Virgin Mary|
+2033-08-15|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2033-08-16|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2033-08-17|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2033-08-18|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2033-08-19|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2033-08-20|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2033-08-21|Ordinary Time|Green|0|21||21st Sunday in Ordinary Time
-2033-08-22|Ordinary Time|White|0||Queenship of the Blessed Virgin Mary|
+2033-08-22|Ordinary Time|Green|0|21||21st Week in Ordinary Time
 2033-08-23|Ordinary Time|Green|0|21||21st Week in Ordinary Time
 2033-08-24|Ordinary Time|Green|0|21||21st Week in Ordinary Time
 2033-08-25|Ordinary Time|Green|0|21||21st Week in Ordinary Time
@@ -3176,7 +3176,7 @@ enum LiturgicalGolden {
 2033-09-05|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2033-09-06|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2033-09-07|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
-2033-09-08|Ordinary Time|White|0||Nativity of the Blessed Virgin Mary|
+2033-09-08|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2033-09-09|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2033-09-10|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
 2033-09-11|Ordinary Time|Green|0|24||24th Sunday in Ordinary Time
@@ -3205,7 +3205,7 @@ enum LiturgicalGolden {
 2033-10-04|Ordinary Time|White|0||St. Francis of Assisi|
 2033-10-05|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2033-10-06|Ordinary Time|Green|0|27||27th Week in Ordinary Time
-2033-10-07|Ordinary Time|White|0||Our Lady of the Rosary|
+2033-10-07|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2033-10-08|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2033-10-09|Ordinary Time|Green|0|28||28th Sunday in Ordinary Time
 2033-10-10|Ordinary Time|Green|0|28||28th Week in Ordinary Time
@@ -3267,11 +3267,11 @@ enum LiturgicalGolden {
 2033-12-05|Advent|Violet|0|2||2nd Week of Advent
 2033-12-06|Advent|Violet|0|2||2nd Week of Advent
 2033-12-07|Advent|Violet|0|2||2nd Week of Advent
-2033-12-08|Advent|White|1||Immaculate Conception of the Blessed Virgin Mary|
+2033-12-08|Advent|Violet|0|2||2nd Week of Advent
 2033-12-09|Advent|Violet|0|2||2nd Week of Advent
 2033-12-10|Advent|Violet|0|2||2nd Week of Advent
 2033-12-11|Advent|Rose|0|3||3rd Sunday of Advent
-2033-12-12|Advent|White|0||Our Lady of Guadalupe|
+2033-12-12|Advent|Violet|0|3||3rd Week of Advent
 2033-12-13|Advent|Violet|0|3||3rd Week of Advent
 2033-12-14|Advent|Violet|0|3||3rd Week of Advent
 2033-12-15|Advent|Violet|0|3||3rd Week of Advent
@@ -3291,7 +3291,7 @@ enum LiturgicalGolden {
 2033-12-29|Christmas|White|0|||
 2033-12-30|Christmas|White|0||The Holy Family of Jesus, Mary, and Joseph|
 2033-12-31|Christmas|White|0|||
-2034-01-01|Christmas|White|1||Solemnity of Mary, Mother of God|
+2034-01-01|Christmas|White|0|||
 2034-01-02|Christmas|White|0|||
 2034-01-03|Christmas|White|0|||
 2034-01-04|Christmas|White|0|||
@@ -3517,14 +3517,14 @@ enum LiturgicalGolden {
 2034-08-12|Ordinary Time|Green|0|18||18th Week in Ordinary Time
 2034-08-13|Ordinary Time|Green|0|19||19th Sunday in Ordinary Time
 2034-08-14|Ordinary Time|Green|0|19||19th Week in Ordinary Time
-2034-08-15|Ordinary Time|White|1||Assumption of the Blessed Virgin Mary|
+2034-08-15|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2034-08-16|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2034-08-17|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2034-08-18|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2034-08-19|Ordinary Time|Green|0|19||19th Week in Ordinary Time
 2034-08-20|Ordinary Time|Green|0|20||20th Sunday in Ordinary Time
 2034-08-21|Ordinary Time|Green|0|20||20th Week in Ordinary Time
-2034-08-22|Ordinary Time|White|0||Queenship of the Blessed Virgin Mary|
+2034-08-22|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2034-08-23|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2034-08-24|Ordinary Time|Green|0|20||20th Week in Ordinary Time
 2034-08-25|Ordinary Time|Green|0|20||20th Week in Ordinary Time
@@ -3541,7 +3541,7 @@ enum LiturgicalGolden {
 2034-09-05|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
 2034-09-06|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
 2034-09-07|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
-2034-09-08|Ordinary Time|White|0||Nativity of the Blessed Virgin Mary|
+2034-09-08|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
 2034-09-09|Ordinary Time|Green|0|22||22nd Week in Ordinary Time
 2034-09-10|Ordinary Time|Green|0|23||23rd Sunday in Ordinary Time
 2034-09-11|Ordinary Time|Green|0|23||23rd Week in Ordinary Time
@@ -3570,7 +3570,7 @@ enum LiturgicalGolden {
 2034-10-04|Ordinary Time|White|0||St. Francis of Assisi|
 2034-10-05|Ordinary Time|Green|0|26||26th Week in Ordinary Time
 2034-10-06|Ordinary Time|Green|0|26||26th Week in Ordinary Time
-2034-10-07|Ordinary Time|White|0||Our Lady of the Rosary|
+2034-10-07|Ordinary Time|Green|0|26||26th Week in Ordinary Time
 2034-10-08|Ordinary Time|Green|0|27||27th Sunday in Ordinary Time
 2034-10-09|Ordinary Time|Green|0|27||27th Week in Ordinary Time
 2034-10-10|Ordinary Time|Green|0|27||27th Week in Ordinary Time
@@ -3632,11 +3632,11 @@ enum LiturgicalGolden {
 2034-12-05|Advent|Violet|0|1||1st Week of Advent
 2034-12-06|Advent|Violet|0|1||1st Week of Advent
 2034-12-07|Advent|Violet|0|1||1st Week of Advent
-2034-12-08|Advent|White|1||Immaculate Conception of the Blessed Virgin Mary|
+2034-12-08|Advent|Violet|0|1||1st Week of Advent
 2034-12-09|Advent|Violet|0|1||1st Week of Advent
 2034-12-10|Advent|Violet|0|2||2nd Sunday of Advent
 2034-12-11|Advent|Violet|0|2||2nd Week of Advent
-2034-12-12|Advent|White|0||Our Lady of Guadalupe|
+2034-12-12|Advent|Violet|0|2||2nd Week of Advent
 2034-12-13|Advent|Violet|0|2||2nd Week of Advent
 2034-12-14|Advent|Violet|0|2||2nd Week of Advent
 2034-12-15|Advent|Violet|0|2||2nd Week of Advent

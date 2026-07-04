@@ -320,7 +320,7 @@ function transferTarget(natural, keys) {
 
 function transferredSolemnity(date, keys, prevYearKeys) {
   const year = yearOf(date);
-  const candidates = [dateOnly(year, 3, 19), dateOnly(year, 3, 25), dateOnly(year, 12, 8)];
+  const candidates = [dateOnly(year, 3, 19), dateOnly(year, 3, 25)];
 
   for (const natural of candidates) {
     const feast = fixedFeast(natural);
@@ -342,8 +342,6 @@ function transferredSolemnity(date, keys, prevYearKeys) {
 // MARK: Fixed feasts (by month/day)
 
 const FIXED_FEASTS = {
-  '1-1':   { name: "Solemnity of Mary, Mother of God", color: LiturgicalColor.white, solemnity: true,
-    description: "The oldest feast honoring Mary. On the first day of the year, this feast celebrates Mary's role as the mother of Jesus (who is believed to be God). It is also the World Day of Peace." },
   '1-6':   { name: "Epiphany of the Lord", color: LiturgicalColor.white, solemnity: true,
     description: "Celebrates the visit of the Magi (Wise Men) to the infant Jesus. 'Epiphany' means 'revelation,' and this feast marks Jesus being revealed to the whole world, not just the Jewish people." },
   '1-25':  { name: "Conversion of St. Paul", color: LiturgicalColor.white, solemnity: false,
@@ -378,12 +376,6 @@ const FIXED_FEASTS = {
     description: "Recalls when Jesus took three disciples up a mountain, and his appearance was transformed. His face shone like the sun and his clothes became dazzling white. Moses and Elijah appeared beside him, and God's voice said 'This is my beloved Son.'" },
   '8-10':  { name: "St. Lawrence, Deacon and Martyr", color: LiturgicalColor.red, solemnity: false,
     description: "Lawrence was one of the seven deacons of Rome under Pope Sixtus II. When Sixtus was martyred in 258, Lawrence was given three days to hand over the wealth of the community to the emperor. He spent the time distributing it to the poor, then presented the poor themselves as 'the treasure of the community.' He was executed on a gridiron. He is the patron of deacons, cooks, and the poor." },
-  '8-15':  { name: "Assumption of the Blessed Virgin Mary", color: LiturgicalColor.white, solemnity: true,
-    description: "Celebrates the belief that at the end of Mary's earthly life, she was taken up ('assumed') body and soul into heaven. It is one of the most important Marian feasts, and a Holy Day of Obligation in many countries." },
-  '8-22':  { name: "Queenship of the Blessed Virgin Mary", color: LiturgicalColor.white, solemnity: false,
-    description: "One week after the Assumption, this feast celebrates Mary's role in heaven. It flows naturally from the one before it: if Mary was assumed body and soul into heaven, what is she there? The tradition answers with the title of queen, not a political one, but a dignity that comes from her closeness to Christ." },
-  '9-8':   { name: "Nativity of the Blessed Virgin Mary", color: LiturgicalColor.white, solemnity: false,
-    description: "The birth of Mary, celebrated nine months after the Immaculate Conception on December 8. This is one of only three birthdays celebrated in the liturgical calendar: Jesus, John the Baptist, and Mary. The others are commemorated on the anniversary of their death, but these three are celebrated from their first day." },
   '9-14':  { name: "Exaltation of the Holy Cross", color: LiturgicalColor.red, solemnity: false,
     description: "Honors the cross on which Jesus was crucified. Rather than a symbol of defeat, it is seen as the instrument of salvation. This feast dates back to the 4th century when St. Helena (Emperor Constantine's mother) is believed to have found the actual cross in Jerusalem." },
   '9-21':  { name: "St. Matthew, Apostle and Evangelist", color: LiturgicalColor.red, solemnity: false,
@@ -396,8 +388,6 @@ const FIXED_FEASTS = {
     description: "A feast celebrating the belief that each person has an angel assigned to them for protection and guidance. The tradition is ancient, drawn from passages in the Psalms, the book of Daniel, and Jesus' own words about not despising 'one of these little ones, for their angels in heaven always see the face of my Father.'" },
   '10-4':  { name: "St. Francis of Assisi", color: LiturgicalColor.white, solemnity: false,
     description: "Francis of Assisi gave up a wealthy merchant's life in 13th-century Italy to live in radical poverty, preach the Gospel, and care for lepers. He founded the Franciscan order, received the stigmata (the wounds of Christ on his body), and wrote the Canticle of the Sun. He is the patron of animals, ecology, and Italy." },
-  '10-7':  { name: "Our Lady of the Rosary", color: LiturgicalColor.white, solemnity: false,
-    description: "This feast commemorates the victory at the Battle of Lepanto in 1571, which was attributed to the intercession of Mary through the praying of the Rosary. It was established to give thanks for that protection and to honor the Rosary as a devotional prayer. The Rosary itself meditates on twenty scenes from the lives of Jesus and Mary." },
   '10-18': { name: "St. Luke, Evangelist", color: LiturgicalColor.red, solemnity: false,
     description: "Luke was a physician and the only Gentile author in the New Testament. He wrote both the Gospel that bears his name and the Acts of the Apostles, together the longest single contribution to the New Testament. His Gospel is the one most attentive to women, the poor, and outsiders. He is the patron of doctors and artists." },
   '10-28': { name: "Sts. Simon and Jude, Apostles", color: LiturgicalColor.red, solemnity: false,
@@ -410,10 +400,6 @@ const FIXED_FEASTS = {
     description: "The Lateran Basilica in Rome is the cathedral of the bishop of Rome, which means it is technically the mother church of all Roman Catholics worldwide, outranking even St. Peter's. This feast, celebrating its dedication, is a way of marking unity with the broader Church." },
   '11-30': { name: "St. Andrew, Apostle", color: LiturgicalColor.red, solemnity: false,
     description: "Andrew was Simon Peter's brother and, according to John's Gospel, the first of the apostles to follow Jesus. He brought Peter to Jesus. He is said to have been crucified on an X-shaped cross, which became his symbol. He is the patron saint of Scotland, Greece, and Russia." },
-  '12-8':  { name: "Immaculate Conception of the Blessed Virgin Mary", color: LiturgicalColor.white, solemnity: true,
-    description: "Celebrates the belief that Mary was conceived without original sin, meaning from the very first moment of her existence, she was full of grace. This is often confused with Jesus' conception, but it is about Mary's own conception by her parents, Anne and Joachim. It is the patron feast of the United States." },
-  '12-12': { name: "Our Lady of Guadalupe", color: LiturgicalColor.white, solemnity: false,
-    description: "In 1531, Mary appeared to a young Aztec man named Juan Diego on a hill outside Mexico City, speaking to him in his own language, Nahuatl. She asked for a church to be built there. When he reported the apparition to the bishop, she left her image miraculously imprinted on his cloak as evidence. That image still exists. She is the patron of the Americas." },
   '12-25': { name: "Nativity of the Lord (Christmas)", color: LiturgicalColor.white, solemnity: true,
     description: "The joyful celebration of Jesus' birth in Bethlehem. It marks the belief that God became a human baby, born to Mary in humble circumstances. It is one of the two greatest feasts of the liturgical year (along with Easter)." },
   '12-26': { name: "St. Stephen, First Martyr", color: LiturgicalColor.red, solemnity: false,

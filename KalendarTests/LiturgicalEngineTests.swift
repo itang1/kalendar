@@ -114,14 +114,6 @@ final class LiturgicalEngineTests: XCTestCase {
         XCTAssertTrue(transferred.isSolemnity)
     }
 
-    func testImmaculateConceptionTransfersOffAdventSunday() {
-        // Dec 8 2024 is the Second Sunday of Advent, which outranks the solemnity, so
-        // the Immaculate Conception transfers to the following day, Dec 9.
-        XCTAssertNil(info(2024, 12, 8).feastName, "impeded on the Advent Sunday")
-        XCTAssertEqual(info(2024, 12, 9).feastName, "Immaculate Conception of the Blessed Virgin Mary")
-        XCTAssertTrue(info(2024, 12, 9).isSolemnity)
-    }
-
     // MARK: - Added celebrations
 
     func testDivineMercySunday() {

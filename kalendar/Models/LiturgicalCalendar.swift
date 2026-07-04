@@ -510,16 +510,14 @@ struct LiturgicalCalendar {
     }
 
     /// If a solemnity that was impeded on its usual date this year is transferred
-    /// onto `date`, return it. The three fixed solemnities that can be outranked are
-    /// St. Joseph (Mar 19), the Annunciation (Mar 25), and the Immaculate Conception
-    /// (Dec 8). When impeded they move to a nearby open day per the Table of
-    /// Liturgical Days.
+    /// onto `date`, return it. The two fixed solemnities that can be outranked are
+    /// St. Joseph (Mar 19) and the Annunciation (Mar 25). When impeded they move to
+    /// a nearby open day per the Table of Liturgical Days.
     private func transferredSolemnity(for date: Date, keys: KeyLiturgicalDates, prevYearKeys: KeyLiturgicalDates) -> (id: FeastID, name: String, color: LiturgicalColor, isSolemnity: Bool, description: String)? {
         let year = calendar.component(.year, from: date)
         let candidates = [
             calendar.date(from: DateComponents(year: year, month: 3, day: 19))!,   // St. Joseph
             calendar.date(from: DateComponents(year: year, month: 3, day: 25))!,   // Annunciation
-            calendar.date(from: DateComponents(year: year, month: 12, day: 8))!,   // Immaculate Conception
         ]
 
         for natural in candidates {
@@ -552,8 +550,7 @@ struct LiturgicalCalendar {
         if month == 3 && day == 19 && inHolyWeekOrLater {   // St. Joseph in Holy Week
             return calendar.date(byAdding: .day, value: -1, to: keys.palmSunday)!
         }
-        // Impeded by a privileged Sunday (or Immaculate Conception on Advent Sunday):
-        // move to the next day.
+        // Impeded by a privileged Sunday: move to the next day.
         return calendar.date(byAdding: .day, value: 1, to: natural)!
     }
 
@@ -564,8 +561,6 @@ struct LiturgicalCalendar {
         let day = calendar.component(.day, from: date)
 
         switch (month, day) {
-        case (1, 1): return (.maryMotherOfGod, "Solemnity of Mary, Mother of God", .white, true,
-            "The oldest feast honoring Mary. On the first day of the year, Christians celebrate Mary's role as the mother of Jesus (who Christians believe is God). It is also the World Day of Peace.")
         case (1, 6): return (.epiphany, "Epiphany of the Lord", .white, true,
             "Celebrates the visit of the Magi (Wise Men) to the infant Jesus. 'Epiphany' means 'revelation,' and this feast marks Jesus being revealed to the whole world, not just the Jewish people.")
         case (1, 25): return (.conversionOfPaul, "Conversion of St. Paul", .white, false,
@@ -600,12 +595,6 @@ struct LiturgicalCalendar {
             "Recalls when Jesus took three disciples up a mountain, and his appearance was transformed. His face shone like the sun and his clothes became dazzling white. Moses and Elijah appeared beside him, and God's voice said 'This is my beloved Son.'")
         case (8, 10): return (.lawrence, "St. Lawrence, Deacon and Martyr", .red, false,
             "Lawrence was one of the seven deacons of Rome under Pope Sixtus II. When Sixtus was martyred in 258, Lawrence was given three days to hand over the wealth of the community to the emperor. He spent the time distributing it to the poor, then presented the poor themselves as 'the treasure of the community.' He was executed on a gridiron. He is the patron of deacons, cooks, and the poor.")
-        case (8, 15): return (.assumption, "Assumption of the Blessed Virgin Mary", .white, true,
-            "Celebrates the belief that at the end of Mary's earthly life, she was taken up ('assumed') body and soul into heaven. It is one of the most important Marian feasts, and a Holy Day of Obligation in many countries.")
-        case (8, 22): return (.queenshipOfMary, "Queenship of the Blessed Virgin Mary", .white, false,
-            "One week after the Assumption, this feast celebrates Mary's role in heaven. It flows naturally from the one before it: if Mary was assumed body and soul into heaven, what is she there? The tradition answers with the title of queen, not a political one, but a dignity that comes from her closeness to Christ.")
-        case (9, 8): return (.nativityOfMary, "Nativity of the Blessed Virgin Mary", .white, false,
-            "The birth of Mary, celebrated nine months after the Immaculate Conception on December 8. This is one of only three birthdays celebrated in the liturgical calendar: Jesus, John the Baptist, and Mary. The others are commemorated on the anniversary of their death, but these three are celebrated from their first day.")
         case (9, 14): return (.exaltationOfTheCross, "Exaltation of the Holy Cross", .red, false,
             "Honors the cross on which Jesus was crucified. Rather than a symbol of defeat, Christians see it as the instrument of salvation. This feast dates back to the 4th century when St. Helena (Emperor Constantine's mother) is believed to have found the actual cross in Jerusalem.")
         case (9, 21): return (.matthewEvangelist, "St. Matthew, Apostle and Evangelist", .red, false,
@@ -618,8 +607,6 @@ struct LiturgicalCalendar {
             "A feast celebrating the belief that each person has an angel assigned to them for protection and guidance. The tradition is ancient, drawn from passages in the Psalms, the book of Daniel, and Jesus' own words about not despising 'one of these little ones, for their angels in heaven always see the face of my Father.'")
         case (10, 4): return (.francisOfAssisi, "St. Francis of Assisi", .white, false,
             "Francis of Assisi gave up a wealthy merchant's life in 13th-century Italy to live in radical poverty, preach the Gospel, and care for lepers. He founded the Franciscan order, received the stigmata (the wounds of Christ on his body), and wrote the Canticle of the Sun. He is the patron of animals, ecology, and Italy.")
-        case (10, 7): return (.ladyOfTheRosary, "Our Lady of the Rosary", .white, false,
-            "This feast commemorates the victory at the Battle of Lepanto in 1571, which was attributed to the intercession of Mary through the praying of the Rosary. It was established to give thanks for that protection and to honor the Rosary as a devotional prayer. The Rosary itself meditates on twenty scenes from the lives of Jesus and Mary.")
         case (10, 18): return (.lukeEvangelist, "St. Luke, Evangelist", .red, false,
             "Luke was a physician and the only Gentile author in the New Testament. He wrote both the Gospel that bears his name and the Acts of the Apostles, together the longest single contribution to the New Testament. His Gospel is the one most attentive to women, the poor, and outsiders. He is the patron of doctors and artists.")
         case (10, 28): return (.simonAndJude, "Sts. Simon and Jude, Apostles", .red, false,
@@ -632,10 +619,6 @@ struct LiturgicalCalendar {
             "The Lateran Basilica in Rome is the cathedral of the bishop of Rome, which means it is technically the mother church of all Roman Catholics worldwide, outranking even St. Peter's. This feast, celebrating its dedication, is a way of marking unity with the broader Christian community.")
         case (11, 30): return (.andrew, "St. Andrew, Apostle", .red, false,
             "Andrew was Simon Peter's brother and, according to John's Gospel, the first of the apostles to follow Jesus. He brought Peter to Jesus. He is said to have been crucified on an X-shaped cross, which became his symbol. He is the patron saint of Scotland, Greece, and Russia.")
-        case (12, 8): return (.immaculateConception, "Immaculate Conception of the Blessed Virgin Mary", .white, true,
-            "Celebrates the belief that Mary was conceived without original sin, meaning from the very first moment of her existence, she was full of grace. This is often confused with Jesus' conception, but it is about Mary's own conception by her parents, Anne and Joachim. It is the patron feast of the United States.")
-        case (12, 12): return (.ladyOfGuadalupe, "Our Lady of Guadalupe", .white, false,
-            "In 1531, Mary appeared to a young Aztec man named Juan Diego on a hill outside Mexico City, speaking to him in his own language, Nahuatl. She asked for a church to be built there. When he reported the apparition to the bishop, she left her image miraculously imprinted on his cloak as evidence. That image still exists. She is the patron of the Americas.")
         case (12, 25): return (.nativityOfTheLord, "Nativity of the Lord (Christmas)", .white, true,
             "The joyful celebration of Jesus' birth in Bethlehem. Christians believe God became a human baby, born to Mary in humble circumstances. It is one of the two greatest feasts of the liturgical year (along with Easter).")
         case (12, 26): return (.stephen, "St. Stephen, First Martyr", .red, false,
