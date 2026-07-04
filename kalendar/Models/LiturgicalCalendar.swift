@@ -366,12 +366,9 @@ struct LiturgicalCalendar {
     private func seasonForDate(_ date: Date, keys: KeyLiturgicalDates, prevYearKeys: KeyLiturgicalDates) -> LiturgicalSeason {
         let year = calendar.component(.year, from: date)
 
-        // Christmas season from previous year (Dec 25 of prev year to Baptism of Lord this year)
-        if date >= prevYearKeys.christmas && date < calendar.date(from: DateComponents(year: year, month: 1, day: 1))! {
-            return .christmas
-        }
-
-        // Jan 1 to Baptism of the Lord: still Christmas season
+        // Jan 1 to Baptism of the Lord: still Christmas season. (December dates are
+        // caught by the `date >= keys.christmas` branch below; a date can never
+        // precede Jan 1 of its own year, so no separate prev-year branch is needed.)
         let janFirst = calendar.date(from: DateComponents(year: year, month: 1, day: 1))!
         if date >= janFirst && date <= keys.baptismOfLord {
             return .christmas

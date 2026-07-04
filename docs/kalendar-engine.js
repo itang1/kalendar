@@ -191,10 +191,9 @@ function seasonForDate(date, keys, prevYearKeys) {
   const year = yearOf(date);
   const janFirst = dateOnly(year, 1, 1);
 
-  // Christmas season from previous year (Dec 25 of prev year to Baptism of Lord this year)
-  if (date >= prevYearKeys.christmas && date < janFirst) return LiturgicalSeason.christmas;
-
-  // Jan 1 to Baptism of the Lord: still Christmas season
+  // Jan 1 to Baptism of the Lord: still Christmas season. (December dates are caught
+  // by the `date >= keys.christmas` branch below; a date can never precede Jan 1 of
+  // its own year, so no separate prev-year branch is needed.)
   if (date >= janFirst && date <= keys.baptismOfLord) return LiturgicalSeason.christmas;
 
   // Ordinary Time I: after Baptism of the Lord to Ash Wednesday
