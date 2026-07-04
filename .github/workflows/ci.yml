@@ -1,0 +1,35 @@
+name: CI
+
+# Runs the drift guards and the Swift unit tests that already exist in the repo,
+# so they run on every push instead of only when someone remembers to.
+on:
+  push:
+  pull_request:
+
+jobs:
+  engine-drift-guard:
+    name: Engine drift guard (JS golden + widget copy)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      # Verifies the JS engine still matches the committed golden decade and that
+      # the widget engine copy is byte-identical to the app copy below its header.
+      - name: Verify golden and widget copy
+        run: node tools/liturgical-golden.mjs
+
+  swift-tests:
+    name: Swift unit tests
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      # Replays the golden decade against the Swift engine and runs the rest of
+      # the LiturgicalEngineTests suite on a simulator.
+      - name: Run KalendarTests
+        run: |
+          xcodebuild test \
+            -scheme kalendar \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
+            CODE_SIGNING_ALLOWED=NO
