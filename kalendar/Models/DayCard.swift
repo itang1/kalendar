@@ -18,6 +18,7 @@ struct DayCard: Identifiable {
     var liturgicalSeason: LiturgicalSeason
     var liturgicalColor: LiturgicalColor
     var feastName: String?
+    var feastID: FeastID?
     var feastDescription: String?
     var isSolemnity: Bool
     var weekOfSeason: Int?

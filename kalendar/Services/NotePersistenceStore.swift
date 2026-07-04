@@ -39,6 +39,7 @@ enum NotePersistenceStore {
 
     static func startSyncing() {
         migrateLegacyBlobIfNeeded()
+        migrateMovableFeastKeysIfNeeded()
         cloud.synchronize()
     }
 
@@ -88,6 +89,47 @@ enum NotePersistenceStore {
             result[String(storageKey.dropFirst(keyPrefix.count))] = entry
         }
         return result
+    }
+
+    /// Movable-feast notes used to be keyed by display name (`feast:Ascension of the
+    /// Lord`); they are now keyed by the stable `FeastID` raw value (`feast:ascension`)
+    /// so re-wording a feast never orphans its notes. This renames any pre-existing
+    /// name-based keys to their identifier-based form, in both local and iCloud
+    /// storage, and is a no-op once none remain.
+    private static let movableFeastKeyRenames: [String: String] = [
+        "feast:Ash Wednesday": "feast:ashWednesday",
+        "feast:Palm Sunday of the Lord's Passion": "feast:palmSunday",
+        "feast:Holy Thursday": "feast:holyThursday",
+        "feast:Good Friday of the Lord's Passion": "feast:goodFriday",
+        "feast:Holy Saturday / Easter Vigil": "feast:holySaturday",
+        "feast:Easter Sunday of the Resurrection": "feast:easterSunday",
+        "feast:Easter Monday": "feast:easterMonday",
+        "feast:Divine Mercy Sunday": "feast:divineMercy",
+        "feast:Most Sacred Heart of Jesus": "feast:sacredHeart",
+        "feast:The Holy Family of Jesus, Mary, and Joseph": "feast:holyFamily",
+        "feast:Ascension of the Lord": "feast:ascension",
+        "feast:Pentecost Sunday": "feast:pentecost",
+        "feast:Most Holy Trinity": "feast:trinitySunday",
+        "feast:Most Holy Body and Blood of Christ (Corpus Christi)": "feast:corpusChristi",
+        "feast:Our Lord Jesus Christ, King of the Universe": "feast:christTheKing",
+    ]
+
+    private static func migrateMovableFeastKeysIfNeeded() {
+        for (oldKey, newKey) in movableFeastKeyRenames {
+            let oldStorage = keyPrefix + oldKey
+            let newStorage = keyPrefix + newKey
+            let value = cloud.data(forKey: oldStorage) ?? local.data(forKey: oldStorage)
+            guard let value else { continue }
+            // Don't clobber a note already saved under the new key (e.g. written by a
+            // device already on this version); just drop the stale name-based key.
+            let alreadyMigrated = local.data(forKey: newStorage) != nil || cloud.data(forKey: newStorage) != nil
+            if !alreadyMigrated {
+                local.set(value, forKey: newStorage)
+                cloud.set(value, forKey: newStorage)
+            }
+            local.removeObject(forKey: oldStorage)
+            cloud.removeObject(forKey: oldStorage)
+        }
     }
 
     /// One-time migration from the old single-blob key to per-day keys. Runs before

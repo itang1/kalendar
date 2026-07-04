@@ -21,14 +21,17 @@ private let monthDayFormatter: DateFormatter = {
 }()
 
 /// Stable key for a day that survives year changes:
-/// - Movable feasts (the Easter cycle) are keyed by feast name so a note on
-///   Easter follows Easter even when its date shifts year to year.
+/// - Movable feasts (the Easter cycle) are keyed by feast identity so a note on
+///   Easter follows Easter even when its date shifts year to year. The stable
+///   `FeastID` is used rather than the display name, so re-wording a feast never
+///   orphans the notes saved under it (`NotePersistenceStore` migrates the old
+///   name-based keys once).
 /// - Everything else (fixed-date feasts and regular days) is keyed by month-day
 ///   so a note on July 10 stays on July 10, and a note on a fixed feast stays put
 ///   even in years when that feast is outranked and not shown.
 private func dayKey(for day: DayCard) -> String {
-    if day.isMovableFeast, let feast = day.feastName {
-        return "feast:\(feast)"
+    if day.isMovableFeast, let id = day.feastID {
+        return "feast:\(id.rawValue)"
     }
     return monthDayFormatter.string(from: day.date)
 }
@@ -83,6 +86,7 @@ final class CalendarViewModel {
                 liturgicalSeason: info.season,
                 liturgicalColor: info.liturgicalColor,
                 feastName: info.feastName,
+                feastID: info.feastID,
                 feastDescription: info.feastDescription,
                 isSolemnity: info.isSolemnity,
                 weekOfSeason: info.weekOfSeason,
