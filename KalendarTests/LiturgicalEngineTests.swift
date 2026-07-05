@@ -142,8 +142,8 @@ final class LiturgicalEngineTests: XCTestCase {
 
     func testBiblicalFiguresAreKept() {
         // Days remembering people and events from Scripture stay, reframed but present.
-        XCTAssertEqual(info(2025, 6, 29).feastName, "Sts. Peter and Paul, Apostles")
-        XCTAssertEqual(info(2025, 10, 18).feastName, "St. Luke, Evangelist")
+        XCTAssertEqual(info(2025, 6, 29).feastName, "Peter and Paul, Apostles")
+        XCTAssertEqual(info(2025, 10, 18).feastName, "Luke the Evangelist")
         XCTAssertEqual(info(2025, 8, 6).feastName, "Transfiguration of the Lord")
     }
 

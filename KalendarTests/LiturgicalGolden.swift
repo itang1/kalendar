@@ -28,7 +28,7 @@ enum LiturgicalGolden {
 2025-01-22|Ordinary Time|Green|0|2||2nd Week in Ordinary Time|
 2025-01-23|Ordinary Time|Green|0|2||2nd Week in Ordinary Time|
 2025-01-24|Ordinary Time|Green|0|2||2nd Week in Ordinary Time|
-2025-01-25|Ordinary Time|White|0||Conversion of St. Paul||
+2025-01-25|Ordinary Time|White|0||Conversion of Paul||
 2025-01-26|Ordinary Time|Green|0|3||3rd Sunday in Ordinary Time|
 2025-01-27|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
 2025-01-28|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
@@ -81,7 +81,7 @@ enum LiturgicalGolden {
 2025-03-16|Lent|Violet|0|2||2nd Sunday of Lent|
 2025-03-17|Lent|Violet|0|2||2nd Week of Lent|St. Patrick's Day
 2025-03-18|Lent|Violet|0|2||2nd Week of Lent|
-2025-03-19|Lent|White|1||St. Joseph, Spouse of the Blessed Virgin Mary||
+2025-03-19|Lent|White|1||Joseph, Husband of Mary||
 2025-03-20|Lent|Violet|0|2||2nd Week of Lent|
 2025-03-21|Lent|Violet|0|2||2nd Week of Lent|
 2025-03-22|Lent|Violet|0|2||2nd Week of Lent|
@@ -137,7 +137,7 @@ enum LiturgicalGolden {
 2025-05-11|Easter|White|0|4||4th Sunday of Easter|Mother's Day
 2025-05-12|Easter|White|0|4||4th Week of Easter|
 2025-05-13|Easter|White|0|4||4th Week of Easter|
-2025-05-14|Easter|Red|0||St. Matthias, Apostle||
+2025-05-14|Easter|Red|0||Matthias the Apostle||
 2025-05-15|Easter|White|0|4||4th Week of Easter|
 2025-05-16|Easter|White|0|4||4th Week of Easter|
 2025-05-17|Easter|White|0|4||4th Week of Easter|
@@ -154,7 +154,7 @@ enum LiturgicalGolden {
 2025-05-28|Easter|White|0|6||6th Week of Easter|
 2025-05-29|Easter|White|1||Ascension of the Lord||
 2025-05-30|Easter|White|0|6||6th Week of Easter|
-2025-05-31|Easter|White|0||Visitation of the Blessed Virgin Mary||
+2025-05-31|Easter|White|0||The Visitation||
 2025-06-01|Easter|White|0|7||7th Sunday of Easter|
 2025-06-02|Easter|White|0|7||7th Week of Easter|
 2025-06-03|Easter|White|0|7||7th Week of Easter|
@@ -165,7 +165,7 @@ enum LiturgicalGolden {
 2025-06-08|Easter|Red|1||Pentecost Sunday||
 2025-06-09|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2025-06-10|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
-2025-06-11|Ordinary Time|Red|0||St. Barnabas, Apostle||
+2025-06-11|Ordinary Time|Red|0||Barnabas the Apostle||
 2025-06-12|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2025-06-13|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2025-06-14|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
@@ -178,12 +178,12 @@ enum LiturgicalGolden {
 2025-06-21|Ordinary Time|Green|0|11||11th Week in Ordinary Time|
 2025-06-22|Ordinary Time|Green|0|12||12th Sunday in Ordinary Time|
 2025-06-23|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
-2025-06-24|Ordinary Time|White|1||Nativity of St. John the Baptist||
+2025-06-24|Ordinary Time|White|1||Nativity of John the Baptist||
 2025-06-25|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2025-06-26|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2025-06-27|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2025-06-28|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
-2025-06-29|Ordinary Time|Red|1||Sts. Peter and Paul, Apostles||
+2025-06-29|Ordinary Time|Red|1||Peter and Paul, Apostles||
 2025-06-30|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2025-07-01|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2025-07-02|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
@@ -206,10 +206,10 @@ enum LiturgicalGolden {
 2025-07-19|Ordinary Time|Green|0|15||15th Week in Ordinary Time|
 2025-07-20|Ordinary Time|Green|0|16||16th Sunday in Ordinary Time|
 2025-07-21|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
-2025-07-22|Ordinary Time|White|0||St. Mary Magdalene||
+2025-07-22|Ordinary Time|White|0||Mary Magdalene||
 2025-07-23|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2025-07-24|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
-2025-07-25|Ordinary Time|Red|0||St. James, Apostle||
+2025-07-25|Ordinary Time|Red|0||James the Apostle||
 2025-07-26|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2025-07-27|Ordinary Time|Green|0|17||17th Sunday in Ordinary Time|
 2025-07-28|Ordinary Time|Green|0|17||17th Week in Ordinary Time|
@@ -267,7 +267,7 @@ enum LiturgicalGolden {
 2025-09-18|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2025-09-19|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2025-09-20|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
-2025-09-21|Ordinary Time|Red|0||St. Matthew, Apostle and Evangelist||
+2025-09-21|Ordinary Time|Red|0||Matthew the Apostle and Evangelist||
 2025-09-22|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
 2025-09-23|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
 2025-09-24|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
@@ -294,7 +294,7 @@ enum LiturgicalGolden {
 2025-10-15|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2025-10-16|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2025-10-17|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
-2025-10-18|Ordinary Time|Red|0||St. Luke, Evangelist||
+2025-10-18|Ordinary Time|Red|0||Luke the Evangelist||
 2025-10-19|Ordinary Time|Green|0|29||29th Sunday in Ordinary Time|
 2025-10-20|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
 2025-10-21|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
@@ -304,7 +304,7 @@ enum LiturgicalGolden {
 2025-10-25|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
 2025-10-26|Ordinary Time|Green|0|30||30th Sunday in Ordinary Time|
 2025-10-27|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
-2025-10-28|Ordinary Time|Red|0||Sts. Simon and Jude, Apostles||
+2025-10-28|Ordinary Time|Red|0||Simon and Jude, Apostles||
 2025-10-29|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2025-10-30|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2025-10-31|Ordinary Time|Red|0||Reformation Day||Halloween
@@ -363,8 +363,8 @@ enum LiturgicalGolden {
 2025-12-23|Advent|Violet|0|4||4th Week of Advent|
 2025-12-24|Advent|Violet|0|4||4th Week of Advent|Christmas Eve
 2025-12-25|Christmas|White|1||Nativity of the Lord (Christmas)||
-2025-12-26|Christmas|Red|0||St. Stephen, First Martyr||
-2025-12-27|Christmas|White|0||St. John, Apostle and Evangelist||
+2025-12-26|Christmas|Red|0||Stephen, the First Martyr||
+2025-12-27|Christmas|White|0||John the Apostle and Evangelist||
 2025-12-28|Christmas|Red|0||Holy Innocents, Martyrs||
 2025-12-29|Christmas|White|0||||
 2025-12-30|Christmas|White|0||||
@@ -393,7 +393,7 @@ enum LiturgicalGolden {
 2026-01-22|Ordinary Time|Green|0|2||2nd Week in Ordinary Time|
 2026-01-23|Ordinary Time|Green|0|2||2nd Week in Ordinary Time|
 2026-01-24|Ordinary Time|Green|0|2||2nd Week in Ordinary Time|
-2026-01-25|Ordinary Time|White|0||Conversion of St. Paul||
+2026-01-25|Ordinary Time|White|0||Conversion of Paul||
 2026-01-26|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
 2026-01-27|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
 2026-01-28|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
@@ -446,7 +446,7 @@ enum LiturgicalGolden {
 2026-03-16|Lent|Violet|0|4||4th Week of Lent|
 2026-03-17|Lent|Violet|0|4||4th Week of Lent|St. Patrick's Day
 2026-03-18|Lent|Violet|0|4||4th Week of Lent|
-2026-03-19|Lent|White|1||St. Joseph, Spouse of the Blessed Virgin Mary||
+2026-03-19|Lent|White|1||Joseph, Husband of Mary||
 2026-03-20|Lent|Violet|0|4||4th Week of Lent|
 2026-03-21|Lent|Violet|0|4||4th Week of Lent|
 2026-03-22|Lent|Violet|0|5||5th Sunday of Lent|
@@ -483,7 +483,7 @@ enum LiturgicalGolden {
 2026-04-22|Easter|White|0|3||3rd Week of Easter|Earth Day
 2026-04-23|Easter|White|0|3||3rd Week of Easter|
 2026-04-24|Easter|White|0|3||3rd Week of Easter|
-2026-04-25|Easter|Red|0||St. Mark, Evangelist||
+2026-04-25|Easter|Red|0||Mark the Evangelist||
 2026-04-26|Easter|White|0|4||4th Sunday of Easter|
 2026-04-27|Easter|White|0|4||4th Week of Easter|
 2026-04-28|Easter|White|0|4||4th Week of Easter|
@@ -502,7 +502,7 @@ enum LiturgicalGolden {
 2026-05-11|Easter|White|0|6||6th Week of Easter|
 2026-05-12|Easter|White|0|6||6th Week of Easter|
 2026-05-13|Easter|White|0|6||6th Week of Easter|
-2026-05-14|Easter|Red|0||St. Matthias, Apostle||
+2026-05-14|Easter|Red|0||Matthias the Apostle||
 2026-05-15|Easter|White|0|6||6th Week of Easter|
 2026-05-16|Easter|White|0|6||6th Week of Easter|
 2026-05-17|Easter|White|0|7||7th Sunday of Easter|
@@ -519,7 +519,7 @@ enum LiturgicalGolden {
 2026-05-28|Ordinary Time|Green|0|8||8th Week in Ordinary Time|
 2026-05-29|Ordinary Time|Green|0|8||8th Week in Ordinary Time|
 2026-05-30|Ordinary Time|Green|0|8||8th Week in Ordinary Time|
-2026-05-31|Ordinary Time|White|0||Visitation of the Blessed Virgin Mary||
+2026-05-31|Ordinary Time|White|0||The Visitation||
 2026-06-01|Ordinary Time|Green|0|9||9th Week in Ordinary Time|
 2026-06-02|Ordinary Time|Green|0|9||9th Week in Ordinary Time|
 2026-06-03|Ordinary Time|Green|0|9||9th Week in Ordinary Time|
@@ -530,7 +530,7 @@ enum LiturgicalGolden {
 2026-06-08|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2026-06-09|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2026-06-10|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
-2026-06-11|Ordinary Time|Red|0||St. Barnabas, Apostle||
+2026-06-11|Ordinary Time|Red|0||Barnabas the Apostle||
 2026-06-12|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2026-06-13|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2026-06-14|Ordinary Time|Green|0|11||11th Sunday in Ordinary Time|
@@ -543,12 +543,12 @@ enum LiturgicalGolden {
 2026-06-21|Ordinary Time|Green|0|12||12th Sunday in Ordinary Time|Father's Day
 2026-06-22|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2026-06-23|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
-2026-06-24|Ordinary Time|White|1||Nativity of St. John the Baptist||
+2026-06-24|Ordinary Time|White|1||Nativity of John the Baptist||
 2026-06-25|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2026-06-26|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2026-06-27|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2026-06-28|Ordinary Time|Green|0|13||13th Sunday in Ordinary Time|
-2026-06-29|Ordinary Time|Red|1||Sts. Peter and Paul, Apostles||
+2026-06-29|Ordinary Time|Red|1||Peter and Paul, Apostles||
 2026-06-30|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2026-07-01|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2026-07-02|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
@@ -571,10 +571,10 @@ enum LiturgicalGolden {
 2026-07-19|Ordinary Time|Green|0|16||16th Sunday in Ordinary Time|
 2026-07-20|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2026-07-21|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
-2026-07-22|Ordinary Time|White|0||St. Mary Magdalene||
+2026-07-22|Ordinary Time|White|0||Mary Magdalene||
 2026-07-23|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2026-07-24|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
-2026-07-25|Ordinary Time|Red|0||St. James, Apostle||
+2026-07-25|Ordinary Time|Red|0||James the Apostle||
 2026-07-26|Ordinary Time|Green|0|17||17th Sunday in Ordinary Time|
 2026-07-27|Ordinary Time|Green|0|17||17th Week in Ordinary Time|
 2026-07-28|Ordinary Time|Green|0|17||17th Week in Ordinary Time|
@@ -632,7 +632,7 @@ enum LiturgicalGolden {
 2026-09-18|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2026-09-19|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2026-09-20|Ordinary Time|Green|0|25||25th Sunday in Ordinary Time|
-2026-09-21|Ordinary Time|Red|0||St. Matthew, Apostle and Evangelist||
+2026-09-21|Ordinary Time|Red|0||Matthew the Apostle and Evangelist||
 2026-09-22|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
 2026-09-23|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
 2026-09-24|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
@@ -659,7 +659,7 @@ enum LiturgicalGolden {
 2026-10-15|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2026-10-16|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2026-10-17|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
-2026-10-18|Ordinary Time|Red|0||St. Luke, Evangelist||
+2026-10-18|Ordinary Time|Red|0||Luke the Evangelist||
 2026-10-19|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
 2026-10-20|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
 2026-10-21|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
@@ -669,7 +669,7 @@ enum LiturgicalGolden {
 2026-10-25|Ordinary Time|Green|0|30||30th Sunday in Ordinary Time|
 2026-10-26|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2026-10-27|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
-2026-10-28|Ordinary Time|Red|0||Sts. Simon and Jude, Apostles||
+2026-10-28|Ordinary Time|Red|0||Simon and Jude, Apostles||
 2026-10-29|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2026-10-30|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2026-10-31|Ordinary Time|Red|0||Reformation Day||Halloween
@@ -702,7 +702,7 @@ enum LiturgicalGolden {
 2026-11-27|Ordinary Time|Green|0|34||34th Week in Ordinary Time|
 2026-11-28|Ordinary Time|Green|0|34||34th Week in Ordinary Time|
 2026-11-29|Advent|Violet|0|1||1st Sunday of Advent|
-2026-11-30|Advent|Red|0||St. Andrew, Apostle||
+2026-11-30|Advent|Red|0||Andrew the Apostle||
 2026-12-01|Advent|Violet|0|1||1st Week of Advent|
 2026-12-02|Advent|Violet|0|1||1st Week of Advent|
 2026-12-03|Advent|Violet|0|1||1st Week of Advent|
@@ -728,8 +728,8 @@ enum LiturgicalGolden {
 2026-12-23|Advent|Violet|0|4||4th Week of Advent|
 2026-12-24|Advent|Violet|0|4||4th Week of Advent|Christmas Eve
 2026-12-25|Christmas|White|1||Nativity of the Lord (Christmas)||
-2026-12-26|Christmas|Red|0||St. Stephen, First Martyr||
-2026-12-27|Christmas|White|0||St. John, Apostle and Evangelist||
+2026-12-26|Christmas|Red|0||Stephen, the First Martyr||
+2026-12-27|Christmas|White|0||John the Apostle and Evangelist||
 2026-12-28|Christmas|Red|0||Holy Innocents, Martyrs||
 2026-12-29|Christmas|White|0||||
 2026-12-30|Christmas|White|0||||
@@ -758,7 +758,7 @@ enum LiturgicalGolden {
 2027-01-22|Ordinary Time|Green|0|2||2nd Week in Ordinary Time|
 2027-01-23|Ordinary Time|Green|0|2||2nd Week in Ordinary Time|
 2027-01-24|Ordinary Time|Green|0|3||3rd Sunday in Ordinary Time|
-2027-01-25|Ordinary Time|White|0||Conversion of St. Paul||
+2027-01-25|Ordinary Time|White|0||Conversion of Paul||
 2027-01-26|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
 2027-01-27|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
 2027-01-28|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
@@ -811,7 +811,7 @@ enum LiturgicalGolden {
 2027-03-16|Lent|Violet|0|5||5th Week of Lent|
 2027-03-17|Lent|Violet|0|5||5th Week of Lent|St. Patrick's Day
 2027-03-18|Lent|Violet|0|5||5th Week of Lent|
-2027-03-19|Lent|White|1||St. Joseph, Spouse of the Blessed Virgin Mary||
+2027-03-19|Lent|White|1||Joseph, Husband of Mary||
 2027-03-20|Lent|Violet|0|5||5th Week of Lent|
 2027-03-21|Lent|Red|0||Palm Sunday of the Lord's Passion||
 2027-03-22|Lent|Violet|0|6||6th Week of Lent|
@@ -867,7 +867,7 @@ enum LiturgicalGolden {
 2027-05-11|Easter|White|0|7||7th Week of Easter|
 2027-05-12|Easter|White|0|7||7th Week of Easter|
 2027-05-13|Easter|White|0|7||7th Week of Easter|
-2027-05-14|Easter|Red|0||St. Matthias, Apostle||
+2027-05-14|Easter|Red|0||Matthias the Apostle||
 2027-05-15|Easter|White|0|7||7th Week of Easter|
 2027-05-16|Easter|Red|1||Pentecost Sunday||
 2027-05-17|Ordinary Time|Green|0|7||7th Week in Ordinary Time|
@@ -884,7 +884,7 @@ enum LiturgicalGolden {
 2027-05-28|Ordinary Time|Green|0|8||8th Week in Ordinary Time|
 2027-05-29|Ordinary Time|Green|0|8||8th Week in Ordinary Time|
 2027-05-30|Ordinary Time|Green|0|9||9th Sunday in Ordinary Time|
-2027-05-31|Ordinary Time|White|0||Visitation of the Blessed Virgin Mary||Memorial Day
+2027-05-31|Ordinary Time|White|0||The Visitation||Memorial Day
 2027-06-01|Ordinary Time|Green|0|9||9th Week in Ordinary Time|
 2027-06-02|Ordinary Time|Green|0|9||9th Week in Ordinary Time|
 2027-06-03|Ordinary Time|Green|0|9||9th Week in Ordinary Time|
@@ -895,7 +895,7 @@ enum LiturgicalGolden {
 2027-06-08|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2027-06-09|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2027-06-10|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
-2027-06-11|Ordinary Time|Red|0||St. Barnabas, Apostle||
+2027-06-11|Ordinary Time|Red|0||Barnabas the Apostle||
 2027-06-12|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2027-06-13|Ordinary Time|Green|0|11||11th Sunday in Ordinary Time|
 2027-06-14|Ordinary Time|Green|0|11||11th Week in Ordinary Time|
@@ -908,12 +908,12 @@ enum LiturgicalGolden {
 2027-06-21|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2027-06-22|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2027-06-23|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
-2027-06-24|Ordinary Time|White|1||Nativity of St. John the Baptist||
+2027-06-24|Ordinary Time|White|1||Nativity of John the Baptist||
 2027-06-25|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2027-06-26|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2027-06-27|Ordinary Time|Green|0|13||13th Sunday in Ordinary Time|
 2027-06-28|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
-2027-06-29|Ordinary Time|Red|1||Sts. Peter and Paul, Apostles||
+2027-06-29|Ordinary Time|Red|1||Peter and Paul, Apostles||
 2027-06-30|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2027-07-01|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2027-07-02|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
@@ -936,10 +936,10 @@ enum LiturgicalGolden {
 2027-07-19|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2027-07-20|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2027-07-21|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
-2027-07-22|Ordinary Time|White|0||St. Mary Magdalene||
+2027-07-22|Ordinary Time|White|0||Mary Magdalene||
 2027-07-23|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2027-07-24|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
-2027-07-25|Ordinary Time|Red|0||St. James, Apostle||
+2027-07-25|Ordinary Time|Red|0||James the Apostle||
 2027-07-26|Ordinary Time|Green|0|17||17th Week in Ordinary Time|
 2027-07-27|Ordinary Time|Green|0|17||17th Week in Ordinary Time|
 2027-07-28|Ordinary Time|Green|0|17||17th Week in Ordinary Time|
@@ -997,7 +997,7 @@ enum LiturgicalGolden {
 2027-09-18|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2027-09-19|Ordinary Time|Green|0|25||25th Sunday in Ordinary Time|
 2027-09-20|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
-2027-09-21|Ordinary Time|Red|0||St. Matthew, Apostle and Evangelist||
+2027-09-21|Ordinary Time|Red|0||Matthew the Apostle and Evangelist||
 2027-09-22|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
 2027-09-23|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
 2027-09-24|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
@@ -1024,7 +1024,7 @@ enum LiturgicalGolden {
 2027-10-15|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2027-10-16|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2027-10-17|Ordinary Time|Green|0|29||29th Sunday in Ordinary Time|
-2027-10-18|Ordinary Time|Red|0||St. Luke, Evangelist||
+2027-10-18|Ordinary Time|Red|0||Luke the Evangelist||
 2027-10-19|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
 2027-10-20|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
 2027-10-21|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
@@ -1034,7 +1034,7 @@ enum LiturgicalGolden {
 2027-10-25|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2027-10-26|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2027-10-27|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
-2027-10-28|Ordinary Time|Red|0||Sts. Simon and Jude, Apostles||
+2027-10-28|Ordinary Time|Red|0||Simon and Jude, Apostles||
 2027-10-29|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2027-10-30|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2027-10-31|Ordinary Time|Red|0||Reformation Day||Halloween
@@ -1067,7 +1067,7 @@ enum LiturgicalGolden {
 2027-11-27|Ordinary Time|Green|0|34||34th Week in Ordinary Time|
 2027-11-28|Advent|Violet|0|1||1st Sunday of Advent|
 2027-11-29|Advent|Violet|0|1||1st Week of Advent|
-2027-11-30|Advent|Red|0||St. Andrew, Apostle||
+2027-11-30|Advent|Red|0||Andrew the Apostle||
 2027-12-01|Advent|Violet|0|1||1st Week of Advent|
 2027-12-02|Advent|Violet|0|1||1st Week of Advent|
 2027-12-03|Advent|Violet|0|1||1st Week of Advent|
@@ -1093,8 +1093,8 @@ enum LiturgicalGolden {
 2027-12-23|Advent|Violet|0|4||4th Week of Advent|
 2027-12-24|Advent|Violet|0|4||4th Week of Advent|Christmas Eve
 2027-12-25|Christmas|White|1||Nativity of the Lord (Christmas)||
-2027-12-26|Christmas|Red|0||St. Stephen, First Martyr||
-2027-12-27|Christmas|White|0||St. John, Apostle and Evangelist||
+2027-12-26|Christmas|Red|0||Stephen, the First Martyr||
+2027-12-27|Christmas|White|0||John the Apostle and Evangelist||
 2027-12-28|Christmas|Red|0||Holy Innocents, Martyrs||
 2027-12-29|Christmas|White|0||||
 2027-12-30|Christmas|White|0||||
@@ -1123,7 +1123,7 @@ enum LiturgicalGolden {
 2028-01-22|Ordinary Time|Green|0|2||2nd Week in Ordinary Time|
 2028-01-23|Ordinary Time|Green|0|3||3rd Sunday in Ordinary Time|
 2028-01-24|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
-2028-01-25|Ordinary Time|White|0||Conversion of St. Paul||
+2028-01-25|Ordinary Time|White|0||Conversion of Paul||
 2028-01-26|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
 2028-01-27|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
 2028-01-28|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
@@ -1178,7 +1178,7 @@ enum LiturgicalGolden {
 2028-03-17|Lent|Violet|0|2||2nd Week of Lent|St. Patrick's Day
 2028-03-18|Lent|Violet|0|2||2nd Week of Lent|
 2028-03-19|Lent|Violet|0|3||3rd Sunday of Lent|
-2028-03-20|Lent|White|1||St. Joseph, Spouse of the Blessed Virgin Mary||
+2028-03-20|Lent|White|1||Joseph, Husband of Mary||
 2028-03-21|Lent|Violet|0|3||3rd Week of Lent|
 2028-03-22|Lent|Violet|0|3||3rd Week of Lent|
 2028-03-23|Lent|Violet|0|3||3rd Week of Lent|
@@ -1214,7 +1214,7 @@ enum LiturgicalGolden {
 2028-04-22|Easter|White|0|1||Octave of Easter|Earth Day
 2028-04-23|Easter|White|0|2||2nd Sunday of Easter|
 2028-04-24|Easter|White|0|2||2nd Week of Easter|
-2028-04-25|Easter|Red|0||St. Mark, Evangelist||
+2028-04-25|Easter|Red|0||Mark the Evangelist||
 2028-04-26|Easter|White|0|2||2nd Week of Easter|
 2028-04-27|Easter|White|0|2||2nd Week of Easter|
 2028-04-28|Easter|White|0|2||2nd Week of Easter|
@@ -1250,7 +1250,7 @@ enum LiturgicalGolden {
 2028-05-28|Easter|White|0|7||7th Sunday of Easter|
 2028-05-29|Easter|White|0|7||7th Week of Easter|Memorial Day
 2028-05-30|Easter|White|0|7||7th Week of Easter|
-2028-05-31|Easter|White|0||Visitation of the Blessed Virgin Mary||
+2028-05-31|Easter|White|0||The Visitation||
 2028-06-01|Easter|White|0|7||7th Week of Easter|
 2028-06-02|Easter|White|0|7||7th Week of Easter|
 2028-06-03|Easter|White|0|7||7th Week of Easter|
@@ -1261,7 +1261,7 @@ enum LiturgicalGolden {
 2028-06-08|Ordinary Time|Green|0|9||9th Week in Ordinary Time|
 2028-06-09|Ordinary Time|Green|0|9||9th Week in Ordinary Time|
 2028-06-10|Ordinary Time|Green|0|9||9th Week in Ordinary Time|
-2028-06-11|Ordinary Time|Red|0||St. Barnabas, Apostle||
+2028-06-11|Ordinary Time|Red|0||Barnabas the Apostle||
 2028-06-12|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2028-06-13|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2028-06-14|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
@@ -1274,12 +1274,12 @@ enum LiturgicalGolden {
 2028-06-21|Ordinary Time|Green|0|11||11th Week in Ordinary Time|
 2028-06-22|Ordinary Time|Green|0|11||11th Week in Ordinary Time|
 2028-06-23|Ordinary Time|Green|0|11||11th Week in Ordinary Time|
-2028-06-24|Ordinary Time|White|1||Nativity of St. John the Baptist||
+2028-06-24|Ordinary Time|White|1||Nativity of John the Baptist||
 2028-06-25|Ordinary Time|Green|0|12||12th Sunday in Ordinary Time|
 2028-06-26|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2028-06-27|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2028-06-28|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
-2028-06-29|Ordinary Time|Red|1||Sts. Peter and Paul, Apostles||
+2028-06-29|Ordinary Time|Red|1||Peter and Paul, Apostles||
 2028-06-30|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2028-07-01|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2028-07-02|Ordinary Time|Green|0|13||13th Sunday in Ordinary Time|
@@ -1302,10 +1302,10 @@ enum LiturgicalGolden {
 2028-07-19|Ordinary Time|Green|0|15||15th Week in Ordinary Time|
 2028-07-20|Ordinary Time|Green|0|15||15th Week in Ordinary Time|
 2028-07-21|Ordinary Time|Green|0|15||15th Week in Ordinary Time|
-2028-07-22|Ordinary Time|White|0||St. Mary Magdalene||
+2028-07-22|Ordinary Time|White|0||Mary Magdalene||
 2028-07-23|Ordinary Time|Green|0|16||16th Sunday in Ordinary Time|
 2028-07-24|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
-2028-07-25|Ordinary Time|Red|0||St. James, Apostle||
+2028-07-25|Ordinary Time|Red|0||James the Apostle||
 2028-07-26|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2028-07-27|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2028-07-28|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
@@ -1363,7 +1363,7 @@ enum LiturgicalGolden {
 2028-09-18|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2028-09-19|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2028-09-20|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
-2028-09-21|Ordinary Time|Red|0||St. Matthew, Apostle and Evangelist||
+2028-09-21|Ordinary Time|Red|0||Matthew the Apostle and Evangelist||
 2028-09-22|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2028-09-23|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2028-09-24|Ordinary Time|Green|0|25||25th Sunday in Ordinary Time|
@@ -1390,7 +1390,7 @@ enum LiturgicalGolden {
 2028-10-15|Ordinary Time|Green|0|28||28th Sunday in Ordinary Time|
 2028-10-16|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2028-10-17|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
-2028-10-18|Ordinary Time|Red|0||St. Luke, Evangelist||
+2028-10-18|Ordinary Time|Red|0||Luke the Evangelist||
 2028-10-19|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2028-10-20|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2028-10-21|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
@@ -1400,7 +1400,7 @@ enum LiturgicalGolden {
 2028-10-25|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
 2028-10-26|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
 2028-10-27|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
-2028-10-28|Ordinary Time|Red|0||Sts. Simon and Jude, Apostles||
+2028-10-28|Ordinary Time|Red|0||Simon and Jude, Apostles||
 2028-10-29|Ordinary Time|Green|0|30||30th Sunday in Ordinary Time|
 2028-10-30|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2028-10-31|Ordinary Time|Red|0||Reformation Day||Halloween
@@ -1433,7 +1433,7 @@ enum LiturgicalGolden {
 2028-11-27|Ordinary Time|Green|0|34||34th Week in Ordinary Time|
 2028-11-28|Ordinary Time|Green|0|34||34th Week in Ordinary Time|
 2028-11-29|Ordinary Time|Green|0|34||34th Week in Ordinary Time|
-2028-11-30|Ordinary Time|Red|0||St. Andrew, Apostle||
+2028-11-30|Ordinary Time|Red|0||Andrew the Apostle||
 2028-12-01|Ordinary Time|Green|0|34||34th Week in Ordinary Time|
 2028-12-02|Ordinary Time|Green|0|34||34th Week in Ordinary Time|
 2028-12-03|Advent|Violet|0|1||1st Sunday of Advent|
@@ -1459,8 +1459,8 @@ enum LiturgicalGolden {
 2028-12-23|Advent|Violet|0|3||3rd Week of Advent|
 2028-12-24|Advent|Violet|0|4||4th Sunday of Advent|Christmas Eve
 2028-12-25|Christmas|White|1||Nativity of the Lord (Christmas)||
-2028-12-26|Christmas|Red|0||St. Stephen, First Martyr||
-2028-12-27|Christmas|White|0||St. John, Apostle and Evangelist||
+2028-12-26|Christmas|Red|0||Stephen, the First Martyr||
+2028-12-27|Christmas|White|0||John the Apostle and Evangelist||
 2028-12-28|Christmas|Red|0||Holy Innocents, Martyrs||
 2028-12-29|Christmas|White|0||||
 2028-12-30|Christmas|White|0||||
@@ -1489,7 +1489,7 @@ enum LiturgicalGolden {
 2029-01-22|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
 2029-01-23|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
 2029-01-24|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
-2029-01-25|Ordinary Time|White|0||Conversion of St. Paul||
+2029-01-25|Ordinary Time|White|0||Conversion of Paul||
 2029-01-26|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
 2029-01-27|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
 2029-01-28|Ordinary Time|Green|0|4||4th Sunday in Ordinary Time|
@@ -1542,7 +1542,7 @@ enum LiturgicalGolden {
 2029-03-16|Lent|Violet|0|4||4th Week of Lent|
 2029-03-17|Lent|Violet|0|4||4th Week of Lent|St. Patrick's Day
 2029-03-18|Lent|Violet|0|5||5th Sunday of Lent|
-2029-03-19|Lent|White|1||St. Joseph, Spouse of the Blessed Virgin Mary||
+2029-03-19|Lent|White|1||Joseph, Husband of Mary||
 2029-03-20|Lent|Violet|0|5||5th Week of Lent|
 2029-03-21|Lent|Violet|0|5||5th Week of Lent|
 2029-03-22|Lent|Violet|0|5||5th Week of Lent|
@@ -1579,7 +1579,7 @@ enum LiturgicalGolden {
 2029-04-22|Easter|White|0|4||4th Sunday of Easter|Earth Day
 2029-04-23|Easter|White|0|4||4th Week of Easter|
 2029-04-24|Easter|White|0|4||4th Week of Easter|
-2029-04-25|Easter|Red|0||St. Mark, Evangelist||
+2029-04-25|Easter|Red|0||Mark the Evangelist||
 2029-04-26|Easter|White|0|4||4th Week of Easter|
 2029-04-27|Easter|White|0|4||4th Week of Easter|
 2029-04-28|Easter|White|0|4||4th Week of Easter|
@@ -1598,7 +1598,7 @@ enum LiturgicalGolden {
 2029-05-11|Easter|White|0|6||6th Week of Easter|
 2029-05-12|Easter|White|0|6||6th Week of Easter|
 2029-05-13|Easter|White|0|7||7th Sunday of Easter|Mother's Day
-2029-05-14|Easter|Red|0||St. Matthias, Apostle||
+2029-05-14|Easter|Red|0||Matthias the Apostle||
 2029-05-15|Easter|White|0|7||7th Week of Easter|
 2029-05-16|Easter|White|0|7||7th Week of Easter|
 2029-05-17|Easter|White|0|7||7th Week of Easter|
@@ -1615,7 +1615,7 @@ enum LiturgicalGolden {
 2029-05-28|Ordinary Time|Green|0|8||8th Week in Ordinary Time|Memorial Day
 2029-05-29|Ordinary Time|Green|0|8||8th Week in Ordinary Time|
 2029-05-30|Ordinary Time|Green|0|8||8th Week in Ordinary Time|
-2029-05-31|Ordinary Time|White|0||Visitation of the Blessed Virgin Mary||
+2029-05-31|Ordinary Time|White|0||The Visitation||
 2029-06-01|Ordinary Time|Green|0|8||8th Week in Ordinary Time|
 2029-06-02|Ordinary Time|Green|0|8||8th Week in Ordinary Time|
 2029-06-03|Ordinary Time|Green|0|9||9th Sunday in Ordinary Time|
@@ -1626,7 +1626,7 @@ enum LiturgicalGolden {
 2029-06-08|Ordinary Time|Green|0|9||9th Week in Ordinary Time|
 2029-06-09|Ordinary Time|Green|0|9||9th Week in Ordinary Time|
 2029-06-10|Ordinary Time|Green|0|10||10th Sunday in Ordinary Time|
-2029-06-11|Ordinary Time|Red|0||St. Barnabas, Apostle||
+2029-06-11|Ordinary Time|Red|0||Barnabas the Apostle||
 2029-06-12|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2029-06-13|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2029-06-14|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
@@ -1639,12 +1639,12 @@ enum LiturgicalGolden {
 2029-06-21|Ordinary Time|Green|0|11||11th Week in Ordinary Time|
 2029-06-22|Ordinary Time|Green|0|11||11th Week in Ordinary Time|
 2029-06-23|Ordinary Time|Green|0|11||11th Week in Ordinary Time|
-2029-06-24|Ordinary Time|White|1||Nativity of St. John the Baptist||
+2029-06-24|Ordinary Time|White|1||Nativity of John the Baptist||
 2029-06-25|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2029-06-26|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2029-06-27|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2029-06-28|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
-2029-06-29|Ordinary Time|Red|1||Sts. Peter and Paul, Apostles||
+2029-06-29|Ordinary Time|Red|1||Peter and Paul, Apostles||
 2029-06-30|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2029-07-01|Ordinary Time|Green|0|13||13th Sunday in Ordinary Time|
 2029-07-02|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
@@ -1667,10 +1667,10 @@ enum LiturgicalGolden {
 2029-07-19|Ordinary Time|Green|0|15||15th Week in Ordinary Time|
 2029-07-20|Ordinary Time|Green|0|15||15th Week in Ordinary Time|
 2029-07-21|Ordinary Time|Green|0|15||15th Week in Ordinary Time|
-2029-07-22|Ordinary Time|White|0||St. Mary Magdalene||
+2029-07-22|Ordinary Time|White|0||Mary Magdalene||
 2029-07-23|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2029-07-24|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
-2029-07-25|Ordinary Time|Red|0||St. James, Apostle||
+2029-07-25|Ordinary Time|Red|0||James the Apostle||
 2029-07-26|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2029-07-27|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2029-07-28|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
@@ -1728,7 +1728,7 @@ enum LiturgicalGolden {
 2029-09-18|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2029-09-19|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2029-09-20|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
-2029-09-21|Ordinary Time|Red|0||St. Matthew, Apostle and Evangelist||
+2029-09-21|Ordinary Time|Red|0||Matthew the Apostle and Evangelist||
 2029-09-22|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2029-09-23|Ordinary Time|Green|0|25||25th Sunday in Ordinary Time|
 2029-09-24|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
@@ -1755,7 +1755,7 @@ enum LiturgicalGolden {
 2029-10-15|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2029-10-16|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2029-10-17|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
-2029-10-18|Ordinary Time|Red|0||St. Luke, Evangelist||
+2029-10-18|Ordinary Time|Red|0||Luke the Evangelist||
 2029-10-19|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2029-10-20|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2029-10-21|Ordinary Time|Green|0|29||29th Sunday in Ordinary Time|
@@ -1765,7 +1765,7 @@ enum LiturgicalGolden {
 2029-10-25|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
 2029-10-26|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
 2029-10-27|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
-2029-10-28|Ordinary Time|Red|0||Sts. Simon and Jude, Apostles||
+2029-10-28|Ordinary Time|Red|0||Simon and Jude, Apostles||
 2029-10-29|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2029-10-30|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2029-10-31|Ordinary Time|Red|0||Reformation Day||Halloween
@@ -1798,7 +1798,7 @@ enum LiturgicalGolden {
 2029-11-27|Ordinary Time|Green|0|34||34th Week in Ordinary Time|
 2029-11-28|Ordinary Time|Green|0|34||34th Week in Ordinary Time|
 2029-11-29|Ordinary Time|Green|0|34||34th Week in Ordinary Time|
-2029-11-30|Ordinary Time|Red|0||St. Andrew, Apostle||
+2029-11-30|Ordinary Time|Red|0||Andrew the Apostle||
 2029-12-01|Ordinary Time|Green|0|34||34th Week in Ordinary Time|
 2029-12-02|Advent|Violet|0|1||1st Sunday of Advent|
 2029-12-03|Advent|Violet|0|1||1st Week of Advent|
@@ -1824,8 +1824,8 @@ enum LiturgicalGolden {
 2029-12-23|Advent|Violet|0|4||4th Sunday of Advent|
 2029-12-24|Advent|Violet|0|4||4th Week of Advent|Christmas Eve
 2029-12-25|Christmas|White|1||Nativity of the Lord (Christmas)||
-2029-12-26|Christmas|Red|0||St. Stephen, First Martyr||
-2029-12-27|Christmas|White|0||St. John, Apostle and Evangelist||
+2029-12-26|Christmas|Red|0||Stephen, the First Martyr||
+2029-12-27|Christmas|White|0||John the Apostle and Evangelist||
 2029-12-28|Christmas|Red|0||Holy Innocents, Martyrs||
 2029-12-29|Christmas|White|0||||
 2029-12-30|Christmas|White|0||||
@@ -1854,7 +1854,7 @@ enum LiturgicalGolden {
 2030-01-22|Ordinary Time|Green|0|2||2nd Week in Ordinary Time|
 2030-01-23|Ordinary Time|Green|0|2||2nd Week in Ordinary Time|
 2030-01-24|Ordinary Time|Green|0|2||2nd Week in Ordinary Time|
-2030-01-25|Ordinary Time|White|0||Conversion of St. Paul||
+2030-01-25|Ordinary Time|White|0||Conversion of Paul||
 2030-01-26|Ordinary Time|Green|0|2||2nd Week in Ordinary Time|
 2030-01-27|Ordinary Time|Green|0|3||3rd Sunday in Ordinary Time|
 2030-01-28|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
@@ -1907,7 +1907,7 @@ enum LiturgicalGolden {
 2030-03-16|Lent|Violet|0|1||1st Week of Lent|
 2030-03-17|Lent|Violet|0|2||2nd Sunday of Lent|St. Patrick's Day
 2030-03-18|Lent|Violet|0|2||2nd Week of Lent|
-2030-03-19|Lent|White|1||St. Joseph, Spouse of the Blessed Virgin Mary||
+2030-03-19|Lent|White|1||Joseph, Husband of Mary||
 2030-03-20|Lent|Violet|0|2||2nd Week of Lent|
 2030-03-21|Lent|Violet|0|2||2nd Week of Lent|
 2030-03-22|Lent|Violet|0|2||2nd Week of Lent|
@@ -1963,7 +1963,7 @@ enum LiturgicalGolden {
 2030-05-11|Easter|White|0|3||3rd Week of Easter|
 2030-05-12|Easter|White|0|4||4th Sunday of Easter|Mother's Day
 2030-05-13|Easter|White|0|4||4th Week of Easter|
-2030-05-14|Easter|Red|0||St. Matthias, Apostle||
+2030-05-14|Easter|Red|0||Matthias the Apostle||
 2030-05-15|Easter|White|0|4||4th Week of Easter|
 2030-05-16|Easter|White|0|4||4th Week of Easter|
 2030-05-17|Easter|White|0|4||4th Week of Easter|
@@ -1980,7 +1980,7 @@ enum LiturgicalGolden {
 2030-05-28|Easter|White|0|6||6th Week of Easter|
 2030-05-29|Easter|White|0|6||6th Week of Easter|
 2030-05-30|Easter|White|1||Ascension of the Lord||
-2030-05-31|Easter|White|0||Visitation of the Blessed Virgin Mary||
+2030-05-31|Easter|White|0||The Visitation||
 2030-06-01|Easter|White|0|6||6th Week of Easter|
 2030-06-02|Easter|White|0|7||7th Sunday of Easter|
 2030-06-03|Easter|White|0|7||7th Week of Easter|
@@ -1991,7 +1991,7 @@ enum LiturgicalGolden {
 2030-06-08|Easter|White|0|7||7th Week of Easter|
 2030-06-09|Easter|Red|1||Pentecost Sunday||
 2030-06-10|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
-2030-06-11|Ordinary Time|Red|0||St. Barnabas, Apostle||
+2030-06-11|Ordinary Time|Red|0||Barnabas the Apostle||
 2030-06-12|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2030-06-13|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2030-06-14|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
@@ -2004,12 +2004,12 @@ enum LiturgicalGolden {
 2030-06-21|Ordinary Time|Green|0|11||11th Week in Ordinary Time|
 2030-06-22|Ordinary Time|Green|0|11||11th Week in Ordinary Time|
 2030-06-23|Ordinary Time|Green|0|12||12th Sunday in Ordinary Time|
-2030-06-24|Ordinary Time|White|1||Nativity of St. John the Baptist||
+2030-06-24|Ordinary Time|White|1||Nativity of John the Baptist||
 2030-06-25|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2030-06-26|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2030-06-27|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2030-06-28|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
-2030-06-29|Ordinary Time|Red|1||Sts. Peter and Paul, Apostles||
+2030-06-29|Ordinary Time|Red|1||Peter and Paul, Apostles||
 2030-06-30|Ordinary Time|Green|0|13||13th Sunday in Ordinary Time|
 2030-07-01|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2030-07-02|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
@@ -2032,10 +2032,10 @@ enum LiturgicalGolden {
 2030-07-19|Ordinary Time|Green|0|15||15th Week in Ordinary Time|
 2030-07-20|Ordinary Time|Green|0|15||15th Week in Ordinary Time|
 2030-07-21|Ordinary Time|Green|0|16||16th Sunday in Ordinary Time|
-2030-07-22|Ordinary Time|White|0||St. Mary Magdalene||
+2030-07-22|Ordinary Time|White|0||Mary Magdalene||
 2030-07-23|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2030-07-24|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
-2030-07-25|Ordinary Time|Red|0||St. James, Apostle||
+2030-07-25|Ordinary Time|Red|0||James the Apostle||
 2030-07-26|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2030-07-27|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2030-07-28|Ordinary Time|Green|0|17||17th Sunday in Ordinary Time|
@@ -2093,7 +2093,7 @@ enum LiturgicalGolden {
 2030-09-18|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2030-09-19|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2030-09-20|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
-2030-09-21|Ordinary Time|Red|0||St. Matthew, Apostle and Evangelist||
+2030-09-21|Ordinary Time|Red|0||Matthew the Apostle and Evangelist||
 2030-09-22|Ordinary Time|Green|0|25||25th Sunday in Ordinary Time|
 2030-09-23|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
 2030-09-24|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
@@ -2120,7 +2120,7 @@ enum LiturgicalGolden {
 2030-10-15|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2030-10-16|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2030-10-17|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
-2030-10-18|Ordinary Time|Red|0||St. Luke, Evangelist||
+2030-10-18|Ordinary Time|Red|0||Luke the Evangelist||
 2030-10-19|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2030-10-20|Ordinary Time|Green|0|29||29th Sunday in Ordinary Time|
 2030-10-21|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
@@ -2130,7 +2130,7 @@ enum LiturgicalGolden {
 2030-10-25|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
 2030-10-26|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
 2030-10-27|Ordinary Time|Green|0|30||30th Sunday in Ordinary Time|
-2030-10-28|Ordinary Time|Red|0||Sts. Simon and Jude, Apostles||
+2030-10-28|Ordinary Time|Red|0||Simon and Jude, Apostles||
 2030-10-29|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2030-10-30|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2030-10-31|Ordinary Time|Red|0||Reformation Day||Halloween
@@ -2163,7 +2163,7 @@ enum LiturgicalGolden {
 2030-11-27|Ordinary Time|Green|0|34||34th Week in Ordinary Time|
 2030-11-28|Ordinary Time|Green|0|34||34th Week in Ordinary Time|Thanksgiving
 2030-11-29|Ordinary Time|Green|0|34||34th Week in Ordinary Time|
-2030-11-30|Ordinary Time|Red|0||St. Andrew, Apostle||
+2030-11-30|Ordinary Time|Red|0||Andrew the Apostle||
 2030-12-01|Advent|Violet|0|1||1st Sunday of Advent|
 2030-12-02|Advent|Violet|0|1||1st Week of Advent|
 2030-12-03|Advent|Violet|0|1||1st Week of Advent|
@@ -2189,8 +2189,8 @@ enum LiturgicalGolden {
 2030-12-23|Advent|Violet|0|4||4th Week of Advent|
 2030-12-24|Advent|Violet|0|4||4th Week of Advent|Christmas Eve
 2030-12-25|Christmas|White|1||Nativity of the Lord (Christmas)||
-2030-12-26|Christmas|Red|0||St. Stephen, First Martyr||
-2030-12-27|Christmas|White|0||St. John, Apostle and Evangelist||
+2030-12-26|Christmas|Red|0||Stephen, the First Martyr||
+2030-12-27|Christmas|White|0||John the Apostle and Evangelist||
 2030-12-28|Christmas|Red|0||Holy Innocents, Martyrs||
 2030-12-29|Christmas|White|0||||
 2030-12-30|Christmas|White|0||||
@@ -2219,7 +2219,7 @@ enum LiturgicalGolden {
 2031-01-22|Ordinary Time|Green|0|2||2nd Week in Ordinary Time|
 2031-01-23|Ordinary Time|Green|0|2||2nd Week in Ordinary Time|
 2031-01-24|Ordinary Time|Green|0|2||2nd Week in Ordinary Time|
-2031-01-25|Ordinary Time|White|0||Conversion of St. Paul||
+2031-01-25|Ordinary Time|White|0||Conversion of Paul||
 2031-01-26|Ordinary Time|Green|0|3||3rd Sunday in Ordinary Time|
 2031-01-27|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
 2031-01-28|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
@@ -2272,7 +2272,7 @@ enum LiturgicalGolden {
 2031-03-16|Lent|Violet|0|3||3rd Sunday of Lent|
 2031-03-17|Lent|Violet|0|3||3rd Week of Lent|St. Patrick's Day
 2031-03-18|Lent|Violet|0|3||3rd Week of Lent|
-2031-03-19|Lent|White|1||St. Joseph, Spouse of the Blessed Virgin Mary||
+2031-03-19|Lent|White|1||Joseph, Husband of Mary||
 2031-03-20|Lent|Violet|0|3||3rd Week of Lent|
 2031-03-21|Lent|Violet|0|3||3rd Week of Lent|
 2031-03-22|Lent|Violet|0|3||3rd Week of Lent|
@@ -2309,7 +2309,7 @@ enum LiturgicalGolden {
 2031-04-22|Easter|White|0|2||2nd Week of Easter|Earth Day
 2031-04-23|Easter|White|0|2||2nd Week of Easter|
 2031-04-24|Easter|White|0|2||2nd Week of Easter|
-2031-04-25|Easter|Red|0||St. Mark, Evangelist||
+2031-04-25|Easter|Red|0||Mark the Evangelist||
 2031-04-26|Easter|White|0|2||2nd Week of Easter|
 2031-04-27|Easter|White|0|3||3rd Sunday of Easter|
 2031-04-28|Easter|White|0|3||3rd Week of Easter|
@@ -2328,7 +2328,7 @@ enum LiturgicalGolden {
 2031-05-11|Easter|White|0|5||5th Sunday of Easter|Mother's Day
 2031-05-12|Easter|White|0|5||5th Week of Easter|
 2031-05-13|Easter|White|0|5||5th Week of Easter|
-2031-05-14|Easter|Red|0||St. Matthias, Apostle||
+2031-05-14|Easter|Red|0||Matthias the Apostle||
 2031-05-15|Easter|White|0|5||5th Week of Easter|
 2031-05-16|Easter|White|0|5||5th Week of Easter|
 2031-05-17|Easter|White|0|5||5th Week of Easter|
@@ -2345,7 +2345,7 @@ enum LiturgicalGolden {
 2031-05-28|Easter|White|0|7||7th Week of Easter|
 2031-05-29|Easter|White|0|7||7th Week of Easter|
 2031-05-30|Easter|White|0|7||7th Week of Easter|
-2031-05-31|Easter|White|0||Visitation of the Blessed Virgin Mary||
+2031-05-31|Easter|White|0||The Visitation||
 2031-06-01|Easter|Red|1||Pentecost Sunday||
 2031-06-02|Ordinary Time|Green|0|9||9th Week in Ordinary Time|
 2031-06-03|Ordinary Time|Green|0|9||9th Week in Ordinary Time|
@@ -2356,7 +2356,7 @@ enum LiturgicalGolden {
 2031-06-08|Ordinary Time|White|1||Most Holy Trinity||
 2031-06-09|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2031-06-10|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
-2031-06-11|Ordinary Time|Red|0||St. Barnabas, Apostle||
+2031-06-11|Ordinary Time|Red|0||Barnabas the Apostle||
 2031-06-12|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2031-06-13|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2031-06-14|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
@@ -2369,12 +2369,12 @@ enum LiturgicalGolden {
 2031-06-21|Ordinary Time|Green|0|11||11th Week in Ordinary Time|
 2031-06-22|Ordinary Time|Green|0|12||12th Sunday in Ordinary Time|
 2031-06-23|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
-2031-06-24|Ordinary Time|White|1||Nativity of St. John the Baptist||
+2031-06-24|Ordinary Time|White|1||Nativity of John the Baptist||
 2031-06-25|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2031-06-26|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2031-06-27|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2031-06-28|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
-2031-06-29|Ordinary Time|Red|1||Sts. Peter and Paul, Apostles||
+2031-06-29|Ordinary Time|Red|1||Peter and Paul, Apostles||
 2031-06-30|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2031-07-01|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2031-07-02|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
@@ -2397,10 +2397,10 @@ enum LiturgicalGolden {
 2031-07-19|Ordinary Time|Green|0|15||15th Week in Ordinary Time|
 2031-07-20|Ordinary Time|Green|0|16||16th Sunday in Ordinary Time|
 2031-07-21|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
-2031-07-22|Ordinary Time|White|0||St. Mary Magdalene||
+2031-07-22|Ordinary Time|White|0||Mary Magdalene||
 2031-07-23|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2031-07-24|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
-2031-07-25|Ordinary Time|Red|0||St. James, Apostle||
+2031-07-25|Ordinary Time|Red|0||James the Apostle||
 2031-07-26|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2031-07-27|Ordinary Time|Green|0|17||17th Sunday in Ordinary Time|
 2031-07-28|Ordinary Time|Green|0|17||17th Week in Ordinary Time|
@@ -2458,7 +2458,7 @@ enum LiturgicalGolden {
 2031-09-18|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2031-09-19|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2031-09-20|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
-2031-09-21|Ordinary Time|Red|0||St. Matthew, Apostle and Evangelist||
+2031-09-21|Ordinary Time|Red|0||Matthew the Apostle and Evangelist||
 2031-09-22|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
 2031-09-23|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
 2031-09-24|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
@@ -2485,7 +2485,7 @@ enum LiturgicalGolden {
 2031-10-15|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2031-10-16|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2031-10-17|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
-2031-10-18|Ordinary Time|Red|0||St. Luke, Evangelist||
+2031-10-18|Ordinary Time|Red|0||Luke the Evangelist||
 2031-10-19|Ordinary Time|Green|0|29||29th Sunday in Ordinary Time|
 2031-10-20|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
 2031-10-21|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
@@ -2495,7 +2495,7 @@ enum LiturgicalGolden {
 2031-10-25|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
 2031-10-26|Ordinary Time|Green|0|30||30th Sunday in Ordinary Time|
 2031-10-27|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
-2031-10-28|Ordinary Time|Red|0||Sts. Simon and Jude, Apostles||
+2031-10-28|Ordinary Time|Red|0||Simon and Jude, Apostles||
 2031-10-29|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2031-10-30|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2031-10-31|Ordinary Time|Red|0||Reformation Day||Halloween
@@ -2554,8 +2554,8 @@ enum LiturgicalGolden {
 2031-12-23|Advent|Violet|0|4||4th Week of Advent|
 2031-12-24|Advent|Violet|0|4||4th Week of Advent|Christmas Eve
 2031-12-25|Christmas|White|1||Nativity of the Lord (Christmas)||
-2031-12-26|Christmas|Red|0||St. Stephen, First Martyr||
-2031-12-27|Christmas|White|0||St. John, Apostle and Evangelist||
+2031-12-26|Christmas|Red|0||Stephen, the First Martyr||
+2031-12-27|Christmas|White|0||John the Apostle and Evangelist||
 2031-12-28|Christmas|Red|0||Holy Innocents, Martyrs||
 2031-12-29|Christmas|White|0||||
 2031-12-30|Christmas|White|0||||
@@ -2584,7 +2584,7 @@ enum LiturgicalGolden {
 2032-01-22|Ordinary Time|Green|0|2||2nd Week in Ordinary Time|
 2032-01-23|Ordinary Time|Green|0|2||2nd Week in Ordinary Time|
 2032-01-24|Ordinary Time|Green|0|2||2nd Week in Ordinary Time|
-2032-01-25|Ordinary Time|White|0||Conversion of St. Paul||
+2032-01-25|Ordinary Time|White|0||Conversion of Paul||
 2032-01-26|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
 2032-01-27|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
 2032-01-28|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
@@ -2638,7 +2638,7 @@ enum LiturgicalGolden {
 2032-03-16|Lent|Violet|0|5||5th Week of Lent|
 2032-03-17|Lent|Violet|0|5||5th Week of Lent|St. Patrick's Day
 2032-03-18|Lent|Violet|0|5||5th Week of Lent|
-2032-03-19|Lent|White|1||St. Joseph, Spouse of the Blessed Virgin Mary||
+2032-03-19|Lent|White|1||Joseph, Husband of Mary||
 2032-03-20|Lent|Violet|0|5||5th Week of Lent|
 2032-03-21|Lent|Red|0||Palm Sunday of the Lord's Passion||
 2032-03-22|Lent|Violet|0|6||6th Week of Lent|
@@ -2694,7 +2694,7 @@ enum LiturgicalGolden {
 2032-05-11|Easter|White|0|7||7th Week of Easter|
 2032-05-12|Easter|White|0|7||7th Week of Easter|
 2032-05-13|Easter|White|0|7||7th Week of Easter|
-2032-05-14|Easter|Red|0||St. Matthias, Apostle||
+2032-05-14|Easter|Red|0||Matthias the Apostle||
 2032-05-15|Easter|White|0|7||7th Week of Easter|
 2032-05-16|Easter|Red|1||Pentecost Sunday||
 2032-05-17|Ordinary Time|Green|0|7||7th Week in Ordinary Time|
@@ -2711,7 +2711,7 @@ enum LiturgicalGolden {
 2032-05-28|Ordinary Time|Green|0|8||8th Week in Ordinary Time|
 2032-05-29|Ordinary Time|Green|0|8||8th Week in Ordinary Time|
 2032-05-30|Ordinary Time|Green|0|9||9th Sunday in Ordinary Time|
-2032-05-31|Ordinary Time|White|0||Visitation of the Blessed Virgin Mary||Memorial Day
+2032-05-31|Ordinary Time|White|0||The Visitation||Memorial Day
 2032-06-01|Ordinary Time|Green|0|9||9th Week in Ordinary Time|
 2032-06-02|Ordinary Time|Green|0|9||9th Week in Ordinary Time|
 2032-06-03|Ordinary Time|Green|0|9||9th Week in Ordinary Time|
@@ -2722,7 +2722,7 @@ enum LiturgicalGolden {
 2032-06-08|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2032-06-09|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2032-06-10|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
-2032-06-11|Ordinary Time|Red|0||St. Barnabas, Apostle||
+2032-06-11|Ordinary Time|Red|0||Barnabas the Apostle||
 2032-06-12|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2032-06-13|Ordinary Time|Green|0|11||11th Sunday in Ordinary Time|
 2032-06-14|Ordinary Time|Green|0|11||11th Week in Ordinary Time|
@@ -2735,12 +2735,12 @@ enum LiturgicalGolden {
 2032-06-21|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2032-06-22|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2032-06-23|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
-2032-06-24|Ordinary Time|White|1||Nativity of St. John the Baptist||
+2032-06-24|Ordinary Time|White|1||Nativity of John the Baptist||
 2032-06-25|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2032-06-26|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2032-06-27|Ordinary Time|Green|0|13||13th Sunday in Ordinary Time|
 2032-06-28|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
-2032-06-29|Ordinary Time|Red|1||Sts. Peter and Paul, Apostles||
+2032-06-29|Ordinary Time|Red|1||Peter and Paul, Apostles||
 2032-06-30|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2032-07-01|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2032-07-02|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
@@ -2763,10 +2763,10 @@ enum LiturgicalGolden {
 2032-07-19|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2032-07-20|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2032-07-21|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
-2032-07-22|Ordinary Time|White|0||St. Mary Magdalene||
+2032-07-22|Ordinary Time|White|0||Mary Magdalene||
 2032-07-23|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2032-07-24|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
-2032-07-25|Ordinary Time|Red|0||St. James, Apostle||
+2032-07-25|Ordinary Time|Red|0||James the Apostle||
 2032-07-26|Ordinary Time|Green|0|17||17th Week in Ordinary Time|
 2032-07-27|Ordinary Time|Green|0|17||17th Week in Ordinary Time|
 2032-07-28|Ordinary Time|Green|0|17||17th Week in Ordinary Time|
@@ -2824,7 +2824,7 @@ enum LiturgicalGolden {
 2032-09-18|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2032-09-19|Ordinary Time|Green|0|25||25th Sunday in Ordinary Time|
 2032-09-20|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
-2032-09-21|Ordinary Time|Red|0||St. Matthew, Apostle and Evangelist||
+2032-09-21|Ordinary Time|Red|0||Matthew the Apostle and Evangelist||
 2032-09-22|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
 2032-09-23|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
 2032-09-24|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
@@ -2851,7 +2851,7 @@ enum LiturgicalGolden {
 2032-10-15|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2032-10-16|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2032-10-17|Ordinary Time|Green|0|29||29th Sunday in Ordinary Time|
-2032-10-18|Ordinary Time|Red|0||St. Luke, Evangelist||
+2032-10-18|Ordinary Time|Red|0||Luke the Evangelist||
 2032-10-19|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
 2032-10-20|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
 2032-10-21|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
@@ -2861,7 +2861,7 @@ enum LiturgicalGolden {
 2032-10-25|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2032-10-26|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2032-10-27|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
-2032-10-28|Ordinary Time|Red|0||Sts. Simon and Jude, Apostles||
+2032-10-28|Ordinary Time|Red|0||Simon and Jude, Apostles||
 2032-10-29|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2032-10-30|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2032-10-31|Ordinary Time|Red|0||Reformation Day||Halloween
@@ -2894,7 +2894,7 @@ enum LiturgicalGolden {
 2032-11-27|Ordinary Time|Green|0|34||34th Week in Ordinary Time|
 2032-11-28|Advent|Violet|0|1||1st Sunday of Advent|
 2032-11-29|Advent|Violet|0|1||1st Week of Advent|
-2032-11-30|Advent|Red|0||St. Andrew, Apostle||
+2032-11-30|Advent|Red|0||Andrew the Apostle||
 2032-12-01|Advent|Violet|0|1||1st Week of Advent|
 2032-12-02|Advent|Violet|0|1||1st Week of Advent|
 2032-12-03|Advent|Violet|0|1||1st Week of Advent|
@@ -2920,8 +2920,8 @@ enum LiturgicalGolden {
 2032-12-23|Advent|Violet|0|4||4th Week of Advent|
 2032-12-24|Advent|Violet|0|4||4th Week of Advent|Christmas Eve
 2032-12-25|Christmas|White|1||Nativity of the Lord (Christmas)||
-2032-12-26|Christmas|Red|0||St. Stephen, First Martyr||
-2032-12-27|Christmas|White|0||St. John, Apostle and Evangelist||
+2032-12-26|Christmas|Red|0||Stephen, the First Martyr||
+2032-12-27|Christmas|White|0||John the Apostle and Evangelist||
 2032-12-28|Christmas|Red|0||Holy Innocents, Martyrs||
 2032-12-29|Christmas|White|0||||
 2032-12-30|Christmas|White|0||||
@@ -2950,7 +2950,7 @@ enum LiturgicalGolden {
 2033-01-22|Ordinary Time|Green|0|2||2nd Week in Ordinary Time|
 2033-01-23|Ordinary Time|Green|0|3||3rd Sunday in Ordinary Time|
 2033-01-24|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
-2033-01-25|Ordinary Time|White|0||Conversion of St. Paul||
+2033-01-25|Ordinary Time|White|0||Conversion of Paul||
 2033-01-26|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
 2033-01-27|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
 2033-01-28|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
@@ -3003,7 +3003,7 @@ enum LiturgicalGolden {
 2033-03-16|Lent|Violet|0|2||2nd Week of Lent|
 2033-03-17|Lent|Violet|0|2||2nd Week of Lent|St. Patrick's Day
 2033-03-18|Lent|Violet|0|2||2nd Week of Lent|
-2033-03-19|Lent|White|1||St. Joseph, Spouse of the Blessed Virgin Mary||
+2033-03-19|Lent|White|1||Joseph, Husband of Mary||
 2033-03-20|Lent|Violet|0|3||3rd Sunday of Lent|
 2033-03-21|Lent|Violet|0|3||3rd Week of Lent|
 2033-03-22|Lent|Violet|0|3||3rd Week of Lent|
@@ -3040,7 +3040,7 @@ enum LiturgicalGolden {
 2033-04-22|Easter|White|0|1||Octave of Easter|Earth Day
 2033-04-23|Easter|White|0|1||Octave of Easter|
 2033-04-24|Easter|White|0|2||2nd Sunday of Easter|
-2033-04-25|Easter|Red|0||St. Mark, Evangelist||
+2033-04-25|Easter|Red|0||Mark the Evangelist||
 2033-04-26|Easter|White|0|2||2nd Week of Easter|
 2033-04-27|Easter|White|0|2||2nd Week of Easter|
 2033-04-28|Easter|White|0|2||2nd Week of Easter|
@@ -3059,7 +3059,7 @@ enum LiturgicalGolden {
 2033-05-11|Easter|White|0|4||4th Week of Easter|
 2033-05-12|Easter|White|0|4||4th Week of Easter|
 2033-05-13|Easter|White|0|4||4th Week of Easter|
-2033-05-14|Easter|Red|0||St. Matthias, Apostle||
+2033-05-14|Easter|Red|0||Matthias the Apostle||
 2033-05-15|Easter|White|0|5||5th Sunday of Easter|
 2033-05-16|Easter|White|0|5||5th Week of Easter|
 2033-05-17|Easter|White|0|5||5th Week of Easter|
@@ -3076,7 +3076,7 @@ enum LiturgicalGolden {
 2033-05-28|Easter|White|0|6||6th Week of Easter|
 2033-05-29|Easter|White|0|7||7th Sunday of Easter|
 2033-05-30|Easter|White|0|7||7th Week of Easter|Memorial Day
-2033-05-31|Easter|White|0||Visitation of the Blessed Virgin Mary||
+2033-05-31|Easter|White|0||The Visitation||
 2033-06-01|Easter|White|0|7||7th Week of Easter|
 2033-06-02|Easter|White|0|7||7th Week of Easter|
 2033-06-03|Easter|White|0|7||7th Week of Easter|
@@ -3087,7 +3087,7 @@ enum LiturgicalGolden {
 2033-06-08|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2033-06-09|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2033-06-10|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
-2033-06-11|Ordinary Time|Red|0||St. Barnabas, Apostle||
+2033-06-11|Ordinary Time|Red|0||Barnabas the Apostle||
 2033-06-12|Ordinary Time|White|1||Most Holy Trinity||
 2033-06-13|Ordinary Time|Green|0|11||11th Week in Ordinary Time|
 2033-06-14|Ordinary Time|Green|0|11||11th Week in Ordinary Time|
@@ -3100,12 +3100,12 @@ enum LiturgicalGolden {
 2033-06-21|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2033-06-22|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2033-06-23|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
-2033-06-24|Ordinary Time|White|1||Nativity of St. John the Baptist||
+2033-06-24|Ordinary Time|White|1||Nativity of John the Baptist||
 2033-06-25|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2033-06-26|Ordinary Time|Green|0|13||13th Sunday in Ordinary Time|
 2033-06-27|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2033-06-28|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
-2033-06-29|Ordinary Time|Red|1||Sts. Peter and Paul, Apostles||
+2033-06-29|Ordinary Time|Red|1||Peter and Paul, Apostles||
 2033-06-30|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2033-07-01|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2033-07-02|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
@@ -3128,10 +3128,10 @@ enum LiturgicalGolden {
 2033-07-19|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2033-07-20|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2033-07-21|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
-2033-07-22|Ordinary Time|White|0||St. Mary Magdalene||
+2033-07-22|Ordinary Time|White|0||Mary Magdalene||
 2033-07-23|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2033-07-24|Ordinary Time|Green|0|17||17th Sunday in Ordinary Time|
-2033-07-25|Ordinary Time|Red|0||St. James, Apostle||
+2033-07-25|Ordinary Time|Red|0||James the Apostle||
 2033-07-26|Ordinary Time|Green|0|17||17th Week in Ordinary Time|
 2033-07-27|Ordinary Time|Green|0|17||17th Week in Ordinary Time|
 2033-07-28|Ordinary Time|Green|0|17||17th Week in Ordinary Time|
@@ -3189,7 +3189,7 @@ enum LiturgicalGolden {
 2033-09-18|Ordinary Time|Green|0|25||25th Sunday in Ordinary Time|
 2033-09-19|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
 2033-09-20|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
-2033-09-21|Ordinary Time|Red|0||St. Matthew, Apostle and Evangelist||
+2033-09-21|Ordinary Time|Red|0||Matthew the Apostle and Evangelist||
 2033-09-22|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
 2033-09-23|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
 2033-09-24|Ordinary Time|Green|0|25||25th Week in Ordinary Time|
@@ -3216,7 +3216,7 @@ enum LiturgicalGolden {
 2033-10-15|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2033-10-16|Ordinary Time|Green|0|29||29th Sunday in Ordinary Time|
 2033-10-17|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
-2033-10-18|Ordinary Time|Red|0||St. Luke, Evangelist||
+2033-10-18|Ordinary Time|Red|0||Luke the Evangelist||
 2033-10-19|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
 2033-10-20|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
 2033-10-21|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
@@ -3226,7 +3226,7 @@ enum LiturgicalGolden {
 2033-10-25|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2033-10-26|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2033-10-27|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
-2033-10-28|Ordinary Time|Red|0||Sts. Simon and Jude, Apostles||
+2033-10-28|Ordinary Time|Red|0||Simon and Jude, Apostles||
 2033-10-29|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2033-10-30|Ordinary Time|Green|0|31||31st Sunday in Ordinary Time|
 2033-10-31|Ordinary Time|Red|0||Reformation Day||Halloween
@@ -3259,7 +3259,7 @@ enum LiturgicalGolden {
 2033-11-27|Advent|Violet|0|1||1st Sunday of Advent|
 2033-11-28|Advent|Violet|0|1||1st Week of Advent|
 2033-11-29|Advent|Violet|0|1||1st Week of Advent|
-2033-11-30|Advent|Red|0||St. Andrew, Apostle||
+2033-11-30|Advent|Red|0||Andrew the Apostle||
 2033-12-01|Advent|Violet|0|1||1st Week of Advent|
 2033-12-02|Advent|Violet|0|1||1st Week of Advent|
 2033-12-03|Advent|Violet|0|1||1st Week of Advent|
@@ -3285,8 +3285,8 @@ enum LiturgicalGolden {
 2033-12-23|Advent|Violet|0|4||4th Week of Advent|
 2033-12-24|Advent|Violet|0|4||4th Week of Advent|Christmas Eve
 2033-12-25|Christmas|White|1||Nativity of the Lord (Christmas)||
-2033-12-26|Christmas|Red|0||St. Stephen, First Martyr||
-2033-12-27|Christmas|White|0||St. John, Apostle and Evangelist||
+2033-12-26|Christmas|Red|0||Stephen, the First Martyr||
+2033-12-27|Christmas|White|0||John the Apostle and Evangelist||
 2033-12-28|Christmas|Red|0||Holy Innocents, Martyrs||
 2033-12-29|Christmas|White|0||||
 2033-12-30|Christmas|White|0||||
@@ -3315,7 +3315,7 @@ enum LiturgicalGolden {
 2034-01-22|Ordinary Time|Green|0|3||3rd Sunday in Ordinary Time|
 2034-01-23|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
 2034-01-24|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
-2034-01-25|Ordinary Time|White|0||Conversion of St. Paul||
+2034-01-25|Ordinary Time|White|0||Conversion of Paul||
 2034-01-26|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
 2034-01-27|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
 2034-01-28|Ordinary Time|Green|0|3||3rd Week in Ordinary Time|
@@ -3369,7 +3369,7 @@ enum LiturgicalGolden {
 2034-03-17|Lent|Violet|0|3||3rd Week of Lent|St. Patrick's Day
 2034-03-18|Lent|Violet|0|3||3rd Week of Lent|
 2034-03-19|Lent|Rose|0|4||4th Sunday of Lent|
-2034-03-20|Lent|White|1||St. Joseph, Spouse of the Blessed Virgin Mary||
+2034-03-20|Lent|White|1||Joseph, Husband of Mary||
 2034-03-21|Lent|Violet|0|4||4th Week of Lent|
 2034-03-22|Lent|Violet|0|4||4th Week of Lent|
 2034-03-23|Lent|Violet|0|4||4th Week of Lent|
@@ -3405,7 +3405,7 @@ enum LiturgicalGolden {
 2034-04-22|Easter|White|0|2||2nd Week of Easter|Earth Day
 2034-04-23|Easter|White|0|3||3rd Sunday of Easter|
 2034-04-24|Easter|White|0|3||3rd Week of Easter|
-2034-04-25|Easter|Red|0||St. Mark, Evangelist||
+2034-04-25|Easter|Red|0||Mark the Evangelist||
 2034-04-26|Easter|White|0|3||3rd Week of Easter|
 2034-04-27|Easter|White|0|3||3rd Week of Easter|
 2034-04-28|Easter|White|0|3||3rd Week of Easter|
@@ -3441,7 +3441,7 @@ enum LiturgicalGolden {
 2034-05-28|Easter|Red|1||Pentecost Sunday||
 2034-05-29|Ordinary Time|Green|0|8||8th Week in Ordinary Time|Memorial Day
 2034-05-30|Ordinary Time|Green|0|8||8th Week in Ordinary Time|
-2034-05-31|Ordinary Time|White|0||Visitation of the Blessed Virgin Mary||
+2034-05-31|Ordinary Time|White|0||The Visitation||
 2034-06-01|Ordinary Time|Green|0|8||8th Week in Ordinary Time|
 2034-06-02|Ordinary Time|Green|0|8||8th Week in Ordinary Time|
 2034-06-03|Ordinary Time|Green|0|8||8th Week in Ordinary Time|
@@ -3452,7 +3452,7 @@ enum LiturgicalGolden {
 2034-06-08|Ordinary Time|Green|0|9||9th Week in Ordinary Time|
 2034-06-09|Ordinary Time|Green|0|9||9th Week in Ordinary Time|
 2034-06-10|Ordinary Time|Green|0|9||9th Week in Ordinary Time|
-2034-06-11|Ordinary Time|Red|0||St. Barnabas, Apostle||
+2034-06-11|Ordinary Time|Red|0||Barnabas the Apostle||
 2034-06-12|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2034-06-13|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
 2034-06-14|Ordinary Time|Green|0|10||10th Week in Ordinary Time|
@@ -3465,12 +3465,12 @@ enum LiturgicalGolden {
 2034-06-21|Ordinary Time|Green|0|11||11th Week in Ordinary Time|
 2034-06-22|Ordinary Time|Green|0|11||11th Week in Ordinary Time|
 2034-06-23|Ordinary Time|Green|0|11||11th Week in Ordinary Time|
-2034-06-24|Ordinary Time|White|1||Nativity of St. John the Baptist||
+2034-06-24|Ordinary Time|White|1||Nativity of John the Baptist||
 2034-06-25|Ordinary Time|Green|0|12||12th Sunday in Ordinary Time|
 2034-06-26|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2034-06-27|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2034-06-28|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
-2034-06-29|Ordinary Time|Red|1||Sts. Peter and Paul, Apostles||
+2034-06-29|Ordinary Time|Red|1||Peter and Paul, Apostles||
 2034-06-30|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2034-07-01|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2034-07-02|Ordinary Time|Green|0|13||13th Sunday in Ordinary Time|
@@ -3493,10 +3493,10 @@ enum LiturgicalGolden {
 2034-07-19|Ordinary Time|Green|0|15||15th Week in Ordinary Time|
 2034-07-20|Ordinary Time|Green|0|15||15th Week in Ordinary Time|
 2034-07-21|Ordinary Time|Green|0|15||15th Week in Ordinary Time|
-2034-07-22|Ordinary Time|White|0||St. Mary Magdalene||
+2034-07-22|Ordinary Time|White|0||Mary Magdalene||
 2034-07-23|Ordinary Time|Green|0|16||16th Sunday in Ordinary Time|
 2034-07-24|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
-2034-07-25|Ordinary Time|Red|0||St. James, Apostle||
+2034-07-25|Ordinary Time|Red|0||James the Apostle||
 2034-07-26|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2034-07-27|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
 2034-07-28|Ordinary Time|Green|0|16||16th Week in Ordinary Time|
@@ -3554,7 +3554,7 @@ enum LiturgicalGolden {
 2034-09-18|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2034-09-19|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2034-09-20|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
-2034-09-21|Ordinary Time|Red|0||St. Matthew, Apostle and Evangelist||
+2034-09-21|Ordinary Time|Red|0||Matthew the Apostle and Evangelist||
 2034-09-22|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2034-09-23|Ordinary Time|Green|0|24||24th Week in Ordinary Time|
 2034-09-24|Ordinary Time|Green|0|25||25th Sunday in Ordinary Time|
@@ -3581,7 +3581,7 @@ enum LiturgicalGolden {
 2034-10-15|Ordinary Time|Green|0|28||28th Sunday in Ordinary Time|
 2034-10-16|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2034-10-17|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
-2034-10-18|Ordinary Time|Red|0||St. Luke, Evangelist||
+2034-10-18|Ordinary Time|Red|0||Luke the Evangelist||
 2034-10-19|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2034-10-20|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
 2034-10-21|Ordinary Time|Green|0|28||28th Week in Ordinary Time|
@@ -3591,7 +3591,7 @@ enum LiturgicalGolden {
 2034-10-25|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
 2034-10-26|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
 2034-10-27|Ordinary Time|Green|0|29||29th Week in Ordinary Time|
-2034-10-28|Ordinary Time|Red|0||Sts. Simon and Jude, Apostles||
+2034-10-28|Ordinary Time|Red|0||Simon and Jude, Apostles||
 2034-10-29|Ordinary Time|Green|0|30||30th Sunday in Ordinary Time|
 2034-10-30|Ordinary Time|Green|0|30||30th Week in Ordinary Time|
 2034-10-31|Ordinary Time|Red|0||Reformation Day||Halloween
@@ -3624,7 +3624,7 @@ enum LiturgicalGolden {
 2034-11-27|Ordinary Time|Green|0|34||34th Week in Ordinary Time|
 2034-11-28|Ordinary Time|Green|0|34||34th Week in Ordinary Time|
 2034-11-29|Ordinary Time|Green|0|34||34th Week in Ordinary Time|
-2034-11-30|Ordinary Time|Red|0||St. Andrew, Apostle||
+2034-11-30|Ordinary Time|Red|0||Andrew the Apostle||
 2034-12-01|Ordinary Time|Green|0|34||34th Week in Ordinary Time|
 2034-12-02|Ordinary Time|Green|0|34||34th Week in Ordinary Time|
 2034-12-03|Advent|Violet|0|1||1st Sunday of Advent|
@@ -3650,8 +3650,8 @@ enum LiturgicalGolden {
 2034-12-23|Advent|Violet|0|3||3rd Week of Advent|
 2034-12-24|Advent|Violet|0|4||4th Sunday of Advent|Christmas Eve
 2034-12-25|Christmas|White|1||Nativity of the Lord (Christmas)||
-2034-12-26|Christmas|Red|0||St. Stephen, First Martyr||
-2034-12-27|Christmas|White|0||St. John, Apostle and Evangelist||
+2034-12-26|Christmas|Red|0||Stephen, the First Martyr||
+2034-12-27|Christmas|White|0||John the Apostle and Evangelist||
 2034-12-28|Christmas|Red|0||Holy Innocents, Martyrs||
 2034-12-29|Christmas|White|0||||
 2034-12-30|Christmas|White|0||||

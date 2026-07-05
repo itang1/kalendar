@@ -553,47 +553,47 @@ struct LiturgicalCalendar {
         switch (month, day) {
         case (1, 6): return (.epiphany, "Epiphany of the Lord", .white, true,
             "Celebrates the visit of the Magi (Wise Men) to the infant Jesus. 'Epiphany' means 'revelation,' and this feast marks Jesus being revealed to the whole world, not just the Jewish people.")
-        case (1, 25): return (.conversionOfPaul, "Conversion of St. Paul", .white, false,
+        case (1, 25): return (.conversionOfPaul, "Conversion of Paul", .white, false,
             "Recalls the dramatic moment when Saul of Tarsus, who was hunting down and imprisoning Christians, was struck blind on the road to Damascus by a vision of the risen Jesus. He recovered, was baptized, changed his name to Paul, and became the greatest missionary the Christian faith has ever produced.")
         case (2, 2): return (.presentationOfTheLord, "Presentation of the Lord", .white, false,
             "Forty days after Christmas, Mary and Joseph brought baby Jesus to the Temple in Jerusalem, as Jewish law required for firstborn sons. The elderly prophet Simeon recognized him as the Messiah and called him 'a light for revelation to the Gentiles.' Also called Candlemas.")
-        case (3, 19): return (.josephSpouseOfMary, "St. Joseph, Spouse of the Blessed Virgin Mary", .white, true,
+        case (3, 19): return (.josephSpouseOfMary, "Joseph, Husband of Mary", .white, true,
             "Remembers Joseph, the earthly father of Jesus and husband of Mary. He was a carpenter from Nazareth who protected and raised Jesus, remembered for his quiet, faithful obedience.")
         case (3, 25): return (.annunciation, "Annunciation of the Lord", .white, true,
             "Celebrates the moment the angel Gabriel appeared to Mary and announced she would conceive Jesus by the Holy Spirit. Mary said 'yes,' and Christians believe that is when God became human. Exactly 9 months before Christmas.")
-        case (4, 25): return (.markEvangelist, "St. Mark, Evangelist", .red, false,
+        case (4, 25): return (.markEvangelist, "Mark the Evangelist", .red, false,
             "Honors Mark, the author of the shortest and most urgent of the four Gospels. He wrote it in Rome, likely drawing on Peter's eyewitness accounts, and his Gospel reads like it is in a hurry. The word 'immediately' appears over forty times.")
-        case (5, 14): return (.matthias, "St. Matthias, Apostle", .red, false,
+        case (5, 14): return (.matthias, "Matthias the Apostle", .red, false,
             "Matthias was chosen by lot to replace Judas Iscariot among the twelve apostles. The account in Acts is brief. He is a reminder that the structure of the early community mattered enough to be filled, and that ordinary people were chosen for extraordinary roles.")
-        case (5, 31): return (.visitation, "Visitation of the Blessed Virgin Mary", .white, false,
+        case (5, 31): return (.visitation, "The Visitation", .white, false,
             "Celebrates Mary's journey to visit her cousin Elizabeth, who was pregnant with John the Baptist. When Mary arrived, Elizabeth's child leapt in her womb, and Elizabeth cried out 'Blessed are you among women.' Mary responded with the Magnificat, one of the most beautiful prayers in Scripture.")
-        case (6, 11): return (.barnabas, "St. Barnabas, Apostle", .red, false,
+        case (6, 11): return (.barnabas, "Barnabas the Apostle", .red, false,
             "Barnabas was not one of the original twelve but is called an apostle because of the scope of his missionary work. He was the one who vouched for Paul to the early community when everyone was afraid of him. He and Paul traveled together through Cyprus and Asia Minor, planting churches in city after city.")
-        case (6, 24): return (.nativityOfJohnTheBaptist, "Nativity of St. John the Baptist", .white, true,
+        case (6, 24): return (.nativityOfJohnTheBaptist, "Nativity of John the Baptist", .white, true,
             "The birth of John the Baptist, Jesus' cousin, who grew up to be the prophet who prepared the way for Jesus' ministry. He baptized people in the Jordan River and is the one who baptized Jesus himself.")
-        case (6, 29): return (.peterAndPaul, "Sts. Peter and Paul, Apostles", .red, true,
+        case (6, 29): return (.peterAndPaul, "Peter and Paul, Apostles", .red, true,
             "Honors the two greatest apostles: Peter, the fisherman Jesus chose to lead his followers, and Paul, who started out persecuting Christians but converted and became the greatest missionary of the early Christian world. Both were martyred in Rome.")
-        case (7, 22): return (.maryMagdalene, "St. Mary Magdalene", .white, false,
+        case (7, 22): return (.maryMagdalene, "Mary Magdalene", .white, false,
             "Mary Magdalene was among Jesus' closest followers, present at his crucifixion when most of the apostles had fled, and the first person to see him after the resurrection. She is called the 'apostle to the apostles' because she carried the news of the resurrection to the others. Her feast was elevated to a proper feast in 2016.")
-        case (7, 25): return (.james, "St. James, Apostle", .red, false,
+        case (7, 25): return (.james, "James the Apostle", .red, false,
             "James was one of the sons of Zebedee and one of Jesus' inner circle of three, along with Peter and John. He was the first of the apostles to be martyred, killed by King Herod Agrippa around 44 AD. His shrine in Santiago de Compostela in Spain has been one of the great pilgrimage destinations for over a thousand years.")
         case (8, 6): return (.transfiguration, "Transfiguration of the Lord", .white, false,
             "Recalls when Jesus took three disciples up a mountain, and his appearance was transformed. His face shone like the sun and his clothes became dazzling white. Moses and Elijah appeared beside him, and God's voice said 'This is my beloved Son.'")
-        case (9, 21): return (.matthewEvangelist, "St. Matthew, Apostle and Evangelist", .red, false,
+        case (9, 21): return (.matthewEvangelist, "Matthew the Apostle and Evangelist", .red, false,
             "Matthew was a tax collector, which made him a social outcast in his community. Jesus called him anyway. He went on to write the first of the four Gospels, the most Jewish in character, the one most concerned with showing how Jesus fulfills the Hebrew scriptures.")
-        case (10, 18): return (.lukeEvangelist, "St. Luke, Evangelist", .red, false,
+        case (10, 18): return (.lukeEvangelist, "Luke the Evangelist", .red, false,
             "Luke was a physician and the only Gentile author in the New Testament. He wrote both the Gospel that bears his name and the Acts of the Apostles, together the longest single contribution to the New Testament. His Gospel is the one most attentive to women, the poor, and outsiders. He is the patron of doctors and artists.")
-        case (10, 28): return (.simonAndJude, "Sts. Simon and Jude, Apostles", .red, false,
+        case (10, 28): return (.simonAndJude, "Simon and Jude, Apostles", .red, false,
             "Two apostles honored together because little is known about either of them. Simon was called 'the Zealot,' probably indicating a political background. Jude (not Judas Iscariot) is traditionally linked to one of the short letters near the end of the New Testament.")
         case (10, 31): return (.reformationDay, "Reformation Day", .red, false,
             "On October 31, 1517, Martin Luther is said to have posted his Ninety-Five Theses in Wittenberg, protesting abuses in the church of his day. The date became the marker of the Reformation, the movement that returned the Bible to the center of Christian life and gave rise to the Protestant and Reformed traditions.")
-        case (11, 30): return (.andrew, "St. Andrew, Apostle", .red, false,
+        case (11, 30): return (.andrew, "Andrew the Apostle", .red, false,
             "Andrew was Simon Peter's brother and, according to John's Gospel, the first of the apostles to follow Jesus. He brought Peter to Jesus. By tradition he was crucified on an X-shaped cross, which became his symbol.")
         case (12, 25): return (.nativityOfTheLord, "Nativity of the Lord (Christmas)", .white, true,
             "The joyful celebration of Jesus' birth in Bethlehem. Christians believe God became a human baby, born to Mary in humble circumstances. It is one of the two greatest feasts of the liturgical year (along with Easter).")
-        case (12, 26): return (.stephen, "St. Stephen, First Martyr", .red, false,
+        case (12, 26): return (.stephen, "Stephen, the First Martyr", .red, false,
             "Honors Stephen, one of the first deacons of the early Christian community, who became the very first Christian martyr. He was stoned to death for his faith, and as he died he prayed for his persecutors, just as Jesus had done on the cross.")
-        case (12, 27): return (.johnEvangelist, "St. John, Apostle and Evangelist", .white, false,
+        case (12, 27): return (.johnEvangelist, "John the Apostle and Evangelist", .white, false,
             "Honors John, one of Jesus' closest disciples (the 'beloved disciple'), who is traditionally credited with writing the Gospel of John, three letters, and the Book of Revelation. He is the only apostle believed to have died of natural causes.")
         case (12, 28): return (.holyInnocents, "Holy Innocents, Martyrs", .red, false,
             "Remembers the infant boys of Bethlehem who were killed by King Herod in his attempt to destroy the newborn Jesus. They are considered the first martyrs for Christ, even though they were too young to know it.")
