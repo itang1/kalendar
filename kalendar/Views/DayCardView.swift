@@ -48,7 +48,7 @@ struct DayCardView: View {
                 }
             }
             .overlay(alignment: .bottomLeading) {
-                // Small diamond marks a secular U.S. holiday — a separate layer
+                // Small diamond marks a secular U.S. holiday, a separate layer
                 // from the church year, so it never changes the tile's color and
                 // sits apart from the feast dot and the note square.
                 if day.civilHolidayName != nil {

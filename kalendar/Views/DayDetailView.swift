@@ -35,7 +35,7 @@ struct DayDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
 
-                // MARK: Header — leads with the feast, or the day's proper
+                // MARK: Header. Leads with the feast, or the day's proper
                 // title, since that is what makes the day unique.
                 headerSection
                     .padding(.bottom, 20)
@@ -52,7 +52,7 @@ struct DayDetailView: View {
                     .padding(.bottom, 28)
                 }
 
-                // MARK: US Holiday — a secular layer beside the church year
+                // MARK: US Holiday, a secular layer beside the church year
                 if let holiday = day.civilHolidayName {
                     sectionLabel("US Holiday")
                     HStack(spacing: 8) {

@@ -49,7 +49,7 @@ const SEASON_EXPLANATION = {
 
 const SEASON_CONTEXTUAL_ITEMS = {
   [LiturgicalSeason.advent]: [
-    "Light the Advent wreath candles week by week — three violet, one rose — marking time in a way that feels more honest than a countdown.",
+    "Light the Advent wreath candles week by week (three violet, one rose), marking time in a way that feels more honest than a countdown.",
     "Read Isaiah. The prophetic passages this season draws from are worth sitting with on their own.",
     "Keep a quiet morning or evening. Advent is a season of watching, and watching takes some stillness.",
     "The tone is expectant. The world is rushing toward Christmas; this season moves slower.",
@@ -72,13 +72,13 @@ const SEASON_CONTEXTUAL_ITEMS = {
     "The tone is serious but not without hope. Lent is pointing toward something.",
   ],
   [LiturgicalSeason.triduum]: [
-    "These three days — Thursday, Friday, and the long wait of Saturday — are best kept together as one movement, not three separate days.",
+    "These three days (Thursday, Friday, and the long wait of Saturday) are best kept together as one movement, not three separate days.",
     "Keep Holy Saturday quiet. The stillness before Easter is intentional.",
     "The tone moves from tenderness to grief to stillness to joy, in that order.",
   ],
   [LiturgicalSeason.easter]: [
     "Say Alleluia. It was held back all through Lent, and this is the season it belongs to.",
-    "Read Acts of the Apostles from the beginning — the story of what happened after the resurrection, and it moves fast.",
+    "Read Acts of the Apostles from the beginning, the story of what happened after the resurrection, and it moves fast.",
     "The tone is joyful and sustained. Easter is not one day but fifty, longer than Lent.",
   ],
 };

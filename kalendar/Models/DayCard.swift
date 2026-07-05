@@ -26,7 +26,7 @@ struct DayCard: Identifiable {
     var isSolemnity: Bool
     var weekOfSeason: Int?
     var isMovableFeast: Bool = false
-    /// A secular U.S. holiday on this day, if any — a separate layer from the
+    /// A secular U.S. holiday on this day, if any; a separate layer from the
     /// church year (see `LiturgicalDayInfo.civilHolidayName`).
     var civilHolidayName: String? = nil
     var civilHolidayDescription: String? = nil
