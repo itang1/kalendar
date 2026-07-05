@@ -6,7 +6,7 @@ Available as an **iOS app** or website preview at [itang1.github.io/kalendar](ht
 
 [![Download on the App Store](https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg)](https://apps.apple.com/app/idXXXXXXXXX)
 
-## Built for the Reformed
+## Built Through a Reformed Lens
 
 Unlike the historical liturgical calendar, which is Catholic in origin, Kalendar filters it through a **Reformed** view, stripping away hundreds of saint days to leave a historically grounded calendar.
 
