@@ -47,6 +47,18 @@ struct DayCardView: View {
                         .padding(3)
                 }
             }
+            .overlay(alignment: .bottomLeading) {
+                // Small diamond marks a secular U.S. holiday — a separate layer
+                // from the church year, so it never changes the tile's color and
+                // sits apart from the feast dot and the note square.
+                if day.civilHolidayName != nil {
+                    RoundedRectangle(cornerRadius: 1)
+                        .fill(dotColor)
+                        .frame(width: 5, height: 5)
+                        .rotationEffect(.degrees(45))
+                        .padding(3)
+                }
+            }
             .overlay(
                 RoundedRectangle(cornerRadius: 4)
                     .stroke(isToday ? Color.primary : Color.clear, lineWidth: 2)
@@ -78,6 +90,9 @@ struct DayCardView: View {
         var label = "\(dateStr), \(day.liturgicalSeason.rawValue)"
         if let feast = day.feastName {
             label += day.isSolemnity ? ", \(feast) (solemnity)" : ", \(feast)"
+        }
+        if let holiday = day.civilHolidayName {
+            label += ", \(holiday)"
         }
         if !day.comments.isEmpty {
             label += ", has notes"

@@ -214,8 +214,8 @@ private struct DayBrowserSheet: View {
     }
 
     /// A self-contained summary of the day for the share sheet: the date, what
-    /// the day is (feast or its liturgical title), the season and vestment
-    /// color, and the feast's blurb when there is one.
+    /// the day is (feast or its liturgical title), the season and color, any
+    /// U.S. holiday, and the feast's blurb when there is one.
     private func shareText(for day: DayCard) -> String {
         var lines = [Self.shareDateFormatter.string(from: day.date)]
 
@@ -229,8 +229,12 @@ private struct DayBrowserSheet: View {
         if let week = day.weekOfSeason {
             seasonLine += " · Week \(week)"
         }
-        seasonLine += " · \(day.liturgicalColor.rawValue) vestments"
+        seasonLine += " · \(day.liturgicalColor.rawValue)"
         lines.append(seasonLine)
+
+        if let holiday = day.civilHolidayName {
+            lines.append("US holiday: \(holiday)")
+        }
 
         if let description = day.feastDescription {
             lines.append("")
@@ -525,6 +529,14 @@ private struct InfoSheet: View {
                                 .frame(width: 9, height: 9)
                                 .foregroundStyle(Color.primary)
                             Text("A star marks a solemnity, the highest rank of celebration.")
+                                .font(.body)
+                        }
+                        HStack(spacing: 8) {
+                            RoundedRectangle(cornerRadius: 1)
+                                .fill(Color.primary)
+                                .frame(width: 7, height: 7)
+                                .rotationEffect(.degrees(45))
+                            Text("A small diamond in the corner marks a U.S. holiday, a separate layer from the church year.")
                                 .font(.body)
                         }
                     }

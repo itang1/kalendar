@@ -21,7 +21,7 @@ This is a **Reformed** view of the church year, not a Catholic one. "Reformed" i
 
 - **Kept** — the seasons that follow the life of Jesus (Advent through Pentecost), and the days that remember people and events from Scripture: the apostles, the Gospel writers, John the Baptist, and the events of Jesus' own life.
 - **Set aside** — the veneration of saints, and devotions without clear footing in Scripture, such as Corpus Christi, the Sacred Heart, Divine Mercy, and All Souls. Where the app describes a practice, it names who keeps it rather than telling you to.
-- **Added** — Reformation Day (October 31), the anniversary that gave the Protestant and Reformed traditions their name.
+- **Added** — Reformation Day (October 31), the anniversary that gave the Protestant and Reformed traditions their name, and a layer of everyday **U.S. holidays** (federal days plus common cultural ones) so the church year sits inside the year you actually live. Civil days are marked with a small corner diamond, kept visually and structurally separate from the liturgical seasons — they never change a day's color or count as a feast.
 
 Where the app still describes a practice or a color, it uses plain words and a describing voice — "Catholic churches use violet," not "the priest wears violet" — so nothing in it needs a specialist to explain.
 

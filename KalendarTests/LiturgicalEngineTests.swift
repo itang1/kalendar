@@ -47,7 +47,9 @@ final class LiturgicalEngineTests: XCTestCase {
             feastDescription: dayInfo.feastDescription,
             isSolemnity: dayInfo.isSolemnity,
             weekOfSeason: dayInfo.weekOfSeason,
-            isMovableFeast: dayInfo.isMovableFeast
+            isMovableFeast: dayInfo.isMovableFeast,
+            civilHolidayName: dayInfo.civilHolidayName,
+            civilHolidayDescription: dayInfo.civilHolidayDescription
         )
     }
 
@@ -145,6 +147,29 @@ final class LiturgicalEngineTests: XCTestCase {
         XCTAssertEqual(info(2025, 8, 6).feastName, "Transfiguration of the Lord")
     }
 
+    // MARK: - Civil (U.S.) holidays, a layer beside the church year
+
+    func testCivilHolidays() {
+        // Fixed-date and computed-weekday holidays both resolve.
+        XCTAssertEqual(info(2025, 7, 4).civilHolidayName, "Independence Day")
+        XCTAssertEqual(info(2025, 11, 27).civilHolidayName, "Thanksgiving")   // 4th Thursday of Nov
+        XCTAssertEqual(info(2025, 5, 26).civilHolidayName, "Memorial Day")    // last Monday of May
+        XCTAssertEqual(info(2025, 1, 20).civilHolidayName, "Martin Luther King Jr. Day")
+        XCTAssertNil(info(2025, 7, 5).civilHolidayName, "an ordinary day has no civil holiday")
+    }
+
+    func testCivilHolidayIsSeparateFromTheChurchYear() {
+        // A civil holiday never sets the liturgical color or counts as a feast, and a
+        // day can carry both independently (Reformation Day and Halloween on Oct 31;
+        // Father's Day on Trinity Sunday).
+        let oct31 = info(2025, 10, 31)
+        XCTAssertEqual(oct31.feastName, "Reformation Day")
+        XCTAssertEqual(oct31.civilHolidayName, "Halloween")
+        XCTAssertEqual(info(2025, 7, 4).liturgicalColor, .green, "Independence Day stays Ordinary Time green")
+        XCTAssertEqual(info(2025, 6, 15).feastName, "Most Holy Trinity")
+        XCTAssertEqual(info(2025, 6, 15).civilHolidayName, "Father's Day")
+    }
+
     // MARK: - Lectionary cycles and obligation flags (derived DayCard facts)
 
     func testLectionaryCyclesTurnOverAtAdvent() {
@@ -189,6 +214,7 @@ final class LiturgicalEngineTests: XCTestCase {
         let week = dayInfo.weekOfSeason.map(String.init) ?? ""
         let feast = dayInfo.feastName ?? ""
         let title = card(y, m, d).liturgicalDayTitle ?? ""
-        return "\(ymd)|\(dayInfo.season.rawValue)|\(dayInfo.liturgicalColor.rawValue)|\(dayInfo.isSolemnity ? 1 : 0)|\(week)|\(feast)|\(title)"
+        let civil = dayInfo.civilHolidayName ?? ""
+        return "\(ymd)|\(dayInfo.season.rawValue)|\(dayInfo.liturgicalColor.rawValue)|\(dayInfo.isSolemnity ? 1 : 0)|\(week)|\(feast)|\(title)|\(civil)"
     }
 }

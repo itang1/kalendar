@@ -26,6 +26,10 @@ struct DayCard: Identifiable {
     var isSolemnity: Bool
     var weekOfSeason: Int?
     var isMovableFeast: Bool = false
+    /// A secular U.S. holiday on this day, if any — a separate layer from the
+    /// church year (see `LiturgicalDayInfo.civilHolidayName`).
+    var civilHolidayName: String? = nil
+    var civilHolidayDescription: String? = nil
     /// The "N days until <anchor>" line, computed once when the window is built
     /// (see `DayCard.countdownText(for:)`) rather than re-derived in the detail
     /// view's body, since the paged day browser instantiates its pages eagerly.

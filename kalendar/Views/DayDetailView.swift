@@ -52,6 +52,26 @@ struct DayDetailView: View {
                     .padding(.bottom, 28)
                 }
 
+                // MARK: US Holiday — a secular layer beside the church year
+                if let holiday = day.civilHolidayName {
+                    sectionLabel("US Holiday")
+                    HStack(spacing: 8) {
+                        Image(systemName: "flag.fill")
+                            .foregroundStyle(.secondary)
+                            .font(.subheadline)
+                        Text(holiday)
+                            .font(.body.weight(.bold))
+                    }
+                    .padding(.top, 6)
+                    if let description = day.civilHolidayDescription {
+                        Text(description)
+                            .font(.body)
+                            .padding(.top, 8)
+                    }
+                    Divider()
+                        .padding(.vertical, 28)
+                }
+
                 // MARK: Season
                 sectionLabel("Season")
 

@@ -91,6 +91,8 @@ final class CalendarViewModel {
                 isSolemnity: info.isSolemnity,
                 weekOfSeason: info.weekOfSeason,
                 isMovableFeast: info.isMovableFeast,
+                civilHolidayName: info.civilHolidayName,
+                civilHolidayDescription: info.civilHolidayDescription,
                 countdownText: DayCard.countdownText(for: date)
             )
         }

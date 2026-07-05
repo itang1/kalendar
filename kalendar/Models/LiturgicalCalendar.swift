@@ -177,6 +177,12 @@ struct LiturgicalDayInfo {
     /// True when the feast's date shifts year to year (Easter cycle, etc.), as
     /// opposed to a fixed-date feast. Used to key saved notes correctly.
     let isMovableFeast: Bool
+    /// A secular U.S. holiday falling on this day (federal or common cultural), if
+    /// any. This is a separate layer from the church year: it never sets the
+    /// liturgical color or counts as a feast, and a day can carry both (e.g.
+    /// Reformation Day and Halloween on October 31).
+    let civilHolidayName: String?
+    let civilHolidayDescription: String?
 }
 
 // MARK: - Liturgical Calendar Engine
@@ -282,6 +288,7 @@ struct LiturgicalCalendar {
 
         let isSunday = calendar.component(.weekday, from: date) == 1
         let season = seasonForDate(date, keys: keys, prevYearKeys: prevYearKeys)
+        let civil = civilHoliday(for: date)
 
         // A solemnity that was outranked on its usual date is transferred onto this
         // day (e.g. the Annunciation moved out of Holy Week). This outranks the
@@ -295,7 +302,9 @@ struct LiturgicalCalendar {
                 feastDescription: feast.description,
                 isSolemnity: true,
                 weekOfSeason: nil,
-                isMovableFeast: false
+                isMovableFeast: false,
+                civilHolidayName: civil?.name,
+                civilHolidayDescription: civil?.description
             )
         }
 
@@ -313,7 +322,9 @@ struct LiturgicalCalendar {
                 feastDescription: feast.description,
                 isSolemnity: feast.isSolemnity,
                 weekOfSeason: nil,
-                isMovableFeast: false
+                isMovableFeast: false,
+                civilHolidayName: civil?.name,
+                civilHolidayDescription: civil?.description
             )
         }
 
@@ -327,7 +338,9 @@ struct LiturgicalCalendar {
                 feastDescription: feast.description,
                 isSolemnity: feast.isSolemnity,
                 weekOfSeason: nil,
-                isMovableFeast: true
+                isMovableFeast: true,
+                civilHolidayName: civil?.name,
+                civilHolidayDescription: civil?.description
             )
         }
 
@@ -341,7 +354,9 @@ struct LiturgicalCalendar {
             feastDescription: nil,
             isSolemnity: false,
             weekOfSeason: weekOfSeason(date: date, season: season, keys: keys, prevYearKeys: prevYearKeys),
-            isMovableFeast: false
+            isMovableFeast: false,
+            civilHolidayName: civil?.name,
+            civilHolidayDescription: civil?.description
         )
     }
 
@@ -635,6 +650,82 @@ struct LiturgicalCalendar {
                 "The last Sunday of the liturgical year, proclaiming Jesus as king, but not a worldly king with armies and palaces. His kingdom is one of truth, justice, love, and peace. The next week, the cycle starts all over again with Advent.")
         }
         return nil
+    }
+
+    // MARK: - Civil Holidays (secular U.S. observances, a layer beside the church year)
+
+    /// A secular U.S. holiday on `date`, if any: federal holidays plus common
+    /// cultural days. Independent of the liturgical calendar — it never sets the
+    /// day's color or rank, and can coexist with a feast.
+    private func civilHoliday(for date: Date) -> (name: String, description: String)? {
+        let year = calendar.component(.year, from: date)
+        let month = calendar.component(.month, from: date)
+        let day = calendar.component(.day, from: date)
+
+        // Fixed-date observances.
+        switch (month, day) {
+        case (1, 1):   return ("New Year's Day", "The first day of the civil year, and a federal holiday.")
+        case (2, 14):  return ("Valentine's Day", "A day associated with love and affection, named for an early Christian martyr.")
+        case (3, 17):  return ("St. Patrick's Day", "A cultural celebration of Irish heritage, on the traditional death date of the patron saint of Ireland.")
+        case (4, 1):   return ("April Fools' Day", "A day of pranks and hoaxes observed across many countries.")
+        case (4, 22):  return ("Earth Day", "An annual day of support for environmental protection, first held in 1970.")
+        case (5, 5):   return ("Cinco de Mayo", "A celebration of Mexican heritage, marking an 1862 Mexican victory at the Battle of Puebla.")
+        case (6, 19):  return ("Juneteenth", "A federal holiday marking the end of slavery in the United States in 1865.")
+        case (7, 4):   return ("Independence Day", "A federal holiday marking the adoption of the Declaration of Independence in 1776.")
+        case (10, 31): return ("Halloween", "The evening before All Hallows', now a cultural night of costumes and candy.")
+        case (11, 11): return ("Veterans Day", "A federal holiday honoring those who have served in the U.S. armed forces.")
+        case (12, 24): return ("Christmas Eve", "The evening before Christmas Day.")
+        case (12, 31): return ("New Year's Eve", "The last day of the civil year.")
+        default:       break
+        }
+
+        // Movable observances: the Nth (or last) given weekday of a month. Weekday
+        // numbers follow Calendar: 1 = Sunday ... 7 = Saturday.
+        let movable: [(name: String, description: String, target: Date)] = [
+            ("Martin Luther King Jr. Day", "A federal holiday honoring the civil-rights leader, on the third Monday of January.",
+             nthWeekday(year: year, month: 1, weekday: 2, ordinal: 3)),
+            ("Presidents' Day", "A federal holiday (officially Washington's Birthday) on the third Monday of February.",
+             nthWeekday(year: year, month: 2, weekday: 2, ordinal: 3)),
+            ("Mother's Day", "A day honoring mothers, on the second Sunday of May.",
+             nthWeekday(year: year, month: 5, weekday: 1, ordinal: 2)),
+            ("Memorial Day", "A federal holiday honoring those who died in military service, on the last Monday of May.",
+             lastWeekday(year: year, month: 5, weekday: 2)),
+            ("Father's Day", "A day honoring fathers, on the third Sunday of June.",
+             nthWeekday(year: year, month: 6, weekday: 1, ordinal: 3)),
+            ("Labor Day", "A federal holiday honoring the American worker, on the first Monday of September.",
+             nthWeekday(year: year, month: 9, weekday: 2, ordinal: 1)),
+            ("Columbus Day", "A federal holiday on the second Monday of October, observed in some places as Indigenous Peoples' Day.",
+             nthWeekday(year: year, month: 10, weekday: 2, ordinal: 2)),
+            ("Thanksgiving", "A federal holiday of gratitude and gathering, on the fourth Thursday of November.",
+             nthWeekday(year: year, month: 11, weekday: 5, ordinal: 4)),
+        ]
+        for holiday in movable where calendar.isDate(date, inSameDayAs: holiday.target) {
+            return (holiday.name, holiday.description)
+        }
+        return nil
+    }
+
+    /// The `ordinal`-th `weekday` of the given month (weekday 1 = Sunday).
+    private func nthWeekday(year: Int, month: Int, weekday: Int, ordinal: Int) -> Date {
+        var comps = DateComponents()
+        comps.year = year
+        comps.month = month
+        comps.weekday = weekday
+        comps.weekdayOrdinal = ordinal
+        return calendar.date(from: comps)!
+    }
+
+    /// The last `weekday` of the given month (weekday 1 = Sunday).
+    private func lastWeekday(year: Int, month: Int, weekday: Int) -> Date {
+        let firstOfNextMonth = calendar.date(from: DateComponents(
+            year: month == 12 ? year + 1 : year,
+            month: month == 12 ? 1 : month + 1,
+            day: 1
+        ))!
+        let lastOfMonth = calendar.date(byAdding: .day, value: -1, to: firstOfNextMonth)!
+        let wd = calendar.component(.weekday, from: lastOfMonth)
+        let diff = (wd - weekday + 7) % 7
+        return calendar.date(byAdding: .day, value: -diff, to: lastOfMonth)!
     }
 }
 

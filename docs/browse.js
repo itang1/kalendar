@@ -43,6 +43,20 @@
       dot.style.background = dotColorFor(day.color);
       tile.appendChild(dot);
     }
+    if (day.civilHolidayName) {
+      // Small diamond in the bottom-left corner marks a secular U.S. holiday, a
+      // separate layer from the church year that never changes the tile color.
+      const mark = document.createElement('div');
+      mark.style.position = 'absolute';
+      mark.style.bottom = '3px';
+      mark.style.left = '3px';
+      mark.style.width = '5px';
+      mark.style.height = '5px';
+      mark.style.background = dotColorFor(day.color);
+      mark.style.transform = 'rotate(45deg)';
+      tile.style.position = 'relative';
+      tile.appendChild(mark);
+    }
     tile.addEventListener('click', () => openDetail(index));
     gridView.appendChild(tile);
   });
@@ -189,6 +203,12 @@
         </div>
         <button class="close-btn" id="closeBtn" aria-label="Close">&times;</button>
       </div>
+
+      ${day.civilHolidayName ? `
+        <div class="label">US Holiday</div>
+        <div class="swatch-row"><span class="feast-name">${day.civilHolidayName}</span></div>
+        <p>${day.civilHolidayDescription || ''}</p>
+      ` : ''}
 
       <div class="label">Season</div>
       <div class="swatch-row">

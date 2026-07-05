@@ -470,6 +470,60 @@ function liturgicalDayTitle(info, date) {
   }
 }
 
+// MARK: Civil holidays (secular U.S. observances, a layer beside the church year)
+
+// The ordinal-th given weekday of a month. weekday: 0 = Sunday ... 6 = Saturday (JS getDay).
+function nthWeekdayCivil(year, month, weekday, ordinal) {
+  const firstDow = new Date(year, month - 1, 1).getDay();
+  const offset = (weekday - firstDow + 7) % 7;
+  return new Date(year, month - 1, 1 + offset + (ordinal - 1) * 7);
+}
+// The last given weekday of a month. weekday: 0 = Sunday ... 6 = Saturday.
+function lastWeekdayCivil(year, month, weekday) {
+  const last = new Date(year, month, 0); // day 0 of next month = last day of this month
+  const diff = (last.getDay() - weekday + 7) % 7;
+  return new Date(year, month - 1, last.getDate() - diff);
+}
+
+const FIXED_CIVIL_HOLIDAYS = {
+  '1-1':   { name: "New Year's Day", description: "The first day of the civil year, and a federal holiday." },
+  '2-14':  { name: "Valentine's Day", description: "A day associated with love and affection, named for an early Christian martyr." },
+  '3-17':  { name: "St. Patrick's Day", description: "A cultural celebration of Irish heritage, on the traditional death date of the patron saint of Ireland." },
+  '4-1':   { name: "April Fools' Day", description: "A day of pranks and hoaxes observed across many countries." },
+  '4-22':  { name: "Earth Day", description: "An annual day of support for environmental protection, first held in 1970." },
+  '5-5':   { name: "Cinco de Mayo", description: "A celebration of Mexican heritage, marking an 1862 Mexican victory at the Battle of Puebla." },
+  '6-19':  { name: "Juneteenth", description: "A federal holiday marking the end of slavery in the United States in 1865." },
+  '7-4':   { name: "Independence Day", description: "A federal holiday marking the adoption of the Declaration of Independence in 1776." },
+  '10-31': { name: "Halloween", description: "The evening before All Hallows', now a cultural night of costumes and candy." },
+  '11-11': { name: "Veterans Day", description: "A federal holiday honoring those who have served in the U.S. armed forces." },
+  '12-24': { name: "Christmas Eve", description: "The evening before Christmas Day." },
+  '12-31': { name: "New Year's Eve", description: "The last day of the civil year." },
+};
+
+// A secular U.S. holiday on `date`, if any. Mirrors civilHoliday(for:) in the Swift
+// engine. Independent of the church year: never sets the color or rank, and can
+// coexist with a feast. weekday numbers here are JS getDay values (0 = Sunday).
+function civilHoliday(date) {
+  const fixed = FIXED_CIVIL_HOLIDAYS[`${monthOf(date)}-${dayOf(date)}`];
+  if (fixed) return fixed;
+
+  const year = yearOf(date);
+  const movable = [
+    { name: "Martin Luther King Jr. Day", description: "A federal holiday honoring the civil-rights leader, on the third Monday of January.", target: nthWeekdayCivil(year, 1, 1, 3) },
+    { name: "Presidents' Day", description: "A federal holiday (officially Washington's Birthday) on the third Monday of February.", target: nthWeekdayCivil(year, 2, 1, 3) },
+    { name: "Mother's Day", description: "A day honoring mothers, on the second Sunday of May.", target: nthWeekdayCivil(year, 5, 0, 2) },
+    { name: "Memorial Day", description: "A federal holiday honoring those who died in military service, on the last Monday of May.", target: lastWeekdayCivil(year, 5, 1) },
+    { name: "Father's Day", description: "A day honoring fathers, on the third Sunday of June.", target: nthWeekdayCivil(year, 6, 0, 3) },
+    { name: "Labor Day", description: "A federal holiday honoring the American worker, on the first Monday of September.", target: nthWeekdayCivil(year, 9, 1, 1) },
+    { name: "Columbus Day", description: "A federal holiday on the second Monday of October, observed in some places as Indigenous Peoples' Day.", target: nthWeekdayCivil(year, 10, 1, 2) },
+    { name: "Thanksgiving", description: "A federal holiday of gratitude and gathering, on the fourth Thursday of November.", target: nthWeekdayCivil(year, 11, 4, 4) },
+  ];
+  for (const h of movable) {
+    if (sameDay(date, h.target)) return { name: h.name, description: h.description };
+  }
+  return null;
+}
+
 // MARK: Compute liturgical info for a date
 
 function liturgicalInfo(date) {
@@ -478,12 +532,16 @@ function liturgicalInfo(date) {
   const prevYearKeys = keyDates(year - 1);
   const isSunday = isSundayDate(date);
   const season = seasonForDate(date, keys, prevYearKeys);
+  const civil = civilHoliday(date);
+  const civilName = civil ? civil.name : null;
+  const civilDescription = civil ? civil.description : null;
 
   const transferred = transferredSolemnity(date, keys, prevYearKeys);
   if (transferred) {
     return {
       season, color: transferred.color, feastName: transferred.name,
       feastDescription: transferred.description, isSolemnity: true, weekOfSeason: null,
+      civilHolidayName: civilName, civilHolidayDescription: civilDescription,
     };
   }
 
@@ -493,6 +551,7 @@ function liturgicalInfo(date) {
       return {
         season, color: feast.color, feastName: feast.name,
         feastDescription: feast.description, isSolemnity: feast.solemnity, weekOfSeason: null,
+        civilHolidayName: civilName, civilHolidayDescription: civilDescription,
       };
     }
   }
@@ -502,6 +561,7 @@ function liturgicalInfo(date) {
     return {
       season, color: movable.color, feastName: movable.name,
       feastDescription: movable.description, isSolemnity: movable.solemnity, weekOfSeason: null,
+      civilHolidayName: civilName, civilHolidayDescription: civilDescription,
     };
   }
 
@@ -509,6 +569,7 @@ function liturgicalInfo(date) {
   return {
     season, color, feastName: null, feastDescription: null,
     isSolemnity: false, weekOfSeason: weekOfSeason(date, season, keys),
+    civilHolidayName: civilName, civilHolidayDescription: civilDescription,
   };
 }
 
