@@ -111,8 +111,8 @@ struct DayDetailView: View {
                 .padding(.top, 14)
                 .padding(.bottom, 28)
 
-                // MARK: Liturgical Color
-                sectionLabel("Color")
+                // MARK: Today's Color
+                sectionLabel("Today's color")
 
                 HStack(spacing: 10) {
                     Circle()
@@ -123,6 +123,14 @@ struct DayDetailView: View {
                         .font(.body.weight(.bold))
                 }
                 .padding(.top, 6)
+
+                // Point out when today breaks from the season's usual color, e.g.
+                // an apostle's red day inside green Ordinary Time.
+                if let note = todaysColorNote {
+                    Text(note)
+                        .font(.body)
+                        .padding(.top, 8)
+                }
 
                 Text(day.liturgicalColor.explanation)
                     .font(.body)
@@ -230,6 +238,26 @@ struct DayDetailView: View {
             return "Day \(day.dayOfYear) of the year · \(countdown)"
         }
         return "Day \(day.dayOfYear) of the year"
+    }
+
+    /// The color the current season normally wears, ignoring day-level overrides.
+    /// Used to tell when a day steps out of its season's color (rose Sundays and
+    /// feasts like an apostle's red day in green Ordinary Time).
+    private var seasonDefaultColor: LiturgicalColor {
+        switch day.liturgicalSeason {
+        case .advent, .lent: return .violet
+        case .christmas, .easter: return .white
+        case .triduum: return .red
+        case .ordinaryTime: return .green
+        }
+    }
+
+    /// A one-line note shown only when today's color differs from the season's and
+    /// a feast is the reason, e.g. "Today is red for St. Luke, Evangelist." Nil when
+    /// the day just wears its season's color, or when there's no feast to name.
+    private var todaysColorNote: String? {
+        guard day.liturgicalColor != seasonDefaultColor, let feast = day.feastName else { return nil }
+        return "Today is \(day.liturgicalColor.rawValue.lowercased()) for \(feast)."
     }
 
     private var rankExplanation: String {

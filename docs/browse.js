@@ -165,6 +165,20 @@
     }
   }
 
+  // The color a season normally wears, ignoring day-level overrides, so the detail
+  // can point out when a day steps out of its season's color.
+  function seasonDefaultColorKey(season) {
+    switch (season) {
+      case LiturgicalSeason.advent:
+      case LiturgicalSeason.lent: return 'violet';
+      case LiturgicalSeason.christmas:
+      case LiturgicalSeason.easter: return 'white';
+      case LiturgicalSeason.triduum: return 'red';
+      case LiturgicalSeason.ordinaryTime: return 'green';
+      default: return 'green';
+    }
+  }
+
   function openDetail(index) {
     renderDetail(index);
     overlay.style.display = 'flex';
@@ -193,6 +207,12 @@
 
     const dayTitle = liturgicalDayTitle(day, day.date);
     const countdown = countdownText(day);
+
+    // Note shown only when today's color differs from the season's and a feast is
+    // the reason, e.g. "Today is red for St. Luke, Evangelist."
+    const todaysColorNote = (day.color.key !== seasonDefaultColorKey(day.season) && day.feastName)
+      ? `Today is ${day.color.name.toLowerCase()} for ${day.feastName}.`
+      : null;
 
     panel.innerHTML = `
       <div class="panel-header">
@@ -229,11 +249,12 @@
         <p>${rankExplanation}</p>
       ` : ''}
 
-      <div class="label">Color</div>
+      <div class="label">Today's color</div>
       <div class="swatch-row">
         <div class="swatch" style="background:${day.color.hex}; border-radius:50%;"></div>
         <strong>${day.color.name}</strong>
       </div>
+      ${todaysColorNote ? `<p>${todaysColorNote}</p>` : ''}
       <p>${COLOR_EXPLANATION[day.color.key]}</p>
 
       <div class="nav-row">
