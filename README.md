@@ -14,6 +14,8 @@ Unlike the historical liturgical calendar, which is Catholic in origin, Kalendar
 - **Removed:** saints' days and devotions, such as Corpus Christi, the Sacred Heart, Divine Mercy, All Souls, and the Marian feasts.
 - **Added:** **Reformation Day** (Oct 31) and a layer of everyday **U.S. holidays**.
 
+['Kalendar'](https://en.wikipedia.org/wiki/Liturgical_year) is the traditional spelling of the liturgical year.
+
 ## Features
 
 - **See the whole year:** grid and wheel views, each day colored by its liturgical season.
