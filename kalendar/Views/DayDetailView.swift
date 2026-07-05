@@ -91,8 +91,8 @@ struct DayDetailView: View {
                 .padding(.top, 14)
                 .padding(.bottom, 28)
 
-                // MARK: Vestment Color
-                sectionLabel("Vestment")
+                // MARK: Liturgical Color
+                sectionLabel("Color")
 
                 HStack(spacing: 10) {
                     Circle()
@@ -214,9 +214,9 @@ struct DayDetailView: View {
 
     private var rankExplanation: String {
         if day.isSolemnity {
-            return "A solemnity is the highest rank of celebration in the liturgical year. These mark the most important mysteries and events of the faith, like Easter, Christmas, or major saints. They take priority over the regular season."
+            return "A solemnity is the highest rank of day in the church year. These mark the most important events of the faith, like Easter, Christmas, and Pentecost. They take priority over the regular season."
         } else {
-            return "Feasts and memorials are celebrations of saints or events in the life of Jesus and Mary. A feast is more important than a memorial. Some memorials are optional, while others are observed throughout the liturgical calendar."
+            return "Feasts and memorials mark people and events from the life of Jesus and the early church. A feast is the more important of the two; a memorial is a smaller remembrance."
         }
     }
 }

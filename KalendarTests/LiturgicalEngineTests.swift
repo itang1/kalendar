@@ -114,32 +114,35 @@ final class LiturgicalEngineTests: XCTestCase {
         XCTAssertTrue(transferred.isSolemnity)
     }
 
-    // MARK: - Added celebrations
+    // MARK: - Reformed calendar scope
 
-    func testDivineMercySunday() {
-        // The Second Sunday of Easter. Easter 2025 is April 20, so April 27.
-        XCTAssertEqual(info(2025, 4, 27).feastName, "Divine Mercy Sunday")
-        XCTAssertEqual(info(2025, 4, 27).season, .easter)
+    func testReformationDay() {
+        // Added as a Reformed marker on Oct 31 (the day Luther is said to have posted
+        // the Ninety-Five Theses in 1517).
+        let day = info(2025, 10, 31)
+        XCTAssertEqual(day.feastName, "Reformation Day")
+        XCTAssertEqual(day.liturgicalColor, .red)
+        XCTAssertFalse(day.isSolemnity)
     }
 
-    func testSacredHeart() {
-        // The Friday after Corpus Christi. Easter 2025 is April 20, so June 27.
-        let day = info(2025, 6, 27)
-        XCTAssertEqual(day.feastName, "Most Sacred Heart of Jesus")
-        XCTAssertTrue(day.isSolemnity)
+    func testDelistedDevotionsAndSaintsAreGone() {
+        // Feasts dropped in the move to a Reformed calendar no longer resolve; the
+        // day falls through to its season (or to an underlying biblical feast).
+        XCTAssertNil(info(2025, 2, 22).feastName, "Chair of St. Peter is delisted")
+        XCTAssertNil(info(2025, 8, 10).feastName, "St. Lawrence is delisted")
+        XCTAssertNil(info(2025, 11, 1).feastName, "All Saints is delisted")
+        // Divine Mercy (2nd Sunday of Easter 2025 = Apr 27) and Corpus Christi are gone.
+        XCTAssertNil(info(2025, 4, 27).feastName, "Divine Mercy Sunday is delisted")
+        // With the Holy Family removed, the Sunday in the Octave of Christmas
+        // (Dec 28 2025) falls through to the fixed feast of the Holy Innocents.
+        XCTAssertEqual(info(2025, 12, 28).feastName, "Holy Innocents, Martyrs")
     }
 
-    func testHolyFamily() {
-        // Sunday in the Octave of Christmas: Dec 28 2025.
-        XCTAssertEqual(info(2025, 12, 28).feastName, "The Holy Family of Jesus, Mary, and Joseph")
-        // When Christmas is a Sunday (2033), the Holy Family moves to Dec 30.
-        XCTAssertEqual(info(2033, 12, 30).feastName, "The Holy Family of Jesus, Mary, and Joseph")
-    }
-
-    func testSacredHeartOutranksCoincidentFixedFeast() {
-        // Easter 2033 is April 17, so the Sacred Heart falls on June 24, the same day
-        // as the Nativity of St. John the Baptist. The feast of the Lord wins.
-        XCTAssertEqual(info(2033, 6, 24).feastName, "Most Sacred Heart of Jesus")
+    func testBiblicalFiguresAreKept() {
+        // Days remembering people and events from Scripture stay, reframed but present.
+        XCTAssertEqual(info(2025, 6, 29).feastName, "Sts. Peter and Paul, Apostles")
+        XCTAssertEqual(info(2025, 10, 18).feastName, "St. Luke, Evangelist")
+        XCTAssertEqual(info(2025, 8, 6).feastName, "Transfiguration of the Lord")
     }
 
     // MARK: - Lectionary cycles and obligation flags (derived DayCard facts)

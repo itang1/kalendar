@@ -2,15 +2,13 @@
 //  LiturgicalCalendar.swift
 //  KalendarWidget
 //
-//  Computes liturgical seasons, feast days, and colors for the Church Year.
-//  Supports the Roman Rite / General Roman Calendar.
+//  Computes the seasons, feasts, and colors of the church year.
 //
 //  This is a copy of kalendar/Models/LiturgicalCalendar.swift. The widget
 //  extension is a separate build target and can't compile the app target's
 //  synchronized folder without editing project.pbxproj's target-membership
 //  exceptions by hand, which risks corrupting the project file. If the app's
 //  engine changes, update this copy too.
-
 import SwiftUI
 
 // MARK: - Liturgical Season
@@ -39,46 +37,42 @@ enum LiturgicalSeason: String, CaseIterable {
         switch self {
         case .advent:
             return [
-                "Light the Advent wreath candles week by week. Three are violet, one is rose, and the progression marks time in a way that feels more honest than a countdown.",
-                "Read Isaiah. The prophetic passages the liturgy draws from during these weeks are worth sitting with on their own, outside of Mass.",
-                "Pray in the morning or the evening. Advent is a season of watching, and watching takes some quiet.",
-                "The tone is expectant. The world is rushing toward Christmas. The liturgy is doing something slower."
+                "Light the Advent wreath candles week by week — three violet, one rose — marking time in a way that feels more honest than a countdown.",
+                "Read Isaiah. The prophetic passages this season draws from are worth sitting with on their own.",
+                "Keep a quiet morning or evening. Advent is a season of watching, and watching takes some stillness.",
+                "The tone is expectant. The world is rushing toward Christmas; this season moves slower."
             ]
         case .christmas:
             return [
-                "Keep celebrating through January. Most people are done by December 26, which means missing the better half of the season.",
-                "Read the prologue of John's Gospel. It is what the liturgy has called the Christmas reading for centuries, and it is not about a manger.",
-                "Mark the feast days that cluster in these weeks: St. Stephen on the 26th, St. John on the 27th, the Holy Innocents on the 28th.",
+                "Keep celebrating past December 25. The season runs for weeks, and most people stop far too early.",
+                "Read the opening of John's Gospel. It has been the Christmas reading for centuries, and it is not about a manger.",
+                "Notice the days that cluster here: Stephen on the 26th, John on the 27th, the Holy Innocents on the 28th.",
                 "The tone is warm and unhurried. Lent will come soon enough."
             ]
         case .ordinaryTime:
             return [
-                "Follow the Sunday Gospel readings week by week. The three-year lectionary cycle moves through Matthew, Mark, and Luke in sequence, and tracking it lets you watch the ministry of Jesus unfold gradually.",
-                "Pay attention to the saints' feasts as they come. Most of them fall in Ordinary Time, and they are the tradition's way of saying that holiness looks like something specific and concrete.",
-                "The tone is steady. This is not the dramatic part of the year. It is the part where most of the actual work of following happens."
+                "Follow the Sunday Gospel readings week by week, watching the ministry of Jesus unfold gradually.",
+                "Notice the days that remember figures from Scripture as they come; many of them fall in this season.",
+                "The tone is steady. This is the ordinary stretch, where most of the actual work of following happens."
             ]
         case .lent:
             return [
-                "Fast on Ash Wednesday and Good Friday. Abstain from meat on Fridays through the season.",
-                "Take on one practice and give up one thing. The tradition is not only subtraction.",
-                "Go to Stations of the Cross on a Friday. It is slower and older than a Sunday Mass and worth experiencing at least once in the season.",
-                "Read John chapters 11 through 19 before Holy Week arrives. The liturgy moves through them and knowing them makes everything that follows land differently.",
-                "The tone is serious without being without hope. Lent is pointing toward something."
+                "Consider a fast, and consider taking something on as well. The season is not only subtraction.",
+                "Set aside time for prayer and honest self-examination. Lent is a turning back toward God.",
+                "Read John chapters 11 through 19 before Holy Week arrives. Knowing them makes everything that follows land differently.",
+                "The tone is serious but not without hope. Lent is pointing toward something."
             ]
         case .triduum:
             return [
-                "Go to all three liturgies if you possibly can. Holy Thursday, Good Friday, and the Easter Vigil are not three separate services. They are one rite spread across three days.",
-                "Keep Holy Saturday quiet. There is no liturgy until the Vigil, and the silence is intentional.",
-                "Plan to stay for the full Easter Vigil. It takes hours, begins in darkness, and moves through a long sweep of readings before it erupts. That is the design, not the inconvenience.",
-                "The Vigil is the night new members are baptized. If someone you know is entering the faith, this is when it happens.",
-                "The tone goes from tenderness to grief to stillness to joy, in that order."
+                "These three days — Thursday, Friday, and the long wait of Saturday — are best kept together as one movement, not three separate days.",
+                "Keep Holy Saturday quiet. The stillness before Easter is intentional.",
+                "The tone moves from tenderness to grief to stillness to joy, in that order."
             ]
         case .easter:
             return [
-                "Say Alleluia. It was held back all through Lent and this is the season it belongs to.",
-                "Read Acts of the Apostles from the beginning. It is the season's companion text, the story of what happened after the resurrection, and it moves fast.",
-                "Think about baptism. Easter Vigil is when new Christians are received, and the whole season carries that sense of new life.",
-                "The tone is joyful and sustained. Easter is not one day. It is fifty days, longer than Lent, and the tradition takes that seriously."
+                "Say Alleluia. It was held back all through Lent, and this is the season it belongs to.",
+                "Read Acts of the Apostles from the beginning — the story of what happened after the resurrection, and it moves fast.",
+                "The tone is joyful and sustained. Easter is not one day but fifty, longer than Lent."
             ]
         }
     }
@@ -120,20 +114,20 @@ enum LiturgicalColor: String {
         }
     }
 
-    /// Why this color is worn, shown with the vestment swatch in the day detail
+    /// What this color signifies, shown with the color swatch in the day detail
     /// view. One tailored sentence per color rather than a generic line.
     var explanation: String {
         switch self {
         case .green:
-            return "Green is the color of life and growth. The priest wears it through Ordinary Time, the long stretch of steady, unhurried discipleship."
+            return "Green stands for life and growth. It marks Ordinary Time, the long stretch of steady, everyday discipleship."
         case .violet:
-            return "Violet is the color of penance and preparation. The priest wears it through Advent and Lent, the two seasons of waiting and turning back."
+            return "Violet stands for repentance and preparation. It marks Advent and Lent, the two seasons of waiting and turning back to God."
         case .white:
-            return "White is the color of glory, purity, and celebration. The priest wears it for Christmas, Easter, feasts of Jesus and Mary, and saints who were not martyred."
+            return "White stands for glory, purity, and celebration. It marks Christmas, Easter, and the great days that remember Jesus."
         case .red:
-            return "Red is the color of blood and fire. The priest wears it for the Passion of Jesus, for the Holy Spirit, and for the martyrs."
+            return "Red stands for blood and fire. It marks the suffering and death of Jesus, the coming of the Holy Spirit, and those who were killed for their faith."
         case .rose:
-            return "Rose is violet lightened with joy. The priest wears it just twice a year, on Gaudete Sunday in Advent and Laetare Sunday in Lent, a breath of encouragement partway through a penitential season."
+            return "Rose is violet lightened with joy. It appears just twice a year, on the third Sunday of Advent and the fourth Sunday of Lent, a breath of encouragement partway through a season of waiting."
         }
     }
 }
@@ -157,6 +151,7 @@ enum FeastID: String {
     case lukeEvangelist, simonAndJude, allSaints, allSouls
     case dedicationOfLateran, andrew, immaculateConception, ladyOfGuadalupe
     case nativityOfTheLord, stephen, johnEvangelist, holyInnocents
+    case reformationDay
     // Movable feasts (relative to Easter, or the Christmas-octave Sunday)
     case ashWednesday, palmSunday, holyThursday, goodFriday
     case holySaturday, easterSunday, easterMonday, divineMercy
@@ -236,11 +231,6 @@ struct LiturgicalCalendar {
         let ascension = calendar.date(byAdding: .day, value: 39, to: easter)!
         let pentecost = calendar.date(byAdding: .day, value: 49, to: easter)!
         let trinitySunday = calendar.date(byAdding: .day, value: 56, to: easter)!
-        let corpusChristi = calendar.date(byAdding: .day, value: 63, to: easter)!
-        // Divine Mercy Sunday: the Second Sunday of Easter (octave day).
-        let divineMercy = calendar.date(byAdding: .day, value: 7, to: easter)!
-        // Sacred Heart of Jesus: the Friday after Corpus Christi, 19 days after Pentecost.
-        let sacredHeart = calendar.date(byAdding: .day, value: 68, to: easter)!
 
         // Advent: starts on the Sunday closest to Nov 30 (4 Sundays before Christmas)
         let christmas = calendar.date(from: DateComponents(year: year, month: 12, day: 25))!
@@ -248,16 +238,6 @@ struct LiturgicalCalendar {
         // 4th Sunday before Christmas
         let daysToSunday = (christmasWeekday == 1) ? 28 : (christmasWeekday - 1 + 21)
         let adventStart = calendar.date(byAdding: .day, value: -daysToSunday, to: christmas)!
-
-        // Holy Family: the Sunday within the Octave of Christmas. When Christmas
-        // itself is a Sunday there is no Sunday between Dec 26 and 31, so the feast
-        // moves to Dec 30 per the General Roman Calendar.
-        let holyFamily: Date
-        if christmasWeekday == 1 {
-            holyFamily = calendar.date(from: DateComponents(year: year, month: 12, day: 30))!
-        } else {
-            holyFamily = calendar.date(byAdding: .day, value: 8 - christmasWeekday, to: christmas)!
-        }
 
         let epiphany = calendar.date(from: DateComponents(year: year, month: 1, day: 6))!
         // Baptism of the Lord: normally the Sunday after Epiphany. With Epiphany
@@ -284,11 +264,7 @@ struct LiturgicalCalendar {
             ascension: ascension,
             pentecost: pentecost,
             trinitySunday: trinitySunday,
-            corpusChristi: corpusChristi,
-            divineMercy: divineMercy,
-            sacredHeart: sacredHeart,
             adventStart: adventStart,
-            holyFamily: holyFamily,
             christmas: christmas,
             baptismOfLord: baptismOfLord,
             christTheKing: christTheKing
@@ -503,15 +479,6 @@ struct LiturgicalCalendar {
         // Privileged Sundays of Advent, Lent, and Easter outrank saints' days.
         if isSunday && (season == .advent || season == .lent || season == .easter) { return true }
 
-        // Feasts of the Lord that land amid fixed feasts outrank a coincident
-        // saint's day: the Holy Family (a Christmas-octave Sunday that can fall on
-        // St. Stephen, St. John, or the Holy Innocents) and the Sacred Heart (a
-        // solemnity of the Lord). In the rare year the Sacred Heart coincides with
-        // a fixed solemnity of a saint, that saint is superseded rather than
-        // transferred; this is a deliberate simplification.
-        if calendar.isDate(date, inSameDayAs: keys.holyFamily) { return true }
-        if calendar.isDate(date, inSameDayAs: keys.sacredHeart) { return true }
-
         return false
     }
 
@@ -573,16 +540,12 @@ struct LiturgicalCalendar {
             "Recalls the dramatic moment when Saul of Tarsus, who was hunting down and imprisoning Christians, was struck blind on the road to Damascus by a vision of the risen Jesus. He recovered, was baptized, changed his name to Paul, and became the greatest missionary the Christian faith has ever produced.")
         case (2, 2): return (.presentationOfTheLord, "Presentation of the Lord", .white, false,
             "Forty days after Christmas, Mary and Joseph brought baby Jesus to the Temple in Jerusalem, as Jewish law required for firstborn sons. The elderly prophet Simeon recognized him as the Messiah and called him 'a light for revelation to the Gentiles.' Also called Candlemas.")
-        case (2, 22): return (.chairOfPeter, "Chair of St. Peter", .white, false,
-            "Celebrates Peter's role as the leader of the apostles and the first bishop of Rome. The 'chair' is not a piece of furniture so much as a symbol of teaching authority. This feast is about the office of leadership that traces through every pope back to Peter.")
         case (3, 19): return (.josephSpouseOfMary, "St. Joseph, Spouse of the Blessed Virgin Mary", .white, true,
-            "Honors Joseph, the foster-father of Jesus and husband of Mary. He was a humble carpenter from Nazareth who protected and raised Jesus. He is the patron saint of workers, fathers, and all Christians.")
+            "Remembers Joseph, the earthly father of Jesus and husband of Mary. He was a carpenter from Nazareth who protected and raised Jesus, remembered for his quiet, faithful obedience.")
         case (3, 25): return (.annunciation, "Annunciation of the Lord", .white, true,
             "Celebrates the moment the angel Gabriel appeared to Mary and announced she would conceive Jesus by the Holy Spirit. Mary said 'yes,' and Christians believe that is when God became human. Exactly 9 months before Christmas.")
         case (4, 25): return (.markEvangelist, "St. Mark, Evangelist", .red, false,
             "Honors Mark, the author of the shortest and most urgent of the four Gospels. He wrote it in Rome, likely drawing on Peter's eyewitness accounts, and his Gospel reads like it is in a hurry. The word 'immediately' appears over forty times.")
-        case (5, 1): return (.josephTheWorker, "St. Joseph the Worker", .white, false,
-            "A feast established in 1955, celebrating Joseph as a model for all working people. It falls on May Day and is the tradition's answer to secular labor observances, offering a patron for the dignity and sanctity of ordinary work.")
         case (5, 14): return (.matthias, "St. Matthias, Apostle", .red, false,
             "Matthias was chosen by lot to replace Judas Iscariot among the twelve apostles. The account in Acts is brief. He is a reminder that the structure of the early community mattered enough to be filled, and that ordinary people were chosen for extraordinary roles.")
         case (5, 31): return (.visitation, "Visitation of the Blessed Virgin Mary", .white, false,
@@ -592,39 +555,23 @@ struct LiturgicalCalendar {
         case (6, 24): return (.nativityOfJohnTheBaptist, "Nativity of St. John the Baptist", .white, true,
             "The birth of John the Baptist, Jesus' cousin, who grew up to be the prophet who prepared the way for Jesus' ministry. He baptized people in the Jordan River and is the one who baptized Jesus himself.")
         case (6, 29): return (.peterAndPaul, "Sts. Peter and Paul, Apostles", .red, true,
-            "Honors the two greatest apostles: Peter, the fisherman Jesus chose to lead his followers (the first pope), and Paul, who started out persecuting Christians but converted and became the greatest missionary of the early Christian world. Both were martyred in Rome.")
+            "Honors the two greatest apostles: Peter, the fisherman Jesus chose to lead his followers, and Paul, who started out persecuting Christians but converted and became the greatest missionary of the early Christian world. Both were martyred in Rome.")
         case (7, 22): return (.maryMagdalene, "St. Mary Magdalene", .white, false,
             "Mary Magdalene was among Jesus' closest followers, present at his crucifixion when most of the apostles had fled, and the first person to see him after the resurrection. She is called the 'apostle to the apostles' because she carried the news of the resurrection to the others. Her feast was elevated to a proper feast in 2016.")
         case (7, 25): return (.james, "St. James, Apostle", .red, false,
             "James was one of the sons of Zebedee and one of Jesus' inner circle of three, along with Peter and John. He was the first of the apostles to be martyred, killed by King Herod Agrippa around 44 AD. His shrine in Santiago de Compostela in Spain has been one of the great pilgrimage destinations for over a thousand years.")
         case (8, 6): return (.transfiguration, "Transfiguration of the Lord", .white, false,
             "Recalls when Jesus took three disciples up a mountain, and his appearance was transformed. His face shone like the sun and his clothes became dazzling white. Moses and Elijah appeared beside him, and God's voice said 'This is my beloved Son.'")
-        case (8, 10): return (.lawrence, "St. Lawrence, Deacon and Martyr", .red, false,
-            "Lawrence was one of the seven deacons of Rome under Pope Sixtus II. When Sixtus was martyred in 258, Lawrence was given three days to hand over the wealth of the community to the emperor. He spent the time distributing it to the poor, then presented the poor themselves as 'the treasure of the community.' He was executed on a gridiron. He is the patron of deacons, cooks, and the poor.")
-        case (9, 14): return (.exaltationOfTheCross, "Exaltation of the Holy Cross", .red, false,
-            "Honors the cross on which Jesus was crucified. Rather than a symbol of defeat, Christians see it as the instrument of salvation. This feast dates back to the 4th century when St. Helena (Emperor Constantine's mother) is believed to have found the actual cross in Jerusalem.")
         case (9, 21): return (.matthewEvangelist, "St. Matthew, Apostle and Evangelist", .red, false,
             "Matthew was a tax collector, which made him a social outcast in his community. Jesus called him anyway. He went on to write the first of the four Gospels, the most Jewish in character, the one most concerned with showing how Jesus fulfills the Hebrew scriptures.")
-        case (9, 29): return (.archangels, "Sts. Michael, Gabriel, and Raphael, Archangels", .white, false,
-            "The only feast day dedicated to angels. Michael is the warrior archangel who leads the heavenly army against evil. Gabriel is the messenger who announced Jesus' birth to Mary. Raphael guided the young Tobias in the book of Tobit and is the patron of travelers and healing. Three names, three roles, one feast.")
-        case (10, 1): return (.thereseOfLisieux, "St. Thérèse of Lisieux, Doctor of the Church", .white, false,
-            "Thérèse Martin entered the Carmelite convent at fifteen and died of tuberculosis at twenty-four. She wrote an autobiography that became one of the most widely read spiritual books of the modern era. Her 'little way,' the conviction that small acts done with great love matter as much as grand gestures, made her a Doctor of the Church.")
-        case (10, 2): return (.guardianAngels, "Guardian Angels", .white, false,
-            "A feast celebrating the belief that each person has an angel assigned to them for protection and guidance. The tradition is ancient, drawn from passages in the Psalms, the book of Daniel, and Jesus' own words about not despising 'one of these little ones, for their angels in heaven always see the face of my Father.'")
-        case (10, 4): return (.francisOfAssisi, "St. Francis of Assisi", .white, false,
-            "Francis of Assisi gave up a wealthy merchant's life in 13th-century Italy to live in radical poverty, preach the Gospel, and care for lepers. He founded the Franciscan order, received the stigmata (the wounds of Christ on his body), and wrote the Canticle of the Sun. He is the patron of animals, ecology, and Italy.")
         case (10, 18): return (.lukeEvangelist, "St. Luke, Evangelist", .red, false,
             "Luke was a physician and the only Gentile author in the New Testament. He wrote both the Gospel that bears his name and the Acts of the Apostles, together the longest single contribution to the New Testament. His Gospel is the one most attentive to women, the poor, and outsiders. He is the patron of doctors and artists.")
         case (10, 28): return (.simonAndJude, "Sts. Simon and Jude, Apostles", .red, false,
-            "Two apostles honored together because little is known about either of them. Simon was called 'the Zealot,' probably indicating a political background. Jude (not Judas Iscariot) wrote one of the short letters near the end of the New Testament and is remembered, by long tradition, as the patron of lost causes.")
-        case (11, 1): return (.allSaints, "All Saints", .white, true,
-            "A day to honor all saints, not just the famous ones with their own feast days, but every holy person in heaven, including ordinary people who lived faithful lives. It is a reminder that everyone is called to holiness.")
-        case (11, 2): return (.allSouls, "All Souls' Day (Commemoration of All the Faithful Departed)", .violet, false,
-            "A day to remember all who have died, especially loved ones. It is a tender day of remembrance and mourning, often marked by visiting cemeteries and giving thanks for those who have gone before.")
-        case (11, 9): return (.dedicationOfLateran, "Dedication of the Lateran Basilica", .white, false,
-            "The Lateran Basilica in Rome is the cathedral of the bishop of Rome, which means it is technically the mother church of all Roman Catholics worldwide, outranking even St. Peter's. This feast, celebrating its dedication, is a way of marking unity with the broader Christian community.")
+            "Two apostles honored together because little is known about either of them. Simon was called 'the Zealot,' probably indicating a political background. Jude (not Judas Iscariot) is traditionally linked to one of the short letters near the end of the New Testament.")
+        case (10, 31): return (.reformationDay, "Reformation Day", .red, false,
+            "On October 31, 1517, Martin Luther is said to have posted his Ninety-Five Theses in Wittenberg, protesting abuses in the church of his day. The date became the marker of the Reformation, the movement that returned the Bible to the center of Christian life and gave rise to the Protestant and Reformed traditions.")
         case (11, 30): return (.andrew, "St. Andrew, Apostle", .red, false,
-            "Andrew was Simon Peter's brother and, according to John's Gospel, the first of the apostles to follow Jesus. He brought Peter to Jesus. He is said to have been crucified on an X-shaped cross, which became his symbol. He is the patron saint of Scotland, Greece, and Russia.")
+            "Andrew was Simon Peter's brother and, according to John's Gospel, the first of the apostles to follow Jesus. He brought Peter to Jesus. By tradition he was crucified on an X-shaped cross, which became his symbol.")
         case (12, 25): return (.nativityOfTheLord, "Nativity of the Lord (Christmas)", .white, true,
             "The joyful celebration of Jesus' birth in Bethlehem. Christians believe God became a human baby, born to Mary in humble circumstances. It is one of the two greatest feasts of the liturgical year (along with Easter).")
         case (12, 26): return (.stephen, "St. Stephen, First Martyr", .red, false,
@@ -642,7 +589,7 @@ struct LiturgicalCalendar {
     private func movableFeast(for date: Date, keys: KeyLiturgicalDates) -> (id: FeastID, name: String, color: LiturgicalColor, isSolemnity: Bool, description: String)? {
         if calendar.isDate(date, inSameDayAs: keys.ashWednesday) {
             return (.ashWednesday, "Ash Wednesday", .violet, false,
-                "The start of Lent. Christians receive ashes on their foreheads in the shape of a cross as a sign of repentance and mortality. The priest says 'Remember that you are dust, and to dust you shall return.' It is a day of fasting and reflection.")
+                "The start of Lent. In many churches ashes are placed on the forehead in the shape of a cross, a sign of repentance and mortality that recalls the words 'Remember that you are dust, and to dust you shall return.' It is a day of fasting and reflection.")
         }
         if calendar.isDate(date, inSameDayAs: keys.palmSunday) {
             return (.palmSunday, "Palm Sunday of the Lord's Passion", .red, false,
@@ -650,7 +597,7 @@ struct LiturgicalCalendar {
         }
         if calendar.isDate(date, inSameDayAs: keys.holyThursday) {
             return (.holyThursday, "Holy Thursday", .white, true,
-                "Commemorates the Last Supper, when Jesus shared a final meal with his apostles, washed their feet as a sign of humble service, and instituted the Eucharist (communion). That night he was arrested in the Garden of Gethsemane.")
+                "Commemorates the Last Supper, when Jesus shared a final meal with his apostles, washed their feet as a sign of humble service, and gave them the bread and cup to remember him by. That night he was arrested in the Garden of Gethsemane.")
         }
         if calendar.isDate(date, inSameDayAs: keys.goodFriday) {
             return (.goodFriday, "Good Friday of the Lord's Passion", .red, true,
@@ -669,18 +616,6 @@ struct LiturgicalCalendar {
             return (.easterMonday, "Easter Monday", .white, false,
                 "The celebration of Easter continues. In many countries this is a public holiday. The Gospel tells of two disciples meeting the risen Jesus on the road to Emmaus without recognizing him at first.")
         }
-        if calendar.isDate(date, inSameDayAs: keys.divineMercy) {
-            return (.divineMercy, "Divine Mercy Sunday", .white, false,
-                "The Second Sunday of Easter, named Divine Mercy Sunday by Pope John Paul II in the year 2000. Drawing on the writings of St. Faustina Kowalska, it dwells on God's mercy as the heart of the Easter mystery: the risen Jesus appearing to his disciples and giving them the power to forgive sins.")
-        }
-        if calendar.isDate(date, inSameDayAs: keys.sacredHeart) {
-            return (.sacredHeart, "Most Sacred Heart of Jesus", .white, true,
-                "A solemnity celebrating the love of Jesus for humanity, symbolized by his heart. It falls on the Friday after Corpus Christi, nineteen days after Pentecost. The devotion draws on the image of Christ's heart, pierced on the cross, as an unfailing source of mercy and compassion.")
-        }
-        if calendar.isDate(date, inSameDayAs: keys.holyFamily) {
-            return (.holyFamily, "The Holy Family of Jesus, Mary, and Joseph", .white, false,
-                "Celebrated on the Sunday within the Octave of Christmas, this feast honors Jesus, Mary, and Joseph together as a household. It holds up the ordinary life of a family, with its work and its love, as something holy, and asks Christians to see their own homes in the same light.")
-        }
         if calendar.isDate(date, inSameDayAs: keys.ascension) {
             return (.ascension, "Ascension of the Lord", .white, true,
                 "Forty days after Easter, Jesus ascended into heaven in the presence of his disciples, promising to send the Holy Spirit. His last words were a command: 'Go and make disciples of all nations.' This feast marks the completion of Jesus' earthly mission.")
@@ -692,10 +627,6 @@ struct LiturgicalCalendar {
         if calendar.isDate(date, inSameDayAs: keys.trinitySunday) {
             return (.trinitySunday, "Most Holy Trinity", .white, true,
                 "The Sunday after Pentecost, celebrating the central mystery of Christian faith: that God is one God in three persons, Father, Son, and Holy Spirit. It is not three gods, but one God experienced in three ways. Even theologians say it is a mystery beyond full human understanding.")
-        }
-        if calendar.isDate(date, inSameDayAs: keys.corpusChristi) {
-            return (.corpusChristi, "Most Holy Body and Blood of Christ (Corpus Christi)", .white, true,
-                "A feast celebrating the Eucharist, the belief that bread and wine truly become the Body and Blood of Jesus during Mass. Many parishes hold outdoor processions carrying the Eucharist through the streets. 'Corpus Christi' is Latin for 'Body of Christ.'")
         }
         if calendar.isDate(date, inSameDayAs: keys.christTheKing) {
             return (.christTheKing, "Our Lord Jesus Christ, King of the Universe", .white, true,
@@ -734,11 +665,7 @@ struct KeyLiturgicalDates {
     let ascension: Date
     let pentecost: Date
     let trinitySunday: Date
-    let corpusChristi: Date
-    let divineMercy: Date
-    let sacredHeart: Date
     let adventStart: Date
-    let holyFamily: Date
     let christmas: Date
     let baptismOfLord: Date
     let christTheKing: Date

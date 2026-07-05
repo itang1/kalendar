@@ -174,8 +174,8 @@
     const seasonExplanation = SEASON_EXPLANATION[day.season] || '';
 
     const rankExplanation = day.isSolemnity
-      ? "A solemnity is the highest rank of celebration in the liturgical year. These mark the most important mysteries and events of the faith, like Easter, Christmas, or major saints. They take priority over the regular season."
-      : "Feasts and memorials are celebrations of saints or events in the life of Jesus and Mary. A feast is more important than a memorial. Some memorials are optional, while others are observed throughout the liturgical calendar.";
+      ? "A solemnity is the highest rank of day in the church year. These mark the most important events of the faith, like Easter, Christmas, and Pentecost. They take priority over the regular season."
+      : "Feasts and memorials mark people and events from the life of Jesus and the early church. A feast is the more important of the two; a memorial is a smaller remembrance.";
 
     const dayTitle = liturgicalDayTitle(day, day.date);
     const countdown = countdownText(day);
@@ -209,7 +209,7 @@
         <p>${rankExplanation}</p>
       ` : ''}
 
-      <div class="label">Vestment</div>
+      <div class="label">Color</div>
       <div class="swatch-row">
         <div class="swatch" style="background:${day.color.hex}; border-radius:50%;"></div>
         <strong>${day.color.name}</strong>

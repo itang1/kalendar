@@ -14,13 +14,13 @@ const LiturgicalColor = {
   rose:   { key: 'rose',   name: 'Rose',   hex: '#D98099' },
 };
 
-// Why each color is worn; mirrors LiturgicalColor.explanation in the Swift engine.
+// What each color signifies; mirrors LiturgicalColor.explanation in the Swift engine.
 const COLOR_EXPLANATION = {
-  green:  "Green is the color of life and growth. The priest wears it through Ordinary Time, the long stretch of steady, unhurried discipleship.",
-  violet: "Violet is the color of penance and preparation. The priest wears it through Advent and Lent, the two seasons of waiting and turning back.",
-  white:  "White is the color of glory, purity, and celebration. The priest wears it for Christmas, Easter, feasts of Jesus and Mary, and saints who were not martyred.",
-  red:    "Red is the color of blood and fire. The priest wears it for the Passion of Jesus, for the Holy Spirit, and for the martyrs.",
-  rose:   "Rose is violet lightened with joy. The priest wears it just twice a year, on Gaudete Sunday in Advent and Laetare Sunday in Lent, a breath of encouragement partway through a penitential season.",
+  green:  "Green stands for life and growth. It marks Ordinary Time, the long stretch of steady, everyday discipleship.",
+  violet: "Violet stands for repentance and preparation. It marks Advent and Lent, the two seasons of waiting and turning back to God.",
+  white:  "White stands for glory, purity, and celebration. It marks Christmas, Easter, and the great days that remember Jesus.",
+  red:    "Red stands for blood and fire. It marks the suffering and death of Jesus, the coming of the Holy Spirit, and those who were killed for their faith.",
+  rose:   "Rose is violet lightened with joy. It appears just twice a year, on the third Sunday of Advent and the fourth Sunday of Lent, a breath of encouragement partway through a season of waiting.",
 };
 
 const LiturgicalSeason = {
@@ -49,41 +49,37 @@ const SEASON_EXPLANATION = {
 
 const SEASON_CONTEXTUAL_ITEMS = {
   [LiturgicalSeason.advent]: [
-    "Light the Advent wreath candles week by week. Three are violet, one is rose, and the progression marks time in a way that feels more honest than a countdown.",
-    "Read Isaiah. The prophetic passages the liturgy draws from during these weeks are worth sitting with on their own, outside of Mass.",
-    "Pray in the morning or the evening. Advent is a season of watching, and watching takes some quiet.",
-    "The tone is expectant. The world is rushing toward Christmas. The liturgy is doing something slower.",
+    "Light the Advent wreath candles week by week — three violet, one rose — marking time in a way that feels more honest than a countdown.",
+    "Read Isaiah. The prophetic passages this season draws from are worth sitting with on their own.",
+    "Keep a quiet morning or evening. Advent is a season of watching, and watching takes some stillness.",
+    "The tone is expectant. The world is rushing toward Christmas; this season moves slower.",
   ],
   [LiturgicalSeason.christmas]: [
-    "Keep celebrating through January. Most people are done by December 26, which means missing the better half of the season.",
-    "Read the prologue of John's Gospel. It is what the liturgy has called the Christmas reading for centuries, and it is not about a manger.",
-    "Mark the feast days that cluster in these weeks: St. Stephen on the 26th, St. John on the 27th, the Holy Innocents on the 28th.",
+    "Keep celebrating past December 25. The season runs for weeks, and most people stop far too early.",
+    "Read the opening of John's Gospel. It has been the Christmas reading for centuries, and it is not about a manger.",
+    "Notice the days that cluster here: Stephen on the 26th, John on the 27th, the Holy Innocents on the 28th.",
     "The tone is warm and unhurried. Lent will come soon enough.",
   ],
   [LiturgicalSeason.ordinaryTime]: [
-    "Follow the Sunday Gospel readings week by week. The three-year lectionary cycle moves through Matthew, Mark, and Luke in sequence, and tracking it lets you watch the ministry of Jesus unfold gradually.",
-    "Pay attention to the saints' feasts as they come. Most of them fall in Ordinary Time, and they are the tradition's way of saying that holiness looks like something specific and concrete.",
-    "The tone is steady. This is not the dramatic part of the year. It is the part where most of the actual work of following happens.",
+    "Follow the Sunday Gospel readings week by week, watching the ministry of Jesus unfold gradually.",
+    "Notice the days that remember figures from Scripture as they come; many of them fall in this season.",
+    "The tone is steady. This is the ordinary stretch, where most of the actual work of following happens.",
   ],
   [LiturgicalSeason.lent]: [
-    "Fast on Ash Wednesday and Good Friday. Abstain from meat on Fridays through the season.",
-    "Take on one practice and give up one thing. The tradition is not only subtraction.",
-    "Go to Stations of the Cross on a Friday. It is slower and older than a Sunday Mass and worth experiencing at least once in the season.",
-    "Read John chapters 11 through 19 before Holy Week arrives. The liturgy moves through them and knowing them makes everything that follows land differently.",
-    "The tone is serious without being without hope. Lent is pointing toward something.",
+    "Consider a fast, and consider taking something on as well. The season is not only subtraction.",
+    "Set aside time for prayer and honest self-examination. Lent is a turning back toward God.",
+    "Read John chapters 11 through 19 before Holy Week arrives. Knowing them makes everything that follows land differently.",
+    "The tone is serious but not without hope. Lent is pointing toward something.",
   ],
   [LiturgicalSeason.triduum]: [
-    "Go to all three liturgies if you possibly can. Holy Thursday, Good Friday, and the Easter Vigil are not three separate services. They are one rite spread across three days.",
-    "Keep Holy Saturday quiet. There is no liturgy until the Vigil, and the silence is intentional.",
-    "Plan to stay for the full Easter Vigil. It takes hours, begins in darkness, and moves through a long sweep of readings before it erupts. That is the design, not the inconvenience.",
-    "The Vigil is the night new members are baptized. If someone you know is entering the faith, this is when it happens.",
-    "The tone goes from tenderness to grief to stillness to joy, in that order.",
+    "These three days — Thursday, Friday, and the long wait of Saturday — are best kept together as one movement, not three separate days.",
+    "Keep Holy Saturday quiet. The stillness before Easter is intentional.",
+    "The tone moves from tenderness to grief to stillness to joy, in that order.",
   ],
   [LiturgicalSeason.easter]: [
-    "Say Alleluia. It was held back all through Lent and this is the season it belongs to.",
-    "Read Acts of the Apostles from the beginning. It is the season's companion text, the story of what happened after the resurrection, and it moves fast.",
-    "Think about baptism. Easter Vigil is when new believers are received into the Church, and the whole season carries that sense of new life.",
-    "The tone is joyful and sustained. Easter is not one day. It is fifty days, longer than Lent, and the tradition takes that seriously.",
+    "Say Alleluia. It was held back all through Lent, and this is the season it belongs to.",
+    "Read Acts of the Apostles from the beginning — the story of what happened after the resurrection, and it moves fast.",
+    "The tone is joyful and sustained. Easter is not one day but fifty, longer than Lent.",
   ],
 };
 
@@ -147,24 +143,12 @@ function keyDates(year) {
   const ascension = addDays(easter, 39);
   const pentecost = addDays(easter, 49);
   const trinitySunday = addDays(easter, 56);
-  const corpusChristi = addDays(easter, 63);
-  // Divine Mercy Sunday: the Second Sunday of Easter (octave day).
-  const divineMercy = addDays(easter, 7);
-  // Sacred Heart of Jesus: the Friday after Corpus Christi, 19 days after Pentecost.
-  const sacredHeart = addDays(easter, 68);
 
   // Advent: starts on the Sunday closest to Nov 30 (4 Sundays before Christmas)
   const christmas = dateOnly(year, 12, 25);
   const christmasWeekday = swiftWeekday(christmas);
   const daysToSunday = (christmasWeekday === 1) ? 28 : (christmasWeekday - 1 + 21);
   const adventStart = addDays(christmas, -daysToSunday);
-
-  // Holy Family: the Sunday within the Octave of Christmas. When Christmas itself
-  // is a Sunday there is no Sunday between Dec 26 and 31, so the feast moves to
-  // Dec 30 per the General Roman Calendar.
-  const holyFamily = (christmasWeekday === 1)
-    ? dateOnly(year, 12, 30)
-    : addDays(christmas, 8 - christmasWeekday);
 
   const epiphany = dateOnly(year, 1, 6);
   // Baptism of the Lord: normally the Sunday after Epiphany. With Epiphany fixed
@@ -180,8 +164,8 @@ function keyDates(year) {
 
   return {
     easter, ashWednesday, palmSunday, holyThursday, goodFriday, holySaturday,
-    ascension, pentecost, trinitySunday, corpusChristi, divineMercy, sacredHeart,
-    adventStart, holyFamily, christmas, baptismOfLord, christTheKing,
+    ascension, pentecost, trinitySunday,
+    adventStart, christmas, baptismOfLord, christTheKing,
   };
 }
 
@@ -297,14 +281,6 @@ function fixedFeastIsImpeded(date, season, isSunday, keys) {
   // Privileged Sundays of Advent, Lent, and Easter outrank saints' days.
   if (isSunday && (season === LiturgicalSeason.advent || season === LiturgicalSeason.lent || season === LiturgicalSeason.easter)) return true;
 
-  // Feasts of the Lord that land amid fixed feasts outrank a coincident saint's
-  // day: the Holy Family (a Christmas-octave Sunday that can fall on St. Stephen,
-  // St. John, or the Holy Innocents) and the Sacred Heart (a solemnity of the
-  // Lord). In the rare year the Sacred Heart coincides with a fixed solemnity of
-  // a saint, that saint is superseded rather than transferred.
-  if (sameDay(date, keys.holyFamily)) return true;
-  if (sameDay(date, keys.sacredHeart)) return true;
-
   return false;
 }
 
@@ -348,16 +324,12 @@ const FIXED_FEASTS = {
     description: "Recalls the dramatic moment when Saul of Tarsus, who was hunting down and imprisoning believers, was struck blind on the road to Damascus by a vision of the risen Jesus. He recovered, was baptized, changed his name to Paul, and became the greatest missionary the early Church ever produced." },
   '2-2':   { name: "Presentation of the Lord", color: LiturgicalColor.white, solemnity: false,
     description: "Forty days after Christmas, Mary and Joseph brought baby Jesus to the Temple in Jerusalem, as Jewish law required for firstborn sons. The elderly prophet Simeon recognized him as the Messiah and called him 'a light for revelation to the Gentiles.' Also called Candlemas." },
-  '2-22':  { name: "Chair of St. Peter", color: LiturgicalColor.white, solemnity: false,
-    description: "Celebrates Peter's role as the leader of the apostles and the first bishop of Rome. The 'chair' is not a piece of furniture so much as a symbol of teaching authority. This feast is about the office of leadership that traces through every pope back to Peter." },
   '3-19':  { name: "St. Joseph, Spouse of the Blessed Virgin Mary", color: LiturgicalColor.white, solemnity: true,
-    description: "Honors Joseph, the foster-father of Jesus and husband of Mary. He was a humble carpenter from Nazareth who protected and raised Jesus. He is the patron saint of workers, fathers, and the universal Church." },
+    description: "Remembers Joseph, the earthly father of Jesus and husband of Mary. He was a carpenter from Nazareth who protected and raised Jesus, remembered for his quiet, faithful obedience." },
   '3-25':  { name: "Annunciation of the Lord", color: LiturgicalColor.white, solemnity: true,
     description: "Celebrates the moment the angel Gabriel appeared to Mary and announced she would conceive Jesus by the Holy Spirit. Mary said 'yes,' the moment believed to be when God became human. Exactly 9 months before Christmas." },
   '4-25':  { name: "St. Mark, Evangelist", color: LiturgicalColor.red, solemnity: false,
     description: "Honors Mark, the author of the shortest and most urgent of the four Gospels. He wrote it in Rome, likely drawing on Peter's eyewitness accounts, and his Gospel reads like it is in a hurry. The word 'immediately' appears over forty times." },
-  '5-1':   { name: "St. Joseph the Worker", color: LiturgicalColor.white, solemnity: false,
-    description: "A feast established in 1955, celebrating Joseph as a model for all working people. It falls on May Day and is the tradition's answer to secular labor observances, offering a patron for the dignity and sanctity of ordinary work." },
   '5-14':  { name: "St. Matthias, Apostle", color: LiturgicalColor.red, solemnity: false,
     description: "Matthias was chosen by lot to replace Judas Iscariot among the twelve apostles. The account in Acts is brief. He is a reminder that the structure of the early community mattered enough to be filled, and that ordinary people were chosen for extraordinary roles." },
   '5-31':  { name: "Visitation of the Blessed Virgin Mary", color: LiturgicalColor.white, solemnity: false,
@@ -367,39 +339,23 @@ const FIXED_FEASTS = {
   '6-24':  { name: "Nativity of St. John the Baptist", color: LiturgicalColor.white, solemnity: true,
     description: "The birth of John the Baptist, Jesus' cousin, who grew up to be the prophet who prepared the way for Jesus' ministry. He baptized people in the Jordan River and is the one who baptized Jesus himself." },
   '6-29':  { name: "Sts. Peter and Paul, Apostles", color: LiturgicalColor.red, solemnity: true,
-    description: "Honors the two greatest apostles: Peter, the fisherman Jesus chose to lead his followers (the first pope), and Paul, who started out persecuting believers but converted and became the greatest missionary of the early Church. Both were martyred in Rome." },
+    description: "Honors the two greatest apostles: Peter, the fisherman Jesus chose to lead his followers, and Paul, who started out persecuting believers but converted and became the greatest missionary of the early Church. Both were martyred in Rome." },
   '7-22':  { name: "St. Mary Magdalene", color: LiturgicalColor.white, solemnity: false,
     description: "Mary Magdalene was among Jesus' closest followers, present at his crucifixion when most of the apostles had fled, and the first person to see him after the resurrection. She is called the 'apostle to the apostles' because she carried the news of the resurrection to the others. Her feast was elevated to a proper feast in 2016." },
   '7-25':  { name: "St. James, Apostle", color: LiturgicalColor.red, solemnity: false,
     description: "James was one of the sons of Zebedee and one of Jesus' inner circle of three, along with Peter and John. He was the first of the apostles to be martyred, killed by King Herod Agrippa around 44 AD. His shrine in Santiago de Compostela in Spain has been one of the great pilgrimage destinations for over a thousand years." },
   '8-6':   { name: "Transfiguration of the Lord", color: LiturgicalColor.white, solemnity: false,
     description: "Recalls when Jesus took three disciples up a mountain, and his appearance was transformed. His face shone like the sun and his clothes became dazzling white. Moses and Elijah appeared beside him, and God's voice said 'This is my beloved Son.'" },
-  '8-10':  { name: "St. Lawrence, Deacon and Martyr", color: LiturgicalColor.red, solemnity: false,
-    description: "Lawrence was one of the seven deacons of Rome under Pope Sixtus II. When Sixtus was martyred in 258, Lawrence was given three days to hand over the wealth of the community to the emperor. He spent the time distributing it to the poor, then presented the poor themselves as 'the treasure of the community.' He was executed on a gridiron. He is the patron of deacons, cooks, and the poor." },
-  '9-14':  { name: "Exaltation of the Holy Cross", color: LiturgicalColor.red, solemnity: false,
-    description: "Honors the cross on which Jesus was crucified. Rather than a symbol of defeat, it is seen as the instrument of salvation. This feast dates back to the 4th century when St. Helena (Emperor Constantine's mother) is believed to have found the actual cross in Jerusalem." },
   '9-21':  { name: "St. Matthew, Apostle and Evangelist", color: LiturgicalColor.red, solemnity: false,
     description: "Matthew was a tax collector, which made him a social outcast in his community. Jesus called him anyway. He went on to write the first of the four Gospels, the most Jewish in character, the one most concerned with showing how Jesus fulfills the Hebrew scriptures." },
-  '9-29':  { name: "Sts. Michael, Gabriel, and Raphael, Archangels", color: LiturgicalColor.white, solemnity: false,
-    description: "The only feast day dedicated to angels. Michael is the warrior archangel who leads the heavenly army against evil. Gabriel is the messenger who announced Jesus' birth to Mary. Raphael guided the young Tobias in the book of Tobit and is the patron of travelers and healing. Three names, three roles, one feast." },
-  '10-1':  { name: "St. Thérèse of Lisieux, Doctor of the Church", color: LiturgicalColor.white, solemnity: false,
-    description: "Thérèse Martin entered the Carmelite convent at fifteen and died of tuberculosis at twenty-four. She wrote an autobiography that became one of the most widely read spiritual books of the modern era. Her 'little way,' the conviction that small acts done with great love matter as much as grand gestures, made her a Doctor of the Church." },
-  '10-2':  { name: "Guardian Angels", color: LiturgicalColor.white, solemnity: false,
-    description: "A feast celebrating the belief that each person has an angel assigned to them for protection and guidance. The tradition is ancient, drawn from passages in the Psalms, the book of Daniel, and Jesus' own words about not despising 'one of these little ones, for their angels in heaven always see the face of my Father.'" },
-  '10-4':  { name: "St. Francis of Assisi", color: LiturgicalColor.white, solemnity: false,
-    description: "Francis of Assisi gave up a wealthy merchant's life in 13th-century Italy to live in radical poverty, preach the Gospel, and care for lepers. He founded the Franciscan order, received the stigmata (the wounds of Christ on his body), and wrote the Canticle of the Sun. He is the patron of animals, ecology, and Italy." },
   '10-18': { name: "St. Luke, Evangelist", color: LiturgicalColor.red, solemnity: false,
     description: "Luke was a physician and the only Gentile author in the New Testament. He wrote both the Gospel that bears his name and the Acts of the Apostles, together the longest single contribution to the New Testament. His Gospel is the one most attentive to women, the poor, and outsiders. He is the patron of doctors and artists." },
   '10-28': { name: "Sts. Simon and Jude, Apostles", color: LiturgicalColor.red, solemnity: false,
-    description: "Two apostles honored together because little is known about either of them. Simon was called 'the Zealot,' probably indicating a political background. Jude (not Judas Iscariot) wrote one of the short letters near the end of the New Testament and is remembered, by long tradition, as the patron of lost causes." },
-  '11-1':  { name: "All Saints", color: LiturgicalColor.white, solemnity: true,
-    description: "A day to honor all saints, not just the famous ones with their own feast days, but every holy person in heaven, including ordinary people who lived faithful lives. It is a reminder that everyone is called to holiness." },
-  '11-2':  { name: "All Souls' Day (Commemoration of All the Faithful Departed)", color: LiturgicalColor.violet, solemnity: false,
-    description: "A day to remember all who have died, especially loved ones. It is a tender day of remembrance and mourning, often marked by visiting cemeteries and giving thanks for those who have gone before." },
-  '11-9':  { name: "Dedication of the Lateran Basilica", color: LiturgicalColor.white, solemnity: false,
-    description: "The Lateran Basilica in Rome is the cathedral of the bishop of Rome, which means it is technically the mother church of all Roman Catholics worldwide, outranking even St. Peter's. This feast, celebrating its dedication, is a way of marking unity with the broader Church." },
+    description: "Two apostles honored together because little is known about either of them. Simon was called 'the Zealot,' probably indicating a political background. Jude (not Judas Iscariot) is traditionally linked to one of the short letters near the end of the New Testament." },
+  '10-31': { name: "Reformation Day", color: LiturgicalColor.red, solemnity: false,
+    description: "On October 31, 1517, Martin Luther is said to have posted his Ninety-Five Theses in Wittenberg, protesting abuses in the church of his day. The date became the marker of the Reformation, the movement that returned the Bible to the center of Christian life and gave rise to the Protestant and Reformed traditions." },
   '11-30': { name: "St. Andrew, Apostle", color: LiturgicalColor.red, solemnity: false,
-    description: "Andrew was Simon Peter's brother and, according to John's Gospel, the first of the apostles to follow Jesus. He brought Peter to Jesus. He is said to have been crucified on an X-shaped cross, which became his symbol. He is the patron saint of Scotland, Greece, and Russia." },
+    description: "Andrew was Simon Peter's brother and, according to John's Gospel, the first of the apostles to follow Jesus. He brought Peter to Jesus. By tradition he was crucified on an X-shaped cross, which became his symbol." },
   '12-25': { name: "Nativity of the Lord (Christmas)", color: LiturgicalColor.white, solemnity: true,
     description: "The joyful celebration of Jesus' birth in Bethlehem. It marks the belief that God became a human baby, born to Mary in humble circumstances. It is one of the two greatest feasts of the liturgical year (along with Easter)." },
   '12-26': { name: "St. Stephen, First Martyr", color: LiturgicalColor.red, solemnity: false,
@@ -419,7 +375,7 @@ function fixedFeast(date) {
 function movableFeast(date, keys) {
   if (sameDay(date, keys.ashWednesday)) {
     return { name: "Ash Wednesday", color: LiturgicalColor.violet, solemnity: false,
-      description: "The start of Lent. Ashes are placed on the forehead in the shape of a cross as a sign of repentance and mortality. The priest says 'Remember that you are dust, and to dust you shall return.' It is a day of fasting and reflection." };
+      description: "The start of Lent. In many churches ashes are placed on the forehead in the shape of a cross, a sign of repentance and mortality that recalls the words 'Remember that you are dust, and to dust you shall return.' It is a day of fasting and reflection." };
   }
   if (sameDay(date, keys.palmSunday)) {
     return { name: "Palm Sunday of the Lord's Passion", color: LiturgicalColor.red, solemnity: false,
@@ -427,7 +383,7 @@ function movableFeast(date, keys) {
   }
   if (sameDay(date, keys.holyThursday)) {
     return { name: "Holy Thursday", color: LiturgicalColor.white, solemnity: true,
-      description: "Commemorates the Last Supper, when Jesus shared a final meal with his apostles, washed their feet as a sign of humble service, and instituted the Eucharist (communion). That night he was arrested in the Garden of Gethsemane." };
+      description: "Commemorates the Last Supper, when Jesus shared a final meal with his apostles, washed their feet as a sign of humble service, and gave them the bread and cup to remember him by. That night he was arrested in the Garden of Gethsemane." };
   }
   if (sameDay(date, keys.goodFriday)) {
     return { name: "Good Friday of the Lord's Passion", color: LiturgicalColor.red, solemnity: true,
@@ -446,18 +402,6 @@ function movableFeast(date, keys) {
     return { name: "Easter Monday", color: LiturgicalColor.white, solemnity: false,
       description: "The celebration of Easter continues. In many countries this is a public holiday. The Gospel tells of two disciples meeting the risen Jesus on the road to Emmaus without recognizing him at first." };
   }
-  if (sameDay(date, keys.divineMercy)) {
-    return { name: "Divine Mercy Sunday", color: LiturgicalColor.white, solemnity: false,
-      description: "The Second Sunday of Easter, named Divine Mercy Sunday by Pope John Paul II in the year 2000. Drawing on the writings of St. Faustina Kowalska, it dwells on God's mercy as the heart of the Easter mystery: the risen Jesus appearing to his disciples and giving them the power to forgive sins." };
-  }
-  if (sameDay(date, keys.sacredHeart)) {
-    return { name: "Most Sacred Heart of Jesus", color: LiturgicalColor.white, solemnity: true,
-      description: "A solemnity celebrating the love of Jesus for humanity, symbolized by his heart. It falls on the Friday after Corpus Christi, nineteen days after Pentecost. The devotion draws on the image of Christ's heart, pierced on the cross, as an unfailing source of mercy and compassion." };
-  }
-  if (sameDay(date, keys.holyFamily)) {
-    return { name: "The Holy Family of Jesus, Mary, and Joseph", color: LiturgicalColor.white, solemnity: false,
-      description: "Celebrated on the Sunday within the Octave of Christmas, this feast honors Jesus, Mary, and Joseph together as a household. It holds up the ordinary life of a family, with its work and its love, as something holy, and invites us to see our own homes in the same light." };
-  }
   if (sameDay(date, keys.ascension)) {
     return { name: "Ascension of the Lord", color: LiturgicalColor.white, solemnity: true,
       description: "Forty days after Easter, Jesus ascended into heaven in the presence of his disciples, promising to send the Holy Spirit. His last words were a command: 'Go and make disciples of all nations.' This feast marks the completion of Jesus' earthly mission." };
@@ -469,10 +413,6 @@ function movableFeast(date, keys) {
   if (sameDay(date, keys.trinitySunday)) {
     return { name: "Most Holy Trinity", color: LiturgicalColor.white, solemnity: true,
       description: "The Sunday after Pentecost, celebrating the central mystery of the faith: that God is one God in three persons, Father, Son, and Holy Spirit. It is not three gods, but one God experienced in three ways. Even theologians say it is a mystery beyond full human understanding." };
-  }
-  if (sameDay(date, keys.corpusChristi)) {
-    return { name: "Most Holy Body and Blood of Christ (Corpus Christi)", color: LiturgicalColor.white, solemnity: true,
-      description: "A feast celebrating the Eucharist, the belief that bread and wine truly become the Body and Blood of Jesus during Mass. Many parishes hold outdoor processions carrying the Eucharist through the streets. 'Corpus Christi' is Latin for 'Body of Christ.'" };
   }
   if (sameDay(date, keys.christTheKing)) {
     return { name: "Our Lord Jesus Christ, King of the Universe", color: LiturgicalColor.white, solemnity: true,

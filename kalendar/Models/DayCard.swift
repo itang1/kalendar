@@ -152,7 +152,7 @@ extension DayCard {
         DayCard(
             dayOfYear: 359,
             date: Calendar.liturgical.date(from: DateComponents(year: 2025, month: 12, day: 25))!,
-            comments: ["Midnight Mass with family"],
+            comments: ["Christmas Eve service with family"],
             liturgicalSeason: .christmas,
             liturgicalColor: .white,
             feastName: "Nativity of the Lord (Christmas)",
