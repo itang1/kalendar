@@ -8,7 +8,7 @@ Available as an **iOS app** or website preview at [itang1.github.io/kalendar](ht
 
 ## Built Through a Reformed Lens
 
-Unlike the historical liturgical calendar, which is Catholic in origin, Kalendar filters it through a **Reformed** view, stripping away hundreds of saint days to leave a historically grounded calendar.
+Unlike the historical liturgical calendar, which is Catholic in origin, Kalendar filters it through a **Reformed** view, keeping the central seasons while omitting saints' days.
 
 - **Kept:** the core (Advent, Christmas, Epiphany, Lent, Good Friday, Easter, Ascension, Pentecost, Trinity), plus days remembering people and events (the apostles, the Gospel writers, John the Baptist).
 - **Removed:** saints' days and devotions, such as Corpus Christi, the Sacred Heart, Divine Mercy, All Souls, and the Marian feasts.
