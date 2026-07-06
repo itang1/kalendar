@@ -470,6 +470,18 @@ function liturgicalDayTitle(info, date) {
   }
 }
 
+// The suffix shown after the season name in the season line (mirrors
+// DayCard.seasonWeekLabel), e.g. "Week 3". The days between Ash Wednesday and the
+// First Sunday of Lent carry an internal week of 0, which has no ordinal, so they
+// read "After Ash Wednesday" instead of "Week 0". Null when there is no counted week.
+function seasonWeekLabel(info) {
+  if (info.weekOfSeason == null) return null;
+  if (info.season === LiturgicalSeason.lent && info.weekOfSeason === 0) {
+    return "After Ash Wednesday";
+  }
+  return `Week ${info.weekOfSeason}`;
+}
+
 // MARK: Civil holidays (secular U.S. observances, a layer beside the church year)
 
 // The ordinal-th given weekday of a month. weekday: 0 = Sunday ... 6 = Saturday (JS getDay).
@@ -582,6 +594,7 @@ window.KalendarEngine = {
   COLOR_EXPLANATION,
   liturgicalInfo,
   liturgicalDayTitle,
+  seasonWeekLabel,
   keyDates,
   addDays,
   daysBetween,

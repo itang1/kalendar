@@ -226,8 +226,8 @@ private struct DayBrowserSheet: View {
         }
 
         var seasonLine = day.liturgicalSeason.rawValue
-        if let week = day.weekOfSeason {
-            seasonLine += " · Week \(week)"
+        if let label = day.seasonWeekLabel {
+            seasonLine += " · \(label)"
         }
         seasonLine += " · \(day.liturgicalColor.rawValue)"
         lines.append(seasonLine)

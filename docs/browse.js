@@ -1,5 +1,5 @@
 (function () {
-  const { liturgicalInfo, liturgicalDayTitle, keyDates, addDays, daysBetween, LiturgicalSeason, LiturgicalColor, SEASON_EXPLANATION, SEASON_CONTEXTUAL_ITEMS, COLOR_EXPLANATION } = window.KalendarEngine;
+  const { liturgicalInfo, liturgicalDayTitle, seasonWeekLabel, keyDates, addDays, daysBetween, LiturgicalSeason, LiturgicalColor, SEASON_EXPLANATION, SEASON_CONTEXTUAL_ITEMS, COLOR_EXPLANATION } = window.KalendarEngine;
 
   const TOTAL_DAYS = 366;
   const today = (() => {
@@ -233,7 +233,7 @@
       <div class="label">Season</div>
       <div class="swatch-row">
         <div class="swatch" style="background:${seasonColorHex(day.season)}"></div>
-        <strong>${day.season}</strong>${day.weekOfSeason != null ? ` &middot; Week ${day.weekOfSeason}` : ''}
+        <strong>${day.season}</strong>${seasonWeekLabel(day) != null ? ` &middot; ${seasonWeekLabel(day)}` : ''}
       </div>
       <p>${seasonExplanation}</p>
       <p style="font-weight:600">Traditionally during ${day.season}:</p>

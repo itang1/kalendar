@@ -81,6 +81,17 @@ extension DayCard {
         }
     }
 
+    /// The suffix shown after the season name in the season line, e.g. "Week 3".
+    /// The days between Ash Wednesday and the First Sunday of Lent carry an internal
+    /// week of 0 (they fall before Lent's first counted week), which has no ordinal
+    /// in the calendar, so they read "After Ash Wednesday" instead of "Week 0". Nil
+    /// on feast days and in seasons without counted weeks (Christmas, Triduum).
+    var seasonWeekLabel: String? {
+        guard let week = weekOfSeason else { return nil }
+        if liturgicalSeason == .lent && week == 0 { return "After Ash Wednesday" }
+        return "Week \(week)"
+    }
+
     /// Days until the next major moment of the year, e.g. "17 days until Easter".
     /// Nil only if no anchor lies ahead (which cannot happen in practice, since
     /// Christmas recurs every year). Computed at window-build time and stored on

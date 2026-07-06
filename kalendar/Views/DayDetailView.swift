@@ -83,8 +83,8 @@ struct DayDetailView: View {
                         .frame(width: 22, height: 22)
                     Text(day.liturgicalSeason.rawValue)
                         .font(.body.weight(.bold))
-                    if let week = day.weekOfSeason {
-                        Text("· Week \(week)")
+                    if let label = day.seasonWeekLabel {
+                        Text("· \(label)")
                             .font(.body)
                     }
                 }
