@@ -41,9 +41,9 @@ struct DayDetailView: View {
                     .padding(.bottom, 20)
 
                 // MARK: Rank explanation (collapsed; identical across every
-                // solemnity, or every feast/memorial)
+                // solemnity, or every feast)
                 if day.feastName != nil {
-                    DisclosureGroup(day.isSolemnity ? "About solemnities" : "About feasts & memorials") {
+                    DisclosureGroup(day.isSolemnity ? "About solemnities" : "About feasts") {
                         Text(rankExplanation)
                             .font(.body)
                             .padding(.top, 8)
@@ -203,7 +203,7 @@ struct DayDetailView: View {
                 .foregroundStyle(.secondary)
 
             if let feast = day.feastName {
-                sectionLabel(day.isSolemnity ? "Solemnity" : "Feast / Memorial")
+                sectionLabel(day.isSolemnity ? "Solemnity" : "Feast")
                     .padding(.top, 18)
                 HStack(spacing: 8) {
                     if day.isSolemnity {
@@ -264,7 +264,7 @@ struct DayDetailView: View {
         if day.isSolemnity {
             return "A solemnity is the highest rank of day in the church year. These mark the most important events of the faith, like Easter, Christmas, and Pentecost. They take priority over the regular season."
         } else {
-            return "Feasts and memorials mark people and events from the life of Jesus and the early church. A feast is the more important of the two; a memorial is a smaller remembrance."
+            return "Feasts mark people and events from Scripture and the life of the early church, like the apostles, the Transfiguration, and Reformation Day."
         }
     }
 }

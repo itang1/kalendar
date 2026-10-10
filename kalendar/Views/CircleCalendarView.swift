@@ -459,7 +459,7 @@ private struct InfoSheet: View {
         let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "unknown"
         var components = URLComponents()
         components.scheme = "mailto"
-        components.path = "poodlestrategy@gmail.com"
+        components.path = "poodlestrategy+kalendar@gmail.com"
         components.queryItems = [URLQueryItem(name: "subject", value: "Kalendar Feedback (v\(version), build \(build))")]
         return components.url
     }
@@ -519,7 +519,7 @@ private struct InfoSheet: View {
                             Circle()
                                 .fill(Color.primary)
                                 .frame(width: 7, height: 7)
-                            Text("A dot marks a feast day or memorial. Tap any tile in grid view to read about it.")
+                            Text("A dot marks a feast day. Tap any tile in grid view to read about it.")
                                 .font(.body)
                         }
                         HStack(spacing: 8) {

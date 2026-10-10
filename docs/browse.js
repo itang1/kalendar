@@ -203,7 +203,7 @@
 
     const rankExplanation = day.isSolemnity
       ? "A solemnity is the highest rank of day in the church year. These mark the most important events of the faith, like Easter, Christmas, and Pentecost. They take priority over the regular season."
-      : "Feasts and memorials mark people and events from the life of Jesus and the early church. A feast is the more important of the two; a memorial is a smaller remembrance.";
+      : "Feasts mark people and events from Scripture and the life of the early church, like the apostles, the Transfiguration, and Reformation Day.";
 
     const dayTitle = liturgicalDayTitle(day, day.date);
     const countdown = countdownText(day);
@@ -240,7 +240,7 @@
       <ul class="items">${seasonItems.map((item) => `<li>${item}</li>`).join('')}</ul>
 
       ${day.feastName ? `
-        <div class="label">${day.isSolemnity ? 'Solemnity' : 'Feast / Memorial'}</div>
+        <div class="label">${day.isSolemnity ? 'Solemnity' : 'Feast'}</div>
         <div class="swatch-row">
           ${day.isSolemnity ? '<span class="star">&#9733;</span>' : ''}
           <span class="feast-name">${day.feastName}</span>
