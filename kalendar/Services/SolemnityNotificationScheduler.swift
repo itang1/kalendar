@@ -33,6 +33,12 @@ enum SolemnityNotificationScheduler {
         }
     }
 
+    /// Whether the app may currently deliver notifications.
+    static func isAuthorized() async -> Bool {
+        let status = await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
+        return status == .authorized || status == .provisional
+    }
+
     static func disable() async {
         let center = UNUserNotificationCenter.current()
         let requests = await center.pendingNotificationRequests()

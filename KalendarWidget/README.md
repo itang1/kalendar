@@ -1,7 +1,8 @@
 # Kalendar Widget
 
-A Home Screen widget showing today's liturgical season, color, and feast (the
-"Today in the Church Year" widget). Small and medium sizes.
+A widget showing today's liturgical season, color, and feast (the "Today in
+the Church Year" widget). Small and medium sizes on the Home Screen, plus
+inline and rectangular sizes on the Lock Screen.
 
 ## Why LiturgicalCalendar.swift is duplicated here
 

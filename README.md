@@ -22,7 +22,7 @@ Unlike the historical liturgical calendar, which is Catholic in origin, Kalendar
 - **Tap any day:** its season, feast, and today's color, with a note when the color breaks from the season.
 - **U.S. holidays:** federal and common cultural days shown *alongside* the church calendar, marked with a small corner diamond.
 - **Private notes:** kept per day, synced across your devices through iCloud, never sent to a third party.
-- **Extras:** Home Screen widget, optional solemnity notifications, and full dark mode.
+- **Extras:** Home Screen and Lock Screen widgets, optional solemnity notifications, and full dark mode.
 
 ## Tech stack
 

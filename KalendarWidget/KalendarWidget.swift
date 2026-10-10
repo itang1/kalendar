@@ -54,8 +54,46 @@ struct KalendarTimelineProvider: TimelineProvider {
 
 struct KalendarWidgetView: View {
     let entry: KalendarEntry
+    @Environment(\.widgetFamily) private var family
 
     var body: some View {
+        switch family {
+        case .accessoryInline:
+            // A single line of system-styled text above the clock.
+            Text(entry.feastName ?? entry.season.rawValue)
+        case .accessoryRectangular:
+            lockScreenView
+        default:
+            homeScreenView
+        }
+    }
+
+    /// Lock Screen widgets are tinted by the system, so the liturgical color
+    /// can't show; the feast or season name carries the day instead.
+    private var lockScreenView: some View {
+        VStack(alignment: .leading, spacing: 1) {
+            HStack(spacing: 4) {
+                if entry.isSolemnity {
+                    Image(systemName: "star.fill")
+                        .font(.caption2)
+                }
+                Text(entry.feastName ?? entry.season.rawValue)
+                    .font(.headline)
+                    .widgetAccentable()
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.8)
+            }
+            Text(entry.feastName != nil
+                 ? "\(entry.season.rawValue) · \(entry.color.rawValue)"
+                 : entry.color.rawValue)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .containerBackground(for: .widget) { Color.clear }
+    }
+
+    private var homeScreenView: some View {
         VStack(alignment: .leading, spacing: 4) {
             Spacer()
             if entry.isSolemnity {
@@ -98,6 +136,6 @@ struct KalendarWidget: Widget {
         }
         .configurationDisplayName("Today in the Church Year")
         .description("Shows today's liturgical season, color, and feast.")
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemSmall, .systemMedium, .accessoryInline, .accessoryRectangular])
     }
 }

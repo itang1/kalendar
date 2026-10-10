@@ -137,28 +137,21 @@ enum LiturgicalColor: String {
 // MARK: - Feast Identity
 
 /// A stable identifier for every feast the engine can name. Persisted note keys
-/// and the obligation/discipline flags reference these cases instead of display
-/// strings, so renaming a feast (even fixing a typo) never orphans a user's notes
-/// or silently breaks a flag. The raw value is the case name and is what gets
+/// reference these cases instead of display strings, so renaming a feast (even
+/// fixing a typo) never orphans a user's notes. The raw value is the case name and is what gets
 /// stored, so cases must not be renamed once shipped.
 enum FeastID: String {
     // Fixed feasts (by month/day)
-    case maryMotherOfGod, epiphany, conversionOfPaul, presentationOfTheLord
-    case chairOfPeter, josephSpouseOfMary, annunciation, markEvangelist
-    case josephTheWorker, matthias, visitation, barnabas
-    case nativityOfJohnTheBaptist, peterAndPaul, maryMagdalene, james
-    case transfiguration, lawrence, assumption, queenshipOfMary
-    case nativityOfMary, exaltationOfTheCross, matthewEvangelist, archangels
-    case thereseOfLisieux, guardianAngels, francisOfAssisi, ladyOfTheRosary
-    case lukeEvangelist, simonAndJude, allSaints, allSouls
-    case dedicationOfLateran, andrew, immaculateConception, ladyOfGuadalupe
-    case nativityOfTheLord, stephen, johnEvangelist, holyInnocents
-    case reformationDay
-    // Movable feasts (relative to Easter, or the Christmas-octave Sunday)
+    case epiphany, conversionOfPaul, presentationOfTheLord, josephSpouseOfMary
+    case annunciation, markEvangelist, matthias, visitation
+    case barnabas, nativityOfJohnTheBaptist, peterAndPaul, maryMagdalene
+    case james, transfiguration, matthewEvangelist, lukeEvangelist
+    case simonAndJude, reformationDay, andrew, nativityOfTheLord
+    case stephen, johnEvangelist, holyInnocents
+    // Movable feasts (relative to Easter or Advent)
     case ashWednesday, palmSunday, holyThursday, goodFriday
-    case holySaturday, easterSunday, easterMonday, divineMercy
-    case sacredHeart, holyFamily, ascension, pentecost
-    case trinitySunday, corpusChristi, christTheKing
+    case holySaturday, easterSunday, easterMonday, ascension
+    case pentecost, trinitySunday, christTheKing
 }
 
 // MARK: - Liturgical Day Info
@@ -168,8 +161,7 @@ struct LiturgicalDayInfo {
     let liturgicalColor: LiturgicalColor
     let feastName: String?
     /// Stable identifier for the feast, independent of its display name, so notes
-    /// keyed to a feast survive a wording change and flag logic can match on identity
-    /// rather than string literals. Nil on days with no feast.
+    /// keyed to a feast survive a wording change. Nil on days with no feast.
     let feastID: FeastID?
     let feastDescription: String?
     let isSolemnity: Bool

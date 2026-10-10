@@ -31,8 +31,7 @@ final class LiturgicalEngineTests: XCTestCase {
     }
 
     /// A fully populated `DayCard` for a date, mirroring `CalendarViewModel.buildWindow`,
-    /// so the derived properties (lectionary cycle, obligation and discipline flags)
-    /// can be checked directly.
+    /// so derived properties like the day title can be checked directly.
     private func card(_ y: Int, _ m: Int, _ d: Int) -> DayCard {
         let day = date(y, m, d)
         let dayInfo = engine.liturgicalInfo(for: day)
@@ -168,21 +167,6 @@ final class LiturgicalEngineTests: XCTestCase {
         XCTAssertEqual(info(2025, 7, 4).liturgicalColor, .green, "Independence Day stays Ordinary Time green")
         XCTAssertEqual(info(2025, 6, 15).feastName, "Most Holy Trinity")
         XCTAssertEqual(info(2025, 6, 15).civilHolidayName, "Father's Day")
-    }
-
-    // MARK: - Lectionary cycles and obligation flags (derived DayCard facts)
-
-    func testLectionaryCyclesTurnOverAtAdvent() {
-        // Ordinary Time 2025 (liturgical year that began Advent 2024) is Sunday Year C,
-        // weekday Year I. These derive from the Gregorian year, independent of the
-        // device's regional calendar.
-        let june2025 = card(2025, 6, 15)
-        XCTAssertEqual(june2025.sundayLectionaryCycle, "C")
-        XCTAssertEqual(june2025.weekdayLectionaryCycle, "I")
-        // Once Advent 2025 begins, the cycle rolls to Sunday Year A, weekday Year II.
-        let dec2025 = card(2025, 12, 7) // First Sunday of Advent 2025
-        XCTAssertEqual(dec2025.sundayLectionaryCycle, "A")
-        XCTAssertEqual(dec2025.weekdayLectionaryCycle, "II")
     }
 
     // MARK: - Drift guard against the golden decade

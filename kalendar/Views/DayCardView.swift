@@ -80,7 +80,7 @@ struct DayCardView: View {
 
     private static let accessibilityDateFormatter: DateFormatter = {
         let f = DateFormatter()
-        f.dateFormat = "MMMM d"
+        f.setLocalizedDateFormatFromTemplate("MMMM d")
         return f
     }()
 

@@ -13,7 +13,7 @@ extension Calendar {
     /// (year, month, day, day-of-year, weekday). The device's `Calendar.current`
     /// can be Buddhist, Japanese, Hijri, etc., where those components carry a
     /// different year number or month/day mapping, which would corrupt derived
-    /// facts like the lectionary cycle or obligation flags. `Calendar.current`
+    /// facts like the season week or the day title. `Calendar.current`
     /// stays for user-facing date formatting only.
     static let liturgical: Calendar = {
         var c = Calendar(identifier: .gregorian)

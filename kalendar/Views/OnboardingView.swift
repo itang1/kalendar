@@ -22,19 +22,19 @@ struct OnboardingView: View {
             symbol: "paintpalette.fill",
             symbolColor: LiturgicalColor.red.color,
             title: "Colors Mean Something",
-            body: "Each tile is colored by the liturgical season or feast day it belongs to. The color is also what the priest wears at Mass that day.\n\nViolet for Advent and Lent. White for Christmas and Easter. Red for martyrs and the Holy Spirit. Green for the long stretches of Ordinary Time. Rose appears twice a year on days of joy within penitential seasons."
+            body: "Each tile is colored by the liturgical season or feast day it belongs to. Churches that follow the church year use the same colors for pulpit hangings and clergy stoles.\n\nViolet for Advent and Lent. White for Christmas and Easter. Red for martyrs and the Holy Spirit. Green for the long stretches of Ordinary Time. Rose appears twice a year on days of joy within penitential seasons."
         ),
         OnboardingPage(
             symbol: "star.fill",
             symbolColor: .yellow,
             title: "Feasts and Solemnities",
-            body: "A small dot on a tile means something is being celebrated that day. It might be a solemnity like Easter or Christmas, a feast of an apostle, or a memorial of a saint.\n\nSolemnities are the highest rank. They take priority over the season and are always worth knowing. Tap any tile to read about the day."
+            body: "A small dot on a tile means something is being celebrated that day. It might be a solemnity like Easter or Christmas, or a day remembering an apostle or another figure from Scripture.\n\nSolemnities are the highest rank. They take priority over the season and are always worth knowing. Tap any tile to read about the day."
         ),
         OnboardingPage(
             symbol: "chart.pie.fill",
             symbolColor: LiturgicalColor.green.color,
             title: "Two Ways to Look",
-            body: "The grid view shows every day of the next 365 days laid out as tiles, always starting with today and rolling forward one day at a time.\n\nTiles omit date numbers so color and season stand out at a glance. Tap any tile to see its exact date, feast, and notes.\n\nThe wheel view shows the whole year at once as colored slices, so you can see the shape of the liturgical year from a distance.\n\nToggle between the two views in the top right."
+            body: "The grid view shows a full year of days laid out as tiles, always starting with today and rolling forward one day at a time.\n\nTiles omit date numbers so color and season stand out at a glance. Tap any tile to see its exact date, feast, and notes.\n\nThe wheel view shows the whole year at once as colored slices, so you can see the shape of the liturgical year from a distance.\n\nToggle between the two views in the top right."
         ),
         OnboardingPage(
             symbol: "text.bubble",

@@ -197,13 +197,13 @@ private struct DayBrowserSheet: View {
 
     private static let dateFormatter: DateFormatter = {
         let f = DateFormatter()
-        f.dateFormat = "MMM d"
+        f.setLocalizedDateFormatFromTemplate("MMM d")
         return f
     }()
 
     private static let shareDateFormatter: DateFormatter = {
         let f = DateFormatter()
-        f.dateFormat = "EEEE, MMMM d, yyyy"
+        f.setLocalizedDateFormatFromTemplate("EEEE, MMMM d, yyyy")
         return f
     }()
 
@@ -382,13 +382,13 @@ private struct FeastListSheet: View {
 
     private static let dateFormatter: DateFormatter = {
         let f = DateFormatter()
-        f.dateFormat = "MMMM d, yyyy"
+        f.setLocalizedDateFormatFromTemplate("MMMM d, yyyy")
         return f
     }()
 
     private static let weekdayFormatter: DateFormatter = {
         let f = DateFormatter()
-        f.dateFormat = "EEEE"
+        f.setLocalizedDateFormatFromTemplate("EEEE")
         return f
     }()
 
@@ -459,7 +459,7 @@ private struct InfoSheet: View {
         let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "unknown"
         var components = URLComponents()
         components.scheme = "mailto"
-        components.path = "theworkingcell@gmail.com"
+        components.path = "poodlestrategy@gmail.com"
         components.queryItems = [URLQueryItem(name: "subject", value: "Kalendar Feedback (v\(version), build \(build))")]
         return components.url
     }
@@ -608,6 +608,13 @@ private struct InfoSheet: View {
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Done") { dismiss() }
+                }
+            }
+            .task {
+                // Permission can be revoked in the Settings app at any time, so
+                // don't keep showing the toggle as on when nothing will arrive.
+                if notificationsEnabled, await !SolemnityNotificationScheduler.isAuthorized() {
+                    notificationsEnabled = false
                 }
             }
         }

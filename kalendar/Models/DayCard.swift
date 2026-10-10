@@ -128,38 +128,6 @@ extension DayCard {
     }
 }
 
-// MARK: - Lectionary cycle
-
-extension DayCard {
-    /// The civil year whose cycle governs this day. The lectionary year turns over
-    /// on the First Sunday of Advent, so Advent days already belong to the next
-    /// civil year's cycle.
-    private var lectionaryYear: Int {
-        let calendar = Calendar.liturgical
-        let civilYear = calendar.component(.year, from: date)
-        let adventStart = LiturgicalCalendar().keyDates(year: civilYear).adventStart
-        return calendar.startOfDay(for: date) >= calendar.startOfDay(for: adventStart)
-            ? civilYear + 1
-            : civilYear
-    }
-
-    /// The Sunday lectionary cycle (Year A, B, or C): the three-year rotation of
-    /// Sunday and solemnity readings.
-    var sundayLectionaryCycle: String {
-        switch lectionaryYear % 3 {
-        case 1: return "A"
-        case 2: return "B"
-        default: return "C"
-        }
-    }
-
-    /// The weekday lectionary cycle (Year I in odd liturgical years, Year II in
-    /// even ones): the two-year rotation of weekday first readings.
-    var weekdayLectionaryCycle: String {
-        lectionaryYear % 2 == 1 ? "I" : "II"
-    }
-}
-
 #if DEBUG
 extension DayCard {
     /// A representative day (Christmas, with a note) for SwiftUI previews.

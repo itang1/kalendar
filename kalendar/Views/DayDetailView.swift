@@ -17,13 +17,13 @@ struct DayDetailView: View {
 
     private static let dateFormatter: DateFormatter = {
         let f = DateFormatter()
-        f.dateFormat = "MMMM d, yyyy"
+        f.setLocalizedDateFormatFromTemplate("MMMM d, yyyy")
         return f
     }()
 
     private static let weekdayFormatter: DateFormatter = {
         let f = DateFormatter()
-        f.dateFormat = "EEEE"
+        f.setLocalizedDateFormatFromTemplate("EEEE")
         return f
     }()
 

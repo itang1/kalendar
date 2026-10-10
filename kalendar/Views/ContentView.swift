@@ -15,7 +15,7 @@ struct ContentView: View {
         if hasSeenOnboarding {
             NavigationStack {
                 CircleCalendarView()
-                    .navigationTitle("liturgical calendar")
+                    .navigationTitle("Liturgical Calendar")
             }
         } else {
             OnboardingView(hasSeenOnboarding: $hasSeenOnboarding)
