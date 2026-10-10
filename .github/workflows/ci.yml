@@ -25,11 +25,28 @@ jobs:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
+      # Runner images don't all ship the same simulators (a hardcoded "iPhone 16"
+      # sometimes isn't there), so use whichever iPhone is available, and
+      # download the iOS platform if the image has none at all.
+      - name: Pick a simulator
+        id: sim
+        run: |
+          pick() {
+            xcrun simctl list devices available -j \
+              | jq -r '[.devices[][] | select(.name | startswith("iPhone"))][0].udid // empty'
+          }
+          UDID=$(pick)
+          if [ -z "$UDID" ]; then
+            xcodebuild -downloadPlatform iOS
+            UDID=$(pick)
+          fi
+          echo "Using simulator $UDID"
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
       # Replays the golden decade against the Swift engine and runs the rest of
       # the LiturgicalEngineTests suite on a simulator.
       - name: Run KalendarTests
         run: |
           xcodebuild test \
             -scheme kalendar \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
+            -destination 'id=${{ steps.sim.outputs.udid }}' \
             CODE_SIGNING_ALLOWED=NO
