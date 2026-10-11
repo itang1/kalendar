@@ -112,7 +112,7 @@ enum LiturgicalGolden {
 2025-04-16|Lent|Violet|0|6||6th Week of Lent|
 2025-04-17|Triduum|White|1||Holy Thursday||
 2025-04-18|Triduum|Red|1||Good Friday of the Lord's Passion||
-2025-04-19|Triduum|White|1||Holy Saturday / Easter Vigil||
+2025-04-19|Triduum|Violet|0||Holy Saturday||
 2025-04-20|Triduum|White|1||Easter Sunday of the Resurrection||
 2025-04-21|Easter|White|0||Easter Monday||
 2025-04-22|Easter|White|0|1||Octave of Easter|Earth Day
@@ -462,7 +462,7 @@ enum LiturgicalGolden {
 2026-04-01|Lent|Violet|0|6||6th Week of Lent|April Fools' Day
 2026-04-02|Triduum|White|1||Holy Thursday||
 2026-04-03|Triduum|Red|1||Good Friday of the Lord's Passion||
-2026-04-04|Triduum|White|1||Holy Saturday / Easter Vigil||
+2026-04-04|Triduum|Violet|0||Holy Saturday||
 2026-04-05|Triduum|White|1||Easter Sunday of the Resurrection||
 2026-04-06|Easter|White|0||Easter Monday||
 2026-04-07|Easter|White|0|1||Octave of Easter|
@@ -819,7 +819,7 @@ enum LiturgicalGolden {
 2027-03-24|Lent|Violet|0|6||6th Week of Lent|
 2027-03-25|Triduum|White|1||Holy Thursday||
 2027-03-26|Triduum|Red|1||Good Friday of the Lord's Passion||
-2027-03-27|Triduum|White|1||Holy Saturday / Easter Vigil||
+2027-03-27|Triduum|Violet|0||Holy Saturday||
 2027-03-28|Triduum|White|1||Easter Sunday of the Resurrection||
 2027-03-29|Easter|White|0||Easter Monday||
 2027-03-30|Easter|White|0|1||Octave of Easter|
@@ -1204,7 +1204,7 @@ enum LiturgicalGolden {
 2028-04-12|Lent|Violet|0|6||6th Week of Lent|
 2028-04-13|Triduum|White|1||Holy Thursday||
 2028-04-14|Triduum|Red|1||Good Friday of the Lord's Passion||
-2028-04-15|Triduum|White|1||Holy Saturday / Easter Vigil||
+2028-04-15|Triduum|Violet|0||Holy Saturday||
 2028-04-16|Triduum|White|1||Easter Sunday of the Resurrection||
 2028-04-17|Easter|White|0||Easter Monday||
 2028-04-18|Easter|White|0|1||Octave of Easter|
@@ -1554,7 +1554,7 @@ enum LiturgicalGolden {
 2029-03-28|Lent|Violet|0|6||6th Week of Lent|
 2029-03-29|Triduum|White|1||Holy Thursday||
 2029-03-30|Triduum|Red|1||Good Friday of the Lord's Passion||
-2029-03-31|Triduum|White|1||Holy Saturday / Easter Vigil||
+2029-03-31|Triduum|Violet|0||Holy Saturday||
 2029-04-01|Triduum|White|1||Easter Sunday of the Resurrection||April Fools' Day
 2029-04-02|Easter|White|0||Easter Monday||
 2029-04-03|Easter|White|0|1||Octave of Easter|
@@ -1939,7 +1939,7 @@ enum LiturgicalGolden {
 2030-04-17|Lent|Violet|0|6||6th Week of Lent|
 2030-04-18|Triduum|White|1||Holy Thursday||
 2030-04-19|Triduum|Red|1||Good Friday of the Lord's Passion||
-2030-04-20|Triduum|White|1||Holy Saturday / Easter Vigil||
+2030-04-20|Triduum|Violet|0||Holy Saturday||
 2030-04-21|Triduum|White|1||Easter Sunday of the Resurrection||
 2030-04-22|Easter|White|0||Easter Monday||Earth Day
 2030-04-23|Easter|White|0|1||Octave of Easter|
@@ -2296,7 +2296,7 @@ enum LiturgicalGolden {
 2031-04-09|Lent|Violet|0|6||6th Week of Lent|
 2031-04-10|Triduum|White|1||Holy Thursday||
 2031-04-11|Triduum|Red|1||Good Friday of the Lord's Passion||
-2031-04-12|Triduum|White|1||Holy Saturday / Easter Vigil||
+2031-04-12|Triduum|Violet|0||Holy Saturday||
 2031-04-13|Triduum|White|1||Easter Sunday of the Resurrection||
 2031-04-14|Easter|White|0||Easter Monday||
 2031-04-15|Easter|White|0|1||Octave of Easter|
@@ -2646,7 +2646,7 @@ enum LiturgicalGolden {
 2032-03-24|Lent|Violet|0|6||6th Week of Lent|
 2032-03-25|Triduum|White|1||Holy Thursday||
 2032-03-26|Triduum|Red|1||Good Friday of the Lord's Passion||
-2032-03-27|Triduum|White|1||Holy Saturday / Easter Vigil||
+2032-03-27|Triduum|Violet|0||Holy Saturday||
 2032-03-28|Triduum|White|1||Easter Sunday of the Resurrection||
 2032-03-29|Easter|White|0||Easter Monday||
 2032-03-30|Easter|White|0|1||Octave of Easter|
@@ -3031,7 +3031,7 @@ enum LiturgicalGolden {
 2033-04-13|Lent|Violet|0|6||6th Week of Lent|
 2033-04-14|Triduum|White|1||Holy Thursday||
 2033-04-15|Triduum|Red|1||Good Friday of the Lord's Passion||
-2033-04-16|Triduum|White|1||Holy Saturday / Easter Vigil||
+2033-04-16|Triduum|Violet|0||Holy Saturday||
 2033-04-17|Triduum|White|1||Easter Sunday of the Resurrection||
 2033-04-18|Easter|White|0||Easter Monday||
 2033-04-19|Easter|White|0|1||Octave of Easter|
@@ -3388,7 +3388,7 @@ enum LiturgicalGolden {
 2034-04-05|Lent|Violet|0|6||6th Week of Lent|
 2034-04-06|Triduum|White|1||Holy Thursday||
 2034-04-07|Triduum|Red|1||Good Friday of the Lord's Passion||
-2034-04-08|Triduum|White|1||Holy Saturday / Easter Vigil||
+2034-04-08|Triduum|Violet|0||Holy Saturday||
 2034-04-09|Triduum|White|1||Easter Sunday of the Resurrection||
 2034-04-10|Easter|White|0||Easter Monday||
 2034-04-11|Easter|White|0|1||Octave of Easter|

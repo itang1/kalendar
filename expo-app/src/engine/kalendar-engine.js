@@ -397,8 +397,8 @@ function movableFeast(date, keys) {
       description: "The most solemn day of the year, when Christians remember Jesus' crucifixion and death. Services are stark and stripped down: Scripture readings, prayers, and reflection on the cross, often in bare surroundings. It is a day of solemn reflection and mourning." };
   }
   if (sameDay(date, keys.holySaturday)) {
-    return { id: 'holySaturday', name: "Holy Saturday / Easter Vigil", color: LiturgicalColor.white, solemnity: true,
-      description: "A day of quiet waiting at the tomb. The Easter Vigil on Saturday night is the most elaborate liturgy of the entire year: it begins in darkness with a blazing fire, traces salvation history through readings, and erupts in joy as Easter is proclaimed. New members are baptized into the faith." };
+    return { id: 'holySaturday', name: "Holy Saturday", color: LiturgicalColor.violet, solemnity: false,
+      description: "The day Jesus lay in the tomb. Scripture says almost nothing about it, and the silence fits: the disciples waited without knowing what Sunday would bring. Many churches hold no service at all, and the day is kept quietly, in the space between the cross and the resurrection." };
   }
   if (sameDay(date, keys.easter)) {
     return { id: 'easterSunday', name: "Easter Sunday of the Resurrection", color: LiturgicalColor.white, solemnity: true,
