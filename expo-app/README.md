@@ -3,7 +3,7 @@
 One Expo / React Native app (the same stack as book-club) that builds the
 Android app and the browser calendar at
 [itang1.github.io/kalendar/app](https://itang1.github.io/kalendar/app/).
-The iPhone app is separate, native SwiftUI, in the repo root.
+The iPhone app is separate, native SwiftUI, in [`../swift-app/`](../swift-app/).
 
 The liturgical engine is [`src/engine/kalendar-engine.js`](src/engine/kalendar-engine.js),
 a port of the Swift engine. `node tools/liturgical-golden.mjs` (from the repo

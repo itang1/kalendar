@@ -64,6 +64,7 @@ jobs:
       - name: Run KalendarTests
         run: |
           xcodebuild test \
+            -project swift-app/kalendar.xcodeproj \
             -scheme kalendar \
             -destination 'id=${{ steps.sim.outputs.udid }}' \
             CODE_SIGNING_ALLOWED=NO

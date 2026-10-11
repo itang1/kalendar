@@ -1,6 +1,6 @@
 /*
  * Kalendar liturgical engine: a faithful JS port of
- * kalendar/Models/LiturgicalCalendar.swift, shared by the Android and web app
+ * swift-app/kalendar/Models/LiturgicalCalendar.swift, shared by the Android and web app
  * (expo-app) and checked against the Swift engine by tools/liturgical-golden.mjs.
  * Dates are plain local-time Date objects, always at midnight, compared by
  * calendar day rather than by exact millisecond, matching the Swift Calendar

@@ -3,13 +3,13 @@
 // liturgical-golden.mjs
 //
 // Guards the three liturgical-engine copies against drift
-// (kalendar/Models/LiturgicalCalendar.swift, KalendarWidget/LiturgicalCalendar.swift,
+// (swift-app/kalendar/Models/LiturgicalCalendar.swift, swift-app/KalendarWidget/LiturgicalCalendar.swift,
 // and expo-app/src/engine/kalendar-engine.js). It computes liturgicalInfo() for every day of a
 // decade using the JS engine and writes two artifacts that share one source of truth:
 //
 //   * tools/liturgical-golden.txt          - canonical golden, verified here.
-//   * KalendarTests/LiturgicalGolden.swift - the same lines embedded for the Swift
-//                                            test (KalendarTests) to check the two
+//   * swift-app/KalendarTests/LiturgicalGolden.swift - the same lines embedded for
+//                                            the Swift test (KalendarTests) to check the two
 //                                            Swift copies against.
 //
 // Usage:
@@ -27,9 +27,10 @@ import { dirname, join } from 'node:path';
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
 const enginePath = join(repoRoot, 'expo-app', 'src', 'engine', 'kalendar-engine.js');
 const goldenTxtPath = join(repoRoot, 'tools', 'liturgical-golden.txt');
-const goldenSwiftPath = join(repoRoot, 'KalendarTests', 'LiturgicalGolden.swift');
-const appEnginePath = join(repoRoot, 'kalendar', 'Models', 'LiturgicalCalendar.swift');
-const widgetEnginePath = join(repoRoot, 'KalendarWidget', 'LiturgicalCalendar.swift');
+const swiftRoot = join(repoRoot, 'swift-app');
+const goldenSwiftPath = join(swiftRoot, 'KalendarTests', 'LiturgicalGolden.swift');
+const appEnginePath = join(swiftRoot, 'kalendar', 'Models', 'LiturgicalCalendar.swift');
+const widgetEnginePath = join(swiftRoot, 'KalendarWidget', 'LiturgicalCalendar.swift');
 
 // The widget copy is not compiled into the Swift test target, so guard it with a
 // direct source comparison: everything from `import SwiftUI` onward must match the
@@ -42,7 +43,7 @@ function bodyAfterImport(path) {
 
 function checkWidgetCopyInSync() {
   if (bodyAfterImport(appEnginePath) !== bodyAfterImport(widgetEnginePath)) {
-    console.error('KalendarWidget/LiturgicalCalendar.swift has drifted from the app copy.');
+    console.error('swift-app/KalendarWidget/LiturgicalCalendar.swift has drifted from the app copy.');
     console.error('The two Swift engine copies must stay identical below their headers.');
     process.exit(1);
   }
@@ -115,7 +116,7 @@ function write() {
   writeFileSync(goldenTxtPath, golden);
   writeFileSync(goldenSwiftPath, swiftFileFor(golden));
   const count = golden.trimEnd().split('\n').length;
-  console.log(`Wrote ${count} days to tools/liturgical-golden.txt and KalendarTests/LiturgicalGolden.swift`);
+  console.log(`Wrote ${count} days to tools/liturgical-golden.txt and swift-app/KalendarTests/LiturgicalGolden.swift`);
 }
 
 function verify() {
@@ -144,7 +145,7 @@ function verify() {
   // The Swift golden must embed exactly the same lines.
   const swift = readFileSync(goldenSwiftPath, 'utf8');
   if (!swift.includes(computed.trimEnd())) {
-    console.error('KalendarTests/LiturgicalGolden.swift is out of sync with the golden.');
+    console.error('swift-app/KalendarTests/LiturgicalGolden.swift is out of sync with the golden.');
     console.error('Run: node tools/liturgical-golden.mjs --write');
     process.exit(1);
   }

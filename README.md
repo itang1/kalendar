@@ -37,7 +37,7 @@ Unlike the historical liturgical calendar, which is Catholic in origin, Kalendar
 ```bash
 git clone https://github.com/itang1/kalendar.git
 cd kalendar
-open kalendar.xcodeproj
+open swift-app/kalendar.xcodeproj
 ```
 
 **Android and web:** see [`expo-app/README.md`](expo-app/README.md).
