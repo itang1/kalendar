@@ -34,7 +34,7 @@ function shareText(day: Day): string {
   else if (title) lines.push(title);
   const label = seasonWeekLabel(day);
   lines.push([day.season, label, day.color.name].filter(Boolean).join(' · '));
-  if (day.civilHolidayName) lines.push(`US holiday: ${day.civilHolidayName}`);
+  if (day.civilHolidayName) lines.push(`U.S. holiday: ${day.civilHolidayName}`);
   if (day.feastDescription) lines.push('', day.feastDescription);
   lines.push('', 'Shared from Kalendar');
   return lines.join('\n');
@@ -117,7 +117,7 @@ function DayContent({ t, day, notes, onNotesChange }: { t: Theme; day: Day; note
 
       {day.civilHolidayName && (
         <View style={styles.section}>
-          <Label t={t}>US Holiday</Label>
+          <Label t={t}>U.S. holiday</Label>
           <Text style={[styles.strong, text]}>⚑ {day.civilHolidayName}</Text>
           {day.civilHolidayDescription && <Text style={[styles.body, text]}>{day.civilHolidayDescription}</Text>}
         </View>

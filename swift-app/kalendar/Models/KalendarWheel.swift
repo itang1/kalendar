@@ -6,7 +6,6 @@ import SwiftUI
 struct KalendarWheel: View {
     let days: [DayCard]
     var radius: CGFloat = 160
-    let sliceLineWidth: CGFloat = 2
     var onDayTap: ((Int) -> Void)? = nil
 
     /// Room the wheel's frame needs outside `radius` for the month names.
@@ -55,15 +54,9 @@ struct KalendarWheel: View {
                         total: days.count,
                         radius: radius
                     )
+                    // No outline: with 366 slices, outlines pile up near the center
+                    // and wash the wheel out. Adjacent days of one color read as a band.
                     .fill(day.liturgicalColor.color)
-                    .overlay(
-                        WheelSliceShape(
-                            index: index,
-                            total: days.count,
-                            radius: radius
-                        )
-                        .stroke(Color.secondary.opacity(0.35), lineWidth: sliceLineWidth)
-                    )
                 }
 
                 ForEach(monthSpans, id: \.start) { span in

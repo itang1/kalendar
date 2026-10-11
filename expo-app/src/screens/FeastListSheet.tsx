@@ -1,7 +1,7 @@
 // Every feast and solemnity in the coming year, in date order.
 
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
-import { formatLong, seasonHex, type Day } from '../days';
+import { formatLong, type Day } from '../days';
 import { Sheet } from '../components/Sheet';
 import { useTheme } from '../theme';
 
@@ -24,7 +24,7 @@ export function FeastListSheet({ visible, days, onSelect, onClose }: Props) {
         ItemSeparatorComponent={() => <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: t.hairline }} />}
         renderItem={({ item: { day, index } }) => (
           <Pressable onPress={() => onSelect(index)} style={styles.row} accessibilityRole="button">
-            <View style={[styles.swatch, { backgroundColor: seasonHex(day.season), borderColor: t.hairline }]} />
+            <View style={[styles.swatch, { backgroundColor: day.color.hex, borderColor: t.hairline }]} />
             <View style={{ flex: 1 }}>
               <Text style={[styles.name, { color: t.text }]}>
                 {day.isSolemnity && <Text style={{ color: t.star }}>★ </Text>}

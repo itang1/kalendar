@@ -245,18 +245,14 @@ private struct GridLegend: View {
     var body: some View {
         VStack(spacing: 6) {
             Text("Tap any day to see its season, feast, and color.")
-            HStack(spacing: 16) {
-                item("Feast") {
-                    Circle().frame(width: 7, height: 7)
-                }
-                item("Solemnity") {
-                    Image(systemName: "star.fill").resizable().scaledToFit().frame(width: 9, height: 9)
-                }
-                item("U.S. holiday") {
-                    RoundedRectangle(cornerRadius: 1).frame(width: 6, height: 6).rotationEffect(.degrees(45))
-                }
-                item("Your note") {
-                    RoundedRectangle(cornerRadius: 1.5).frame(width: 6, height: 6)
+                .multilineTextAlignment(.center)
+            // One row when it fits; two rows at larger text sizes, so no label
+            // ever breaks mid-word.
+            ViewThatFits(in: .horizontal) {
+                HStack(spacing: 16) { feast; solemnity; holiday; note }
+                VStack(spacing: 6) {
+                    HStack(spacing: 16) { feast; solemnity }
+                    HStack(spacing: 16) { holiday; note }
                 }
             }
         }
@@ -266,11 +262,25 @@ private struct GridLegend: View {
         .accessibilityElement(children: .combine)
     }
 
+    private var feast: some View {
+        item("Feast") { Circle().frame(width: 7, height: 7) }
+    }
+    private var solemnity: some View {
+        item("Solemnity") { Image(systemName: "star.fill").resizable().scaledToFit().frame(width: 9, height: 9) }
+    }
+    private var holiday: some View {
+        item("U.S. holiday") { RoundedRectangle(cornerRadius: 1).frame(width: 6, height: 6).rotationEffect(.degrees(45)) }
+    }
+    private var note: some View {
+        item("Your note") { RoundedRectangle(cornerRadius: 1.5).frame(width: 6, height: 6) }
+    }
+
     private func item(_ label: String, @ViewBuilder glyph: () -> some View) -> some View {
         HStack(spacing: 5) {
             glyph().foregroundStyle(.primary)
             Text(label)
         }
+        .fixedSize()
     }
 }
 
@@ -320,7 +330,7 @@ private struct DayBrowserSheet: View {
         lines.append(seasonLine)
 
         if let holiday = day.civilHolidayName {
-            lines.append("US holiday: \(holiday)")
+            lines.append("U.S. holiday: \(holiday)")
         }
 
         if let description = day.feastDescription {
@@ -434,6 +444,14 @@ private struct JumpToDateSheet: View {
                 .datePickerStyle(.graphical)
                 .labelsHidden()
                 .padding()
+                .onChange(of: selectedDate) {
+                    // Tapping a date goes straight to it; paging months doesn't
+                    // change the selection, so it never fires early.
+                    if let index = matchingIndex() {
+                        onSelect(index)
+                    }
+                    dismiss()
+                }
                 Spacer()
             }
             .navigationTitle("Jump to a Day")
@@ -441,14 +459,6 @@ private struct JumpToDateSheet: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
-                }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Go") {
-                        if let index = matchingIndex() {
-                            onSelect(index)
-                        }
-                        dismiss()
-                    }
                 }
             }
         }
@@ -494,7 +504,7 @@ private struct FeastListSheet: View {
                 } label: {
                     HStack(spacing: 12) {
                         RoundedRectangle(cornerRadius: 3)
-                            .fill(item.day.liturgicalSeason.color)
+                            .fill(item.day.liturgicalColor.color)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 3)
                                     .stroke(Color.secondary.opacity(0.4), lineWidth: 3)
@@ -518,7 +528,9 @@ private struct FeastListSheet: View {
                         }
                     }
                     .padding(.vertical, 4)
+                    .contentShape(Rectangle())
                 }
+                .buttonStyle(.plain)
             }
             .navigationTitle("Feasts & Solemnities")
             .navigationBarTitleDisplayMode(.inline)

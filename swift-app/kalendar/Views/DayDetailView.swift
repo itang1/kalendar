@@ -54,7 +54,7 @@ struct DayDetailView: View {
 
                 // MARK: US Holiday, a secular layer beside the church year
                 if let holiday = day.civilHolidayName {
-                    sectionLabel("US Holiday")
+                    sectionLabel("U.S. holiday")
                     HStack(spacing: 8) {
                         Image(systemName: "flag.fill")
                             .foregroundStyle(.secondary)
