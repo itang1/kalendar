@@ -1,0 +1,9 @@
+node_modules/
+.expo/
+dist/
+web-build/
+# `expo run:android` / prebuild output; regenerated from app.json
+android/
+ios/
+.env
+*.log

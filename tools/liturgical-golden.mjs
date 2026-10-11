@@ -4,7 +4,7 @@
 //
 // Guards the three liturgical-engine copies against drift
 // (kalendar/Models/LiturgicalCalendar.swift, KalendarWidget/LiturgicalCalendar.swift,
-// and docs/kalendar-engine.js). It computes liturgicalInfo() for every day of a
+// and expo-app/src/engine/kalendar-engine.js). It computes liturgicalInfo() for every day of a
 // decade using the JS engine and writes two artifacts that share one source of truth:
 //
 //   * tools/liturgical-golden.txt          - canonical golden, verified here.
@@ -25,7 +25,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
-const enginePath = join(repoRoot, 'docs', 'kalendar-engine.js');
+const enginePath = join(repoRoot, 'expo-app', 'src', 'engine', 'kalendar-engine.js');
 const goldenTxtPath = join(repoRoot, 'tools', 'liturgical-golden.txt');
 const goldenSwiftPath = join(repoRoot, 'KalendarTests', 'LiturgicalGolden.swift');
 const appEnginePath = join(repoRoot, 'kalendar', 'Models', 'LiturgicalCalendar.swift');
@@ -52,13 +52,15 @@ function checkWidgetCopyInSync() {
 const START_YEAR = 2025;
 const END_YEAR = 2034;
 
-// Load the browser engine into a fake `window` so we can drive it from Node.
-function loadEngine() {
+// Load the engine (an ES module with no imports) from its source. Importing it
+// as a data: URL sidesteps the Expo app's CommonJS package.json, which would
+// otherwise make Node treat the .js file as CommonJS.
+async function loadEngine() {
   const src = readFileSync(enginePath, 'utf8');
-  const window = {};
-  new Function('window', src)(window);
-  return window.KalendarEngine;
+  return import('data:text/javascript;base64,' + Buffer.from(src).toString('base64'));
 }
+
+const ENGINE = await loadEngine();
 
 // One compact line per day:
 // YYYY-MM-DD|season|color|solemnity|week|feastName|title|civilHoliday
@@ -75,7 +77,7 @@ function lineFor(engine, date) {
 }
 
 function computeGolden() {
-  const engine = loadEngine();
+  const engine = ENGINE;
   const lines = [];
   for (let year = START_YEAR; year <= END_YEAR; year++) {
     for (let month = 0; month < 12; month++) {

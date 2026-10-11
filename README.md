@@ -2,7 +2,7 @@
 
 **A visual calendar of the church year, built through a Reformed lens.** Kalendar lays the year out as a **continuous ring of seasons** so you can see the shape of the year instead of just counting days forward.
 
-Available as an **iOS app** or website preview at [itang1.github.io/kalendar](https://itang1.github.io/kalendar/)
+Available as an **iOS app**, an **Android app** (coming soon), or in your browser at [itang1.github.io/kalendar](https://itang1.github.io/kalendar/)
 
 [![Download on the App Store](https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg)](https://apps.apple.com/app/idXXXXXXXXX)
 
@@ -21,23 +21,26 @@ Unlike the historical liturgical calendar, which is Catholic in origin, Kalendar
 - **See the whole year:** grid and wheel views, each day colored by its liturgical season.
 - **Tap any day:** its season, feast, and today's color, with a note when the color breaks from the season.
 - **U.S. holidays:** federal and common cultural days shown *alongside* the church calendar, marked with a small corner diamond.
-- **Private notes:** kept per day, synced across your devices through iCloud, never sent to a third party.
+- **Private notes:** kept per day, synced across your devices through iCloud on iPhone and iPad, kept on the device on Android, never sent to a third party.
 - **Extras:** Home Screen and Lock Screen widgets, optional solemnity notifications, and full dark mode.
 
 ## Tech stack
 
-- **SwiftUI**, iOS 17+, zero third-party dependencies.
-- A pure-Swift liturgical engine, mirrored to JavaScript for the web demo and guarded by a golden-decade drift test.
+- **iOS:** SwiftUI, iOS 17+, zero third-party dependencies.
+- **Android and web:** one Expo / React Native app in [`expo-app/`](expo-app/), the same stack as book-club. Its web build is the browser calendar in `docs/app/`.
+- The liturgical engine exists in Swift and in JavaScript (shared by Android and web), guarded by a golden-decade drift test (`node tools/liturgical-golden.mjs`).
 
 ## Setup
 
-**Prerequisites:** Xcode 16+ and an iOS 17+ simulator or device.
+**iOS prerequisites:** Xcode 16+ and an iOS 17+ simulator or device.
 
 ```bash
 git clone https://github.com/itang1/kalendar.git
 cd kalendar
 open kalendar.xcodeproj
 ```
+
+**Android and web:** see [`expo-app/README.md`](expo-app/README.md).
 
 ## License
 

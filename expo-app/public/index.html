@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Same policy as the rest of the Kalendar site: only this site's own
+         script plus GoatCounter's page-view counter. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://gc.zgo.at; connect-src https://itang1.goatcounter.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://itang1.goatcounter.com data:; font-src 'self' data:; base-uri 'none'; form-action 'none'" />
+    <title>Kalendar: Browse the Liturgical Year</title>
+    <meta name="description" content="Browse the liturgical calendar in your browser: grid and wheel views, colored by season, with a page for every feast." />
+    <meta name="theme-color" content="#1A1A21" />
+    <style id="expo-reset">
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        overflow: hidden;
+      }
+      #root {
+        display: flex;
+        height: 100%;
+        flex: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <noscript>
+      You need to enable JavaScript to browse the calendar.
+    </noscript>
+    <div id="root"></div>
+    <script data-goatcounter="https://itang1.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  </body>
+</html>

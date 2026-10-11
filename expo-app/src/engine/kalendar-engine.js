@@ -1,6 +1,7 @@
 /*
  * Kalendar liturgical engine: a faithful JS port of
- * kalendar/Models/LiturgicalCalendar.swift, for the read-only web demo.
+ * kalendar/Models/LiturgicalCalendar.swift, shared by the Android and web app
+ * (expo-app) and checked against the Swift engine by tools/liturgical-golden.mjs.
  * Dates are plain local-time Date objects, always at midnight, compared by
  * calendar day rather than by exact millisecond, matching the Swift Calendar
  * based logic.
@@ -318,51 +319,51 @@ function transferredSolemnity(date, keys, prevYearKeys) {
 // MARK: Fixed feasts (by month/day)
 
 const FIXED_FEASTS = {
-  '1-6':   { name: "Epiphany of the Lord", color: LiturgicalColor.white, solemnity: true,
+  '1-6':   { id: 'epiphany', name: "Epiphany of the Lord", color: LiturgicalColor.white, solemnity: true,
     description: "Celebrates the visit of the Magi (Wise Men) to the infant Jesus. 'Epiphany' means 'revelation,' and this feast marks Jesus being revealed to the whole world, not just the Jewish people." },
-  '1-25':  { name: "Conversion of Paul", color: LiturgicalColor.white, solemnity: false,
+  '1-25':  { id: 'conversionOfPaul', name: "Conversion of Paul", color: LiturgicalColor.white, solemnity: false,
     description: "Recalls the dramatic moment when Saul of Tarsus, who was hunting down and imprisoning believers, was struck blind on the road to Damascus by a vision of the risen Jesus. He recovered, was baptized, changed his name to Paul, and became the greatest missionary the early Church ever produced." },
-  '2-2':   { name: "Presentation of the Lord", color: LiturgicalColor.white, solemnity: false,
+  '2-2':   { id: 'presentationOfTheLord', name: "Presentation of the Lord", color: LiturgicalColor.white, solemnity: false,
     description: "Forty days after Christmas, Mary and Joseph brought baby Jesus to the Temple in Jerusalem, as Jewish law required for firstborn sons. The elderly prophet Simeon recognized him as the Messiah and called him 'a light for revelation to the Gentiles.' Also called Candlemas." },
-  '3-19':  { name: "Joseph, Husband of Mary", color: LiturgicalColor.white, solemnity: true,
+  '3-19':  { id: 'josephSpouseOfMary', name: "Joseph, Husband of Mary", color: LiturgicalColor.white, solemnity: true,
     description: "Remembers Joseph, the earthly father of Jesus and husband of Mary. He was a carpenter from Nazareth who protected and raised Jesus, remembered for his quiet, faithful obedience." },
-  '3-25':  { name: "Annunciation of the Lord", color: LiturgicalColor.white, solemnity: true,
+  '3-25':  { id: 'annunciation', name: "Annunciation of the Lord", color: LiturgicalColor.white, solemnity: true,
     description: "Celebrates the moment the angel Gabriel appeared to Mary and announced she would conceive Jesus by the Holy Spirit. Mary said 'yes,' the moment believed to be when God became human. Exactly 9 months before Christmas." },
-  '4-25':  { name: "Mark the Evangelist", color: LiturgicalColor.red, solemnity: false,
+  '4-25':  { id: 'markEvangelist', name: "Mark the Evangelist", color: LiturgicalColor.red, solemnity: false,
     description: "Honors Mark, the author of the shortest and most urgent of the four Gospels. He wrote it in Rome, likely drawing on Peter's eyewitness accounts, and his Gospel reads like it is in a hurry. The word 'immediately' appears over forty times." },
-  '5-14':  { name: "Matthias the Apostle", color: LiturgicalColor.red, solemnity: false,
+  '5-14':  { id: 'matthias', name: "Matthias the Apostle", color: LiturgicalColor.red, solemnity: false,
     description: "Matthias was chosen by lot to replace Judas Iscariot among the twelve apostles. The account in Acts is brief. He is a reminder that the structure of the early community mattered enough to be filled, and that ordinary people were chosen for extraordinary roles." },
-  '5-31':  { name: "The Visitation", color: LiturgicalColor.white, solemnity: false,
+  '5-31':  { id: 'visitation', name: "The Visitation", color: LiturgicalColor.white, solemnity: false,
     description: "Celebrates Mary's journey to visit her cousin Elizabeth, who was pregnant with John the Baptist. When Mary arrived, Elizabeth's child leapt in her womb, and Elizabeth cried out 'Blessed are you among women.' Mary responded with the Magnificat, one of the most beautiful prayers in Scripture." },
-  '6-11':  { name: "Barnabas the Apostle", color: LiturgicalColor.red, solemnity: false,
+  '6-11':  { id: 'barnabas', name: "Barnabas the Apostle", color: LiturgicalColor.red, solemnity: false,
     description: "Barnabas was not one of the original twelve but is called an apostle because of the scope of his missionary work. He was the one who vouched for Paul to the early community when everyone was afraid of him. He and Paul traveled together through Cyprus and Asia Minor, planting churches in city after city." },
-  '6-24':  { name: "Nativity of John the Baptist", color: LiturgicalColor.white, solemnity: true,
+  '6-24':  { id: 'nativityOfJohnTheBaptist', name: "Nativity of John the Baptist", color: LiturgicalColor.white, solemnity: true,
     description: "The birth of John the Baptist, Jesus' cousin, who grew up to be the prophet who prepared the way for Jesus' ministry. He baptized people in the Jordan River and is the one who baptized Jesus himself." },
-  '6-29':  { name: "Peter and Paul, Apostles", color: LiturgicalColor.red, solemnity: true,
+  '6-29':  { id: 'peterAndPaul', name: "Peter and Paul, Apostles", color: LiturgicalColor.red, solemnity: true,
     description: "Honors the two greatest apostles: Peter, the fisherman Jesus chose to lead his followers, and Paul, who started out persecuting believers but converted and became the greatest missionary of the early Church. Both were martyred in Rome." },
-  '7-22':  { name: "Mary Magdalene", color: LiturgicalColor.white, solemnity: false,
+  '7-22':  { id: 'maryMagdalene', name: "Mary Magdalene", color: LiturgicalColor.white, solemnity: false,
     description: "Mary Magdalene was among Jesus' closest followers, present at his crucifixion when most of the apostles had fled, and the first person to see him after the resurrection. She is called the 'apostle to the apostles' because she carried the news of the resurrection to the others. Her feast was elevated to a proper feast in 2016." },
-  '7-25':  { name: "James the Apostle", color: LiturgicalColor.red, solemnity: false,
+  '7-25':  { id: 'james', name: "James the Apostle", color: LiturgicalColor.red, solemnity: false,
     description: "James was one of the sons of Zebedee and one of Jesus' inner circle of three, along with Peter and John. He was the first of the apostles to be martyred, killed by King Herod Agrippa around 44 AD. His shrine in Santiago de Compostela in Spain has been one of the great pilgrimage destinations for over a thousand years." },
-  '8-6':   { name: "Transfiguration of the Lord", color: LiturgicalColor.white, solemnity: false,
+  '8-6':   { id: 'transfiguration', name: "Transfiguration of the Lord", color: LiturgicalColor.white, solemnity: false,
     description: "Recalls when Jesus took three disciples up a mountain, and his appearance was transformed. His face shone like the sun and his clothes became dazzling white. Moses and Elijah appeared beside him, and God's voice said 'This is my beloved Son.'" },
-  '9-21':  { name: "Matthew the Apostle and Evangelist", color: LiturgicalColor.red, solemnity: false,
+  '9-21':  { id: 'matthewEvangelist', name: "Matthew the Apostle and Evangelist", color: LiturgicalColor.red, solemnity: false,
     description: "Matthew was a tax collector, which made him a social outcast in his community. Jesus called him anyway. He went on to write the first of the four Gospels, the most Jewish in character, the one most concerned with showing how Jesus fulfills the Hebrew scriptures." },
-  '10-18': { name: "Luke the Evangelist", color: LiturgicalColor.red, solemnity: false,
+  '10-18': { id: 'lukeEvangelist', name: "Luke the Evangelist", color: LiturgicalColor.red, solemnity: false,
     description: "Luke was a physician and the only Gentile author in the New Testament. He wrote both the Gospel that bears his name and the Acts of the Apostles, together the longest single contribution to the New Testament. His Gospel is the one most attentive to women, the poor, and outsiders. He is the patron of doctors and artists." },
-  '10-28': { name: "Simon and Jude, Apostles", color: LiturgicalColor.red, solemnity: false,
+  '10-28': { id: 'simonAndJude', name: "Simon and Jude, Apostles", color: LiturgicalColor.red, solemnity: false,
     description: "Two apostles honored together because little is known about either of them. Simon was called 'the Zealot,' probably indicating a political background. Jude (not Judas Iscariot) is traditionally linked to one of the short letters near the end of the New Testament." },
-  '10-31': { name: "Reformation Day", color: LiturgicalColor.red, solemnity: false,
+  '10-31': { id: 'reformationDay', name: "Reformation Day", color: LiturgicalColor.red, solemnity: false,
     description: "On October 31, 1517, Martin Luther is said to have posted his Ninety-Five Theses in Wittenberg, protesting abuses in the church of his day. The date became the marker of the Reformation, the movement that returned the Bible to the center of Christian life and gave rise to the Protestant and Reformed traditions." },
-  '11-30': { name: "Andrew the Apostle", color: LiturgicalColor.red, solemnity: false,
+  '11-30': { id: 'andrew', name: "Andrew the Apostle", color: LiturgicalColor.red, solemnity: false,
     description: "Andrew was Simon Peter's brother and, according to John's Gospel, the first of the apostles to follow Jesus. He brought Peter to Jesus. By tradition he was crucified on an X-shaped cross, which became his symbol." },
-  '12-25': { name: "Nativity of the Lord (Christmas)", color: LiturgicalColor.white, solemnity: true,
+  '12-25': { id: 'nativityOfTheLord', name: "Nativity of the Lord (Christmas)", color: LiturgicalColor.white, solemnity: true,
     description: "The joyful celebration of Jesus' birth in Bethlehem. It marks the belief that God became a human baby, born to Mary in humble circumstances. It is one of the two greatest feasts of the liturgical year (along with Easter)." },
-  '12-26': { name: "Stephen, the First Martyr", color: LiturgicalColor.red, solemnity: false,
+  '12-26': { id: 'stephen', name: "Stephen, the First Martyr", color: LiturgicalColor.red, solemnity: false,
     description: "Honors Stephen, one of the first deacons of the early Church, who became its very first martyr. He was stoned to death for his faith, and as he died he prayed for his persecutors, just as Jesus had done on the cross." },
-  '12-27': { name: "John the Apostle and Evangelist", color: LiturgicalColor.white, solemnity: false,
+  '12-27': { id: 'johnEvangelist', name: "John the Apostle and Evangelist", color: LiturgicalColor.white, solemnity: false,
     description: "Honors John, one of Jesus' closest disciples (the 'beloved disciple'), who is traditionally credited with writing the Gospel of John, three letters, and the Book of Revelation. He is the only apostle believed to have died of natural causes." },
-  '12-28': { name: "Holy Innocents, Martyrs", color: LiturgicalColor.red, solemnity: false,
+  '12-28': { id: 'holyInnocents', name: "Holy Innocents, Martyrs", color: LiturgicalColor.red, solemnity: false,
     description: "Remembers the infant boys of Bethlehem who were killed by King Herod in his attempt to destroy the newborn Jesus. They are considered the first martyrs for Christ, even though they were too young to know it." },
 };
 
@@ -374,48 +375,48 @@ function fixedFeast(date) {
 
 function movableFeast(date, keys) {
   if (sameDay(date, keys.ashWednesday)) {
-    return { name: "Ash Wednesday", color: LiturgicalColor.violet, solemnity: false,
+    return { id: 'ashWednesday', name: "Ash Wednesday", color: LiturgicalColor.violet, solemnity: false,
       description: "The start of Lent. In many churches ashes are placed on the forehead in the shape of a cross, a sign of repentance and mortality that recalls the words 'Remember that you are dust, and to dust you shall return.' It is a day of fasting and reflection." };
   }
   if (sameDay(date, keys.palmSunday)) {
-    return { name: "Palm Sunday of the Lord's Passion", color: LiturgicalColor.red, solemnity: false,
+    return { id: 'palmSunday', name: "Palm Sunday of the Lord's Passion", color: LiturgicalColor.red, solemnity: false,
       description: "The last Sunday before Easter, marking Jesus' triumphant entry into Jerusalem when crowds waved palm branches and shouted 'Hosanna.' But the mood shifts as the long account of Jesus' suffering and death (the Passion) is also read. It begins Holy Week." };
   }
   if (sameDay(date, keys.holyThursday)) {
-    return { name: "Holy Thursday", color: LiturgicalColor.white, solemnity: true,
+    return { id: 'holyThursday', name: "Holy Thursday", color: LiturgicalColor.white, solemnity: true,
       description: "Commemorates the Last Supper, when Jesus shared a final meal with his apostles, washed their feet as a sign of humble service, and gave them the bread and cup to remember him by. That night he was arrested in the Garden of Gethsemane." };
   }
   if (sameDay(date, keys.goodFriday)) {
-    return { name: "Good Friday of the Lord's Passion", color: LiturgicalColor.red, solemnity: true,
+    return { id: 'goodFriday', name: "Good Friday of the Lord's Passion", color: LiturgicalColor.red, solemnity: true,
       description: "The most solemn day of the year, when Christians remember Jesus' crucifixion and death. Services are stark and stripped down: Scripture readings, prayers, and reflection on the cross, often in bare surroundings. It is a day of solemn reflection and mourning." };
   }
   if (sameDay(date, keys.holySaturday)) {
-    return { name: "Holy Saturday / Easter Vigil", color: LiturgicalColor.white, solemnity: true,
+    return { id: 'holySaturday', name: "Holy Saturday / Easter Vigil", color: LiturgicalColor.white, solemnity: true,
       description: "A day of quiet waiting at the tomb. The Easter Vigil on Saturday night is the most elaborate liturgy of the entire year: it begins in darkness with a blazing fire, traces salvation history through readings, and erupts in joy as Easter is proclaimed. New members are baptized into the faith." };
   }
   if (sameDay(date, keys.easter)) {
-    return { name: "Easter Sunday of the Resurrection", color: LiturgicalColor.white, solemnity: true,
+    return { id: 'easterSunday', name: "Easter Sunday of the Resurrection", color: LiturgicalColor.white, solemnity: true,
       description: "The most important day of the liturgical year, celebrating the core belief: that Jesus rose from the dead on the third day after his crucifixion, conquering death itself. 'He is risen.' The joy of this day extends for 50 days." };
   }
   const easterMonday = addDays(keys.easter, 1);
   if (sameDay(date, easterMonday)) {
-    return { name: "Easter Monday", color: LiturgicalColor.white, solemnity: false,
+    return { id: 'easterMonday', name: "Easter Monday", color: LiturgicalColor.white, solemnity: false,
       description: "The celebration of Easter continues. In many countries this is a public holiday. The Gospel tells of two disciples meeting the risen Jesus on the road to Emmaus without recognizing him at first." };
   }
   if (sameDay(date, keys.ascension)) {
-    return { name: "Ascension of the Lord", color: LiturgicalColor.white, solemnity: true,
+    return { id: 'ascension', name: "Ascension of the Lord", color: LiturgicalColor.white, solemnity: true,
       description: "Forty days after Easter, Jesus ascended into heaven in the presence of his disciples, promising to send the Holy Spirit. His last words were a command: 'Go and make disciples of all nations.' This feast marks the completion of Jesus' earthly mission." };
   }
   if (sameDay(date, keys.pentecost)) {
-    return { name: "Pentecost Sunday", color: LiturgicalColor.red, solemnity: true,
+    return { id: 'pentecost', name: "Pentecost Sunday", color: LiturgicalColor.red, solemnity: true,
       description: "Fifty days after Easter, the Holy Spirit descended on the apostles like tongues of fire, giving them the courage and ability to preach in many languages. It is considered the 'birthday of the Church,' the moment the apostles went from hiding in fear to boldly proclaiming the Gospel. Red vestments represent the fire of the Spirit." };
   }
   if (sameDay(date, keys.trinitySunday)) {
-    return { name: "Most Holy Trinity", color: LiturgicalColor.white, solemnity: true,
+    return { id: 'trinitySunday', name: "Most Holy Trinity", color: LiturgicalColor.white, solemnity: true,
       description: "The Sunday after Pentecost, celebrating the central mystery of the faith: that God is one God in three persons, Father, Son, and Holy Spirit. It is not three gods, but one God experienced in three ways. Even theologians say it is a mystery beyond full human understanding." };
   }
   if (sameDay(date, keys.christTheKing)) {
-    return { name: "Our Lord Jesus Christ, King of the Universe", color: LiturgicalColor.white, solemnity: true,
+    return { id: 'christTheKing', name: "Our Lord Jesus Christ, King of the Universe", color: LiturgicalColor.white, solemnity: true,
       description: "The last Sunday of the liturgical year, proclaiming Jesus as king, but not a worldly king with armies and palaces. His kingdom is one of truth, justice, love, and peace. The next week, the cycle starts all over again with Advent." };
   }
   return null;
@@ -551,8 +552,8 @@ function liturgicalInfo(date) {
   const transferred = transferredSolemnity(date, keys, prevYearKeys);
   if (transferred) {
     return {
-      season, color: transferred.color, feastName: transferred.name,
-      feastDescription: transferred.description, isSolemnity: true, weekOfSeason: null,
+      season, color: transferred.color, feastName: transferred.name, feastId: transferred.id,
+      isMovableFeast: false, feastDescription: transferred.description, isSolemnity: true, weekOfSeason: null,
       civilHolidayName: civilName, civilHolidayDescription: civilDescription,
     };
   }
@@ -561,8 +562,8 @@ function liturgicalInfo(date) {
     const feast = fixedFeast(date);
     if (feast) {
       return {
-        season, color: feast.color, feastName: feast.name,
-        feastDescription: feast.description, isSolemnity: feast.solemnity, weekOfSeason: null,
+        season, color: feast.color, feastName: feast.name, feastId: feast.id,
+        isMovableFeast: false, feastDescription: feast.description, isSolemnity: feast.solemnity, weekOfSeason: null,
         civilHolidayName: civilName, civilHolidayDescription: civilDescription,
       };
     }
@@ -571,22 +572,21 @@ function liturgicalInfo(date) {
   const movable = movableFeast(date, keys);
   if (movable) {
     return {
-      season, color: movable.color, feastName: movable.name,
-      feastDescription: movable.description, isSolemnity: movable.solemnity, weekOfSeason: null,
+      season, color: movable.color, feastName: movable.name, feastId: movable.id,
+      isMovableFeast: true, feastDescription: movable.description, isSolemnity: movable.solemnity, weekOfSeason: null,
       civilHolidayName: civilName, civilHolidayDescription: civilDescription,
     };
   }
 
   const color = defaultColorForSeason(season, isSunday, date, keys);
   return {
-    season, color, feastName: null, feastDescription: null,
+    season, color, feastName: null, feastId: null, isMovableFeast: false, feastDescription: null,
     isSolemnity: false, weekOfSeason: weekOfSeason(date, season, keys),
     civilHolidayName: civilName, civilHolidayDescription: civilDescription,
   };
 }
 
-// Public surface used by browse.js
-window.KalendarEngine = {
+export {
   LiturgicalColor,
   LiturgicalSeason,
   SEASON_EXPLANATION,
