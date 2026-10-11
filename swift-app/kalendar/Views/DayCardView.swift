@@ -4,12 +4,14 @@
 //
 //  Created by Irene Tang on 12/20/25.
 //
-//  A single card
+//  A single card. The first day of each month (and of the window) carries a
+//  small month label so the grid can be read without tapping.
 
 import SwiftUI
 
 struct DayCardView: View {
     let day: DayCard
+    var monthLabel: String? = nil
 
     private var isToday: Bool {
         Calendar.current.isDateInToday(day.date)
@@ -37,6 +39,17 @@ struct DayCardView: View {
                     }
                 }
             )
+            .overlay(alignment: .topLeading) {
+                if let monthLabel {
+                    Text(monthLabel)
+                        .font(.system(size: 9, weight: .bold))
+                        .tracking(0.3)
+                        .lineLimit(1)
+                        .foregroundStyle(dotColor)
+                        .padding(.top, 3)
+                        .padding(.leading, 4)
+                }
+            }
             .overlay(alignment: .bottomTrailing) {
                 // Square corner mark for days with notes, distinct from the
                 // round centered feast dot.

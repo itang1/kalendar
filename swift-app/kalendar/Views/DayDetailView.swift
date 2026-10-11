@@ -111,8 +111,8 @@ struct DayDetailView: View {
                 .padding(.top, 14)
                 .padding(.bottom, 28)
 
-                // MARK: Today's Color
-                sectionLabel("Today's color")
+                // MARK: Color
+                sectionLabel("Color")
 
                 HStack(spacing: 10) {
                     Circle()
@@ -252,12 +252,12 @@ struct DayDetailView: View {
         }
     }
 
-    /// A one-line note shown only when today's color differs from the season's and
-    /// a feast is the reason, e.g. "Today is red for St. Luke, Evangelist." Nil when
+    /// A one-line note shown only when the day's color differs from the season's and
+    /// a feast is the reason, e.g. "This day is red for Luke the Evangelist." Nil when
     /// the day just wears its season's color, or when there's no feast to name.
     private var todaysColorNote: String? {
         guard day.liturgicalColor != seasonDefaultColor, let feast = day.feastName else { return nil }
-        return "Today is \(day.liturgicalColor.rawValue.lowercased()) for \(feast)."
+        return "This day is \(day.liturgicalColor.rawValue.lowercased()) for \(feast)."
     }
 
     private var rankExplanation: String {

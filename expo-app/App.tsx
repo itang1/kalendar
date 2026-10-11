@@ -2,7 +2,7 @@
 // ContentView + CircleCalendarView in the iPhone app. On the web this is the
 // read-only "browse the calendar" page linked from the Kalendar website.
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import {
   AppState,
   Linking,
@@ -34,6 +34,21 @@ const IS_WEB = Platform.OS === 'web';
 const GAP = 6;
 const PADDING = 12;
 const MAX_GRID = 1100;
+
+const monthShort = new Intl.DateTimeFormat(undefined, { month: 'short' });
+const weekdayInitials = (() => {
+  const f = new Intl.DateTimeFormat(undefined, { weekday: 'narrow' });
+  // Jan 4, 1970 was a Sunday.
+  return Array.from({ length: 7 }, (_, i) => f.format(new Date(1970, 0, 4 + i)));
+})();
+
+/** "OCT 10" on the first tile so the grid has a starting point, "NOV" on each 1st. */
+function monthLabelFor(day: Day, index: number): string | undefined {
+  const d = day.date.getDate();
+  if (d === 1) return monthShort.format(day.date).toUpperCase();
+  if (index === 0) return `${monthShort.format(day.date).toUpperCase()} ${d}`;
+  return undefined;
+}
 
 type Mode = 'grid' | 'wheel';
 type OpenSheet = 'about' | 'feasts' | 'jump' | null;
@@ -142,7 +157,11 @@ function CalendarScreen({ onReplayIntro }: { onReplayIntro?: () => void }) {
     saveNotes(key, comments);
   }, []);
 
-  const columns = width >= 700 ? 12 : 7;
+  // Whole weeks per row (one on phones, two on wide screens), so each column
+  // is a weekday under the header. The window starts today, so the first row
+  // opens with blank slots for the earlier days of this week.
+  const columns = width >= 700 ? 14 : 7;
+  const leading = days[0] ? days[0].date.getDay() : 0;
   const tileSize = gridWidth > 0 ? Math.floor((gridWidth - GAP * (columns - 1)) / columns) : 0;
   const today = startOfToday();
 
@@ -150,7 +169,7 @@ function CalendarScreen({ onReplayIntro }: { onReplayIntro?: () => void }) {
   const openFromSheet = (index: number) => {
     setSheet(null);
     setMode('grid');
-    const row = Math.floor(index / columns);
+    const row = Math.floor((index + leading) / columns);
     grid.current?.scrollTo({ y: Math.max(0, row * (tileSize + GAP) - height / 3), animated: false });
     setSelected(index);
   };
@@ -162,11 +181,11 @@ function CalendarScreen({ onReplayIntro }: { onReplayIntro?: () => void }) {
       <View style={[styles.header, { borderBottomColor: t.hairline, backgroundColor: t.surface }]}>
         <View style={styles.headerSide}>
           {IS_WEB && (
-            <HeaderButton label="← Kalendar" color={t.muted} onPress={() => Linking.openURL('../')} a11y="Back to the Kalendar website" />
+            <HeaderButton label="← Home" color={t.muted} onPress={() => Linking.openURL('../')} a11y="Back to the Kalendar website" />
           )}
           <HeaderButton label="ⓘ" color={t.text} onPress={() => setSheet('about')} a11y="About the Kalendar" big />
         </View>
-        <Text style={[styles.title, { color: t.text }]} numberOfLines={1}>Liturgical Calendar</Text>
+        <Text style={[styles.title, { color: t.text }]} numberOfLines={1}>Kalendar</Text>
         <View style={styles.headerSide}>
           <HeaderButton label="⌕" color={t.text} onPress={() => setSheet('jump')} a11y="Jump to a date" big />
           <HeaderButton label="☆" color={t.text} onPress={() => setSheet('feasts')} a11y="Feasts and solemnities" big />
@@ -188,16 +207,27 @@ function CalendarScreen({ onReplayIntro }: { onReplayIntro?: () => void }) {
       {header}
       <View style={[styles.main, { backgroundColor: t.canvas }]}>
         {mode === 'grid' ? (
-          <ScrollView ref={grid} contentContainerStyle={{ padding: PADDING }}>
+          <ScrollView ref={grid} contentContainerStyle={{ paddingHorizontal: PADDING, paddingBottom: PADDING }} stickyHeaderIndices={[1]}>
+            <Legend />
+            {/* The weekday header stays pinned while the year scrolls under it. */}
+            <View style={{ backgroundColor: t.canvas, paddingBottom: GAP }}>
+              <View style={[styles.grid, { gap: GAP, maxWidth: MAX_GRID }]}>
+                {tileSize > 0 &&
+                  Array.from({ length: columns }, (_, i) => (
+                    <Text key={i} style={[styles.weekday, { width: tileSize, color: t.muted }]}>
+                      {weekdayInitials[i % 7]}
+                    </Text>
+                  ))}
+              </View>
+            </View>
             {/* Measured inside the scroll view, so a visible scrollbar (web) is
                 already subtracted and the row really fits `columns` tiles. */}
             <View
               onLayout={(e: LayoutChangeEvent) => setGridWidth(e.nativeEvent.layout.width)}
               style={[styles.grid, { gap: GAP, maxWidth: MAX_GRID }]}
             >
-              {IS_WEB && (
-                <Text style={[styles.hint, { color: t.muted }]}>Tap any day to see its season, feast, and color.</Text>
-              )}
+              {tileSize > 0 &&
+                Array.from({ length: leading }, (_, i) => <View key={`lead${i}`} style={{ width: tileSize, height: tileSize }} />)}
               {tileSize > 0 &&
                 days.map((day, i) => (
                   <DayTile
@@ -206,6 +236,7 @@ function CalendarScreen({ onReplayIntro }: { onReplayIntro?: () => void }) {
                     size={tileSize}
                     isToday={sameDay(day.date, today)}
                     hasNotes={NOTES_SUPPORTED && notesFor(day).length > 0}
+                    monthLabel={monthLabelFor(day, i)}
                     onPress={() => setSelected(i)}
                   />
                 ))}
@@ -250,6 +281,29 @@ function CalendarScreen({ onReplayIntro }: { onReplayIntro?: () => void }) {
   );
 }
 
+/** What the marks on a tile mean, shown above the grid instead of only in About. */
+function Legend() {
+  const t = useTheme();
+  const mark = t.text;
+  const item = (glyph: ReactNode, label: string) => (
+    <View style={styles.legendItem}>
+      {glyph}
+      <Text style={[styles.legendText, { color: t.muted }]}>{label}</Text>
+    </View>
+  );
+  return (
+    <View style={styles.legend} accessibilityRole="text">
+      <Text style={[styles.legendText, { color: t.muted, width: '100%', textAlign: 'center' }]}>
+        Tap any day to see its season, feast, and color.
+      </Text>
+      {item(<View style={[styles.legendDot, { backgroundColor: mark }]} />, 'Feast')}
+      {item(<Text style={{ color: mark, fontSize: 11 }}>★</Text>, 'Solemnity')}
+      {item(<View style={[styles.legendDiamond, { backgroundColor: mark }]} />, 'U.S. holiday')}
+      {NOTES_SUPPORTED && item(<View style={[styles.legendSquare, { backgroundColor: mark }]} />, 'Your note')}
+    </View>
+  );
+}
+
 function HeaderButton({ label, color, onPress, a11y, big }: { label: string; color: string; onPress: () => void; a11y: string; big?: boolean }) {
   return (
     <Pressable onPress={onPress} hitSlop={8} accessibilityRole="button" accessibilityLabel={a11y} style={styles.headerButton}>
@@ -274,6 +328,13 @@ const styles = StyleSheet.create({
   main: { flex: 1 },
   grid: { flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', width: '100%' },
   hint: { width: '100%', textAlign: 'center', fontSize: 14, marginBottom: 6 },
+  weekday: { textAlign: 'center', fontSize: 12, fontWeight: '600', paddingTop: 6 },
+  legend: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', columnGap: 16, rowGap: 6, paddingTop: 10, paddingBottom: 4 },
+  legendItem: { flexDirection: 'row', alignItems: 'center', gap: 5 },
+  legendText: { fontSize: 13 },
+  legendDot: { width: 7, height: 7, borderRadius: 3.5 },
+  legendDiamond: { width: 6, height: 6, transform: [{ rotate: '45deg' }] },
+  legendSquare: { width: 6, height: 6, borderRadius: 1.5 },
   wheelWrap: { alignItems: 'center', gap: 18, paddingVertical: 24 },
   todayButton: { paddingHorizontal: 20, paddingVertical: 10, borderRadius: 999 },
 });

@@ -141,7 +141,7 @@ function DayContent({ t, day, notes, onNotesChange }: { t: Theme; day: Day; note
       </View>
 
       <View style={styles.section}>
-        <Label t={t}>Today's color</Label>
+        <Label t={t}>Color</Label>
         <View style={styles.swatchRow}>
           <View style={[styles.swatch, styles.round, { backgroundColor: day.color.hex, borderColor: t.hairline }]} />
           <Text style={[styles.strong, text]}>{day.color.name}</Text>

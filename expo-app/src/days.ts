@@ -104,12 +104,12 @@ export function markColor(color: ColorKey): string {
 }
 
 /**
- * "Today is red for Luke the Evangelist." Only when the day steps out of its
+ * "This day is red for Luke the Evangelist." Only when the day steps out of its
  * season's usual color and a feast is the reason.
  */
 export function todaysColorNote(day: Day): string | null {
   if (day.color.key === seasonDefaultColor(day.season) || !day.feastName) return null;
-  return `Today is ${day.color.name.toLowerCase()} for ${day.feastName}.`;
+  return `This day is ${day.color.name.toLowerCase()} for ${day.feastName}.`;
 }
 
 export const RANK_EXPLANATION = {

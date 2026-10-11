@@ -81,7 +81,7 @@ enum LiturgicalGolden {
 2025-03-16|Lent|Violet|0|2||2nd Sunday of Lent|
 2025-03-17|Lent|Violet|0|2||2nd Week of Lent|St. Patrick's Day
 2025-03-18|Lent|Violet|0|2||2nd Week of Lent|
-2025-03-19|Lent|White|1||Joseph, Husband of Mary||
+2025-03-19|Lent|White|0||Joseph, Husband of Mary||
 2025-03-20|Lent|Violet|0|2||2nd Week of Lent|
 2025-03-21|Lent|Violet|0|2||2nd Week of Lent|
 2025-03-22|Lent|Violet|0|2||2nd Week of Lent|
@@ -126,7 +126,7 @@ enum LiturgicalGolden {
 2025-04-30|Easter|White|0|2||2nd Week of Easter|
 2025-05-01|Easter|White|0|2||2nd Week of Easter|
 2025-05-02|Easter|White|0|2||2nd Week of Easter|
-2025-05-03|Easter|White|0|2||2nd Week of Easter|
+2025-05-03|Easter|Red|0||Philip and James, Apostles||
 2025-05-04|Easter|White|0|3||3rd Sunday of Easter|
 2025-05-05|Easter|White|0|3||3rd Week of Easter|Cinco de Mayo
 2025-05-06|Easter|White|0|3||3rd Week of Easter|
@@ -187,7 +187,7 @@ enum LiturgicalGolden {
 2025-06-30|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2025-07-01|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2025-07-02|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
-2025-07-03|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
+2025-07-03|Ordinary Time|Red|0||Thomas the Apostle||
 2025-07-04|Ordinary Time|Green|0|13||13th Week in Ordinary Time|Independence Day
 2025-07-05|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2025-07-06|Ordinary Time|Green|0|14||14th Sunday in Ordinary Time|
@@ -239,7 +239,7 @@ enum LiturgicalGolden {
 2025-08-21|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2025-08-22|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2025-08-23|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
-2025-08-24|Ordinary Time|Green|0|21||21st Sunday in Ordinary Time|
+2025-08-24|Ordinary Time|Red|0||Bartholomew the Apostle||
 2025-08-25|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
 2025-08-26|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
 2025-08-27|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
@@ -446,7 +446,7 @@ enum LiturgicalGolden {
 2026-03-16|Lent|Violet|0|4||4th Week of Lent|
 2026-03-17|Lent|Violet|0|4||4th Week of Lent|St. Patrick's Day
 2026-03-18|Lent|Violet|0|4||4th Week of Lent|
-2026-03-19|Lent|White|1||Joseph, Husband of Mary||
+2026-03-19|Lent|White|0||Joseph, Husband of Mary||
 2026-03-20|Lent|Violet|0|4||4th Week of Lent|
 2026-03-21|Lent|Violet|0|4||4th Week of Lent|
 2026-03-22|Lent|Violet|0|5||5th Sunday of Lent|
@@ -552,7 +552,7 @@ enum LiturgicalGolden {
 2026-06-30|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2026-07-01|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2026-07-02|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
-2026-07-03|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
+2026-07-03|Ordinary Time|Red|0||Thomas the Apostle||
 2026-07-04|Ordinary Time|Green|0|13||13th Week in Ordinary Time|Independence Day
 2026-07-05|Ordinary Time|Green|0|14||14th Sunday in Ordinary Time|
 2026-07-06|Ordinary Time|Green|0|14||14th Week in Ordinary Time|
@@ -604,7 +604,7 @@ enum LiturgicalGolden {
 2026-08-21|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2026-08-22|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2026-08-23|Ordinary Time|Green|0|21||21st Sunday in Ordinary Time|
-2026-08-24|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
+2026-08-24|Ordinary Time|Red|0||Bartholomew the Apostle||
 2026-08-25|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
 2026-08-26|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
 2026-08-27|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
@@ -811,7 +811,7 @@ enum LiturgicalGolden {
 2027-03-16|Lent|Violet|0|5||5th Week of Lent|
 2027-03-17|Lent|Violet|0|5||5th Week of Lent|St. Patrick's Day
 2027-03-18|Lent|Violet|0|5||5th Week of Lent|
-2027-03-19|Lent|White|1||Joseph, Husband of Mary||
+2027-03-19|Lent|White|0||Joseph, Husband of Mary||
 2027-03-20|Lent|Violet|0|5||5th Week of Lent|
 2027-03-21|Lent|Red|0||Palm Sunday of the Lord's Passion||
 2027-03-22|Lent|Violet|0|6||6th Week of Lent|
@@ -856,7 +856,7 @@ enum LiturgicalGolden {
 2027-04-30|Easter|White|0|5||5th Week of Easter|
 2027-05-01|Easter|White|0|5||5th Week of Easter|
 2027-05-02|Easter|White|0|6||6th Sunday of Easter|
-2027-05-03|Easter|White|0|6||6th Week of Easter|
+2027-05-03|Easter|Red|0||Philip and James, Apostles||
 2027-05-04|Easter|White|0|6||6th Week of Easter|
 2027-05-05|Easter|White|0|6||6th Week of Easter|Cinco de Mayo
 2027-05-06|Easter|White|1||Ascension of the Lord||
@@ -917,7 +917,7 @@ enum LiturgicalGolden {
 2027-06-30|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2027-07-01|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2027-07-02|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
-2027-07-03|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
+2027-07-03|Ordinary Time|Red|0||Thomas the Apostle||
 2027-07-04|Ordinary Time|Green|0|14||14th Sunday in Ordinary Time|Independence Day
 2027-07-05|Ordinary Time|Green|0|14||14th Week in Ordinary Time|
 2027-07-06|Ordinary Time|Green|0|14||14th Week in Ordinary Time|
@@ -969,7 +969,7 @@ enum LiturgicalGolden {
 2027-08-21|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2027-08-22|Ordinary Time|Green|0|21||21st Sunday in Ordinary Time|
 2027-08-23|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
-2027-08-24|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
+2027-08-24|Ordinary Time|Red|0||Bartholomew the Apostle||
 2027-08-25|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
 2027-08-26|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
 2027-08-27|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
@@ -1178,7 +1178,7 @@ enum LiturgicalGolden {
 2028-03-17|Lent|Violet|0|2||2nd Week of Lent|St. Patrick's Day
 2028-03-18|Lent|Violet|0|2||2nd Week of Lent|
 2028-03-19|Lent|Violet|0|3||3rd Sunday of Lent|
-2028-03-20|Lent|White|1||Joseph, Husband of Mary||
+2028-03-20|Lent|Violet|0|3||3rd Week of Lent|
 2028-03-21|Lent|Violet|0|3||3rd Week of Lent|
 2028-03-22|Lent|Violet|0|3||3rd Week of Lent|
 2028-03-23|Lent|Violet|0|3||3rd Week of Lent|
@@ -1222,7 +1222,7 @@ enum LiturgicalGolden {
 2028-04-30|Easter|White|0|3||3rd Sunday of Easter|
 2028-05-01|Easter|White|0|3||3rd Week of Easter|
 2028-05-02|Easter|White|0|3||3rd Week of Easter|
-2028-05-03|Easter|White|0|3||3rd Week of Easter|
+2028-05-03|Easter|Red|0||Philip and James, Apostles||
 2028-05-04|Easter|White|0|3||3rd Week of Easter|
 2028-05-05|Easter|White|0|3||3rd Week of Easter|Cinco de Mayo
 2028-05-06|Easter|White|0|3||3rd Week of Easter|
@@ -1283,7 +1283,7 @@ enum LiturgicalGolden {
 2028-06-30|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2028-07-01|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2028-07-02|Ordinary Time|Green|0|13||13th Sunday in Ordinary Time|
-2028-07-03|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
+2028-07-03|Ordinary Time|Red|0||Thomas the Apostle||
 2028-07-04|Ordinary Time|Green|0|13||13th Week in Ordinary Time|Independence Day
 2028-07-05|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2028-07-06|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
@@ -1335,7 +1335,7 @@ enum LiturgicalGolden {
 2028-08-21|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2028-08-22|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2028-08-23|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
-2028-08-24|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
+2028-08-24|Ordinary Time|Red|0||Bartholomew the Apostle||
 2028-08-25|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2028-08-26|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2028-08-27|Ordinary Time|Green|0|21||21st Sunday in Ordinary Time|
@@ -1542,7 +1542,7 @@ enum LiturgicalGolden {
 2029-03-16|Lent|Violet|0|4||4th Week of Lent|
 2029-03-17|Lent|Violet|0|4||4th Week of Lent|St. Patrick's Day
 2029-03-18|Lent|Violet|0|5||5th Sunday of Lent|
-2029-03-19|Lent|White|1||Joseph, Husband of Mary||
+2029-03-19|Lent|White|0||Joseph, Husband of Mary||
 2029-03-20|Lent|Violet|0|5||5th Week of Lent|
 2029-03-21|Lent|Violet|0|5||5th Week of Lent|
 2029-03-22|Lent|Violet|0|5||5th Week of Lent|
@@ -1587,7 +1587,7 @@ enum LiturgicalGolden {
 2029-04-30|Easter|White|0|5||5th Week of Easter|
 2029-05-01|Easter|White|0|5||5th Week of Easter|
 2029-05-02|Easter|White|0|5||5th Week of Easter|
-2029-05-03|Easter|White|0|5||5th Week of Easter|
+2029-05-03|Easter|Red|0||Philip and James, Apostles||
 2029-05-04|Easter|White|0|5||5th Week of Easter|
 2029-05-05|Easter|White|0|5||5th Week of Easter|Cinco de Mayo
 2029-05-06|Easter|White|0|6||6th Sunday of Easter|
@@ -1648,7 +1648,7 @@ enum LiturgicalGolden {
 2029-06-30|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2029-07-01|Ordinary Time|Green|0|13||13th Sunday in Ordinary Time|
 2029-07-02|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
-2029-07-03|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
+2029-07-03|Ordinary Time|Red|0||Thomas the Apostle||
 2029-07-04|Ordinary Time|Green|0|13||13th Week in Ordinary Time|Independence Day
 2029-07-05|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2029-07-06|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
@@ -1700,7 +1700,7 @@ enum LiturgicalGolden {
 2029-08-21|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2029-08-22|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2029-08-23|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
-2029-08-24|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
+2029-08-24|Ordinary Time|Red|0||Bartholomew the Apostle||
 2029-08-25|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2029-08-26|Ordinary Time|Green|0|21||21st Sunday in Ordinary Time|
 2029-08-27|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
@@ -1907,7 +1907,7 @@ enum LiturgicalGolden {
 2030-03-16|Lent|Violet|0|1||1st Week of Lent|
 2030-03-17|Lent|Violet|0|2||2nd Sunday of Lent|St. Patrick's Day
 2030-03-18|Lent|Violet|0|2||2nd Week of Lent|
-2030-03-19|Lent|White|1||Joseph, Husband of Mary||
+2030-03-19|Lent|White|0||Joseph, Husband of Mary||
 2030-03-20|Lent|Violet|0|2||2nd Week of Lent|
 2030-03-21|Lent|Violet|0|2||2nd Week of Lent|
 2030-03-22|Lent|Violet|0|2||2nd Week of Lent|
@@ -1952,7 +1952,7 @@ enum LiturgicalGolden {
 2030-04-30|Easter|White|0|2||2nd Week of Easter|
 2030-05-01|Easter|White|0|2||2nd Week of Easter|
 2030-05-02|Easter|White|0|2||2nd Week of Easter|
-2030-05-03|Easter|White|0|2||2nd Week of Easter|
+2030-05-03|Easter|Red|0||Philip and James, Apostles||
 2030-05-04|Easter|White|0|2||2nd Week of Easter|
 2030-05-05|Easter|White|0|3||3rd Sunday of Easter|Cinco de Mayo
 2030-05-06|Easter|White|0|3||3rd Week of Easter|
@@ -2013,7 +2013,7 @@ enum LiturgicalGolden {
 2030-06-30|Ordinary Time|Green|0|13||13th Sunday in Ordinary Time|
 2030-07-01|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2030-07-02|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
-2030-07-03|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
+2030-07-03|Ordinary Time|Red|0||Thomas the Apostle||
 2030-07-04|Ordinary Time|Green|0|13||13th Week in Ordinary Time|Independence Day
 2030-07-05|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2030-07-06|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
@@ -2065,7 +2065,7 @@ enum LiturgicalGolden {
 2030-08-21|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2030-08-22|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2030-08-23|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
-2030-08-24|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
+2030-08-24|Ordinary Time|Red|0||Bartholomew the Apostle||
 2030-08-25|Ordinary Time|Green|0|21||21st Sunday in Ordinary Time|
 2030-08-26|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
 2030-08-27|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
@@ -2272,7 +2272,7 @@ enum LiturgicalGolden {
 2031-03-16|Lent|Violet|0|3||3rd Sunday of Lent|
 2031-03-17|Lent|Violet|0|3||3rd Week of Lent|St. Patrick's Day
 2031-03-18|Lent|Violet|0|3||3rd Week of Lent|
-2031-03-19|Lent|White|1||Joseph, Husband of Mary||
+2031-03-19|Lent|White|0||Joseph, Husband of Mary||
 2031-03-20|Lent|Violet|0|3||3rd Week of Lent|
 2031-03-21|Lent|Violet|0|3||3rd Week of Lent|
 2031-03-22|Lent|Violet|0|3||3rd Week of Lent|
@@ -2317,7 +2317,7 @@ enum LiturgicalGolden {
 2031-04-30|Easter|White|0|3||3rd Week of Easter|
 2031-05-01|Easter|White|0|3||3rd Week of Easter|
 2031-05-02|Easter|White|0|3||3rd Week of Easter|
-2031-05-03|Easter|White|0|3||3rd Week of Easter|
+2031-05-03|Easter|Red|0||Philip and James, Apostles||
 2031-05-04|Easter|White|0|4||4th Sunday of Easter|
 2031-05-05|Easter|White|0|4||4th Week of Easter|Cinco de Mayo
 2031-05-06|Easter|White|0|4||4th Week of Easter|
@@ -2378,7 +2378,7 @@ enum LiturgicalGolden {
 2031-06-30|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2031-07-01|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2031-07-02|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
-2031-07-03|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
+2031-07-03|Ordinary Time|Red|0||Thomas the Apostle||
 2031-07-04|Ordinary Time|Green|0|13||13th Week in Ordinary Time|Independence Day
 2031-07-05|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2031-07-06|Ordinary Time|Green|0|14||14th Sunday in Ordinary Time|
@@ -2430,7 +2430,7 @@ enum LiturgicalGolden {
 2031-08-21|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2031-08-22|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2031-08-23|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
-2031-08-24|Ordinary Time|Green|0|21||21st Sunday in Ordinary Time|
+2031-08-24|Ordinary Time|Red|0||Bartholomew the Apostle||
 2031-08-25|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
 2031-08-26|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
 2031-08-27|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
@@ -2638,7 +2638,7 @@ enum LiturgicalGolden {
 2032-03-16|Lent|Violet|0|5||5th Week of Lent|
 2032-03-17|Lent|Violet|0|5||5th Week of Lent|St. Patrick's Day
 2032-03-18|Lent|Violet|0|5||5th Week of Lent|
-2032-03-19|Lent|White|1||Joseph, Husband of Mary||
+2032-03-19|Lent|White|0||Joseph, Husband of Mary||
 2032-03-20|Lent|Violet|0|5||5th Week of Lent|
 2032-03-21|Lent|Red|0||Palm Sunday of the Lord's Passion||
 2032-03-22|Lent|Violet|0|6||6th Week of Lent|
@@ -2683,7 +2683,7 @@ enum LiturgicalGolden {
 2032-04-30|Easter|White|0|5||5th Week of Easter|
 2032-05-01|Easter|White|0|5||5th Week of Easter|
 2032-05-02|Easter|White|0|6||6th Sunday of Easter|
-2032-05-03|Easter|White|0|6||6th Week of Easter|
+2032-05-03|Easter|Red|0||Philip and James, Apostles||
 2032-05-04|Easter|White|0|6||6th Week of Easter|
 2032-05-05|Easter|White|0|6||6th Week of Easter|Cinco de Mayo
 2032-05-06|Easter|White|1||Ascension of the Lord||
@@ -2744,7 +2744,7 @@ enum LiturgicalGolden {
 2032-06-30|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2032-07-01|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2032-07-02|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
-2032-07-03|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
+2032-07-03|Ordinary Time|Red|0||Thomas the Apostle||
 2032-07-04|Ordinary Time|Green|0|14||14th Sunday in Ordinary Time|Independence Day
 2032-07-05|Ordinary Time|Green|0|14||14th Week in Ordinary Time|
 2032-07-06|Ordinary Time|Green|0|14||14th Week in Ordinary Time|
@@ -2796,7 +2796,7 @@ enum LiturgicalGolden {
 2032-08-21|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2032-08-22|Ordinary Time|Green|0|21||21st Sunday in Ordinary Time|
 2032-08-23|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
-2032-08-24|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
+2032-08-24|Ordinary Time|Red|0||Bartholomew the Apostle||
 2032-08-25|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
 2032-08-26|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
 2032-08-27|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
@@ -3003,7 +3003,7 @@ enum LiturgicalGolden {
 2033-03-16|Lent|Violet|0|2||2nd Week of Lent|
 2033-03-17|Lent|Violet|0|2||2nd Week of Lent|St. Patrick's Day
 2033-03-18|Lent|Violet|0|2||2nd Week of Lent|
-2033-03-19|Lent|White|1||Joseph, Husband of Mary||
+2033-03-19|Lent|White|0||Joseph, Husband of Mary||
 2033-03-20|Lent|Violet|0|3||3rd Sunday of Lent|
 2033-03-21|Lent|Violet|0|3||3rd Week of Lent|
 2033-03-22|Lent|Violet|0|3||3rd Week of Lent|
@@ -3048,7 +3048,7 @@ enum LiturgicalGolden {
 2033-04-30|Easter|White|0|2||2nd Week of Easter|
 2033-05-01|Easter|White|0|3||3rd Sunday of Easter|
 2033-05-02|Easter|White|0|3||3rd Week of Easter|
-2033-05-03|Easter|White|0|3||3rd Week of Easter|
+2033-05-03|Easter|Red|0||Philip and James, Apostles||
 2033-05-04|Easter|White|0|3||3rd Week of Easter|
 2033-05-05|Easter|White|0|3||3rd Week of Easter|Cinco de Mayo
 2033-05-06|Easter|White|0|3||3rd Week of Easter|
@@ -3109,7 +3109,7 @@ enum LiturgicalGolden {
 2033-06-30|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2033-07-01|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2033-07-02|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
-2033-07-03|Ordinary Time|Green|0|14||14th Sunday in Ordinary Time|
+2033-07-03|Ordinary Time|Red|0||Thomas the Apostle||
 2033-07-04|Ordinary Time|Green|0|14||14th Week in Ordinary Time|Independence Day
 2033-07-05|Ordinary Time|Green|0|14||14th Week in Ordinary Time|
 2033-07-06|Ordinary Time|Green|0|14||14th Week in Ordinary Time|
@@ -3161,7 +3161,7 @@ enum LiturgicalGolden {
 2033-08-21|Ordinary Time|Green|0|21||21st Sunday in Ordinary Time|
 2033-08-22|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
 2033-08-23|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
-2033-08-24|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
+2033-08-24|Ordinary Time|Red|0||Bartholomew the Apostle||
 2033-08-25|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
 2033-08-26|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
 2033-08-27|Ordinary Time|Green|0|21||21st Week in Ordinary Time|
@@ -3369,7 +3369,7 @@ enum LiturgicalGolden {
 2034-03-17|Lent|Violet|0|3||3rd Week of Lent|St. Patrick's Day
 2034-03-18|Lent|Violet|0|3||3rd Week of Lent|
 2034-03-19|Lent|Rose|0|4||4th Sunday of Lent|
-2034-03-20|Lent|White|1||Joseph, Husband of Mary||
+2034-03-20|Lent|Violet|0|4||4th Week of Lent|
 2034-03-21|Lent|Violet|0|4||4th Week of Lent|
 2034-03-22|Lent|Violet|0|4||4th Week of Lent|
 2034-03-23|Lent|Violet|0|4||4th Week of Lent|
@@ -3413,7 +3413,7 @@ enum LiturgicalGolden {
 2034-04-30|Easter|White|0|4||4th Sunday of Easter|
 2034-05-01|Easter|White|0|4||4th Week of Easter|
 2034-05-02|Easter|White|0|4||4th Week of Easter|
-2034-05-03|Easter|White|0|4||4th Week of Easter|
+2034-05-03|Easter|Red|0||Philip and James, Apostles||
 2034-05-04|Easter|White|0|4||4th Week of Easter|
 2034-05-05|Easter|White|0|4||4th Week of Easter|Cinco de Mayo
 2034-05-06|Easter|White|0|4||4th Week of Easter|
@@ -3474,7 +3474,7 @@ enum LiturgicalGolden {
 2034-06-30|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2034-07-01|Ordinary Time|Green|0|12||12th Week in Ordinary Time|
 2034-07-02|Ordinary Time|Green|0|13||13th Sunday in Ordinary Time|
-2034-07-03|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
+2034-07-03|Ordinary Time|Red|0||Thomas the Apostle||
 2034-07-04|Ordinary Time|Green|0|13||13th Week in Ordinary Time|Independence Day
 2034-07-05|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
 2034-07-06|Ordinary Time|Green|0|13||13th Week in Ordinary Time|
@@ -3526,7 +3526,7 @@ enum LiturgicalGolden {
 2034-08-21|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2034-08-22|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2034-08-23|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
-2034-08-24|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
+2034-08-24|Ordinary Time|Red|0||Bartholomew the Apostle||
 2034-08-25|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2034-08-26|Ordinary Time|Green|0|20||20th Week in Ordinary Time|
 2034-08-27|Ordinary Time|Green|0|21||21st Sunday in Ordinary Time|

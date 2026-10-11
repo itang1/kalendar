@@ -56,7 +56,7 @@ describe('countdownText', () => {
 
 describe('todaysColorNote', () => {
   it('explains a feast that changes the season color', () => {
-    expect(todaysColorNote(day(2026, 10, 18))).toBe('Today is red for Luke the Evangelist.');
+    expect(todaysColorNote(day(2026, 10, 18))).toBe('This day is red for Luke the Evangelist.');
   });
   it('is silent when the day wears its season color', () => {
     expect(todaysColorNote(day(2026, 7, 10))).toBeNull();

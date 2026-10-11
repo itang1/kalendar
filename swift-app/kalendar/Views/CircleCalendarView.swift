@@ -36,11 +36,37 @@ struct CircleCalendarView: View {
     /// dismissal, since two sheets cannot be presented at once.
     @State private var pendingSelection: Int? = nil
 
-    /// Seven tiles per row on iPhone; more on the wider iPad canvas so tiles
-    /// don't shrink to specks.
+    /// Whole weeks per row (one on iPhone, two on the wider iPad canvas), so each
+    /// column is a weekday under the pinned header.
+    private var columnCount: Int { horizontalSizeClass == .regular ? 14 : 7 }
+
     private var columns: [GridItem] {
-        let count = horizontalSizeClass == .regular ? 12 : 7
-        return Array(repeating: GridItem(.flexible(), spacing: 6), count: count)
+        Array(repeating: GridItem(.flexible(), spacing: 6), count: columnCount)
+    }
+
+    /// The window starts today, so the first row opens with blank slots for the
+    /// earlier days of this week.
+    private var leadingBlanks: Int {
+        guard let first = viewModel.days.first else { return 0 }
+        return Calendar.current.component(.weekday, from: first.date) - 1
+    }
+
+    private static let monthFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.setLocalizedDateFormatFromTemplate("MMM")
+        return f
+    }()
+
+    /// Sunday first, matching the leading blanks below.
+    private static let weekdayInitials = Calendar.current.veryShortWeekdaySymbols
+
+    /// "OCT 10" on the first tile so the grid has a starting point, "NOV" on each 1st.
+    private func monthLabel(for day: DayCard, at index: Int) -> String? {
+        let dayOfMonth = Calendar.current.component(.day, from: day.date)
+        let month = Self.monthFormatter.string(from: day.date).uppercased()
+        if dayOfMonth == 1 { return month }
+        if index == 0 { return "\(month) \(dayOfMonth)" }
+        return nil
     }
 
     var body: some View {
@@ -59,7 +85,7 @@ struct CircleCalendarView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 HStack(spacing: 20) {
                     Button { showJumpToDate = true } label: {
-                        Image(systemName: "calendar.badge.magnifyingglass")
+                        Image(systemName: "calendar")
                     }
                     .accessibilityLabel("Jump to a date")
                     Button { showFeastList = true } label: {
@@ -129,18 +155,42 @@ struct CircleCalendarView: View {
     private var gridView: some View {
         ScrollViewReader { proxy in
             ScrollView {
-                LazyVGrid(columns: columns, spacing: 6) {
-                    ForEach(Array(viewModel.days.enumerated()), id: \.element.id) { index, day in
-                        DayCardView(day: day)
-                            .aspectRatio(1, contentMode: .fit)
-                            .id(index)
-                            .onTapGesture {
-                                UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                                selectedDay = SelectedDay(id: index)
+                GridLegend()
+                    .padding(.horizontal, 12)
+                    .padding(.top, 10)
+                LazyVGrid(columns: columns, spacing: 6, pinnedViews: [.sectionHeaders]) {
+                    Section {
+                        ForEach(0..<leadingBlanks, id: \.self) { i in
+                            Color.clear
+                                .aspectRatio(1, contentMode: .fit)
+                                .id("lead-\(i)")
+                        }
+                        ForEach(Array(viewModel.days.enumerated()), id: \.element.id) { index, day in
+                            DayCardView(day: day, monthLabel: monthLabel(for: day, at: index))
+                                .aspectRatio(1, contentMode: .fit)
+                                .id(index)
+                                .onTapGesture {
+                                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                                    selectedDay = SelectedDay(id: index)
+                                }
+                        }
+                    } header: {
+                        // The weekday header stays pinned while the year scrolls under it.
+                        HStack(spacing: 6) {
+                            ForEach(0..<columnCount, id: \.self) { i in
+                                Text(Self.weekdayInitials[i % 7])
+                                    .font(.caption.weight(.semibold))
+                                    .foregroundStyle(.secondary)
+                                    .frame(maxWidth: .infinity)
                             }
+                        }
+                        .padding(.vertical, 6)
+                        .background(Color.kalendarBackground)
+                        .accessibilityHidden(true)
                     }
                 }
-                .padding(12)
+                .padding(.horizontal, 12)
+                .padding(.bottom, 12)
             }
             .background(Color.kalendarBackground)
             .onChange(of: scrollToIndex) {
@@ -157,7 +207,8 @@ struct CircleCalendarView: View {
         GeometryReader { geo in
             let size = min(geo.size.width, geo.size.height) - 48
             VStack(spacing: 20) {
-                KalendarWheel(days: viewModel.days, radius: size / 2) { index in
+                // The rim sits inside the frame, leaving room for the month names.
+                KalendarWheel(days: viewModel.days, radius: size / 2 - KalendarWheel.labelMargin) { index in
                     UIImpactFeedbackGenerator(style: .light).impactOccurred()
                     selectedDay = SelectedDay(id: index)
                 }
@@ -184,6 +235,42 @@ struct CircleCalendarView: View {
             .padding(.top, 24)
         }
         .background(Color.kalendarBackground)
+    }
+}
+
+// MARK: - Grid Legend
+
+/// What the marks on a tile mean, shown above the grid instead of only in About.
+private struct GridLegend: View {
+    var body: some View {
+        VStack(spacing: 6) {
+            Text("Tap any day to see its season, feast, and color.")
+            HStack(spacing: 16) {
+                item("Feast") {
+                    Circle().frame(width: 7, height: 7)
+                }
+                item("Solemnity") {
+                    Image(systemName: "star.fill").resizable().scaledToFit().frame(width: 9, height: 9)
+                }
+                item("U.S. holiday") {
+                    RoundedRectangle(cornerRadius: 1).frame(width: 6, height: 6).rotationEffect(.degrees(45))
+                }
+                item("Your note") {
+                    RoundedRectangle(cornerRadius: 1.5).frame(width: 6, height: 6)
+                }
+            }
+        }
+        .font(.footnote)
+        .foregroundStyle(.secondary)
+        .frame(maxWidth: .infinity)
+        .accessibilityElement(children: .combine)
+    }
+
+    private func item(_ label: String, @ViewBuilder glyph: () -> some View) -> some View {
+        HStack(spacing: 5) {
+            glyph().foregroundStyle(.primary)
+            Text(label)
+        }
     }
 }
 

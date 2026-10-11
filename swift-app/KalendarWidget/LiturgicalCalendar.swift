@@ -82,7 +82,7 @@ enum LiturgicalSeason: String, CaseIterable {
         case .advent:
             return "The four-week season of preparation and anticipation before Christmas. Christians reflect on the coming of Jesus, both his birth and his promised return. The word 'Advent' means 'coming.'"
         case .christmas:
-            return "The joyful celebration of Jesus' birth, lasting from December 25 through the Baptism of the Lord in January. It is not just one day; Christians celebrate for weeks."
+            return "The season that follows Christmas Day, running from December 25 through the Baptism of the Lord in January. It carries the celebration past the one day, through the visit of the Magi at Epiphany to Jesus' baptism."
         case .ordinaryTime:
             return "The longest season of the liturgical year, split into two stretches (after Christmas and after Pentecost). 'Ordinary' does not mean boring. It comes from 'ordinal' (counted). These weeks focus on Jesus' public life and teachings."
         case .lent:
@@ -143,6 +143,7 @@ enum FeastID: String {
     case epiphany, conversionOfPaul, presentationOfTheLord, josephSpouseOfMary
     case annunciation, markEvangelist, matthias, visitation
     case barnabas, nativityOfJohnTheBaptist, peterAndPaul, maryMagdalene
+    case philipAndJames, thomas, bartholomew
     case james, transfiguration, matthewEvangelist, lukeEvangelist
     case simonAndJude, reformationDay, andrew, nativityOfTheLord
     case stephen, johnEvangelist, holyInnocents
@@ -547,12 +548,14 @@ struct LiturgicalCalendar {
             "Recalls the dramatic moment when Saul of Tarsus, who was hunting down and imprisoning Christians, was struck blind on the road to Damascus by a vision of the risen Jesus. He recovered, was baptized, changed his name to Paul, and became the greatest missionary the Christian faith has ever produced.")
         case (2, 2): return (.presentationOfTheLord, "Presentation of the Lord", .white, false,
             "Forty days after Christmas, Mary and Joseph brought baby Jesus to the Temple in Jerusalem, as Jewish law required for firstborn sons. The elderly prophet Simeon recognized him as the Messiah and called him 'a light for revelation to the Gentiles.' Also called Candlemas.")
-        case (3, 19): return (.josephSpouseOfMary, "Joseph, Husband of Mary", .white, true,
+        case (3, 19): return (.josephSpouseOfMary, "Joseph, Husband of Mary", .white, false,
             "Remembers Joseph, the earthly father of Jesus and husband of Mary. He was a carpenter from Nazareth who protected and raised Jesus, remembered for his quiet, faithful obedience.")
         case (3, 25): return (.annunciation, "Annunciation of the Lord", .white, true,
             "Celebrates the moment the angel Gabriel appeared to Mary and announced she would conceive Jesus by the Holy Spirit. Mary said 'yes,' and Christians believe that is when God became human. Exactly 9 months before Christmas.")
         case (4, 25): return (.markEvangelist, "Mark the Evangelist", .red, false,
             "Honors Mark, the author of the shortest and most urgent of the four Gospels. He wrote it in Rome, likely drawing on Peter's eyewitness accounts, and his Gospel reads like it is in a hurry. The word 'immediately' appears over forty times.")
+        case (5, 3): return (.philipAndJames, "Philip and James, Apostles", .red, false,
+            "Philip, from Bethsaida, brought Nathanael to Jesus and later asked him, 'Lord, show us the Father,' drawing the answer 'Whoever has seen me has seen the Father.' James, son of Alphaeus, is often called James the Less to tell him apart from James the son of Zebedee. Scripture records little else about him.")
         case (5, 14): return (.matthias, "Matthias the Apostle", .red, false,
             "Matthias was chosen by lot to replace Judas Iscariot among the twelve apostles. The account in Acts is brief. He is a reminder that the structure of the early community mattered enough to be filled, and that ordinary people were chosen for extraordinary roles.")
         case (5, 31): return (.visitation, "The Visitation", .white, false,
@@ -563,16 +566,20 @@ struct LiturgicalCalendar {
             "The birth of John the Baptist, Jesus' cousin, who grew up to be the prophet who prepared the way for Jesus' ministry. He baptized people in the Jordan River and is the one who baptized Jesus himself.")
         case (6, 29): return (.peterAndPaul, "Peter and Paul, Apostles", .red, true,
             "Honors the two greatest apostles: Peter, the fisherman Jesus chose to lead his followers, and Paul, who started out persecuting Christians but converted and became the greatest missionary of the early Christian world. Both were martyred in Rome.")
+        case (7, 3): return (.thomas, "Thomas the Apostle", .red, false,
+            "Thomas is remembered for refusing to believe in the resurrection until he could see and touch Jesus' wounds. When he did, he made one of the clearest confessions in the Gospels: 'My Lord and my God.' Jesus answered, 'Blessed are those who have not seen and yet have believed.'")
         case (7, 22): return (.maryMagdalene, "Mary Magdalene", .white, false,
-            "Mary Magdalene was among Jesus' closest followers, present at his crucifixion when most of the apostles had fled, and the first person to see him after the resurrection. She is called the 'apostle to the apostles' because she carried the news of the resurrection to the others. Her feast was elevated to a proper feast in 2016.")
+            "Mary Magdalene was among Jesus' closest followers, present at his crucifixion when most of the apostles had fled, and the first person to see him after the resurrection. She is called the 'apostle to the apostles' because she carried the news of the resurrection to the others.")
         case (7, 25): return (.james, "James the Apostle", .red, false,
-            "James was one of the sons of Zebedee and one of Jesus' inner circle of three, along with Peter and John. He was the first of the apostles to be martyred, killed by King Herod Agrippa around 44 AD. His shrine in Santiago de Compostela in Spain has been one of the great pilgrimage destinations for over a thousand years.")
+            "James was one of the sons of Zebedee and one of Jesus' inner circle of three, along with Peter and John. He was the first of the apostles to be martyred, killed by King Herod Agrippa around 44 AD. Acts 12 records his death in a single sentence.")
         case (8, 6): return (.transfiguration, "Transfiguration of the Lord", .white, false,
             "Recalls when Jesus took three disciples up a mountain, and his appearance was transformed. His face shone like the sun and his clothes became dazzling white. Moses and Elijah appeared beside him, and God's voice said 'This is my beloved Son.'")
+        case (8, 24): return (.bartholomew, "Bartholomew the Apostle", .red, false,
+            "Bartholomew is listed among the twelve in Matthew, Mark, and Luke, and is usually identified with Nathanael in John's Gospel, who asked 'Can anything good come out of Nazareth?' Jesus called him 'an Israelite in whom there is no deceit.'")
         case (9, 21): return (.matthewEvangelist, "Matthew the Apostle and Evangelist", .red, false,
             "Matthew was a tax collector, which made him a social outcast in his community. Jesus called him anyway. He went on to write the first of the four Gospels, the most Jewish in character, the one most concerned with showing how Jesus fulfills the Hebrew scriptures.")
         case (10, 18): return (.lukeEvangelist, "Luke the Evangelist", .red, false,
-            "Luke was a physician and the only Gentile author in the New Testament. He wrote both the Gospel that bears his name and the Acts of the Apostles, together the longest single contribution to the New Testament. His Gospel is the one most attentive to women, the poor, and outsiders. He is the patron of doctors and artists.")
+            "Luke was a physician and the only Gentile author in the New Testament. He wrote both the Gospel that bears his name and the Acts of the Apostles, together the longest single contribution to the New Testament. His Gospel is the one most attentive to women, the poor, and outsiders.")
         case (10, 28): return (.simonAndJude, "Simon and Jude, Apostles", .red, false,
             "Two apostles honored together because little is known about either of them. Simon was called 'the Zealot,' probably indicating a political background. Jude (not Judas Iscariot) is traditionally linked to one of the short letters near the end of the New Testament.")
         case (10, 31): return (.reformationDay, "Reformation Day", .red, false,
@@ -633,7 +640,7 @@ struct LiturgicalCalendar {
         }
         if calendar.isDate(date, inSameDayAs: keys.trinitySunday) {
             return (.trinitySunday, "Most Holy Trinity", .white, true,
-                "The Sunday after Pentecost, celebrating the central mystery of Christian faith: that God is one God in three persons, Father, Son, and Holy Spirit. It is not three gods, but one God experienced in three ways. Even theologians say it is a mystery beyond full human understanding.")
+                "The Sunday after Pentecost, celebrating the central mystery of Christian faith: that God is one God in three persons, Father, Son, and Holy Spirit. Not three gods, and not one God taking turns in three roles, but one God eternally existing as three distinct persons. It is a mystery the church confesses rather than fully explains.")
         }
         if calendar.isDate(date, inSameDayAs: keys.christTheKing) {
             return (.christTheKing, "Our Lord Jesus Christ, King of the Universe", .white, true,

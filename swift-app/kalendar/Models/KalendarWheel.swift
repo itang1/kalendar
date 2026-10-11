@@ -1,4 +1,5 @@
-// This file creates a wheel-shaped calendar view with 365 colored slices, each representing one day.
+// This file creates a wheel-shaped calendar view with 365 colored slices, each representing one day,
+// with a tick where each month begins and its name just outside the rim.
 
 import SwiftUI
 
@@ -7,6 +8,37 @@ struct KalendarWheel: View {
     var radius: CGFloat = 160
     let sliceLineWidth: CGFloat = 2
     var onDayTap: ((Int) -> Void)? = nil
+
+    /// Room the wheel's frame needs outside `radius` for the month names.
+    static let labelMargin: CGFloat = 22
+
+    private static let monthFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.setLocalizedDateFormatFromTemplate("MMM")
+        return f
+    }()
+
+    /// Each month in the window: where it starts and its middle, as day indices.
+    /// The window runs a few days into the month it started in; that month is
+    /// labeled once, and any sliver too narrow to hold a name is skipped.
+    private var monthSpans: [(start: Int, mid: Double, label: String)] {
+        let cal = Calendar.current
+        let starts = days.indices.filter { $0 == 0 || cal.component(.day, from: days[$0].date) == 1 }
+        var spans: [(start: Int, mid: Double, label: String)] = []
+        for (k, start) in starts.enumerated() {
+            let end = k + 1 < starts.count ? starts[k + 1] : days.count
+            let label = Self.monthFormatter.string(from: days[start].date)
+            let repeatsFirst = k > 0 && k == starts.count - 1 && label == spans.first?.label
+            guard end - start >= 10, !repeatsFirst else { continue }
+            spans.append((start, Double(start + end) / 2, label))
+        }
+        return spans
+    }
+
+    private func point(center: CGPoint, r: CGFloat, index: Double) -> CGPoint {
+        let a = CGFloat(index / Double(max(days.count, 1))) * 2 * .pi - .pi / 2
+        return CGPoint(x: center.x + r * cos(a), y: center.y + r * sin(a))
+    }
 
     var body: some View {
         GeometryReader { geometry in
@@ -32,6 +64,20 @@ struct KalendarWheel: View {
                         )
                         .stroke(Color.secondary.opacity(0.35), lineWidth: sliceLineWidth)
                     )
+                }
+
+                ForEach(monthSpans, id: \.start) { span in
+                    if span.start > 0 {
+                        Path { p in
+                            p.move(to: point(center: center, r: radius + 2, index: Double(span.start)))
+                            p.addLine(to: point(center: center, r: radius + 8, index: Double(span.start)))
+                        }
+                        .stroke(Color.secondary, lineWidth: 1.5)
+                    }
+                    Text(span.label)
+                        .font(.caption2.weight(.semibold))
+                        .foregroundStyle(.secondary)
+                        .position(point(center: center, r: radius + 13, index: span.mid))
                 }
 
                 // Marker on the first slice (today, at the top) so it is easy to find.

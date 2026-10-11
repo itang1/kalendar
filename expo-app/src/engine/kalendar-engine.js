@@ -37,7 +37,7 @@ const SEASON_EXPLANATION = {
   [LiturgicalSeason.advent]:
     "The four-week season of preparation and anticipation before Christmas. It centers on the coming of Jesus, both his birth and his promised return. The word 'Advent' means 'coming.'",
   [LiturgicalSeason.christmas]:
-    "The joyful celebration of Jesus' birth, lasting from December 25 through the Baptism of the Lord in January. It is not just one day; the celebration continues for weeks.",
+    "The season that follows Christmas Day, running from December 25 through the Baptism of the Lord in January. It carries the celebration past the one day, through the visit of the Magi at Epiphany to Jesus' baptism.",
   [LiturgicalSeason.ordinaryTime]:
     "The longest season of the liturgical year, split into two stretches (after Christmas and after Pentecost). 'Ordinary' does not mean boring. It comes from 'ordinal' (counted). These weeks focus on Jesus' public life and teachings.",
   [LiturgicalSeason.lent]:
@@ -325,12 +325,14 @@ const FIXED_FEASTS = {
     description: "Recalls the dramatic moment when Saul of Tarsus, who was hunting down and imprisoning believers, was struck blind on the road to Damascus by a vision of the risen Jesus. He recovered, was baptized, changed his name to Paul, and became the greatest missionary the early Church ever produced." },
   '2-2':   { id: 'presentationOfTheLord', name: "Presentation of the Lord", color: LiturgicalColor.white, solemnity: false,
     description: "Forty days after Christmas, Mary and Joseph brought baby Jesus to the Temple in Jerusalem, as Jewish law required for firstborn sons. The elderly prophet Simeon recognized him as the Messiah and called him 'a light for revelation to the Gentiles.' Also called Candlemas." },
-  '3-19':  { id: 'josephSpouseOfMary', name: "Joseph, Husband of Mary", color: LiturgicalColor.white, solemnity: true,
+  '3-19':  { id: 'josephSpouseOfMary', name: "Joseph, Husband of Mary", color: LiturgicalColor.white, solemnity: false,
     description: "Remembers Joseph, the earthly father of Jesus and husband of Mary. He was a carpenter from Nazareth who protected and raised Jesus, remembered for his quiet, faithful obedience." },
   '3-25':  { id: 'annunciation', name: "Annunciation of the Lord", color: LiturgicalColor.white, solemnity: true,
     description: "Celebrates the moment the angel Gabriel appeared to Mary and announced she would conceive Jesus by the Holy Spirit. Mary said 'yes,' the moment believed to be when God became human. Exactly 9 months before Christmas." },
   '4-25':  { id: 'markEvangelist', name: "Mark the Evangelist", color: LiturgicalColor.red, solemnity: false,
     description: "Honors Mark, the author of the shortest and most urgent of the four Gospels. He wrote it in Rome, likely drawing on Peter's eyewitness accounts, and his Gospel reads like it is in a hurry. The word 'immediately' appears over forty times." },
+  '5-3':   { id: 'philipAndJames', name: "Philip and James, Apostles", color: LiturgicalColor.red, solemnity: false,
+    description: "Philip, from Bethsaida, brought Nathanael to Jesus and later asked him, 'Lord, show us the Father,' drawing the answer 'Whoever has seen me has seen the Father.' James, son of Alphaeus, is often called James the Less to tell him apart from James the son of Zebedee. Scripture records little else about him." },
   '5-14':  { id: 'matthias', name: "Matthias the Apostle", color: LiturgicalColor.red, solemnity: false,
     description: "Matthias was chosen by lot to replace Judas Iscariot among the twelve apostles. The account in Acts is brief. He is a reminder that the structure of the early community mattered enough to be filled, and that ordinary people were chosen for extraordinary roles." },
   '5-31':  { id: 'visitation', name: "The Visitation", color: LiturgicalColor.white, solemnity: false,
@@ -341,16 +343,20 @@ const FIXED_FEASTS = {
     description: "The birth of John the Baptist, Jesus' cousin, who grew up to be the prophet who prepared the way for Jesus' ministry. He baptized people in the Jordan River and is the one who baptized Jesus himself." },
   '6-29':  { id: 'peterAndPaul', name: "Peter and Paul, Apostles", color: LiturgicalColor.red, solemnity: true,
     description: "Honors the two greatest apostles: Peter, the fisherman Jesus chose to lead his followers, and Paul, who started out persecuting believers but converted and became the greatest missionary of the early Church. Both were martyred in Rome." },
+  '7-3':   { id: 'thomas', name: "Thomas the Apostle", color: LiturgicalColor.red, solemnity: false,
+    description: "Thomas is remembered for refusing to believe in the resurrection until he could see and touch Jesus' wounds. When he did, he made one of the clearest confessions in the Gospels: 'My Lord and my God.' Jesus answered, 'Blessed are those who have not seen and yet have believed.'" },
   '7-22':  { id: 'maryMagdalene', name: "Mary Magdalene", color: LiturgicalColor.white, solemnity: false,
-    description: "Mary Magdalene was among Jesus' closest followers, present at his crucifixion when most of the apostles had fled, and the first person to see him after the resurrection. She is called the 'apostle to the apostles' because she carried the news of the resurrection to the others. Her feast was elevated to a proper feast in 2016." },
+    description: "Mary Magdalene was among Jesus' closest followers, present at his crucifixion when most of the apostles had fled, and the first person to see him after the resurrection. She is called the 'apostle to the apostles' because she carried the news of the resurrection to the others." },
   '7-25':  { id: 'james', name: "James the Apostle", color: LiturgicalColor.red, solemnity: false,
-    description: "James was one of the sons of Zebedee and one of Jesus' inner circle of three, along with Peter and John. He was the first of the apostles to be martyred, killed by King Herod Agrippa around 44 AD. His shrine in Santiago de Compostela in Spain has been one of the great pilgrimage destinations for over a thousand years." },
+    description: "James was one of the sons of Zebedee and one of Jesus' inner circle of three, along with Peter and John. He was the first of the apostles to be martyred, killed by King Herod Agrippa around 44 AD. Acts 12 records his death in a single sentence." },
   '8-6':   { id: 'transfiguration', name: "Transfiguration of the Lord", color: LiturgicalColor.white, solemnity: false,
     description: "Recalls when Jesus took three disciples up a mountain, and his appearance was transformed. His face shone like the sun and his clothes became dazzling white. Moses and Elijah appeared beside him, and God's voice said 'This is my beloved Son.'" },
+  '8-24':  { id: 'bartholomew', name: "Bartholomew the Apostle", color: LiturgicalColor.red, solemnity: false,
+    description: "Bartholomew is listed among the twelve in Matthew, Mark, and Luke, and is usually identified with Nathanael in John's Gospel, who asked 'Can anything good come out of Nazareth?' Jesus called him 'an Israelite in whom there is no deceit.'" },
   '9-21':  { id: 'matthewEvangelist', name: "Matthew the Apostle and Evangelist", color: LiturgicalColor.red, solemnity: false,
     description: "Matthew was a tax collector, which made him a social outcast in his community. Jesus called him anyway. He went on to write the first of the four Gospels, the most Jewish in character, the one most concerned with showing how Jesus fulfills the Hebrew scriptures." },
   '10-18': { id: 'lukeEvangelist', name: "Luke the Evangelist", color: LiturgicalColor.red, solemnity: false,
-    description: "Luke was a physician and the only Gentile author in the New Testament. He wrote both the Gospel that bears his name and the Acts of the Apostles, together the longest single contribution to the New Testament. His Gospel is the one most attentive to women, the poor, and outsiders. He is the patron of doctors and artists." },
+    description: "Luke was a physician and the only Gentile author in the New Testament. He wrote both the Gospel that bears his name and the Acts of the Apostles, together the longest single contribution to the New Testament. His Gospel is the one most attentive to women, the poor, and outsiders." },
   '10-28': { id: 'simonAndJude', name: "Simon and Jude, Apostles", color: LiturgicalColor.red, solemnity: false,
     description: "Two apostles honored together because little is known about either of them. Simon was called 'the Zealot,' probably indicating a political background. Jude (not Judas Iscariot) is traditionally linked to one of the short letters near the end of the New Testament." },
   '10-31': { id: 'reformationDay', name: "Reformation Day", color: LiturgicalColor.red, solemnity: false,
@@ -413,7 +419,7 @@ function movableFeast(date, keys) {
   }
   if (sameDay(date, keys.trinitySunday)) {
     return { id: 'trinitySunday', name: "Most Holy Trinity", color: LiturgicalColor.white, solemnity: true,
-      description: "The Sunday after Pentecost, celebrating the central mystery of the faith: that God is one God in three persons, Father, Son, and Holy Spirit. It is not three gods, but one God experienced in three ways. Even theologians say it is a mystery beyond full human understanding." };
+      description: "The Sunday after Pentecost, celebrating the central mystery of the faith: that God is one God in three persons, Father, Son, and Holy Spirit. Not three gods, and not one God taking turns in three roles, but one God eternally existing as three distinct persons. It is a mystery the church confesses rather than fully explains." };
   }
   if (sameDay(date, keys.christTheKing)) {
     return { id: 'christTheKing', name: "Our Lord Jesus Christ, King of the Universe", color: LiturgicalColor.white, solemnity: true,
