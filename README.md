@@ -27,7 +27,7 @@ Unlike the historical liturgical calendar, which is Catholic in origin, Kalendar
 ## Tech stack
 
 - **iOS:** SwiftUI, iOS 17+, zero third-party dependencies.
-- **Android and web:** one Expo / React Native app in [`expo-app/`](expo-app/), the same stack as book-club. Its web build is the browser calendar in `docs/app/`.
+- **Android and web:** one Expo / React Native app in [`expo-app/`](expo-app/). Its web build is the browser calendar in `docs/app/`.
 - The liturgical engine exists in Swift and in JavaScript (shared by Android and web), guarded by a golden-decade drift test (`node tools/liturgical-golden.mjs`).
 
 ## Setup
